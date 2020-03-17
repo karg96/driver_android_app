@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AddDrivingLicenseActivity">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="7dp"
+        android:src="@drawable/arrow_back" />
+
+
+    <TextView
+
+        android:id="@+id/tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_back"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/nunitosans_bold"
+        android:lineHeight="40sp"
+        android:text="@string/driving_license"
+        android:textColor="@color/colorBlack"
+        android:textSize="32sp" />
+
+    <ImageView
+        android:id="@+id/img_license"
+        android:layout_width="313dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/tv_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/driving_license" />
+
+    <TextView
+        android:id="@+id/text_upload"
+        android:layout_below="@+id/img_license"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunitosans_regular"
+        android:lineHeight="40dp"
+        android:text="@string/upload_your_driving_license"
+        android:textColor="@color/colorGray"
+        android:textSize="20dp"
+        android:lineSpacingExtra="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+    
+    <RelativeLayout
+        android:layout_width="234dp"
+        android:layout_height="63dp"
+        android:layout_below="@+id/text_upload"
+        android:background="@drawable/dark_blue_bg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitosans_regular"
+            android:lineHeight="40dp"
+            android:text="@string/upload_your_driving_license"
+            android:textColor="@color/colorGray"
+            android:textSize="20dp"
+            android:lineSpacingExtra="25sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

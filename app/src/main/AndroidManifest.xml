@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cos.tuk_tuk_driver">
+
+    <application
+        android:name=".DriverApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/MyMaterialTheme.Base">
+        <activity android:name=".activity.AddDrivingLicenseActivity"></activity>
+        <activity android:name=".activity.AddDocumentActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.TermsAndPolicyActivity"></activity>
+        <activity android:name=".activity.CreateNameActivity" />
+        <activity android:name=".activity.CreatePasswordActivity" />
+        <activity android:name=".activity.EmailAddressActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.WelcomeActivity" />
+        <activity android:name=".activity.GetOtpActivity" />
+        <activity android:name=".activity.EnterOtpActivity" />
+        <activity android:name=".activity.SplashActivity">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity android:name=".activity.MainActivity" />
+    </application>
+
+</manifest>
