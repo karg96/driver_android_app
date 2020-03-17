@@ -4,23 +4,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityAddDocumentBinding
-import cos.tuk_tuk_driver.databinding.ActivityAddDrivingLicenseBinding
+import cos.tuk_tuk_driver.databinding.ActivityAddVehicleRegistrationBinding
 
-class AddDrivingLicenseActivity : AppCompatActivity() {
+class AddVehicleRegistrationActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAddDrivingLicenseBinding
-
+    private lateinit var binding: ActivityAddVehicleRegistrationBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityAddDrivingLicenseBinding.inflate(layoutInflater)
+        binding=ActivityAddVehicleRegistrationBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         init()
     }
 
     private fun init() {
-
         binding.ivBack.setOnClickListener {
             finish()
         }

@@ -59,4 +59,9 @@
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:colorAccent">#000000</item>
     </style>
+
+    <style name="CustomRadioButton" parent="AppTheme">
+        <item name="colorControlActivated">@color/colorDarkBlue</item>
+    </style>
+
 </resources>

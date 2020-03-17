@@ -56,7 +56,7 @@ class SplashActivity : BaseActivity() {
                         i.toFloat()
                     )
                     anim.duration = 400
-                    binding.progressBar.startAnimation(anim)
+//                    binding.progressBar.startAnimation(anim)
                     i += 33
 
                 } else {

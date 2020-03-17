@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorLight">
@@ -24,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="30sp"
+                android:layout_marginTop="90sp"
                 android:layout_marginRight="15dp"
                 android:fontFamily="@font/nunitosans_bold"
                 android:lineHeight="40dp"
@@ -37,7 +36,7 @@
                 android:id="@+id/rel1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="27dp"
                 android:layout_marginBottom="20dp">
 
                 <TextView
@@ -58,6 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textSelect"
+                    android:layout_marginTop="27dp"
                     android:orientation="vertical">
 
                     <RadioButton
@@ -65,13 +65,13 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:layout_margin="4dp"
-                        android:buttonTint="@color/colorBlue"
-                        android:checked="true"
+                        android:buttonTint="@color/colorDarkBlue"
                         android:fontFamily="@font/nunitosans_regular"
                         android:layoutDirection="rtl"
                         android:lineHeight="45dp"
                         android:paddingLeft="20dp"
                         android:text="LMV"
+                        android:checked="true"
                         android:textColor="@color/colorGray"
                         android:textSize="20sp" />
 
@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rel1"
-                android:layout_marginBottom="40sp"
+                android:layout_marginTop="21dp"
                 android:background="@color/colorLight">
 
                 <TextView
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/text2"
                     android:layout_marginLeft="18dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="23dp"
                     android:layout_marginRight="17sp"
                     android:layout_marginBottom="10sp"
                     app:cardCornerRadius="5dp"
@@ -184,7 +184,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/cardLicense"
                     android:layout_marginLeft="18dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="11dp"
                     android:layout_marginRight="17sp"
                     android:layout_marginBottom="10sp"
                     app:cardCornerRadius="5dp"
@@ -230,7 +230,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/cardRegDocument"
                     android:layout_marginLeft="18dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="11dp"
                     android:layout_marginRight="17sp"
                     android:layout_marginBottom="10sp"
                     app:cardCornerRadius="5dp"
@@ -276,7 +276,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/cardIdentity"
                     android:layout_marginLeft="18dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="11dp"
                     android:layout_marginRight="17sp"
                     android:layout_marginBottom="10sp"
                     app:cardCornerRadius="5dp"
@@ -317,7 +317,24 @@
                 </androidx.cardview.widget.CardView>
 
 
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="63dp"
+                    android:layout_below="@+id/cardPhoto"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginEnd="23dp"
+                    android:layout_marginBottom="17sp"
+                    android:background="@drawable/red_rounded_btn"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/lets_start"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="23sp" />
+
             </RelativeLayout>
+
 
         </LinearLayout>
 

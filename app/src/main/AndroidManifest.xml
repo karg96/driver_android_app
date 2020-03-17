@@ -10,15 +10,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme.Base">
-        <activity android:name=".activity.AddDrivingLicenseActivity"></activity>
+        <activity android:name=".activity.AddPhotoActivity"></activity>
+        <activity android:name=".activity.AddIdentityCardActivity"></activity>
+        <activity android:name=".activity.AddVehicleRegistrationActivity"></activity>
+        <activity android:name=".activity.AddDrivingLicenseActivity" />
         <activity android:name=".activity.AddDocumentActivity">
-            <intent-filter>
+
+           <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
+
         </activity>
-        <activity android:name=".activity.TermsAndPolicyActivity"></activity>
+        <activity android:name=".activity.TermsAndPolicyActivity" />
         <activity android:name=".activity.CreateNameActivity" />
         <activity android:name=".activity.CreatePasswordActivity" />
         <activity android:name=".activity.EmailAddressActivity" />
@@ -28,13 +33,12 @@
         <activity android:name=".activity.EnterOtpActivity" />
         <activity android:name=".activity.SplashActivity">
 
-            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
+
         </activity>
         <activity android:name=".activity.MainActivity" />
     </application>

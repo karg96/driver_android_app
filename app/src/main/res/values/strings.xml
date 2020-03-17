@@ -33,8 +33,9 @@
     <string name="home">Home</string>
     <string name="my_wallet">My Wallet</string>
     <string name="payment">Payment</string>
-    <string name="free_rides">Free Rides</string>
+    <string name="account">Account</string>
     <string name="setting">Setting</string>
+    <string name="notifications">Notifications</string>
     <string name="sign_out">Sign Out</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
@@ -52,9 +53,16 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="what_s_your_name">What\'s your name?</string>
     <string name="driving_license">Driving License</string>
+    <string name="vehicle_registration">Vehicle Registration Document</string>
+    <string name="identity_card">Identity Card</string>
+    <string name="add_photo">Add Photo</string>
+    <string name="lets_start">Let\'s Start</string>
     <string name="upload_your_driving_license">Upload your driving license</string>
+    <string name="upload_your_photo">Upload your photo</string>
+    <string name="Upload_vehicle_document">Upload your vehicle registration
+            document</string>
     <string name="select_license_type">Select license type</string>
     <string name="terms_policy">By tapping the button below, you agree to  tuktuk\'s Term of Use and Privacy Policy</string>
     <string name="terms_policy2">To learn more, see our Terms of Use and Privacy Policy</string>
-
+    <string name="upload">Upload</string>
 </resources>

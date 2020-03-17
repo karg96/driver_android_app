@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite">
@@ -32,7 +33,7 @@
                 android:lineHeight="40sp"
                 android:paddingLeft="20dp"
                 android:paddingRight="15dp"
-                android:text="@string/driving_license"
+                android:text="@string/add_photo"
                 android:textColor="@color/colorBlack"
                 android:textSize="32sp" />
 
@@ -46,12 +47,12 @@
 
                 <ImageView
                     android:id="@+id/img_license"
-                    android:layout_width="313dp"
-                    android:layout_height="200dp"
-                    android:layout_marginLeft="31dp"
-                    android:layout_marginRight="31dp"
+                    android:layout_width="192dp"
+                    android:layout_height="192dp"
+                    android:layout_marginLeft="92dp"
+                    android:layout_marginRight="91dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/driving_license" />
+                    android:src="@drawable/account" />
 
 
                 <TextView
@@ -60,11 +61,11 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/img_license"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="78dp"
                     android:fontFamily="@font/nunitosans_regular"
-                    android:lineHeight="40dp"
+                    android:lineHeight="45dp"
                     android:lineSpacingExtra="25sp"
-                    android:text="@string/upload_your_driving_license"
+                    android:text="@string/upload_your_photo"
                     android:textColor="@color/colorGray"
                     android:textSize="20dp" />
 
