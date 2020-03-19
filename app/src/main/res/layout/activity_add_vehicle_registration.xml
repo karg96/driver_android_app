@@ -31,6 +31,7 @@
                 android:lineHeight="40sp"
                 android:paddingLeft="20dp"
                 android:paddingRight="15dp"
+                android:lineSpacingExtra="8sp"
                 android:text="@string/vehicle_registration"
                 android:textColor="@color/colorBlack"
                 android:textSize="32sp" />
@@ -58,13 +59,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/img_license"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="70dp"
-                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="53dp"
                     android:fontFamily="@font/nunitosans_regular"
-                    android:gravity="center"
-                    android:lineHeight="40dp"
-                    android:lineSpacingExtra="25sp"
+                    android:gravity="center_horizontal"
+                    android:lineHeight="25dp"
+                    android:lineSpacingExtra="5sp"
                     android:text="@string/Upload_vehicle_document"
                     android:textColor="@color/colorGray"
                     android:textSize="20dp" />
@@ -98,11 +97,11 @@
                         android:layout_marginLeft="12sp"
                         android:layout_toRightOf="@+id/img_cloud"
                         android:fontFamily="@font/nunitosans_bold"
-                        android:lineHeight="40dp"
-                        android:lineSpacingExtra="25sp"
+                        android:lineHeight="31dp"
+                        android:lineSpacingExtra="8sp"
                         android:text="@string/upload"
                         android:textColor="@color/colorWhite"
-                        android:textSize="20dp" />
+                        android:textSize="23dp" />
 
                 </RelativeLayout>
 
