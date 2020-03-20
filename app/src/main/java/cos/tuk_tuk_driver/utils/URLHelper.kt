@@ -8,11 +8,10 @@ object URLHelper {
     //testing
     const val BaseUrl = "http://server.visionvivante.com:8080/tuktuk/public/"
 
-    const val RegisterMobile = "api/user/register-mobile"
-    const val VerifyOtp = "api/user/verify-mobile"
-    const val Resend = "api/user/resend"
-    const val Logout = "api/user/logout"
-    const val Score = "api/score"
+    const val RegisterMobile = "api/provider/register-mobile"
+    const val VerifyOtp = "api/provider/verify-mobile"
+    const val Resend = "api/provider/resend"
+    const val Logout = "api/provider/logout"
 
 
 }

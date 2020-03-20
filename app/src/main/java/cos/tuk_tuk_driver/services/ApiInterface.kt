@@ -1,40 +1,53 @@
 package com.example.punjabrocks.services
 
+import com.tuktuk.models.OtpModal
+import com.tuktuk.models.RegisterModal
+import com.tuktuk.utils.URLHelper.Logout
+import com.tuktuk.utils.URLHelper.RegisterMobile
+import com.tuktuk.utils.URLHelper.Resend
+import com.tuktuk.utils.URLHelper.VerifyOtp
+import retrofit2.Call
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.POST
 
 
 interface ApiInterface {
 
 
-   /* @POST(RegisterMobile)
+    @POST(RegisterMobile)
     @FormUrlEncoded
-    fun RegisterMobile(
-            @Field("mobile") mobile: String,
-            @Field("device_token") device_token: String,
-            @Field("device_type") device_type: String
+    fun RegisterMobiles(
+        @Field("mobile") mobile: String,
+        @Field("device_token") device_token: String,
+        @Field("device_type") device_type: String
     ): Call<RegisterModal>
 
-    @POST(VerifyOtp)
-    @FormUrlEncoded
-    fun VealidateOtp(
-            @Field("mobile") mobile: String,
-            @Field("device_token") device_token: String,
-            @Field("otp") otp: String
-    ): Call<OtpModal>
+     @POST(VerifyOtp)
+     @FormUrlEncoded
+     fun VealidateOtp(
+             @Field("mobile") mobile: String,
+             @Field("device_token") device_token: String,
+             @Field("otp") otp: String
+     ): Call<OtpModal>
+
 
     @POST(Resend)
     @FormUrlEncoded
     fun ResendOTP(
-            @Field("mobile") mobile: String,
-            @Field("device_token") device_token: String,
-            @Field("device_type") device_type: String
+        @Field("mobile") mobile: String,
+        @Field("device_token") device_token: String,
+        @Field("device_type") device_type: String
     ): Call<RegisterModal>
 
+/*
 
-    @POST(Logout)
-    @FormUrlEncoded
-    fun logout(
-            @Field("id") id: String
-    ): Call<RegisterModal>
-*/
+
+
+     @POST(Logout)
+     @FormUrlEncoded
+     fun logout(
+             @Field("id") id: String
+     ): Call<RegisterModal>*/
 
 }

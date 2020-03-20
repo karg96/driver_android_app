@@ -1,9 +1,11 @@
 package cos.tuk_tuk_driver.activity
 
+import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 import android.content.Intent
+import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.BaseActivity
 import com.tuktuk.utils.Comman
 import com.tuktuk.utils.Comman.makeToast
@@ -44,11 +46,11 @@ class GetOtpActivity : BaseActivity() {
          }*/
 
         binding.btnGetOtp.setOnClickListener {
-            val intent = Intent(this@GetOtpActivity, EnterOtpActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
+            //            val intent = Intent(this@GetOtpActivity, EnterOtpActivity::class.java)
+//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//            startActivity(intent)
 
-//            validate()
+            validate()
         }
     }
 
@@ -68,7 +70,7 @@ class GetOtpActivity : BaseActivity() {
 //            Toast.makeText(this, "Enter valid mobile number", Toast.LENGTH_SHORT).show()
         } else {
 
-            registerMobile( mobileNumber, countryCode + " " + mobileNumber)
+            registerMobile(mobileNumber, countryCode + " " + mobileNumber)
         }
 
     }
@@ -76,11 +78,18 @@ class GetOtpActivity : BaseActivity() {
 
     private fun registerMobile(mobileNumber: String, mobileWithSpace: String) {
 
-        /*try {
+        try {
 
-            apiInterface!!.RegisterMobile(mobileNumber, "type", "android")
+            val pd = ProgressDialog(this)
+            pd.setMessage("Please wait....")
+            pd.setCancelable(false)
+            pd.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+            pd.show()
+
+            apiInterface!!.RegisterMobiles(mobileNumber, "type", "android")
                 .enqueue(object : Callback<RegisterModal> {
                     override fun onFailure(call: Call<RegisterModal>, t: Throwable) {
+                        pd.dismiss()
 
                         makeToast(applicationContext, "Please try again later")
 
@@ -94,17 +103,19 @@ class GetOtpActivity : BaseActivity() {
                         try {
 
                             if (response.body()?.status!!) {
+                                pd.dismiss()
 
                                 val intent = Intent(
                                     applicationContext,
                                     EnterOtpActivity::class.java
                                 ) //not application context
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 intent.putExtra("mobile", mobileNumber)
                                 intent.putExtra("mobileWithSpace", mobileWithSpace)
                                 startActivity(intent)
 
                             } else {
-
 
                                 makeToast(applicationContext, response.body()!!.error.mobile[0])
                             }
@@ -120,7 +131,7 @@ class GetOtpActivity : BaseActivity() {
 
         } catch (Ex: Exception) {
 
-        }*/
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
