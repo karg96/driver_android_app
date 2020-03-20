@@ -2,6 +2,7 @@ package com.example.punjabrocks.services
 
 import com.tuktuk.models.OtpModal
 import com.tuktuk.models.RegisterModal
+import com.tuktuk.utils.URLHelper.Login
 import com.tuktuk.utils.URLHelper.Logout
 import com.tuktuk.utils.URLHelper.RegisterMobile
 import com.tuktuk.utils.URLHelper.Resend
@@ -15,6 +16,15 @@ import retrofit2.http.POST
 interface ApiInterface {
 
 
+    @POST(Login)
+    @FormUrlEncoded
+    fun Login(
+        @Field("mobile") mobile: String,
+        @Field("password") password: String,
+        @Field("device_token") device_token: String,
+        @Field("device_type") device_type: String
+    ): Call<RegisterModal>
+
     @POST(RegisterMobile)
     @FormUrlEncoded
     fun RegisterMobiles(
@@ -23,13 +33,13 @@ interface ApiInterface {
         @Field("device_type") device_type: String
     ): Call<RegisterModal>
 
-     @POST(VerifyOtp)
-     @FormUrlEncoded
-     fun VealidateOtp(
-             @Field("mobile") mobile: String,
-             @Field("device_token") device_token: String,
-             @Field("otp") otp: String
-     ): Call<OtpModal>
+    @POST(VerifyOtp)
+    @FormUrlEncoded
+    fun VealidateOtp(
+        @Field("mobile") mobile: String,
+        @Field("device_token") device_token: String,
+        @Field("otp") otp: String
+    ): Call<OtpModal>
 
 
     @POST(Resend)
@@ -41,9 +51,6 @@ interface ApiInterface {
     ): Call<RegisterModal>
 
 /*
-
-
-
      @POST(Logout)
      @FormUrlEncoded
      fun logout(

@@ -135,7 +135,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_get_otp"
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="63dp"
         android:layout_alignParentBottom="true"
