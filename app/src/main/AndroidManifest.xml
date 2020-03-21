@@ -14,17 +14,20 @@
         android:largeHeap="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/MyMaterialTheme.Base">
-        <activity android:name=".activity.AddPhotoActivity"></activity>
-        <activity android:name=".activity.AddIdentityCardActivity"></activity>
-        <activity android:name=".activity.AddVehicleRegistrationActivity"></activity>
+        <activity android:name=".activity.HomeActivity"></activity>
+        <activity android:name=".activity.AddPhotoActivity" />
+        <activity android:name=".activity.AddIdentityCardActivity" />
+        <activity android:name=".activity.AddVehicleRegistrationActivity" />
         <activity android:name=".activity.AddDrivingLicenseActivity" />
         <activity android:name=".activity.AddDocumentActivity">
 
-           <!-- <intent-filter>
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
 
         </activity>
         <activity android:name=".activity.TermsAndPolicyActivity" />
@@ -36,15 +39,27 @@
         <activity android:name=".activity.GetOtpActivity" />
         <activity android:name=".activity.EnterOtpActivity" />
         <activity android:name=".activity.SplashActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".activity.MainActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC4QPb5cfz86y0PbmNh0T0_XlcQwVAnl8M" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
     </application>
+
+
+    <permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

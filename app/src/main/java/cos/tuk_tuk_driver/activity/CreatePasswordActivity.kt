@@ -18,7 +18,7 @@ class CreatePasswordActivity : AppCompatActivity() {
 
 
         binding.btnNext.setOnClickListener{
-            val intent = Intent(this@CreatePasswordActivity, LoginActivity::class.java)
+            val intent = Intent(this@CreatePasswordActivity, AddDocumentActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
         }

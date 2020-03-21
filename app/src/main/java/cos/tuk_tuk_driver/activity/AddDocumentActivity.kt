@@ -22,6 +22,7 @@ class AddDocumentActivity : AppCompatActivity() {
 
     private fun init() {
 
+
         binding.cardLicense.setOnClickListener {
 
             val intent = Intent(this@AddDocumentActivity, AddDrivingLicenseActivity::class.java)
@@ -53,6 +54,12 @@ class AddDocumentActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
+binding.btnNext.setOnClickListener {
 
+    val intent = Intent(this@AddDocumentActivity, HomeActivity::class.java)
+    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+    startActivity(intent)
+}
     }
 }
