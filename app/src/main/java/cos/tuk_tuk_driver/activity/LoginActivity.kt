@@ -4,11 +4,9 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.punjabrocks.services.ApiInterface
 import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.databinding.ActivityLoginBinding
-import kotlinx.android.synthetic.main.activity_get_otp.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,7 +43,11 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener {
 
-            validate()
+            val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+
         }
 
     }
