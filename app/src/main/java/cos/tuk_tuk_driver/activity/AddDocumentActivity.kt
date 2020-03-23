@@ -15,7 +15,7 @@ class AddDocumentActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityAddDocumentBinding.inflate(layoutInflater)
+        binding = ActivityAddDocumentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         init()
@@ -35,7 +35,8 @@ class AddDocumentActivity : AppCompatActivity() {
 
         binding.cardRegDocument.setOnClickListener {
 
-            val intent = Intent(this@AddDocumentActivity, AddVehicleRegistrationActivity::class.java)
+            val intent =
+                Intent(this@AddDocumentActivity, AddVehicleRegistrationActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
@@ -56,13 +57,14 @@ class AddDocumentActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
-binding.btnNext.setOnClickListener {
+
+
+        binding.btnNext.setOnClickListener {
 
     val intent = Intent(this@AddDocumentActivity, HomeActivity::class.java)
     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
     startActivity(intent)
 }
-
     }
 }

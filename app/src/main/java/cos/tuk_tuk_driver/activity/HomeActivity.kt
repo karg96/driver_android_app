@@ -31,9 +31,15 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener 
 
             val home = Home()
             fragmentManager = supportFragmentManager
-            fragmentManager!!.beginTransaction().replace(R.id.container_body, home, "home.getTag()").commit()
-            drawerFragment = supportFragmentManager.findFragmentById(R.id.fragment_navigation_drawer) as FragmentDrawer?
-            drawerFragment!!.setUp(R.id.fragment_navigation_drawer, findViewById<View>(R.id.drawer) as DrawerLayout, mToolbar)
+            fragmentManager!!.beginTransaction().replace(R.id.container_body, home, "home.getTag()")
+                .commit()
+            drawerFragment =
+                supportFragmentManager.findFragmentById(R.id.fragment_navigation_drawer) as FragmentDrawer?
+            drawerFragment!!.setUp(
+                R.id.fragment_navigation_drawer,
+                findViewById<View>(R.id.drawer) as DrawerLayout,
+                mToolbar
+            )
             drawerFragment!!.setDrawerListener(this)
 
 
@@ -50,7 +56,7 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener 
         setSupportActionBar(mToolbar)
         supportActionBar!!.title = null
         supportActionBar!!.setDisplayShowHomeEnabled(true)
-}
+    }
 
     override fun onDrawerItemSelected(view: View?, position: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
