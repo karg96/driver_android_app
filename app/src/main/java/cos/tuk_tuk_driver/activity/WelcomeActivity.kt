@@ -24,14 +24,16 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.login.setOnClickListener {
-            val intent = Intent(this@WelcomeActivity, LoginActivity::class.java)
+            val intent = Intent(this@WelcomeActivity, GetOtpActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.putExtra("from", "login")
             startActivity(intent)
         }
 
         binding.register.setOnClickListener {
             val intent = Intent(this@WelcomeActivity, GetOtpActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.putExtra("from", "register")
             startActivity(intent)
         }
     }

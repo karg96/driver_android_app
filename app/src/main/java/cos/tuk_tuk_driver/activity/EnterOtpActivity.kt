@@ -254,6 +254,8 @@ class EnterOtpActivity : BaseActivity() {
         runTimer()
 
         binding.btnOtp.setOnClickListener {
+
+
             validate()
         }
 

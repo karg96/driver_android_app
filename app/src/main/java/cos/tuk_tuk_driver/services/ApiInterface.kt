@@ -4,8 +4,10 @@ import com.tuktuk.models.OtpModal
 import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.URLHelper.Login
 import com.tuktuk.utils.URLHelper.Logout
+import com.tuktuk.utils.URLHelper.MobileLogin
 import com.tuktuk.utils.URLHelper.RegisterMobile
 import com.tuktuk.utils.URLHelper.Resend
+import com.tuktuk.utils.URLHelper.UpdateDriverData
 import com.tuktuk.utils.URLHelper.VerifyOtp
 import retrofit2.Call
 import retrofit2.http.Field
@@ -49,6 +51,25 @@ interface ApiInterface {
         @Field("device_token") device_token: String,
         @Field("device_type") device_type: String
     ): Call<RegisterModal>
+
+    @POST(MobileLogin)
+    @FormUrlEncoded
+    fun MobileLogin(
+        @Field("mobile") mobile: String,
+        @Field("device_token") device_token: String,
+        @Field("device_type") device_type: String
+    ): Call<RegisterModal>
+
+    @POST(UpdateDriverData)
+    @FormUrlEncoded
+    fun UpdateDriver(
+        @Field("first_name") first_name: String,
+        @Field("last_name") last_name: String,
+        @Field("password") password: String,
+        @Field("password_confirmation") password_confirmation: String,
+        @Field("email") email: String
+    ): Call<RegisterModal>
+
 
 /*
      @POST(Logout)

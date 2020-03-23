@@ -1,7 +1,6 @@
 package cos.tuk_tuk_driver.activity
 
 import android.app.ProgressDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 import android.content.Intent
@@ -20,15 +19,26 @@ class GetOtpActivity : BaseActivity() {
 
     lateinit var binding: ActivityGetOtpBinding
     private val COUNTRY_CODE_ACT = 32
+    private var from: String? = ""
+
     private val apiInterface = Comman.getApi()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGetOtpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         try {
 
+            from = intent.getStringExtra("from")
+
             init()
+
+            if (from == "login") {
+
+                binding.btnGetOtp.text = "Next"
+
+            }
 
         } catch (ex: Exception) {
 
@@ -46,11 +56,68 @@ class GetOtpActivity : BaseActivity() {
          }*/
 
         binding.btnGetOtp.setOnClickListener {
-            //            val intent = Intent(this@GetOtpActivity, EnterOtpActivity::class.java)
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            startActivity(intent)
 
             validate()
+
+        }
+    }
+
+    private fun doMobileLogin(mobileNumber: String) {
+
+        try {
+
+            val pd = ProgressDialog(this)
+            pd.setMessage("Please wait....")
+            pd.setCancelable(false)
+            pd.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+            pd.show()
+
+            apiInterface!!.MobileLogin(mobileNumber, "type", "android")
+                .enqueue(object : Callback<RegisterModal> {
+                    override fun onFailure(call: Call<RegisterModal>, t: Throwable) {
+                        pd.dismiss()
+
+                        makeToast(applicationContext, "Please try again later")
+
+                    }
+
+                    override fun onResponse(
+                        call: Call<RegisterModal>,
+                        response: Response<RegisterModal>
+                    ) {
+
+                        try {
+
+                            if (response.body()?.status!!) {
+                                pd.dismiss()
+
+                                val intent = Intent(
+                                    applicationContext,
+                                    EnterOtpActivity::class.java
+                                ) //not application context
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                intent.putExtra("mobile", mobileNumber)
+                                intent.putExtra("mobileWithSpace", mobileNumber)
+                                startActivity(intent)
+
+                            } else {
+
+                                makeToast(applicationContext, response.body()!!.error.mobile[0])
+
+                            }
+
+
+                        } catch (Ex: java.lang.Exception) {
+
+                        }
+                    }
+
+                })
+
+
+        } catch (Ex: Exception) {
+
         }
     }
 
@@ -70,7 +137,17 @@ class GetOtpActivity : BaseActivity() {
 //            Toast.makeText(this, "Enter valid mobile number", Toast.LENGTH_SHORT).show()
         } else {
 
-            registerMobile(mobileNumber, countryCode + " " + mobileNumber)
+            if (from == "login") {
+
+                doMobileLogin(mobileNumber)
+
+            } else if (from == "register") {
+
+                registerMobile(mobileNumber, countryCode + " " + mobileNumber)
+
+
+            }
+
         }
 
     }

@@ -1,4 +1,4 @@
-package fragment
+package cos.tuk_tuk_driver.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -36,7 +36,7 @@ class Home : Fragment(), OnMapReadyCallback {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this cos.tuk_tuk_driver.fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
