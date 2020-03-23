@@ -60,7 +60,7 @@
         <item name="android:colorAccent">#000000</item>
     </style>
 
-    <style name="CustomRadioButton" parent="AppTheme">
+    <style name="CustomRadioButton" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorControlActivated">@color/colorDarkBlue</item>
     </style>
 
