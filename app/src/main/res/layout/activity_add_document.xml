@@ -132,6 +132,8 @@
                     android:textSize="20dp" />
 
 
+
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardLicense"
                     android:layout_width="match_parent"
