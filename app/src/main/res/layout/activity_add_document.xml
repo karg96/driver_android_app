@@ -54,13 +54,17 @@
                     android:textSize="20dp" />
 
                 <RadioGroup
+                    android:id="@+id/rdGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textSelect"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="27dp"
+                    android:layout_marginRight="26dp"
                     android:orientation="vertical">
 
                     <RadioButton
+                        android:id="@+id/rdLmv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
@@ -70,13 +74,13 @@
                         android:layoutDirection="rtl"
                         android:lineHeight="45dp"
                         android:lineSpacingExtra="25sp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="26dp"
+
                         android:text="LMV"
                         android:textColor="@color/colorGray"
                         android:textSize="20sp" />
 
                     <RadioButton
+                        android:id="@+id/rdAuto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
@@ -84,13 +88,12 @@
                         android:layoutDirection="rtl"
                         android:lineHeight="45dp"
                         android:lineSpacingExtra="25sp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="26dp"
                         android:text="Auto"
                         android:textColor="@color/colorGray"
                         android:textSize="20sp" />
 
                     <RadioButton
+                        android:id="@+id/rdMoto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
@@ -98,8 +101,6 @@
                         android:layoutDirection="rtl"
                         android:lineHeight="45dp"
                         android:lineSpacingExtra="25sp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="26dp"
                         android:text="Moto"
                         android:textColor="@color/colorGray"
                         android:textSize="20sp" />
@@ -131,6 +132,8 @@
                     android:textSize="20dp" />
 
 
+
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardLicense"
                     android:layout_width="match_parent"
@@ -139,7 +142,6 @@
                     android:layout_marginLeft="18dp"
                     android:layout_marginTop="23dp"
                     android:layout_marginRight="17sp"
-                    android:layout_marginBottom="10sp"
                     app:cardCornerRadius="5dp"
                     app:cardElevation="0dp"
                     app:cardUseCompatPadding="true">
@@ -148,7 +150,6 @@
 
                         android:layout_width="340dp"
                         android:layout_height="69dp"
-                        android:layout_marginBottom="5sp"
                         android:background="@drawable/add_doc_bg">
 
                         <TextView
@@ -170,8 +171,7 @@
                             android:layout_height="25dp"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginTop="21dp"
-                            android:layout_marginLeft="13dp"
+                            android:scaleType="fitXY"
                             android:src="@drawable/check_circle_24_px" />
 
 
@@ -187,16 +187,14 @@
                     android:layout_marginLeft="18dp"
                     android:layout_marginTop="11dp"
                     android:layout_marginRight="17sp"
-                    android:layout_marginBottom="10sp"
                     app:cardCornerRadius="5dp"
                     app:cardElevation="0dp"
                     app:cardUseCompatPadding="true">
 
                     <RelativeLayout
 
-                        android:layout_width="match_parent"
-                        android:layout_height="70sp"
-                        android:layout_marginBottom="5sp"
+                        android:layout_width="340dp"
+                        android:layout_height="69sp"
                         android:background="@color/colorWhite">
 
                         <TextView
@@ -206,6 +204,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="21dp"
+                            android:layout_marginBottom="21dp"
                             android:fontFamily="@font/nunitosans_regular"
                             android:lineHeight="45dp"
                             android:lineSpacingExtra="25sp"
@@ -233,16 +232,14 @@
                     android:layout_marginLeft="18dp"
                     android:layout_marginTop="11dp"
                     android:layout_marginRight="17sp"
-                    android:layout_marginBottom="10sp"
                     app:cardCornerRadius="5dp"
                     app:cardElevation="0dp"
                     app:cardUseCompatPadding="true">
 
                     <RelativeLayout
 
-                        android:layout_width="match_parent"
-                        android:layout_height="70sp"
-                        android:layout_marginBottom="5sp"
+                        android:layout_width="340dp"
+                        android:layout_height="69sp"
                         android:background="@color/colorWhite">
 
                         <TextView
@@ -252,6 +249,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="21dp"
+                            android:layout_marginBottom="21dp"
                             android:fontFamily="@font/nunitosans_regular"
                             android:lineHeight="45dp"
                             android:lineSpacingExtra="25sp"
@@ -286,9 +284,8 @@
 
                     <RelativeLayout
 
-                        android:layout_width="match_parent"
-                        android:layout_height="70sp"
-                        android:layout_marginBottom="5sp"
+                        android:layout_width="340dp"
+                        android:layout_height="69sp"
                         android:background="@color/colorWhite">
 
                         <TextView
@@ -298,6 +295,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="21dp"
+                            android:layout_marginBottom="21dp"
                             android:fontFamily="@font/nunitosans_regular"
                             android:lineHeight="45dp"
                             android:lineSpacingExtra="25sp"
