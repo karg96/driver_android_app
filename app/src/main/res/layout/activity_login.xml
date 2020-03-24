@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
 
     <TextView
         android:id="@+id/tv_enter_mobile"
@@ -94,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/edt_password_number"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="42dp"
         android:fontFamily="@font/nunitosans_regular"
         android:lineHeight="40sp"
         android:text="@string/forgot_password"
@@ -106,9 +116,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_get_otp"
+        android:layout_below="@+id/forgotTitle"
         android:layout_marginLeft="22sp"
         android:layout_marginRight="17sp"
         android:layout_marginBottom="28dp"
+        android:layout_marginTop="251dp"
         android:orientation="horizontal">
 
         <TextView
@@ -149,4 +161,7 @@
         android:textColor="@color/colorWhite"
         android:textSize="23sp" />
 
+        </LinearLayout>
+
+    </ScrollView>
 </RelativeLayout>
