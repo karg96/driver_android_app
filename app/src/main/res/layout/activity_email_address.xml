@@ -42,7 +42,7 @@
         android:cursorVisible="true"
         android:fontFamily="@font/nunitosans_regular"
         android:hint="example@gmail.com"
-        android:inputType="phone"
+        android:inputType="text"
         android:lineHeight="27sp"
         android:paddingBottom="5dp"
         android:textColor="@color/colorBlack"

@@ -2,7 +2,6 @@ package cos.tuk_tuk_driver.activity
 
 import android.app.ProgressDialog
 import android.os.Bundle
-
 import android.content.Intent
 import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.BaseActivity
@@ -45,7 +44,7 @@ class GetOtpActivity : BaseActivity() {
         }
     }
 
-    fun init() {
+    private fun init() {
         listener()
     }
 
@@ -62,14 +61,13 @@ class GetOtpActivity : BaseActivity() {
         }
     }
 
-    private fun doMobileLogin(mobileNumber: String) {
+    private fun doMobileLogin(mobileNumber: String, mobileWithSpace: String) {
 
         try {
 
             val pd = ProgressDialog(this)
             pd.setMessage("Please wait....")
             pd.setCancelable(false)
-            pd.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             pd.show()
 
             apiInterface!!.MobileLogin(mobileNumber, "type", "android")
@@ -89,21 +87,36 @@ class GetOtpActivity : BaseActivity() {
                         try {
 
                             if (response.body()?.status!!) {
+
                                 pd.dismiss()
 
-                                val intent = Intent(
-                                    applicationContext,
-                                    EnterOtpActivity::class.java
-                                ) //not application context
-                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                intent.putExtra("mobile", mobileNumber)
-                                intent.putExtra("mobileWithSpace", mobileNumber)
-                                startActivity(intent)
+                                if (response.body()!!.password) {
+
+                                    val intent = Intent(
+                                        applicationContext,
+                                        LoginActivity::class.java
+                                    ) //not application context
+                                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    startActivity(intent)
+
+                                } else if (!response.body()!!.password) {
+
+                                    val intent = Intent(
+                                        applicationContext,
+                                        EnterOtpActivity::class.java
+                                    ) //not application context
+                                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    intent.putExtra("mobile", mobileNumber)
+                                    intent.putExtra("mobileWithSpace", mobileWithSpace)
+                                    startActivity(intent)
+                                }
+
 
                             } else {
 
-                                makeToast(applicationContext, response.body()!!.error.mobile[0])
+                                makeToast(applicationContext, response.body()!!.error.get(0).mobile)
 
                             }
 
@@ -121,7 +134,6 @@ class GetOtpActivity : BaseActivity() {
         }
     }
 
-
     private fun validate() {
 
         var mobileNumber: String = edt_phone_number.text.toString()
@@ -136,10 +148,12 @@ class GetOtpActivity : BaseActivity() {
 
 //            Toast.makeText(this, "Enter valid mobile number", Toast.LENGTH_SHORT).show()
         } else {
+//            registerMobile(mobileNumber, countryCode + " " + mobileNumber)
+
 
             if (from == "login") {
 
-                doMobileLogin(mobileNumber)
+                doMobileLogin(mobileNumber, countryCode + " " + mobileNumber)
 
             } else if (from == "register") {
 
@@ -152,16 +166,16 @@ class GetOtpActivity : BaseActivity() {
 
     }
 
-
     private fun registerMobile(mobileNumber: String, mobileWithSpace: String) {
 
         try {
 
             val pd = ProgressDialog(this)
             pd.setMessage("Please wait....")
-            pd.setCancelable(false)
-            pd.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+            pd.setCancelable(true)
             pd.show()
+
+
 
             apiInterface!!.RegisterMobiles(mobileNumber, "type", "android")
                 .enqueue(object : Callback<RegisterModal> {
@@ -194,7 +208,7 @@ class GetOtpActivity : BaseActivity() {
 
                             } else {
 
-                                makeToast(applicationContext, response.body()!!.error.mobile[0])
+                                makeToast(applicationContext, response.body()!!.error.get(0).mobile)
                             }
 
 

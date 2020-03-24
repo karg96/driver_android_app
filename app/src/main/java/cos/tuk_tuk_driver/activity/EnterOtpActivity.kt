@@ -1,6 +1,7 @@
 package cos.tuk_tuk_driver.activity
 
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.content.Context
 import android.content.Intent
@@ -18,6 +19,7 @@ import com.tuktuk.utils.Comman
 import com.tuktuk.utils.Comman.makeToast
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityEnterOtpBinding
+import cos.tuk_tuk_driver.utils.Prefs
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -255,20 +257,24 @@ class EnterOtpActivity : BaseActivity() {
 
         binding.btnOtp.setOnClickListener {
 
-
             validate()
         }
 
     }
 
-
     private fun resendCode() {
 
         try {
 
+            val pd = ProgressDialog(this)
+            pd.setMessage("Please wait....")
+            pd.setCancelable(false)
+            pd.show()
             apiInterface!!.ResendOTP(mobile, "token", "android")
                 .enqueue(object : Callback<RegisterModal> {
                     override fun onFailure(call: Call<RegisterModal>, t: Throwable) {
+                        pd.dismiss()
+
                         makeToast(applicationContext, "Please try again later")
 
                     }
@@ -278,6 +284,7 @@ class EnterOtpActivity : BaseActivity() {
                         response: Response<RegisterModal>
                     ) {
                         try {
+                            pd.dismiss()
 
                             if (response.body()?.status!!) {
 
@@ -287,10 +294,8 @@ class EnterOtpActivity : BaseActivity() {
 
                             } else {
 
-                                makeToast(
-                                    applicationContext,
-                                    response.body()!!.error.mobile.toString()
-                                )
+                                makeToast(applicationContext, response.body()!!.error.get(0).mobile)
+
                             }
 
 
@@ -341,10 +346,16 @@ class EnterOtpActivity : BaseActivity() {
     private fun validateOTP(otp: String) {
 
         try {
+            val pd = ProgressDialog(this)
+            pd.setMessage("Please wait....")
+            pd.setCancelable(false)
+            pd.show()
 
             apiInterface!!.VealidateOtp(mobile, "token", otp)
                 .enqueue(object : Callback<OtpModal> {
                     override fun onFailure(call: Call<OtpModal>, t: Throwable) {
+                        pd.dismiss()
+
                         makeToast(applicationContext, "Please try again later")
 
                     }
@@ -355,7 +366,17 @@ class EnterOtpActivity : BaseActivity() {
                     ) {
                         try {
 
+                            pd.dismiss()
+
                             if (response.body()?.status!!) {
+
+
+                                Prefs.putKey(
+                                    applicationContext,
+                                    "Authorization",
+                                    response.body()!!.data.access_token
+                                )
+
                                 makeToast(applicationContext, "Login Success")
                                 binding.tvTimer.visibility = View.GONE
                                 val intent = Intent(
@@ -417,7 +438,7 @@ class EnterOtpActivity : BaseActivity() {
         }.start()
     }
 
-    fun checkDigit(number: Long): String? {
+    private fun checkDigit(number: Long): String? {
         return if (number <= 9) "0$number" else number.toString()
     }
 

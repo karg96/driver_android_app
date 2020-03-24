@@ -7,7 +7,7 @@ data class RegisterModal(
         @SerializedName("status") val status: Boolean,
         @SerializedName("password") val password: Boolean,
         @SerializedName("data") val data: Data,
-        @SerializedName("error") val error: Error,
+        @SerializedName("error") val error: List<Error>,
         @SerializedName("message") val message: String
 
 
@@ -34,6 +34,7 @@ data class Data(
         @SerializedName("last_otp") val last_otp: String,
         @SerializedName("login_by") val login_by: String,
         @SerializedName("social_unique_id") val social_unique_id: String,
+        @SerializedName("access_token") val access_token: String,
         @SerializedName("bio") val bio: String,
         @SerializedName("fun_fact") val fun_fact: String,
         @SerializedName("updated_at") val updated_at: String,
@@ -47,6 +48,6 @@ data class Data(
 
 data class Error(
 
-        @SerializedName("mobile") val mobile: List<String>
+        @SerializedName("mobile") val mobile: String
 
 )

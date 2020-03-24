@@ -23,6 +23,11 @@ class CreateNameActivity : AppCompatActivity() {
 
         }
 
+        binding.ivBack.setOnClickListener {
+
+            finish()
+        }
+
     }
 
     private fun validate() {

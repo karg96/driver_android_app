@@ -113,7 +113,7 @@ object ApiClients {
             val original = chain.request()
             val requestBuilder = original.newBuilder()
                     //.addHeader("Accept", "application/json")
-                    .header("authkey", Prefs.getKey(DriverApp.context, "AuthKey"))
+                    .header("Authorization","Bearer " + Prefs.getKey(DriverApp.context, "Authorization"))
             //                        .header("Authorization", "Bearer " + Prefs.getKey(MunchMashApp.getContext(), "api_token"));
 
 

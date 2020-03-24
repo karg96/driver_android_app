@@ -26,6 +26,12 @@ class CreatePasswordActivity : AppCompatActivity() {
 
         }
 
+        binding.ivBack.setOnClickListener {
+
+            finish()
+        }
+
+
     }
 
     private fun validate() {

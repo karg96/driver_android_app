@@ -1,17 +1,18 @@
 package cos.tuk_tuk_driver.activity
 
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.Comman
-import cos.tuk_tuk_driver.R
-import cos.tuk_tuk_driver.databinding.ActivityCreatePasswordBinding
+import com.tuktuk.utils.Comman.makeToast
 import cos.tuk_tuk_driver.databinding.ActivityTermsAndPolicyBinding
 import cos.tuk_tuk_driver.utils.Prefs
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class TermsAndPolicyActivity : AppCompatActivity() {
 
@@ -29,6 +30,12 @@ class TermsAndPolicyActivity : AppCompatActivity() {
                 updateDriverData()
 
             }
+
+            binding.ivBack.setOnClickListener {
+
+                finish()
+            }
+
 
         } catch (Ex: Exception) {
 
@@ -54,33 +61,40 @@ class TermsAndPolicyActivity : AppCompatActivity() {
             var ConfirmPassword = Prefs.getKey(applicationContext, "DriverConfirmPassword")
 
 
-            Comman.getApi()!!.UpdateDriver(
+            Comman.getApiToken()!!.UpdateDriver(
                 DriverFirstName,
                 DriverLastName,
                 Password,
                 ConfirmPassword,
                 DriverEmail
-            )
-                .enqueue(object : Callback<RegisterModal> {
-                    override fun onFailure(call: Call<RegisterModal>, t: Throwable) {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                        pd.dismiss()
+            ).enqueue(object : Callback<RegisterModal> {
+                override fun onFailure(call: Call<RegisterModal>, t: Throwable) {
+                    pd.dismiss()
+                    makeToast(applicationContext, "Please try again later")
+                }
 
-                    }
+                override fun onResponse(
+                    call: Call<RegisterModal>,
+                    response: Response<RegisterModal>
+                ) {
+                    pd.dismiss()
+                    makeToast(applicationContext, "Data Updated successfully")
+                    val intent = Intent(
+                        applicationContext,
+                        HomeActivity::class.java
+                    ) //not application context
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
 
-                    override fun onResponse(
-                        call: Call<RegisterModal>,
-                        response: Response<RegisterModal>
-                    ) {
-                        pd.dismiss()
+                    startActivity(intent)
+                }
 
-                    }
-
-                })
+            })
 
         } catch (Ex: java.lang.Exception) {
 
         }
 
     }
+
 }
