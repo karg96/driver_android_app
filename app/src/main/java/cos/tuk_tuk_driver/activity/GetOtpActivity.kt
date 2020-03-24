@@ -85,10 +85,10 @@ class GetOtpActivity : BaseActivity() {
                     ) {
 
                         try {
+                            pd.dismiss()
 
                             if (response.body()?.status!!) {
 
-                                pd.dismiss()
 
                                 if (response.body()!!.password) {
 
@@ -116,7 +116,8 @@ class GetOtpActivity : BaseActivity() {
 
                             } else {
 
-                                makeToast(applicationContext, response.body()!!.error.get(0).mobile)
+//                                makeToast(applicationContext, response.body()!!.error.get(0).mobile)
+                                makeToast(applicationContext, "Please try again later")
 
                             }
 
@@ -193,22 +194,31 @@ class GetOtpActivity : BaseActivity() {
 
                         try {
 
-                            if (response.body()?.status!!) {
-                                pd.dismiss()
+                            pd.dismiss()
 
-                                val intent = Intent(
-                                    applicationContext,
-                                    EnterOtpActivity::class.java
-                                ) //not application context
-                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                intent.putExtra("mobile", mobileNumber)
-                                intent.putExtra("mobileWithSpace", mobileWithSpace)
-                                startActivity(intent)
+                            if (response.code() == 500) {
+                                makeToast(applicationContext, "The mobile has already been taken")
+                            } else if (response.code() == 200) {
+                                if (response.body()?.status!!) {
 
-                            } else {
+                                    val intent = Intent(
+                                        applicationContext,
+                                        EnterOtpActivity::class.java
+                                    ) //not application context
+                                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    intent.putExtra("mobile", mobileNumber)
+                                    intent.putExtra("mobileWithSpace", mobileWithSpace)
+                                    startActivity(intent)
 
-                                makeToast(applicationContext, response.body()!!.error.get(0).mobile)
+                                } else {
+
+//                                makeToast(applicationContext, "Please try again later")
+                                    makeToast(
+                                        applicationContext,
+                                        response.body()!!.error.get(0).mobile
+                                    )
+                                }
                             }
 
 
