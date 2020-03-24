@@ -1,4 +1,4 @@
-package cos.tuk_tuk_driver.fragment
+package fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -83,7 +83,7 @@ class FragmentDrawer : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this cos.tuk_tuk_driver.fragment
+        // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_drawer, container, false)
 
         view.logout.setOnClickListener {

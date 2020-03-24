@@ -8,8 +8,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityHomeBinding
-import cos.tuk_tuk_driver.fragment.FragmentDrawer
-import cos.tuk_tuk_driver.fragment.Home
+import fragment.FragmentDrawer
+import fragment.Home
 
 class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener {
 

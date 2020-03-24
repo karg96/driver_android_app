@@ -70,7 +70,7 @@
 
     <fragment
         android:id="@+id/fragment_navigation_drawer"
-        android:name="cos.tuk_tuk_driver.fragment.FragmentDrawer"
+        android:name="fragment.FragmentDrawer"
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
