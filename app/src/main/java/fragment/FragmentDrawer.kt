@@ -1,5 +1,6 @@
 package fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,11 +11,17 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.tuktuk.models.RegisterModal
+import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.DriverApp
 
 import cos.tuk_tuk_driver.R
+import cos.tuk_tuk_driver.activity.GetOtpActivity
 import cos.tuk_tuk_driver.utils.Prefs
 import kotlinx.android.synthetic.main.fragment_drawer.view.*
+import retrofit2.Call
+import retrofit2.Response
+import java.lang.Exception
 
 /**
  * A simple [Fragment] subclass.
@@ -25,6 +32,9 @@ class FragmentDrawer : Fragment() {
     private var mDrawerLayout: DrawerLayout? = null
     private var containerView: View? = null
     private var drawerListener: FragmentDrawerListener? = null
+
+    private val apiInterface = Comman.getApi()
+
 
     fun FragmentDrawer() {}
 
@@ -109,8 +119,17 @@ class FragmentDrawer : Fragment() {
         // Set a positive button and its click listener on alert dialog
         builder.setPositiveButton("YES") { dialog, which ->
             // Do something when user press the positive button
-            doLogout()
+            // doLogout()
             Prefs.clearSharedPreferences(DriverApp.context)
+            val intent = Intent(
+                context,
+                GetOtpActivity::class.java
+            ) //not application context
+
+            intent.flags =
+                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            startActivity(intent)
         }
 
 
@@ -129,6 +148,55 @@ class FragmentDrawer : Fragment() {
 
     private fun doLogout() {
 
+        try {
+
+            apiInterface!!.logout("23")
+                .enqueue(object : retrofit2.Callback<RegisterModal> {
+                    override fun onFailure(call: Call<RegisterModal>, t: Throwable) {
+
+                        Comman.makeToast(context, "Please try again later")
+
+                    }
+
+                    override fun onResponse(
+                        call: Call<RegisterModal>,
+                        response: Response<RegisterModal>
+                    ) {
+
+                        try {
+
+                            if (response.body()?.status!!) {
+
+                                Comman.makeToast(context, response.body()!!.message)
+                                val intent = Intent(
+                                    context,
+                                    GetOtpActivity::class.java
+                                ) //not application context
+
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                                startActivity(intent)
+
+                            } else {
+
+                                Comman.makeToast(context, "Please try again later")
+                            }
+
+
+                        } catch (Ex: java.lang.Exception) {
+
+                        }
+
+                    }
+
+                })
+
+        } catch (Ex: Exception) {
+
+        }
+
     }
+
 
 }

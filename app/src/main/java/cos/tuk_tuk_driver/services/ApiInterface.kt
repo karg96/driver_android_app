@@ -71,11 +71,10 @@ interface ApiInterface {
     ): Call<RegisterModal>
 
 
-/*
      @POST(Logout)
      @FormUrlEncoded
      fun logout(
              @Field("id") id: String
-     ): Call<RegisterModal>*/
+     ): Call<RegisterModal>
 
 }

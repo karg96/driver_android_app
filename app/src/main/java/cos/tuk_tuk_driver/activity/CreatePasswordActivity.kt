@@ -13,7 +13,6 @@ class CreatePasswordActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreatePasswordBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreatePasswordBinding.inflate(layoutInflater)

@@ -20,6 +20,7 @@ class EmailAddressActivity : AppCompatActivity() {
         binding.btnNext.setOnClickListener {
 
             validateEmail()
+
         }
 
         binding.ivBack.setOnClickListener {

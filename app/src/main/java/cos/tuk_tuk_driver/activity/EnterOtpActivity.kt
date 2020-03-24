@@ -53,6 +53,7 @@ class EnterOtpActivity : BaseActivity() {
 
     }
 
+/*
     private fun init() {
 
         binding.ivBack.setOnClickListener {
@@ -257,6 +258,217 @@ class EnterOtpActivity : BaseActivity() {
 
         binding.btnOtp.setOnClickListener {
 
+            validate()
+        }
+
+    }
+*/
+
+
+    private fun init() {
+
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
+
+        binding.tvResendCode.setOnClickListener {
+
+
+            if (binding.tvResendCode.text == "Resend code") {
+
+                isSendCount += 1
+
+                resendCode()
+            }
+
+        }
+
+        binding.edtOtp1.setOnClickListener {
+            binding.edtOtp1.setBackgroundResource(R.drawable.edt_round_orange)
+            binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
+            binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
+            binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+
+        }
+
+        binding.edtOtp4.setOnClickListener {
+            binding.edtOtp4.setBackgroundResource(R.drawable.edt_round_orange)
+        }
+
+
+        binding.edtOtp1.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) { // TODO Auto-generated method stub
+                if (s.length == 1) //size as per your requirement
+                {
+
+                    binding.edtOtp2.requestFocus()
+                    binding.edtOtp2.setBackgroundResource(R.drawable.edt_round_orange)
+
+                    binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+
+                } else {
+
+                    val inputManager: InputMethodManager =
+                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    inputManager.hideSoftInputFromWindow(
+                        currentFocus?.windowToken,
+                        InputMethodManager.SHOW_FORCED
+                    ) // It can be done by show_forced too
+
+
+                    binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+
+                }
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
+
+            }
+
+            override fun afterTextChanged(s: Editable) { // TODO Auto-generated method stub
+            }
+        })
+
+        binding.edtOtp2.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) { // TODO Auto-generated method stub
+                if (s.length == 1) //size as per your requirement
+                {
+                    binding.edtOtp3.requestFocus()
+                    binding.edtOtp3.setBackgroundResource(R.drawable.edt_round_orange)
+
+                    binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+
+                } else if (s.length == 0) //size as per your requirement
+                {
+                    binding.edtOtp1.requestFocus()
+                    binding.edtOtp1.setBackgroundResource(R.drawable.edt_round_orange)
+
+                    binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+
+                }
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) { // TODO Auto-generated method stub
+            }
+
+            override fun afterTextChanged(s: Editable) { // TODO Auto-generated method stub
+            }
+        })
+
+        binding.edtOtp3.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) { // TODO Auto-generated method stub
+                if (s.length == 1) //size as per your requirement
+                {
+                    binding.edtOtp4.requestFocus()
+                    binding.edtOtp4.setBackgroundResource(R.drawable.edt_round_orange)
+
+                    binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
+
+
+                } else if (s.length == 0) //size as per your requirement
+                {
+                    binding.edtOtp2.requestFocus()
+                    binding.edtOtp2.setBackgroundResource(R.drawable.edt_round_orange)
+
+                    binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+
+                }
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) { // TODO Auto-generated method stub
+            }
+
+            override fun afterTextChanged(s: Editable) { // TODO Auto-generated method stub
+            }
+        })
+        binding.edtOtp4.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) { // TODO Auto-generated method stub
+                if (s.length == 1) //size as per your requirement
+                {
+                    val inputManager: InputMethodManager =
+                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    inputManager.hideSoftInputFromWindow(
+                        currentFocus?.windowToken,
+                        InputMethodManager.SHOW_FORCED
+                    ) // It can be done by show_forced too
+
+                    binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+
+                } else if (s.length == 0) //size as per your requirement
+                {
+                    binding.edtOtp3.requestFocus()
+                    binding.edtOtp3.setBackgroundResource(R.drawable.edt_round_orange)
+                    binding.edtOtp4.setBackgroundResource(R.drawable.edt_round_orange)
+
+                    binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+
+                }
+            }
+
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) { // TODO Auto-generated method stub
+            }
+
+            override fun afterTextChanged(s: Editable) { // TODO Auto-generated method stub
+            }
+        })
+
+
+        binding.tvDigitCode.text =
+            Html.fromHtml("Enter the 4 digit code we sent you <br> at <b STYLE= 'color: #ffffff' >" + mobileWithSpace + "</b>")
+        runTimer()
+
+        binding.btnOtp.setOnClickListener {
             validate()
         }
 

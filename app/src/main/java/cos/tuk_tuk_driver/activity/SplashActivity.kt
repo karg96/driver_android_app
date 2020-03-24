@@ -56,7 +56,7 @@ class SplashActivity : BaseActivity() {
                         i.toFloat()
                     )
                     anim.duration = 400
-//                    binding.progressBar.startAnimation(anim)
+                    binding.progressBar.startAnimation(anim)
                     i += 33
 
                 } else {
@@ -64,8 +64,7 @@ class SplashActivity : BaseActivity() {
                     timer.cancel()
 
                     val intent = Intent(this@SplashActivity, WelcomeActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 }
 
