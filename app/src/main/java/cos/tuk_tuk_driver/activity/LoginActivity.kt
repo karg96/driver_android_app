@@ -7,6 +7,7 @@ import android.os.Bundle
 import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.databinding.ActivityLoginBinding
+import cos.tuk_tuk_driver.utils.Prefs
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,8 +45,8 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
 
             val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
             startActivity(intent)
 
         }
@@ -100,9 +101,14 @@ class LoginActivity : AppCompatActivity() {
                         response: Response<RegisterModal>
                     ) {
                         pd.dismiss()
+                        Prefs.putKey(applicationContext, "isLogin", "true")
 
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
+                        val intent = Intent(
+                            applicationContext,
+                            HomeActivity::class.java
+                        ) //not application context
+                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)                    }
 
                 })
 

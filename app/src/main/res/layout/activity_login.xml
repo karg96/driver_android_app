@@ -5,162 +5,151 @@
     android:background="@color/colorWhite">
 
 
-    <ScrollView
+    <TextView
+        android:id="@+id/tv_enter_mobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="51dp"
+        android:fontFamily="@font/nunitosans_bold"
+        android:lineHeight="40sp"
+        android:text="@string/account_login"
+        android:textColor="@color/colorBlack"
+        android:textSize="32sp" />
+
+
+    <TextView
+        android:id="@+id/phoneTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_enter_mobile"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="38dp"
+        android:fontFamily="@font/nunitosans_regular"
+        android:lineHeight="40sp"
+        android:text="@string/phone_number"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp" />
+
+
+    <EditText
+        android:id="@+id/edt_phone_number"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/tv_enter_mobile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="51dp"
-                android:fontFamily="@font/nunitosans_bold"
-                android:lineHeight="40sp"
-                android:text="@string/account_login"
-                android:textColor="@color/colorBlack"
-                android:textSize="32sp" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneTitle"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginRight="19dp"
+        android:cursorVisible="true"
+        android:fontFamily="@font/nunitosans_regular"
+        android:hint="@string/enter_number"
+        android:inputType="phone"
+        android:lineHeight="27sp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/colorBlack"
+        android:textCursorDrawable="@null"
+        android:textSize="20sp"
+        android:theme="@style/TextLabel" />
 
 
-            <TextView
-                android:id="@+id/phoneTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_enter_mobile"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="38dp"
-                android:fontFamily="@font/nunitosans_regular"
-                android:lineHeight="40sp"
-                android:text="@string/phone_number"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+    <TextView
+        android:id="@+id/passwordTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edt_phone_number"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="38dp"
+        android:fontFamily="@font/nunitosans_regular"
+        android:lineHeight="40sp"
+        android:text="@string/password"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp" />
 
 
-            <EditText
-                android:id="@+id/edt_phone_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/phoneTitle"
-                android:layout_marginLeft="19dp"
-                android:layout_marginTop="13dp"
-                android:layout_marginRight="19dp"
-                android:cursorVisible="true"
-                android:fontFamily="@font/nunitosans_regular"
-                android:hint="@string/enter_number"
-                android:inputType="phone"
-                android:lineHeight="27sp"
-                android:paddingLeft="5dp"
-                android:paddingBottom="10dp"
-                android:textColor="@color/colorBlack"
-                android:textCursorDrawable="@null"
-                android:textSize="20sp"
-                android:theme="@style/TextLabel" />
+    <EditText
+        android:id="@+id/edt_password_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwordTitle"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginRight="19dp"
+        android:cursorVisible="true"
+        android:fontFamily="@font/nunitosans_regular"
+        android:hint="@string/enter_password"
+        android:inputType="textPassword"
+        android:lineHeight="27sp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/colorBlack"
+        android:textCursorDrawable="@null"
+        android:textSize="20sp"
+        android:theme="@style/TextLabel" />
 
 
-            <TextView
-                android:id="@+id/passwordTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/edt_phone_number"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="38dp"
-                android:fontFamily="@font/nunitosans_regular"
-                android:lineHeight="40sp"
-                android:text="@string/password"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+    <TextView
+        android:id="@+id/forgotTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edt_password_number"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="42dp"
+        android:fontFamily="@font/nunitosans_regular"
+        android:lineHeight="40sp"
+        android:text="@string/forgot_password"
+        android:textColor="@color/colorBlue"
+        android:textSize="20sp" />
 
 
-            <EditText
-                android:id="@+id/edt_password_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="19dp"
-                android:layout_marginTop="13dp"
-                android:layout_marginRight="19dp"
-                android:cursorVisible="true"
-                android:fontFamily="@font/nunitosans_regular"
-                android:hint="@string/enter_password"
-                android:inputType="textPassword"
-                android:lineHeight="27sp"
-                android:paddingLeft="5dp"
-                android:paddingBottom="10dp"
-                android:textColor="@color/colorBlack"
-                android:textCursorDrawable="@null"
-                android:textSize="20sp"
-                android:theme="@style/TextLabel" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnLogin"
+        android:layout_below="@+id/forgotTitle"
+        android:layout_marginLeft="22sp"
+        android:layout_marginTop="140dp"
+        android:layout_marginRight="17sp"
+        android:layout_marginBottom="28dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_enter_mobile"
+            android:fontFamily="@font/nunitosans_regular"
+            android:lineHeight="40sp"
+            android:text="Don't have an account? "
+            android:textColor="@color/colorGray"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_enter_mobile"
+            android:fontFamily="@font/nunitosans_regular"
+            android:lineHeight="40sp"
+            android:text="Sign Up"
+            android:textColor="@color/colorBlue"
+            android:textSize="20sp" />
 
 
-            <TextView
-                android:id="@+id/forgotTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/edt_password_number"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="42dp"
-                android:fontFamily="@font/nunitosans_regular"
-                android:lineHeight="40sp"
-                android:text="@string/forgot_password"
-                android:textColor="@color/colorBlue"
-                android:textSize="20sp" />
+    </LinearLayout>
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="17sp"
+        android:background="@drawable/red_rounded_btn"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/login"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="23sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/btn_get_otp"
-                android:layout_below="@+id/forgotTitle"
-                android:layout_marginLeft="22sp"
-                android:layout_marginTop="251dp"
-                android:layout_marginRight="17sp"
-                android:layout_marginBottom="28dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_enter_mobile"
-                    android:fontFamily="@font/nunitosans_regular"
-                    android:lineHeight="40sp"
-                    android:text="Don't have an account? "
-                    android:textColor="@color/colorGray"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_enter_mobile"
-                    android:fontFamily="@font/nunitosans_regular"
-                    android:lineHeight="40sp"
-                    android:text="Sign Up"
-                    android:textColor="@color/colorBlue"
-                    android:textSize="20sp" />
-
-
-            </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnLogin"
-                android:layout_width="match_parent"
-                android:layout_height="63dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="23dp"
-                android:layout_marginEnd="23dp"
-                android:layout_marginBottom="17sp"
-                android:background="@drawable/red_rounded_btn"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/login"
-                android:textAllCaps="false"
-                android:textColor="@color/colorWhite"
-                android:textSize="23sp" />
-
-        </LinearLayout>
-
-    </ScrollView>
 </RelativeLayout>

@@ -56,10 +56,10 @@ class AddDocumentActivity : AppCompatActivity() {
 
         binding.btnNext.setOnClickListener {
 
-    val intent = Intent(this@AddDocumentActivity, HomeActivity::class.java)
-    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-    startActivity(intent)
-}
+            val intent = Intent(this@AddDocumentActivity, HomeActivity::class.java)
+            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            startActivity(intent)
+        }
     }
 }

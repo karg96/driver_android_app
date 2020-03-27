@@ -4,7 +4,7 @@
     <string name="copyright_2019_all_rights_reserved">© Copyright 2019 | All Rights Reserved</string>
     <string name="share_ride_with_your_friends">share ride\nwith your\nfriends.</string>
     <string name="get_started">Get Started</string>
-    <string name="welcome_tuktuk">Welcome to tuktuk\nDriver App.</string>
+    <string name="welcome_tuktuk">Welcome to tuktuk\nDriver App</string>
     <string name="track_your_ride_in_real_time">Track your\nride in\nreal time.</string>
     <string name="enter_your_mobile_nnumber">Enter your mobile\nnumber</string>
     <string name="get_otp">Get OTP</string>
@@ -59,10 +59,10 @@
     <string name="lets_start">Let\'s Start</string>
     <string name="upload_your_driving_license">Upload your driving license</string>
     <string name="upload_your_photo">Upload your photo</string>
-    <string name="Upload_vehicle_document">Upload your vehicle registration
-            document</string>
+    <string name="Upload_vehicle_document">Upload your vehicle registration document</string>
     <string name="select_license_type">Select license type</string>
-    <string name="terms_policy">By tapping the button below, you agree to  tuktuk\'s Term of Use and Privacy Policy</string>
-    <string name="terms_policy2">To learn more, see our Terms of Use and Privacy Policy</string>
+    <string name="terms_policy">By tapping the button below, you agree to  <b>tuktuk\'s</b> Term of Use and Privacy Policy</string>
+    <string name="terms_policy2">To learn more, see our <span style="color: red">Terms of Use</span>and <span style="color:#00B9FF">Privacy Policy</span></string>
     <string name="upload">Upload</string>
+
 </resources>

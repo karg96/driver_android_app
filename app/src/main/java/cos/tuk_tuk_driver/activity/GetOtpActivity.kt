@@ -248,4 +248,5 @@ class GetOtpActivity : BaseActivity() {
     private fun gotoNext() {
         moveToNextScreen(this, EnterOtpActivity::class.java as Class<Any>, null, true)
     }
+
 }
