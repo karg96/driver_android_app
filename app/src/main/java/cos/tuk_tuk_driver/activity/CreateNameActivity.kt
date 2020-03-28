@@ -39,7 +39,7 @@ class CreateNameActivity : AppCompatActivity() {
 
             Comman.makeToast(applicationContext, "Please enter fields")
 
-        } else if (firstName.length > 2 || lastName.length > 2) {
+        } else if (firstName.length < 2 || lastName.length < 2) {
 
             Comman.makeToast(applicationContext, "Please fill minimum 2 letters  in both  fields")
 
