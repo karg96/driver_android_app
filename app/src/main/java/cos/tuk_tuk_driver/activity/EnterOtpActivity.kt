@@ -506,7 +506,17 @@ class EnterOtpActivity : BaseActivity() {
 
                             } else {
 
-                                makeToast(applicationContext, response.body()!!.error.get(0).mobile)
+                                if (isSendCount == 3 || isSendCount == 1) {
+                                    val intent = Intent(
+                                        applicationContext,
+                                        GetOtpActivity::class.java
+                                    ) //not application context
+                                    startActivity(intent)
+                                }
+
+
+
+                                makeToast(applicationContext, response.body()!!.error.get(0).error)
 
                             }
 
@@ -589,7 +599,7 @@ class EnterOtpActivity : BaseActivity() {
                                     response.body()!!.data.access_token
                                 )
 
-                                makeToast(applicationContext, "Login Success")
+                                makeToast(applicationContext, "Otp verify successfully")
                                 binding.tvTimer.visibility = View.GONE
                                 val intent = Intent(
                                     applicationContext,
@@ -637,13 +647,13 @@ class EnterOtpActivity : BaseActivity() {
                 binding.tvResendCode.setTextColor(Color.parseColor("#00B9FF"))
                 binding.tvTimer.visibility = View.GONE
 
-                if (isSendCount == 1) {
-                    val intent = Intent(
-                        applicationContext,
-                        GetOtpActivity::class.java
-                    ) //not application context
-                    startActivity(intent)
-                }
+                /* if (isSendCount == 1) {
+                     val intent = Intent(
+                         applicationContext,
+                         GetOtpActivity::class.java
+                     ) //not application context
+                     startActivity(intent)
+                 }*/
 
 //                makeToast(applicationContext, "hello ")
             }

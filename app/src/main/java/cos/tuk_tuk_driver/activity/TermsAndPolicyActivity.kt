@@ -2,8 +2,9 @@ package cos.tuk_tuk_driver.activity
 
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
+import androidx.appcompat.app.AppCompatActivity
 import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.Comman
 import com.tuktuk.utils.Comman.makeToast
@@ -12,7 +13,6 @@ import cos.tuk_tuk_driver.utils.Prefs
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 
 class TermsAndPolicyActivity : AppCompatActivity() {
 
@@ -35,6 +35,12 @@ class TermsAndPolicyActivity : AppCompatActivity() {
 
                 finish()
             }
+
+            val styledText =
+                "To learn more, see our  <font  color=\"#00B9FF\">Terms of Use</font> and <font  color=\"#00B9FF\">Privacy Policy</font>"
+            binding.textBottom.setText(Html.fromHtml(styledText));
+
+
 
 
         } catch (Ex: Exception) {
