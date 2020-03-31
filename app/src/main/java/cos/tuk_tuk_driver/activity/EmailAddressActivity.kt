@@ -3,6 +3,7 @@ package cos.tuk_tuk_driver.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.databinding.ActivityEmailAddressBinding
 import cos.tuk_tuk_driver.utils.Prefs
@@ -21,6 +22,12 @@ class EmailAddressActivity : AppCompatActivity() {
 
             validateEmail()
 
+        }
+
+        binding.edtEmail.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                binding.edtEmail.hint = ""
+            }
         }
 
         binding.ivBack.setOnClickListener {

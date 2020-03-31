@@ -3,6 +3,7 @@ package cos.tuk_tuk_driver.activity
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.content.Intent
+import android.view.View
 import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.BaseActivity
 import com.tuktuk.utils.Comman
@@ -37,6 +38,12 @@ class GetOtpActivity : BaseActivity() {
 
                 binding.btnGetOtp.text = "Next"
 
+            }
+
+            binding.edtPhoneNumber.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+                if (hasFocus) {
+                    binding.edtPhoneNumber.hint = ""
+                }
             }
 
         } catch (ex: Exception) {

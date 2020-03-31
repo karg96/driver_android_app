@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.databinding.ActivityLoginBinding
@@ -25,6 +26,22 @@ class LoginActivity : AppCompatActivity() {
         try {
 
             init()
+
+            binding.edtPhoneNumber.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+                if (hasFocus) {
+                    binding.edtPhoneNumber.hint = ""
+                    binding.edtPasswordNumber.hint = "Enter Password"
+                }
+            }
+
+
+            binding.edtPasswordNumber.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+                if (hasFocus) {
+                    binding.edtPhoneNumber.hint = "Enter Number"
+                    binding.edtPasswordNumber.hint = ""
+                }
+            }
+
 
         } catch (Ex: Exception) {
 

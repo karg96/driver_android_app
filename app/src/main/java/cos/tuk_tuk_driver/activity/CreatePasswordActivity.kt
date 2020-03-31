@@ -2,6 +2,7 @@ package cos.tuk_tuk_driver.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.tuktuk.utils.Comman
@@ -25,6 +26,19 @@ class CreatePasswordActivity : AppCompatActivity() {
 
         }
 
+        binding.password.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                binding.password.hint = ""
+                binding.confirmPassword.hint = "Confirm Password"
+            }
+        }
+
+        binding.confirmPassword.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                binding.confirmPassword.hint = ""
+                binding.password.hint = "Password"
+            }
+        }
         binding.ivBack.setOnClickListener {
 
             finish()

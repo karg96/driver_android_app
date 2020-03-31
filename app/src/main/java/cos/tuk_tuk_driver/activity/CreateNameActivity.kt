@@ -31,24 +31,24 @@ class CreateNameActivity : AppCompatActivity() {
 
 
 
-        binding.firstName.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
+        binding.firstName.onFocusChangeListener = OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 binding.firstName.hint = ""
                 binding.lastName.hint = "Last Name"
             }
-        })
+        }
 
-        binding.lastName.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
+        binding.lastName.onFocusChangeListener = OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 binding.firstName.hint = "First Name"
                 binding.lastName.hint = ""
             }
-        })
+        }
 
-       /* binding.lastName.setOnClickListener {
-            binding.firstName.hint = "First Name"
-            binding.lastName.hint = ""
-        }*/
+        /* binding.lastName.setOnClickListener {
+             binding.firstName.hint = "First Name"
+             binding.lastName.hint = ""
+         }*/
 
     }
 
