@@ -77,7 +77,8 @@ class SplashActivity : BaseActivity() {
                     } else if (isLogin != "true") {
                         //call when user not  login it will redirect to WelcomeActivity screen
                         val intent = Intent(this@SplashActivity, WelcomeActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                     }
 
@@ -89,31 +90,31 @@ class SplashActivity : BaseActivity() {
 
         }, 1000)
 
-       /* timer.schedule(object : TimerTask() {
-            @RequiresApi(Build.VERSION_CODES.N)
-            override fun run() {
-                if (i < 100) {
-                    val anim = ProgressBarAnimation(
-                        binding.progressBar,
-                        binding.progressBar.progress.toFloat(),
-                        i.toFloat()
-                    )
-                    anim.duration = 400
-                    binding.progressBar.startAnimation(anim)
-                    i += 33
+        /* timer.schedule(object : TimerTask() {
+             @RequiresApi(Build.VERSION_CODES.N)
+             override fun run() {
+                 if (i < 100) {
+                     val anim = ProgressBarAnimation(
+                         binding.progressBar,
+                         binding.progressBar.progress.toFloat(),
+                         i.toFloat()
+                     )
+                     anim.duration = 400
+                     binding.progressBar.startAnimation(anim)
+                     i += 33
 
-                } else {
+                 } else {
 
-                    timer.cancel()
+                     timer.cancel()
 
-                    val intent = Intent(this@SplashActivity, WelcomeActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                }
+                     val intent = Intent(this@SplashActivity, WelcomeActivity::class.java)
+                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                     startActivity(intent)
+                 }
 
-            }
+             }
 
-        }, 0, 1000)*/
+         }, 0, 1000)*/
     }
 
 

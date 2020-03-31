@@ -6,6 +6,7 @@ import android.os.Bundle
 import cos.tuk_tuk_driver.databinding.ActivityAddDocumentBinding
 
 class AddDocumentActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityAddDocumentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +52,7 @@ class AddDocumentActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+
         }
 
 

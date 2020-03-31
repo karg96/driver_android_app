@@ -85,12 +85,12 @@ class TermsAndPolicyActivity : AppCompatActivity() {
                 ) {
                     pd.dismiss()
                     Prefs.putKey(applicationContext, "isLogin", "true")
-                    makeToast(applicationContext, "User Created successfully")
+                    makeToast(applicationContext, "Login Success")
                     val intent = Intent(
                         applicationContext,
                         HomeActivity::class.java
                     ) //not application context
-                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 }
 

@@ -506,16 +506,16 @@ class EnterOtpActivity : BaseActivity() {
 
                             } else {
 
-                                if (isSendCount == 3 || isSendCount == 1) {
+                                if (isSendCount == 1) {
                                     val intent = Intent(
                                         applicationContext,
                                         GetOtpActivity::class.java
                                     ) //not application context
+
+                                    intent.putExtra("from", "register")
+
                                     startActivity(intent)
                                 }
-
-
-
                                 makeToast(applicationContext, response.body()!!.error.get(0).error)
 
                             }
@@ -568,6 +568,7 @@ class EnterOtpActivity : BaseActivity() {
     private fun validateOTP(otp: String) {
 
         try {
+
             val pd = ProgressDialog(this)
             pd.setMessage("Please wait....")
             pd.setCancelable(false)
@@ -605,6 +606,7 @@ class EnterOtpActivity : BaseActivity() {
                                     applicationContext,
                                     EmailAddressActivity::class.java
                                 ) //not application context
+
                                 startActivity(intent)
 
                             } else {
@@ -616,7 +618,6 @@ class EnterOtpActivity : BaseActivity() {
                         } catch (Ex: java.lang.Exception) {
 
                         }
-
                     }
 
                 })
@@ -647,13 +648,18 @@ class EnterOtpActivity : BaseActivity() {
                 binding.tvResendCode.setTextColor(Color.parseColor("#00B9FF"))
                 binding.tvTimer.visibility = View.GONE
 
-                /* if (isSendCount == 1) {
-                     val intent = Intent(
-                         applicationContext,
-                         GetOtpActivity::class.java
-                     ) //not application context
-                     startActivity(intent)
-                 }*/
+
+                if (isSendCount == 2) {
+                    val intent = Intent(
+                        applicationContext,
+                        GetOtpActivity::class.java
+                    ) //not application context
+
+                    intent.putExtra("from", "register")
+
+                    startActivity(intent)
+                }
+
 
 //                makeToast(applicationContext, "hello ")
             }

@@ -45,8 +45,9 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="19dp"
             android:layout_weight="1"
-            android:theme="@style/TextLabel"
             android:cursorVisible="true"
+            android:focusableInTouchMode="true"
+
             android:fontFamily="@font/nunitosans_regular"
             android:hint="First Name"
             android:inputType="text"
@@ -54,15 +55,17 @@
             android:paddingBottom="10dp"
             android:textColor="@color/colorBlack"
             android:textCursorDrawable="@null"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:theme="@style/TextLabel" />
 
         <EditText
             android:id="@+id/lastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:theme="@style/TextLabel"
             android:cursorVisible="true"
+            android:focusableInTouchMode="true"
+
             android:fontFamily="@font/nunitosans_regular"
             android:hint="Last Name"
             android:inputType="text"
@@ -70,7 +73,8 @@
             android:paddingBottom="10dp"
             android:textColor="@color/colorBlack"
             android:textCursorDrawable="@null"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:theme="@style/TextLabel" />
 
 
     </LinearLayout>

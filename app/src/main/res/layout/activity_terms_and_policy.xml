@@ -28,17 +28,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="match_parent"
+                    android:layout_height="216.4dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="79dp"
+                    android:layout_marginRight="30.2dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/terms_illustration">
 
-                <androidx.cardview.widget.CardView
+                </ImageView>
+
+                <RelativeLayout
                     android:id="@+id/topdeal_card"
                     android:layout_width="162dp"
                     android:layout_height="53dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="45dp"
                     android:layout_marginRight="52dp"
-                    android:padding="5dp"
-                    cardview:cardCornerRadius="6dp"
-                    cardview:cardElevation="2dp">
+                    android:background="@drawable/background"
+                    android:padding="5dp">
 
                     <RelativeLayout
                         android:layout_width="162dp"
@@ -55,20 +65,8 @@
 
                     </RelativeLayout>
 
-                </androidx.cardview.widget.CardView>
+                </RelativeLayout>
 
-
-                <ImageView
-                    android:id="@+id/img2"
-                    android:layout_width="match_parent"
-                    android:layout_height="216.4dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="79dp"
-                    android:layout_marginRight="30.2dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/terms_illustration">
-
-                </ImageView>
 
                 <TextView
                     android:id="@+id/text"

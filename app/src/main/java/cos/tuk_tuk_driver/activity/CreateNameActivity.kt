@@ -1,12 +1,13 @@
 package cos.tuk_tuk_driver.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View.OnFocusChangeListener
+import androidx.appcompat.app.AppCompatActivity
 import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.databinding.ActivityCreateNameBinding
 import cos.tuk_tuk_driver.utils.Prefs
-import cos.tuk_tuk_driver.utils.Validation
+
 
 class CreateNameActivity : AppCompatActivity() {
 
@@ -27,6 +28,27 @@ class CreateNameActivity : AppCompatActivity() {
 
             finish()
         }
+
+
+
+        binding.firstName.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                binding.firstName.hint = ""
+                binding.lastName.hint = "Last Name"
+            }
+        })
+
+        binding.lastName.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                binding.firstName.hint = "First Name"
+                binding.lastName.hint = ""
+            }
+        })
+
+       /* binding.lastName.setOnClickListener {
+            binding.firstName.hint = "First Name"
+            binding.lastName.hint = ""
+        }*/
 
     }
 

@@ -34,18 +34,27 @@ class LoginActivity : AppCompatActivity() {
 
     private fun init() {
 
-        binding.forgotTitle.setOnClickListener {
+       /* binding.forgotTitle.setOnClickListener {
 
             val intent = Intent(this@LoginActivity, CreatePasswordActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-        }
+        }*/
 
         binding.btnLogin.setOnClickListener {
 
             val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+
+        }
+
+        binding.signUp.setOnClickListener {
+
+            val intent = Intent(this@LoginActivity, GetOtpActivity::class.java)
             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.putExtra("from", "login")
 
             startActivity(intent)
 
@@ -108,7 +117,8 @@ class LoginActivity : AppCompatActivity() {
                             HomeActivity::class.java
                         ) //not application context
                         Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)                    }
+                        startActivity(intent)
+                    }
 
                 })
 
