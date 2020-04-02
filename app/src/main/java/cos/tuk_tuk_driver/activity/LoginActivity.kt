@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.Comman
+import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityLoginBinding
 import cos.tuk_tuk_driver.utils.Prefs
 import retrofit2.Call
@@ -17,6 +18,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private val apiInterface = Comman.getApi()
+    private var mobileNumber: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,23 +26,38 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         try {
-
+            mobileNumber = intent.getStringExtra("mobileNumber")
             init()
-
-            binding.edtPhoneNumber.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-                if (hasFocus) {
-                    binding.edtPhoneNumber.hint = ""
-                    binding.edtPasswordNumber.hint = "Enter Password"
-                }
+            if (mobileNumber != "") {
+                binding.edtPhoneNumber.setText(mobileNumber)
             }
 
+            binding.edtPhoneNumber.setOnClickListener {
+                binding.edtPhoneNumber.onFocusChangeListener =
+                    View.OnFocusChangeListener { v, hasFocus ->
+                        if (hasFocus) {
+                            binding.edtPhoneNumber.hint = ""
+                            binding.edtPasswordNumber.hint = "Enter Password"
+                        }
+                    }
 
-            binding.edtPasswordNumber.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-                if (hasFocus) {
-                    binding.edtPhoneNumber.hint = "Enter Number"
-                    binding.edtPasswordNumber.hint = ""
-                }
+                binding.edtPhoneNumber.hint = ""
+                binding.edtPasswordNumber.hint = "Enter Password"
             }
+
+            /* binding.edtPasswordNumber.setOnClickListener {
+                 binding.edtPhoneNumber.hint = "Enter Number"
+                 binding.edtPasswordNumber.hint = ""
+
+             }*/
+
+            binding.edtPasswordNumber.onFocusChangeListener =
+                View.OnFocusChangeListener { v, hasFocus ->
+                    if (hasFocus) {
+                        binding.edtPhoneNumber.hint = "Enter Number"
+                        binding.edtPasswordNumber.hint = ""
+                    }
+                }
 
 
         } catch (Ex: Exception) {
@@ -51,20 +68,20 @@ class LoginActivity : AppCompatActivity() {
 
     private fun init() {
 
-       /* binding.forgotTitle.setOnClickListener {
+        /* binding.forgotTitle.setOnClickListener {
 
-            val intent = Intent(this@LoginActivity, CreatePasswordActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-        }*/
+             val intent = Intent(this@LoginActivity, CreatePasswordActivity::class.java)
+             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+             startActivity(intent)
+         }*/
 
         binding.btnLogin.setOnClickListener {
 
-            val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+            /*val intent = Intent(this@LoginActivity, HomeActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-
+            startActivity(intent)*/
+            validate()
         }
 
         binding.signUp.setOnClickListener {
@@ -84,7 +101,7 @@ class LoginActivity : AppCompatActivity() {
         var mobileNumber: String = binding.edtPhoneNumber.text.toString()
         var password: String = binding.edtPasswordNumber.text.toString()
 
-        if (mobileNumber.isEmpty() || password.isEmpty()) {
+        if (mobileNumber.isEmpty()) {
 
             Comman.makeToast(applicationContext, "Please enter mobile number")
 
@@ -101,7 +118,6 @@ class LoginActivity : AppCompatActivity() {
             doLogin(mobileNumber, password)
         }
 
-
     }
 
     private fun doLogin(mobileNumber: String, password: String) {
@@ -117,8 +133,8 @@ class LoginActivity : AppCompatActivity() {
             apiInterface!!.Login(mobileNumber, password, "", "")
                 .enqueue(object : Callback<RegisterModal> {
                     override fun onFailure(call: Call<RegisterModal>, t: Throwable) {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                         pd.dismiss()
+                        Comman.makeToast(applicationContext, "Please try again later")
 
                     }
 
@@ -127,14 +143,34 @@ class LoginActivity : AppCompatActivity() {
                         response: Response<RegisterModal>
                     ) {
                         pd.dismiss()
-                        Prefs.putKey(applicationContext, "isLogin", "true")
+                        if (response.code() == 200) {
+                            if (response.body()!!.status) {
+                                Prefs.putKey(applicationContext, "isLogin", "true")
 
-                        val intent = Intent(
-                            applicationContext,
-                            HomeActivity::class.java
-                        ) //not application context
-                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
+                                val intent = Intent(
+                                    applicationContext,
+                                    HomeActivity::class.java
+                                ) //not application context
+                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                startActivity(intent)
+                            } else {
+                                Comman.makeToast(
+                                    applicationContext,
+                                    getString(R.string.error_login)
+                                )
+                            }
+
+                        } else if (response.code() == 401) {
+                            Comman.makeToast(
+                                applicationContext,
+                                response.body()!!.error.get(0).invalid
+                            )
+
+                        } else {
+                            Comman.makeToast(applicationContext, "Please try again later")
+
+                        }
+
                     }
 
                 })

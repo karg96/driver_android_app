@@ -48,6 +48,7 @@ data class Data(
 
 data class Error(
 
+        @SerializedName("invalid") val invalid: String,
         @SerializedName("mobile") val mobile: String,
         @SerializedName("error") val error: String
 

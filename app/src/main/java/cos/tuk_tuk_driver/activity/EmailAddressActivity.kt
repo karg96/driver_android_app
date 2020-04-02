@@ -24,15 +24,19 @@ class EmailAddressActivity : AppCompatActivity() {
 
         }
 
-        binding.edtEmail.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+       /* binding.edtEmail.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 binding.edtEmail.hint = ""
             }
-        }
+        }*/
 
         binding.ivBack.setOnClickListener {
 
             finish()
+        }
+        binding.edtEmail.setOnClickListener {
+
+            binding.edtEmail.hint = ""
         }
     }
 

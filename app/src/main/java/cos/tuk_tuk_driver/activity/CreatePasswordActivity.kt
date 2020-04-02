@@ -26,19 +26,30 @@ class CreatePasswordActivity : AppCompatActivity() {
 
         }
 
-        binding.password.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                binding.password.hint = ""
-                binding.confirmPassword.hint = "Confirm Password"
-            }
-        }
 
-        binding.confirmPassword.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                binding.confirmPassword.hint = ""
-                binding.password.hint = "Password"
+        binding.password.setOnClickListener {
+            binding.password.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+                if (hasFocus) {
+                    binding.password.hint = ""
+                    binding.confirmPassword.hint = "Confirm Password"
+                }
             }
+            binding.password.hint = ""
+            binding.confirmPassword.hint = "Confirm Password"
         }
+        binding.confirmPassword.onFocusChangeListener =
+            View.OnFocusChangeListener { v, hasFocus ->
+                if (hasFocus) {
+                    binding.confirmPassword.hint = ""
+                    binding.password.hint = "Password"
+                }
+            }
+      /*  binding.confirmPassword.setOnClickListener {
+
+            binding.confirmPassword.hint = ""
+            binding.password.hint = "Password"
+        }*/
+
         binding.ivBack.setOnClickListener {
 
             finish()

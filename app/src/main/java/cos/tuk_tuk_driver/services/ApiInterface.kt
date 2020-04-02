@@ -2,13 +2,13 @@ package com.example.punjabrocks.services
 
 import com.tuktuk.models.OtpModal
 import com.tuktuk.models.RegisterModal
-import com.tuktuk.utils.URLHelper.Login
 import com.tuktuk.utils.URLHelper.Logout
 import com.tuktuk.utils.URLHelper.MobileLogin
 import com.tuktuk.utils.URLHelper.RegisterMobile
 import com.tuktuk.utils.URLHelper.Resend
 import com.tuktuk.utils.URLHelper.UpdateDriverData
 import com.tuktuk.utils.URLHelper.VerifyOtp
+import com.tuktuk.utils.URLHelper.doLogin
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -18,7 +18,7 @@ import retrofit2.http.POST
 interface ApiInterface {
 
 
-    @POST(Login)
+    @POST(doLogin)
     @FormUrlEncoded
     fun Login(
         @Field("mobile") mobile: String,

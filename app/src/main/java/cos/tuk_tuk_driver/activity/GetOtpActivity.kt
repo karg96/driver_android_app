@@ -3,7 +3,6 @@ package cos.tuk_tuk_driver.activity
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.content.Intent
-import android.view.View
 import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.BaseActivity
 import com.tuktuk.utils.Comman
@@ -40,11 +39,6 @@ class GetOtpActivity : BaseActivity() {
 
             }
 
-            binding.edtPhoneNumber.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-                if (hasFocus) {
-                    binding.edtPhoneNumber.hint = ""
-                }
-            }
 
         } catch (ex: Exception) {
 
@@ -67,13 +61,20 @@ class GetOtpActivity : BaseActivity() {
 
         }
 
+        binding.edtPhoneNumber.setOnClickListener {
+
+            binding.edtPhoneNumber.hint = ""
+        }
+
         binding.btnLogin.setOnClickListener {
 
             val intent = Intent(
                 applicationContext,
                 LoginActivity::class.java
             ) //not application context
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or  Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.putExtra("mobileNumber", "")
+
             startActivity(intent)
         }
     }
@@ -113,8 +114,9 @@ class GetOtpActivity : BaseActivity() {
                                         applicationContext,
                                         LoginActivity::class.java
                                     ) //not application context
-                                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    intent.flags =
+                                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    intent.putExtra("mobileNumber", mobileNumber)
                                     startActivity(intent)
 
                                 } else if (!response.body()!!.password) {

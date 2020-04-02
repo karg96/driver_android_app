@@ -3,7 +3,6 @@
     package="cos.tuk_tuk_driver">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -29,13 +28,13 @@
 
         </activity>
         <activity android:name=".activity.TermsAndPolicyActivity">
-         <!--   <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            <!--   <intent-filter>
+                   <action android:name="android.intent.action.MAIN" />
+                   <category android:name="android.intent.category.LAUNCHER" />
+               </intent-filter>-->
         </activity>
 
-        <activity android:name=".activity.CreateNameActivity" >
+        <activity android:name=".activity.CreateNameActivity">
 
         </activity>
         <activity android:name=".activity.CreatePasswordActivity" />
@@ -56,6 +55,7 @@
             </intent-filter>
 
         </activity>
+
         <activity android:name=".activity.MainActivity" />
 
         <meta-data
