@@ -16,6 +16,7 @@ import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
+
     private lateinit var binding: ActivityLoginBinding
 
     private val apiInterface = Comman.getApi()
@@ -32,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
             init()
 
             if (mobileNumber != "") {
+
                 binding.edtPhoneNumber.setText(mobileNumber)
                 binding.edtPhoneNumber.isCursorVisible = false
 
@@ -45,6 +47,7 @@ class LoginActivity : AppCompatActivity() {
                             binding.edtPasswordNumber.hint = "Enter Password"
                         }
                     }
+                binding.edtPhoneNumber.isCursorVisible = true
 
                 binding.edtPhoneNumber.hint = ""
                 binding.edtPasswordNumber.hint = "Enter Password"
