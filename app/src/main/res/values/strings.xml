@@ -1,5 +1,7 @@
 <resources>
+
     <string name="app_name">TukTuk Driver</string>
+
 
     <string name="copyright_2019_all_rights_reserved">© Copyright 2019 | All Rights Reserved</string>
     <string name="share_ride_with_your_friends">share ride\nwith your\nfriends.</string>

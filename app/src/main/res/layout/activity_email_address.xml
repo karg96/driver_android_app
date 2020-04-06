@@ -43,6 +43,7 @@
         android:fontFamily="@font/nunitosans_regular"
         android:hint="example@gmail.com"
         android:inputType="text"
+        android:imeOptions="actionDone"
         android:lineHeight="27sp"
         android:paddingBottom="10dp"
         android:textColor="@color/colorBlack"

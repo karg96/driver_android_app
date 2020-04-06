@@ -17,6 +17,7 @@ import retrofit2.Response
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+
     private val apiInterface = Comman.getApi()
     private var mobileNumber: String = ""
 
@@ -26,10 +27,14 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         try {
+
             mobileNumber = intent.getStringExtra("mobileNumber")
             init()
+
             if (mobileNumber != "") {
                 binding.edtPhoneNumber.setText(mobileNumber)
+                binding.edtPhoneNumber.isCursorVisible = false
+
             }
 
             binding.edtPhoneNumber.setOnClickListener {
