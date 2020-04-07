@@ -118,7 +118,7 @@
             android:layout_below="@+id/tv_enter_mobile"
             android:fontFamily="@font/nunitosans_regular"
             android:lineHeight="40sp"
-            android:text="Don't have an account? "
+            android:text="Don't you have an account? "
             android:textColor="@color/colorGray"
             android:textSize="20sp" />
 
