@@ -49,6 +49,10 @@ class TermsAndPolicyActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
     private fun updateDriverData() {
 
         try {

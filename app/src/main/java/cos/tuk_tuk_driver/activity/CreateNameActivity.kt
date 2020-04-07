@@ -60,6 +60,11 @@ class CreateNameActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
+
     private fun validate() {
 
         var firstName: String = binding.firstName.text.toString()

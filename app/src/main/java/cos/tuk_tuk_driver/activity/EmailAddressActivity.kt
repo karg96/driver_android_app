@@ -40,6 +40,11 @@ class EmailAddressActivity : AppCompatActivity() {
         }
     }
 
+
+    override fun onResume() {
+        super.onResume()
+    }
+
     private fun validateEmail() {
 
         var email: String = binding.edtEmail.text.toString()

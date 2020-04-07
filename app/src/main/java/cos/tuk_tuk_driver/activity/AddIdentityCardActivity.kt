@@ -23,4 +23,9 @@ class AddIdentityCardActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
 }

@@ -474,6 +474,11 @@ class EnterOtpActivity : BaseActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
+
     private fun resendCode() {
 
         try {

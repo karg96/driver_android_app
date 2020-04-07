@@ -104,6 +104,10 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
     private fun validate() {
 
         var mobileNumber: String = binding.edtPhoneNumber.text.toString()

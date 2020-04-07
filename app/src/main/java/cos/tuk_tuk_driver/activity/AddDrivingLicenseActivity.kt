@@ -22,4 +22,9 @@ class AddDrivingLicenseActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
 }

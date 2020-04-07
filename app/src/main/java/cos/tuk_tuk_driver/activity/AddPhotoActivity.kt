@@ -23,4 +23,9 @@ class AddPhotoActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
 }

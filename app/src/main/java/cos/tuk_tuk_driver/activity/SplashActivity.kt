@@ -42,6 +42,10 @@ class SplashActivity : BaseActivity() {
     }
 
 
+    override fun onResume() {
+        super.onResume()
+    }
+
     private fun runTimer() {
 
         Handler().postDelayed({

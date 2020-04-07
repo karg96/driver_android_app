@@ -58,6 +58,11 @@ class CreatePasswordActivity : AppCompatActivity() {
 
     }
 
+
+    override fun onResume() {
+        super.onResume()
+    }
+
     private fun validate() {
 
         var Password: String = binding.password.text.toString()

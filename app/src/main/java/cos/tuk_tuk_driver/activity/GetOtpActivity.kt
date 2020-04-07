@@ -49,6 +49,10 @@ class GetOtpActivity : BaseActivity() {
         listener()
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
     private fun listener() {
 
         /* binding.tvCountryCode.setOnClickListener {

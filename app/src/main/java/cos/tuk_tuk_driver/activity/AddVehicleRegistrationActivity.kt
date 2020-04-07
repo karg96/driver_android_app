@@ -22,4 +22,9 @@ class AddVehicleRegistrationActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
 }

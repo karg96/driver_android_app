@@ -64,4 +64,5 @@ class AddDocumentActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
 }
