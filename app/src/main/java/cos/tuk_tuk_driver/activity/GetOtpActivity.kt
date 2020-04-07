@@ -49,10 +49,6 @@ class GetOtpActivity : BaseActivity() {
         listener()
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     private fun listener() {
 
         /* binding.tvCountryCode.setOnClickListener {
@@ -107,36 +103,58 @@ class GetOtpActivity : BaseActivity() {
                     ) {
 
                         try {
+
                             pd.dismiss()
 
-                            if (response.body()?.status!!) {
+                            if (response.code() == 200) {
+                                if (response.body()!!.status) {
 
 
-                                if (response.body()!!.password) {
+                                    if (response.body()!!.password) {
 
-                                    val intent = Intent(
+                                        val intent = Intent(
+                                            applicationContext,
+                                            LoginActivity::class.java
+                                        ) //not application context
+                                        intent.flags =
+                                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                        intent.putExtra("mobileNumber", mobileNumber)
+                                        startActivity(intent)
+
+                                    } else if (!response.body()!!.password) {
+
+                                        val intent = Intent(
+                                            applicationContext,
+                                            EnterOtpActivity::class.java
+                                        ) //not application context
+
+                                        intent.flags =
+                                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                        intent.putExtra("mobile", mobileNumber)
+                                        intent.putExtra("mobileWithSpace", mobileWithSpace)
+                                        startActivity(intent)
+
+                                    }
+
+
+                                } else if (!response.body()!!.status) {
+
+                                    makeToast(
                                         applicationContext,
-                                        LoginActivity::class.java
-                                    ) //not application context
-                                    intent.flags =
-                                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                    intent.putExtra("mobileNumber", mobileNumber)
-                                    startActivity(intent)
+                                        response.body()!!.error.get(0).mobile
+                                    )
 
-                                } else if (!response.body()!!.password) {
+                                    /*  val intent = Intent(
+                                          applicationContext,
+                                          EnterOtpActivity::class.java
+                                      ) //not application context
 
-                                    val intent = Intent(
-                                        applicationContext,
-                                        EnterOtpActivity::class.java
-                                    ) //not application context
-                                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                    intent.putExtra("mobile", mobileNumber)
-                                    intent.putExtra("mobileWithSpace", mobileWithSpace)
-                                    startActivity(intent)
+                                      intent.flags =
+                                          Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                      intent.putExtra("mobile", mobileNumber)
+                                      intent.putExtra("mobileWithSpace", mobileWithSpace)
+                                      startActivity(intent)*/
                                 }
-
-
                             } else {
 
 //                                makeToast(applicationContext, response.body()!!.error.get(0).mobile)
