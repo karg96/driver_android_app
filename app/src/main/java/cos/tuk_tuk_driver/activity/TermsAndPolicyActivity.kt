@@ -38,19 +38,13 @@ class TermsAndPolicyActivity : AppCompatActivity() {
 
             val styledText =
                 "To learn more, see our  <font  color=\"#00B9FF\">Terms of Use</font> and <font  color=\"#00B9FF\">Privacy Policy</font>"
-            binding.textBottom.setText(Html.fromHtml(styledText));
-
-
+            binding.textBottom.text = Html.fromHtml(styledText)
 
 
         } catch (Ex: Exception) {
 
         }
 
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     private fun updateDriverData() {
@@ -88,14 +82,24 @@ class TermsAndPolicyActivity : AppCompatActivity() {
                     response: Response<RegisterModal>
                 ) {
                     pd.dismiss()
-                    Prefs.putKey(applicationContext, "isLogin", "true")
-                    makeToast(applicationContext, "Login Success")
-                    val intent = Intent(
-                        applicationContext,
-                        HomeActivity::class.java
-                    ) //not application context
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
+                    if (response.code()==200){
+                        if (response.body()!!.status) {
+                            Prefs.putKey(applicationContext, "isLogin", "true")
+                            makeToast(applicationContext, "Login Success")
+                            val intent = Intent(
+                                applicationContext,
+                                HomeActivity::class.java
+                            ) //not application context
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                        } else {
+                            makeToast(applicationContext, "Please try again later")
+
+                        }
+                    }
+
+
                 }
 
             })

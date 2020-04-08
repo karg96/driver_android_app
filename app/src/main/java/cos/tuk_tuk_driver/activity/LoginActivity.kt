@@ -96,16 +96,11 @@ class LoginActivity : AppCompatActivity() {
 
             val intent = Intent(this@LoginActivity, GetOtpActivity::class.java)
             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            intent.putExtra("from", "login")
-
+            intent.putExtra("from", "register")
             startActivity(intent)
 
         }
 
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     private fun validate() {
@@ -142,7 +137,7 @@ class LoginActivity : AppCompatActivity() {
             pd.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             pd.show()
 
-            apiInterface!!.Login(mobileNumber, password, "", "")
+            apiInterface!!.Login(mobileNumber, password, "123", "android")
                 .enqueue(object : Callback<RegisterModal> {
                     override fun onFailure(call: Call<RegisterModal>, t: Throwable) {
                         pd.dismiss()

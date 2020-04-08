@@ -36,7 +36,17 @@ class GetOtpActivity : BaseActivity() {
             if (from == "login") {
 
                 binding.btnGetOtp.text = "Next"
+                binding.question.text = "Don't have an account? "
+                binding.action.text = "Sign Up "
 
+                binding.action.setOnClickListener {
+
+                    val intent = Intent(this@GetOtpActivity, GetOtpActivity::class.java)
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    intent.putExtra("from", "register")
+                    startActivity(intent)
+
+                }
             }
 
 
@@ -66,7 +76,7 @@ class GetOtpActivity : BaseActivity() {
             binding.edtPhoneNumber.hint = ""
         }
 
-        binding.btnLogin.setOnClickListener {
+        binding.action.setOnClickListener {
 
             val intent = Intent(
                 applicationContext,

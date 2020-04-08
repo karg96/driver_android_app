@@ -474,10 +474,6 @@ class EnterOtpActivity : BaseActivity() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
 
     private fun resendCode() {
 
@@ -659,7 +655,8 @@ class EnterOtpActivity : BaseActivity() {
                         applicationContext,
                         GetOtpActivity::class.java
                     ) //not application context
-
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     intent.putExtra("from", "register")
 
                     startActivity(intent)

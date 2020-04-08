@@ -125,6 +125,7 @@ class FragmentDrawer : Fragment() {
                 context,
                 GetOtpActivity::class.java
             ) //not application context
+            intent.putExtra("from", "register")
 
             intent.flags =
                 Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
