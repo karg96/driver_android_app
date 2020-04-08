@@ -42,7 +42,7 @@ class GetOtpActivity : BaseActivity() {
                 binding.action.setOnClickListener {
 
                     val intent = Intent(this@GetOtpActivity, GetOtpActivity::class.java)
-                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                     intent.putExtra("from", "register")
                     startActivity(intent)
 
