@@ -149,35 +149,46 @@ class LoginActivity : AppCompatActivity() {
                         call: Call<RegisterModal>,
                         response: Response<RegisterModal>
                     ) {
-                        pd.dismiss()
-                        if (response.code() == 200) {
-                            if (response.body()!!.status) {
-                                Prefs.putKey(applicationContext, "isLogin", "true")
 
-                                val intent = Intent(
-                                    applicationContext,
-                                    HomeActivity::class.java
-                                ) //not application context
-                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                startActivity(intent)
-                            } else {
+                        try {
+
+                            pd.dismiss()
+                            if (response.code() == 200) {
+                                if (response.body()!!.status) {
+                                    Prefs.putKey(applicationContext, "isLogin", "true")
+
+                                    val intent = Intent(
+                                        applicationContext,
+                                        HomeActivity::class.java
+                                    ) //not application context
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    startActivity(intent)
+                                } else {
+                                    Comman.makeToast(
+                                        applicationContext,
+                                        getString(R.string.error_login)
+                                    )
+                                }
+
+                            } else if (response.code() == 401) {
                                 Comman.makeToast(
                                     applicationContext,
-                                    getString(R.string.error_login)
+                                    "The mobile number or password you entered is incorrect!"
                                 )
+
+
+
+
+                            } else {
+
+                                Comman.makeToast(applicationContext, "Please try again later")
+
                             }
-
-                        } else if (response.code() == 401) {
-                            Comman.makeToast(
-                                applicationContext,
-                                response.body()!!.error.get(0).invalid
-                            )
-
-                        } else {
-
-                            Comman.makeToast(applicationContext, "Please try again later")
+                        } catch (Ex: java.lang.Exception) {
 
                         }
+
+
 
                     }
 
