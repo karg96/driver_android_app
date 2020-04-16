@@ -267,7 +267,7 @@ class GetOtpActivity : BaseActivity() {
 //                                makeToast(applicationContext, "Please try again later")
                                     makeToast(
                                         applicationContext,
-                                        response.body()!!.error.get(0).mobile
+                                        response.body()!!.error.get(0).error
                                     )
                                 }
                             }
