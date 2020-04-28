@@ -1,8 +1,6 @@
-package com.tuktuk.utils
+package cos.tuk_tuk_driver.utils
 
 object URLHelper {
-
-    //testing
 
     //testing
     const val BaseUrl = "http://server.visionvivante.com:8080/tuktuk/public/"
@@ -14,6 +12,8 @@ object URLHelper {
     const val MobileLogin = "api/provider/mobile-login"
     const val UpdateDriverData = "api/provider/driver-update"
     const val Logout = "api/provider/logout"
+    const val UploadDocs = "api/provider/profile/document"
+    const val GetUploadDocs = "api/provider/user-document-list"
 
 
 }

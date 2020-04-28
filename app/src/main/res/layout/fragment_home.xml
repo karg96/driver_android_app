@@ -3,91 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="fragment.Home">
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_marginLeft="15sp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="15sp"
-        app:cardCornerRadius="5dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorWhite">
-
-
-            <EditText
-                android:id="@+id/sourceLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="15sp"
-                android:layout_toRightOf="@+id/Source"
-                android:backgroundTint="@color/colorWhite"
-                android:hint="Source"
-                android:textSize="12dp" />
-
-            <EditText
-                android:id="@+id/destinationLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/line2"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="15sp"
-                android:layout_toRightOf="@+id/Source"
-                android:backgroundTint="@color/colorWhite"
-                android:hint="Destination"
-                android:textSize="12dp" />
-
-            <TextView
-                android:id="@+id/Destination"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_below="@+id/line1"
-                android:layout_marginLeft="13dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/edt_round_green" />
-
-
-            <TextView
-                android:id="@+id/Source"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginLeft="13dp"
-                android:layout_marginTop="21dp"
-                android:background="@drawable/edt_round_red" />
-
-
-            <View
-                android:id="@+id/line2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/sourceLocation"
-                android:layout_marginLeft="15sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="15sp"
-                android:layout_toRightOf="@+id/line1"
-                android:background="@color/colorLightGray" />
-
-
-            <View
-                android:id="@+id/line1"
-                android:layout_width="1dp"
-                android:layout_height="31dp"
-                android:layout_below="@+id/Source"
-                android:layout_marginLeft="21dp"
-                android:layout_marginTop="5dp"
-                android:background="@color/colorLightGray" />
-
-
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/google_map"
@@ -96,5 +12,106 @@
         android:layout_height="match_parent" />
 
 
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:elevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
+
+
+            <TextView
+                android:id="@+id/Destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/nunitosans_bold"
+                android:text="You're offline"
+                android:textColor="@color/colorBlack"
+                android:textSize="23dp" />
+
+
+            <Switch
+                android:id="@+id/online"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp" />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/finding_trip"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:elevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/nunitosans_bold"
+                android:text="You're offline"
+                android:textColor="@color/colorBlack"
+                android:textSize="23dp" />
+
+
+
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/edt_round_black"
+        android:paddingLeft="28dp"
+        android:paddingTop="10dp"
+        android:paddingRight="28dp"
+        android:paddingBottom="10dp">
+
+
+        <TextView
+            android:id="@+id/earn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$0.00"
+            android:textColor="@color/colorWhite"
+            android:textSize="23dp" />
+
+
+    </RelativeLayout>
+
+
+<!--
+    <include layout="@layout/online_bottom_sheet"/>
+-->
 
 </RelativeLayout>

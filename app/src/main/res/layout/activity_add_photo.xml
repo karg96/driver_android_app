@@ -74,6 +74,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/uploadDoc"
                 android:layout_width="234dp"
                 android:layout_height="63dp"
                 android:layout_below="@+id/rel2"

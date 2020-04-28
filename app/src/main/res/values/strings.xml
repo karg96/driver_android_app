@@ -67,5 +67,12 @@
     <string name="terms_policy2">To learn more, see our  <font color='red'>Terms of Use</font> and <font style="color:#00B9FF">Privacy Policy</font></string>
     <string name="upload">Upload</string>
     <string name="error_login">The mobile number or password you entered is incorrect!</string>
+    <string name="save">Save</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="document">Document</string>
+    <string name="editIno">Edit Info</string>
+    <string name="reportIssue">Report App Issue</string>
+    <string name="about">About</string>
+    <string name="security">Security and Privacy</string>
 
 </resources>

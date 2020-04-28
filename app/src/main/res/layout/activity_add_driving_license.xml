@@ -30,9 +30,9 @@
                 android:layout_marginTop="14dp"
                 android:fontFamily="@font/nunitosans_bold"
                 android:lineHeight="40sp"
+                android:lineSpacingExtra="8sp"
                 android:paddingLeft="20dp"
                 android:paddingRight="15dp"
-                android:lineSpacingExtra="8sp"
                 android:text="@string/driving_license"
                 android:textColor="@color/colorBlack"
                 android:textSize="32sp" />
@@ -72,6 +72,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/uploadDoc"
                 android:layout_width="234dp"
                 android:layout_height="63dp"
                 android:layout_below="@+id/rel2"
@@ -88,6 +89,7 @@
                         android:id="@+id/img_cloud"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
+                        android:layout_marginTop="4dp"
                         android:src="@drawable/cloud_upload" />
 
 
@@ -101,8 +103,7 @@
                         android:lineSpacingExtra="8sp"
                         android:text="@string/upload"
                         android:textColor="@color/colorWhite"
-                        android:textSize="23dp"
-                        />
+                        android:textSize="23dp" />
 
                 </RelativeLayout>
 

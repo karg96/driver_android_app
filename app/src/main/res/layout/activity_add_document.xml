@@ -89,7 +89,8 @@
                         android:lineSpacingExtra="25sp"
                         android:text="Auto"
                         android:textColor="@color/colorGray"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:visibility="gone" />
 
                     <RadioButton
                         android:id="@+id/rdMoto"
@@ -102,7 +103,8 @@
                         android:lineSpacingExtra="25sp"
                         android:text="Moto"
                         android:textColor="@color/colorGray"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:visibility="gone" />
 
 
                 </RadioGroup>
@@ -131,8 +133,6 @@
                     android:textSize="20dp" />
 
 
-
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardLicense"
                     android:layout_width="match_parent"
@@ -146,8 +146,7 @@
                     app:cardUseCompatPadding="true">
 
                     <RelativeLayout
-
-                        android:layout_width="340dp"
+                        android:layout_width="match_parent"
                         android:layout_height="69dp"
                         android:background="@drawable/add_doc_bg">
 
@@ -166,11 +165,14 @@
                             android:textSize="20dp" />
 
                         <ImageView
+                            android:id="@+id/driverCheck"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
                             android:scaleType="fitXY"
+                            android:visibility="gone"
                             android:src="@drawable/check_circle_24_px" />
 
 
@@ -184,6 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/cardLicense"
                     android:layout_marginLeft="18dp"
+                    android:visibility="gone"
                     android:layout_marginTop="11dp"
                     android:layout_marginRight="17sp"
                     app:cardCornerRadius="5dp"
@@ -191,8 +194,7 @@
                     app:cardUseCompatPadding="true">
 
                     <RelativeLayout
-
-                        android:layout_width="340dp"
+                        android:layout_width="match_parent"
                         android:layout_height="69sp"
                         android:background="@color/colorWhite">
 
@@ -211,13 +213,17 @@
                             android:textColor="@color/colorGray"
                             android:textSize="20dp" />
 
-                        <!--  <ImageView
-                              android:layout_width="21dp"
-                              android:layout_height="21dp"
-                              android:src="@drawable/check_circle"
-                              android:layout_alignParentRight="true"
-                              android:layout_centerVertical="true"/>
-  -->
+                        <ImageView
+                            android:id="@+id/registerationCheck"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="fitXY"
+                            android:visibility="gone"
+                            android:src="@drawable/check_circle_24_px" />
+
 
                     </RelativeLayout>
 
@@ -227,7 +233,7 @@
                     android:id="@+id/cardIdentity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/cardRegDocument"
+                    android:layout_below="@+id/cardLicense"
                     android:layout_marginLeft="18dp"
                     android:layout_marginTop="11dp"
                     android:layout_marginRight="17sp"
@@ -236,8 +242,7 @@
                     app:cardUseCompatPadding="true">
 
                     <RelativeLayout
-
-                        android:layout_width="340dp"
+                        android:layout_width="match_parent"
                         android:layout_height="69sp"
                         android:background="@color/colorWhite">
 
@@ -256,13 +261,16 @@
                             android:textColor="@color/colorGray"
                             android:textSize="20dp" />
 
-                        <!--  <ImageView
-                              android:layout_width="21dp"
-                              android:layout_height="21dp"
-                              android:src="@drawable/check_circle"
-                              android:layout_alignParentRight="true"
-                              android:layout_centerVertical="true"/>
-  -->
+                        <ImageView
+                            android:id="@+id/identyCheck"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="fitXY"
+                            android:visibility="gone"
+                            android:src="@drawable/check_circle_24_px" />
 
                     </RelativeLayout>
 
@@ -282,8 +290,7 @@
                     app:cardUseCompatPadding="true">
 
                     <RelativeLayout
-
-                        android:layout_width="340dp"
+                        android:layout_width="match_parent"
                         android:layout_height="69sp"
                         android:background="@color/colorWhite">
 
@@ -302,13 +309,17 @@
                             android:textColor="@color/colorGray"
                             android:textSize="20dp" />
 
-                        <!--  <ImageView
-                              android:layout_width="21dp"
-                              android:layout_height="21dp"
-                              android:src="@drawable/check_circle"
-                              android:layout_alignParentRight="true"
-                              android:layout_centerVertical="true"/>
-  -->
+                        <ImageView
+                            android:id="@+id/photoCheck"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="fitXY"
+                            android:visibility="gone"
+                            android:src="@drawable/check_circle_24_px" />
+
 
                     </RelativeLayout>
 
@@ -328,6 +339,7 @@
                     android:fontFamily="@font/nunito_bold"
                     android:text="@string/lets_start"
                     android:textAllCaps="false"
+                    android:visibility="gone"
                     android:textColor="@color/colorWhite"
                     android:textSize="23sp" />
 

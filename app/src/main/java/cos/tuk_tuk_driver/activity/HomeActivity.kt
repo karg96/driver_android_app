@@ -11,6 +11,7 @@ import cos.tuk_tuk_driver.databinding.ActivityHomeBinding
 import fragment.FragmentDrawer
 import fragment.Home
 
+
 class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener {
 
     var mToolbar: Toolbar? = null
@@ -60,10 +61,6 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener 
 
     override fun onDrawerItemSelected(view: View?, position: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:id="@+id/location"
+    android:background="@color/colorWhite">
+
+    <ImageView
+        android:id="@+id/bell"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="18sp"
+        android:src="@drawable/ic_locationred" />
+
+    <TextView
+        android:id="@+id/notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="15sp"
+        android:layout_toRightOf="@+id/bell"
+        android:fontFamily="@font/nunitosans_regular"
+        android:text="San fransisco,USA"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/notification"
+        android:layout_marginLeft="15sp"
+        android:layout_toRightOf="@+id/bell"
+        android:fontFamily="@font/nunitosans_regular"
+        android:text="720 D ,San fransisco,USA"
+        android:textColor="@color/colorGray"
+        android:textSize="18sp" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorExtraLightGray" />
+
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package com.tuktuk.utils
+package cos.tuk_tuk_driver.utils
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -9,10 +9,9 @@ import java.nio.charset.Charset
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-
 object Util {
 
-     fun capitalize(capString: String): String? {
+    fun capitalize(capString: String): String? {
         val capBuffer = StringBuffer()
         val capMatcher: Matcher =
             Pattern.compile("([a-z])([a-z]*)", Pattern.CASE_INSENSITIVE).matcher(capString)
@@ -24,15 +23,16 @@ object Util {
         }
         return capMatcher.appendTail(capBuffer).toString()
     }
+
     fun loadJSONFromAsset(context: Context): String? {
         var json: String = ""
-         try {
+        try {
             val inputStream = context.assets.open("json_files/country_list.json")
             val size = inputStream.available()
             val buffer = ByteArray(size)
             inputStream.read(buffer)
             inputStream.close()
-           json =  String(buffer, Charset.defaultCharset())
+            json = String(buffer, Charset.defaultCharset())
         } catch (ex: IOException) {
             ex.printStackTrace()
             return null

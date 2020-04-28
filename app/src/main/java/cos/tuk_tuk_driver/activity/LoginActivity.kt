@@ -5,10 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityLoginBinding
+import cos.tuk_tuk_driver.models.RegisterModal
 import cos.tuk_tuk_driver.utils.Prefs
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
         try {
 
             mobileNumber = intent.getStringExtra("mobileNumber")
+
             init()
 
             if (mobileNumber != "") {
@@ -117,7 +118,17 @@ class LoginActivity : AppCompatActivity() {
             Comman.makeToast(applicationContext, "Please enter Password")
 
         } else if (mobileNumber.length != 10) {
+
             Comman.makeToast(applicationContext, "Enter valid mobile number")
+
+//            Toast.makeText(this, "Enter valid mobile number", Toast.LENGTH_SHORT).show()
+
+        } else if (password.length < 7 || password.length > 16) {
+
+            Comman.makeToast(
+                applicationContext,
+                "Password must be greater than 7 characters and less than 16 characters long"
+            )
 
 //            Toast.makeText(this, "Enter valid mobile number", Toast.LENGTH_SHORT).show()
         } else {
@@ -177,8 +188,6 @@ class LoginActivity : AppCompatActivity() {
                                 )
 
 
-
-
                             } else {
 
                                 Comman.makeToast(applicationContext, "Please try again later")
@@ -187,7 +196,6 @@ class LoginActivity : AppCompatActivity() {
                         } catch (Ex: java.lang.Exception) {
 
                         }
-
 
 
                     }

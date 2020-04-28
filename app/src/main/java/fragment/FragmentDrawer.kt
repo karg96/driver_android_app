@@ -11,12 +11,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.DriverApp
-
 import cos.tuk_tuk_driver.R
+import cos.tuk_tuk_driver.activity.AccountActivity
 import cos.tuk_tuk_driver.activity.GetOtpActivity
+import cos.tuk_tuk_driver.activity.HomeActivity
+import cos.tuk_tuk_driver.models.RegisterModal
 import cos.tuk_tuk_driver.utils.Prefs
 import kotlinx.android.synthetic.main.fragment_drawer.view.*
 import retrofit2.Call
@@ -100,6 +101,13 @@ class FragmentDrawer : Fragment() {
 
             LogoutAlert(view)
 
+        }
+        view.account.setOnClickListener {
+
+            val intent = Intent(context, AccountActivity::class.java)
+            intent.flags =
+                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
 
         return view

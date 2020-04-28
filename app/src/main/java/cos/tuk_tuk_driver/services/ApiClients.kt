@@ -1,4 +1,4 @@
-package com.example.punjabrocks.services
+package cos.tuk_tuk_driver.services
 
 
 import android.widget.Toast
@@ -9,7 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.tuktuk.utils.URLHelper.BaseUrl
+import cos.tuk_tuk_driver.utils.URLHelper.BaseUrl
 import cos.tuk_tuk_driver.DriverApp
 import cos.tuk_tuk_driver.utils.Prefs
 
@@ -113,8 +113,8 @@ object ApiClients {
             val original = chain.request()
             val requestBuilder = original.newBuilder()
                     //.addHeader("Accept", "application/json")
-                    .header("Authorization","Bearer " + Prefs.getKey(DriverApp.context, "Authorization"))
-            //                        .header("Authorization", "Bearer " + Prefs.getKey(MunchMashApp.getContext(), "api_token"));
+//                    .header("Authorization","Bearer " + Prefs.getKey(DriverApp.context, "Authorization"))
+                                    .header("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9zZXJ2ZXIudmlzaW9udml2YW50ZS5jb206ODA4MFwvdHVrdHVrXC9wdWJsaWNcL2FwaVwvcHJvdmlkZXJcL29hdXRoXC90b2tlbiIsImlhdCI6MTU4ODA1NDgzNCwiZXhwIjo2MDE1ODgwNTQ3NzQsIm5iZiI6MTU4ODA1NDgzNCwianRpIjoiVWpGZGV3bEJQWk94d25DUyIsInN1YiI6MTU1LCJwcnYiOiJiMzY4ZmMwYjVhMGJlOTgxYjFkOTBiMTA0OTU4ZTg2NmJkZjYwZDViIn0.5epLSv9rFPQkbGfDcL8a8QhYxoIcyxvs2q5ARhhYbnI");
 
 
             val request = requestBuilder.build()

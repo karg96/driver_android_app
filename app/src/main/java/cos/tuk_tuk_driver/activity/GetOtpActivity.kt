@@ -3,12 +3,12 @@ package cos.tuk_tuk_driver.activity
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.content.Intent
-import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.BaseActivity
 import com.tuktuk.utils.Comman
 import com.tuktuk.utils.Comman.makeToast
 import com.tuktuk.utils.Constants
 import cos.tuk_tuk_driver.databinding.ActivityGetOtpBinding
+import cos.tuk_tuk_driver.models.RegisterModal
 import kotlinx.android.synthetic.main.activity_get_otp.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -98,7 +98,7 @@ class GetOtpActivity : BaseActivity() {
             pd.setCancelable(false)
             pd.show()
 
-            apiInterface!!.MobileLogin(mobileNumber, "type", "android")
+            apiInterface!!.mobileLogin(mobileNumber, "type", "android")
                 .enqueue(object : Callback<RegisterModal> {
                     override fun onFailure(call: Call<RegisterModal>, t: Throwable) {
                         pd.dismiss()

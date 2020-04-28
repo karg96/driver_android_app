@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SearchSavedPlacesActivity">
+
+
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="7dp"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <RelativeLayout
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/iv_back"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="15sp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edt_round">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="19dp"
+            android:layout_toRightOf="@+id/image"
+            android:backgroundTint="@color/colorWhite"
+            android:cursorVisible="true"
+            android:fontFamily="@font/nunitosans_regular"
+            android:hint="Enter Location"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:lineHeight="27sp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/colorBlack"
+            android:textCursorDrawable="@null"
+            android:textSize="20sp"
+            android:theme="@style/TextLabel" />
+
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/ic_search" />
+
+
+    </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/placesRecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/location"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
+
+</RelativeLayout>

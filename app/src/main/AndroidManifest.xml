@@ -3,9 +3,11 @@
     package="cos.tuk_tuk_driver">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
 
     <application
         android:name=".DriverApp"
@@ -17,55 +19,61 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme.Base"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.VehicleActivity"></activity>
+        <activity android:name=".activity.AccountActivity" />
+        <activity android:name=".activity.SearchSavedPlacesActivity" />
+        <activity android:name=".activity.LocationSettingActivity" />
+        <activity android:name=".activity.NotificationSettingActivity" />
+        <activity android:name=".activity.NotificationActivity" />
+        <activity android:name=".activity.HomeActivity">
 
-        <activity android:name=".activity.HomeActivity"></activity>
+            <!--
+              <intent-filter>
+                  <action android:name="android.intent.action.MAIN" />
+
+                  <category android:name="android.intent.category.LAUNCHER" />
+              </intent-filter>
+            -->
+        </activity>
         <activity android:name=".activity.AddPhotoActivity" />
         <activity android:name=".activity.AddIdentityCardActivity" />
         <activity android:name=".activity.AddVehicleRegistrationActivity" />
         <activity android:name=".activity.AddDrivingLicenseActivity" />
-        <activity android:name=".activity.AddDocumentActivity">
-
-
-        </activity>
+        <activity android:name=".activity.AddDocumentActivity"></activity>
         <activity android:name=".activity.TermsAndPolicyActivity">
-            <!--   <intent-filter>
+
+            <!--
+               <intent-filter>
                    <action android:name="android.intent.action.MAIN" />
                    <category android:name="android.intent.category.LAUNCHER" />
-               </intent-filter>-->
+               </intent-filter>
+            -->
         </activity>
-
-        <activity android:name=".activity.CreateNameActivity">
-
-        </activity>
+        <activity android:name=".activity.CreateNameActivity" />
         <activity android:name=".activity.CreatePasswordActivity" />
         <activity android:name=".activity.EmailAddressActivity" />
-        <activity android:name=".activity.LoginActivity">
-
-        </activity>
+        <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.WelcomeActivity" />
         <activity android:name=".activity.GetOtpActivity" />
         <activity android:name=".activity.EnterOtpActivity" />
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/Theme.Splash">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity android:name=".activity.MainActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC4QPb5cfz86y0PbmNh0T0_XlcQwVAnl8M" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-
     </application>
-
 
 </manifest>

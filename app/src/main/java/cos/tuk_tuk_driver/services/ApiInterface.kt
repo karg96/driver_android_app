@@ -1,19 +1,22 @@
-package com.example.punjabrocks.services
+package cos.tuk_tuk_driver.services
 
-import com.tuktuk.models.OtpModal
-import com.tuktuk.models.RegisterModal
-import com.tuktuk.utils.URLHelper.Logout
-import com.tuktuk.utils.URLHelper.MobileLogin
-import com.tuktuk.utils.URLHelper.RegisterMobile
-import com.tuktuk.utils.URLHelper.Resend
-import com.tuktuk.utils.URLHelper.UpdateDriverData
-import com.tuktuk.utils.URLHelper.VerifyOtp
-import com.tuktuk.utils.URLHelper.doLogin
+import cos.tuk_tuk_driver.models.Documents
+import cos.tuk_tuk_driver.models.OtpModal
+import cos.tuk_tuk_driver.models.RegisterModal
+import cos.tuk_tuk_driver.models.UploadDocsModal
+import cos.tuk_tuk_driver.utils.URLHelper.GetUploadDocs
+import cos.tuk_tuk_driver.utils.URLHelper.Logout
+import cos.tuk_tuk_driver.utils.URLHelper.MobileLogin
+import cos.tuk_tuk_driver.utils.URLHelper.RegisterMobile
+import cos.tuk_tuk_driver.utils.URLHelper.Resend
+import cos.tuk_tuk_driver.utils.URLHelper.UpdateDriverData
+import cos.tuk_tuk_driver.utils.URLHelper.UploadDocs
+import cos.tuk_tuk_driver.utils.URLHelper.VerifyOtp
+import cos.tuk_tuk_driver.utils.URLHelper.doLogin
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
-
+import retrofit2.http.*
 
 interface ApiInterface {
 
@@ -54,7 +57,7 @@ interface ApiInterface {
 
     @POST(MobileLogin)
     @FormUrlEncoded
-    fun MobileLogin(
+    fun mobileLogin(
         @Field("mobile") mobile: String,
         @Field("device_token") device_token: String,
         @Field("device_type") device_type: String
@@ -71,10 +74,21 @@ interface ApiInterface {
     ): Call<RegisterModal>
 
 
-     @POST(Logout)
-     @FormUrlEncoded
-     fun logout(
-             @Field("id") id: String
-     ): Call<RegisterModal>
+    @POST(Logout)
+    @FormUrlEncoded
+    fun logout(
+        @Field("id") id: String
+    ): Call<RegisterModal>
+
+    @POST(UploadDocs)
+    @Multipart
+    fun uploadDocs(
+        @Part("document_id") document_id: RequestBody?,
+        @Part document: MultipartBody.Part,
+        @Part("expiry") expiry: RequestBody?
+    ): Call<UploadDocsModal>
+
+    @GET(GetUploadDocs)
+    fun getUploadDocs(): Call<Documents>
 
 }

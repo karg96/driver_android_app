@@ -76,6 +76,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/uploadDoc"
                 android:layout_width="234dp"
                 android:layout_height="63dp"
                 android:layout_below="@+id/rel2"
@@ -122,6 +123,7 @@
                 android:layout_marginTop="50dp"
                 android:fontFamily="@font/nunitosans_regular"
                 android:lineHeight="25dp"
+                android:visibility="gone"
                 android:lineSpacingExtra="5sp"
                 android:gravity="center_horizontal"
                 android:text="Back side"
@@ -137,6 +139,7 @@
                 android:layout_marginBottom="71dp"
                 android:layout_marginRight="70dp"
                 android:layout_marginLeft="71dp"
+                android:visibility="gone"
                 android:background="@drawable/dark_blue_bg">
 
                 <RelativeLayout

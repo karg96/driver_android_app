@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.NotificationSettingActivity">
+
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="7dp"
+        android:src="@drawable/arrow_back" />
+
+
+    <TextView
+        android:id="@+id/tv_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_back"
+        android:layout_marginStart="18sp"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/nunitosans_bold"
+        android:lineHeight="40sp"
+        android:text="@string/notifications"
+        android:textColor="@color/colorBlack"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/tv_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_notification"
+        android:layout_marginStart="18sp"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/nunitosans_regular"
+        android:lineHeight="27sp"
+        android:text="Account and trip updates"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/context"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_account"
+        android:layout_marginStart="18sp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/nunitosans_regular"
+        android:lineHeight="20sp"
+        android:text="Include trip status notifications and\nupdates related to riding on your account."
+        android:textColor="@color/colorGray"
+        android:textSize="14dp" />
+
+    <View
+        android:id="@+id/seprator"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/context"
+        android:layout_marginTop="19.5dp"
+        android:background="@color/colorExtraLightGray" />
+
+
+    <TextView
+        android:id="@+id/tv_discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seprator"
+        android:layout_marginStart="18sp"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/nunitosans_regular"
+        android:lineHeight="27sp"
+        android:text="Discount and news"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/context2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_discount"
+        android:layout_marginStart="18sp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/nunitosans_regular"
+        android:lineHeight="20sp"
+        android:text="Include special offers, recommendations\nand product updates."
+        android:textColor="@color/colorGray"
+        android:textSize="14dp" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="17sp"
+        android:background="@drawable/red_rounded_btn"
+        android:fontFamily="@font/nunitosans_bold"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="23sp" />
+
+
+</RelativeLayout>

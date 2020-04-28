@@ -1,4 +1,4 @@
-package com.tuktuk.models
+package cos.tuk_tuk_driver.models
 
 import com.google.gson.annotations.SerializedName
 

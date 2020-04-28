@@ -5,10 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import androidx.appcompat.app.AppCompatActivity
-import com.tuktuk.models.RegisterModal
 import com.tuktuk.utils.Comman
 import com.tuktuk.utils.Comman.makeToast
 import cos.tuk_tuk_driver.databinding.ActivityTermsAndPolicyBinding
+import cos.tuk_tuk_driver.models.RegisterModal
 import cos.tuk_tuk_driver.utils.Prefs
 import retrofit2.Call
 import retrofit2.Callback
@@ -82,14 +82,18 @@ class TermsAndPolicyActivity : AppCompatActivity() {
                     response: Response<RegisterModal>
                 ) {
                     pd.dismiss()
-                    if (response.code()==200){
+                    if (response.code() == 200) {
                         if (response.body()!!.status) {
                             Prefs.putKey(applicationContext, "isLogin", "true")
                             makeToast(applicationContext, "Login Success")
                             val intent = Intent(
                                 applicationContext,
-                                HomeActivity::class.java
+                                AddDocumentActivity::class.java
                             ) //not application context
+                            intent.putExtra(
+                                "name",
+                                response.body()!!.data.first_name + " " + response.body()!!.data.last_name
+                            )
                             intent.flags =
                                 Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             startActivity(intent)
