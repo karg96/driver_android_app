@@ -19,7 +19,15 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme.Base"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.VehicleActivity"></activity>
+        <activity android:name=".activity.AllVehicleActivity">
+          <!-- <intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+
+               <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>-->
+        </activity>
+        <activity android:name=".activity.AddVehicleDetailsActiivity" />
+        <activity android:name=".activity.VehicleActivity" />
         <activity android:name=".activity.AccountActivity" />
         <activity android:name=".activity.SearchSavedPlacesActivity" />
         <activity android:name=".activity.LocationSettingActivity" />
@@ -27,19 +35,13 @@
         <activity android:name=".activity.NotificationActivity" />
         <activity android:name=".activity.HomeActivity">
 
-            <!--
-              <intent-filter>
-                  <action android:name="android.intent.action.MAIN" />
 
-                  <category android:name="android.intent.category.LAUNCHER" />
-              </intent-filter>
-            -->
         </activity>
         <activity android:name=".activity.AddPhotoActivity" />
         <activity android:name=".activity.AddIdentityCardActivity" />
         <activity android:name=".activity.AddVehicleRegistrationActivity" />
         <activity android:name=".activity.AddDrivingLicenseActivity" />
-        <activity android:name=".activity.AddDocumentActivity"></activity>
+        <activity android:name=".activity.AddDocumentActivity" />
         <activity android:name=".activity.TermsAndPolicyActivity">
 
             <!--

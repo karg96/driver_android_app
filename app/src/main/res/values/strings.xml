@@ -74,5 +74,15 @@
     <string name="reportIssue">Report App Issue</string>
     <string name="about">About</string>
     <string name="security">Security and Privacy</string>
+    <string name="addVehicleData">Add Vehicle</string>
+    <string name="addvehicle">Add a vehicle</string>
+    <string name="addyrvehicle">Add Your vehicle</string>
+    <string name="vehicleText">In order to drive. you need to add a vehicle.</string>
+    <string name="make">Make*</string>
+    <string name="enter">Enter</string>
+    <string name="model">Model*</string>
+    <string name="year">Year*</string>
+    <string name="laser">License plate*</string>
+    <string name="vehicle_color">Vehicle color</string>
 
 </resources>

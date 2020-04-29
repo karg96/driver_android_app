@@ -1,9 +1,7 @@
 package cos.tuk_tuk_driver.services
 
-import cos.tuk_tuk_driver.models.Documents
-import cos.tuk_tuk_driver.models.OtpModal
-import cos.tuk_tuk_driver.models.RegisterModal
-import cos.tuk_tuk_driver.models.UploadDocsModal
+import cos.tuk_tuk_driver.models.*
+import cos.tuk_tuk_driver.utils.URLHelper
 import cos.tuk_tuk_driver.utils.URLHelper.GetUploadDocs
 import cos.tuk_tuk_driver.utils.URLHelper.Logout
 import cos.tuk_tuk_driver.utils.URLHelper.MobileLogin
@@ -90,5 +88,22 @@ interface ApiInterface {
 
     @GET(GetUploadDocs)
     fun getUploadDocs(): Call<Documents>
+
+
+    @POST(URLHelper.AddVehicle)
+    @FormUrlEncoded
+    fun addVehicle(
+        @Field("service_type") service_type: String,
+        @Field("service_number") service_number: String,
+        @Field("service_model") service_model: String,
+        @Field("service_year") service_year: String,
+        @Field("service_color") service_color: String
+    ): Call<AddVehicleModal>
+
+
+    @POST(URLHelper.GetVehicle)
+    @FormUrlEncoded
+    fun getVehicle(@Field("empty") empty: String): Call<GetVehicleModal>
+
 
 }

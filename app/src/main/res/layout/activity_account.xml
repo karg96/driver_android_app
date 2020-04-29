@@ -70,7 +70,7 @@
                     android:layout_height="26dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="18dp"
-                    android:src="@drawable/ic_home" />
+                    android:src="@drawable/local_taxi_24_px" />
 
 
                 <TextView
@@ -101,7 +101,7 @@
                     android:layout_height="26dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="18dp"
-                    android:src="@drawable/user" />
+                    android:src="@drawable/file_document" />
 
 
                 <TextView
@@ -132,7 +132,7 @@
                     android:layout_height="26dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="18dp"
-                    android:src="@drawable/payment" />
+                    android:src="@drawable/payment_24_px" />
 
 
                 <TextView
@@ -163,7 +163,7 @@
                     android:layout_height="26dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="18dp"
-                    android:src="@drawable/free_ride" />
+                    android:src="@drawable/info_24_px" />
 
 
                 <TextView
@@ -194,7 +194,7 @@
                     android:layout_height="26dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="18dp"
-                    android:src="@drawable/setting" />
+                    android:src="@drawable/bug_report_24_px" />
 
 
                 <TextView
@@ -225,7 +225,7 @@
                     android:layout_height="26dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="18dp"
-                    android:src="@drawable/help" />
+                    android:src="@drawable/info_24_px" />
 
 
                 <TextView
@@ -257,7 +257,7 @@
                     android:layout_height="26dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="18dp"
-                    android:src="@drawable/help" />
+                    android:src="@drawable/lock_24_px" />
 
 
                 <TextView

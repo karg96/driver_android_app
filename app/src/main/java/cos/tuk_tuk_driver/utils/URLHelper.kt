@@ -14,6 +14,8 @@ object URLHelper {
     const val Logout = "api/provider/logout"
     const val UploadDocs = "api/provider/profile/document"
     const val GetUploadDocs = "api/provider/user-document-list"
+    const val AddVehicle = "api/provider/vehicle/store"
+    const val GetVehicle = "api/provider/vehicle/list"
 
 
 }

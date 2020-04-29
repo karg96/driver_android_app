@@ -5,7 +5,6 @@
     android:background="@color/colorWhite">
 
 
-
     <ImageView
         android:id="@+id/bell"
         android:layout_width="68dp"
@@ -13,30 +12,30 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="18sp"
         android:background="@drawable/blue_rounded"
-        android:padding="15sp"
-        android:src="@drawable/ic_notifications" />
+        android:src="@drawable/taxi" />
 
     <TextView
-        android:id="@+id/notification"
+        android:id="@+id/vehicleName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15sp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:layout_toRightOf="@+id/bell"
         android:fontFamily="@font/nunitosans_regular"
-        android:text="You've received 5 new compliments."
+        android:text="Maruti Suzuki"
         android:textColor="@color/colorBlack"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/time"
+        android:id="@+id/vehicleDec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/notification"
+        android:layout_below="@+id/vehicleName"
         android:layout_marginLeft="15sp"
+        android:layout_marginTop="2dp"
         android:layout_toRightOf="@+id/bell"
         android:fontFamily="@font/nunitosans_regular"
-        android:text="1 hour ago"
+        android:text="Baleno / CH01QL1238"
         android:textColor="@color/colorGray"
         android:textSize="15sp" />
 

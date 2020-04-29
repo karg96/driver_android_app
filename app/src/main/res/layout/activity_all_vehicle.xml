@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.VehicleActivity">
+    tools:context=".activity.AllVehicleActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/toolbar"
@@ -25,7 +25,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="15sp"
                 android:scaleType="fitXY"
-                android:src="@drawable/arrow_back" />
+                android:src="@drawable/ic_clear" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -43,48 +43,16 @@
 
     </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/vehilce"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/vehicleRecyclerview"
         android:layout_width="match_parent"
-        android:layout_height="208dp"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnAddVehicle"
         android:layout_below="@+id/toolbar"
-        android:layout_marginLeft="31dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginRight="31dp"
-        android:src="@drawable/vehicle" />
+        android:overScrollMode="never"
+        android:scrollbars="none" />
 
-    <TextView
-        android:id="@+id/yourVehicle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/vehilce"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/nunitosans_bold"
-        android:lineHeight="40sp"
-        android:lineSpacingExtra="8sp"
-        android:paddingLeft="20dp"
-        android:paddingRight="15dp"
-        android:text="@string/addyrvehicle"
-        android:textColor="@color/colorBlack"
-        android:textSize="32sp" />
-
-    <TextView
-        android:id="@+id/vehicleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/yourVehicle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
-        android:fontFamily="@font/nunitosans_bold"
-        android:lineHeight="40sp"
-        android:textAlignment="center"
-        android:lineSpacingExtra="8sp"
-        android:paddingLeft="23dp"
-        android:paddingRight="23dp"
-        android:text="@string/vehicleText"
-        android:textColor="@color/colorGray"
-        android:textSize="20sp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAddVehicle"
@@ -92,8 +60,9 @@
         android:layout_height="63dp"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="23dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="23dp"
-        android:layout_marginBottom="17sp"
+        android:layout_marginBottom="20sp"
         android:background="@drawable/red_rounded_btn"
         android:fontFamily="@font/nunitosans_bold"
         android:text="@string/addvehicle"
