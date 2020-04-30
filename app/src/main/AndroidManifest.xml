@@ -20,11 +20,7 @@
         android:theme="@style/MyMaterialTheme.Base"
         android:usesCleartextTraffic="true">
         <activity android:name=".activity.AllVehicleActivity">
-          <!-- <intent-filter>
-               <action android:name="android.intent.action.MAIN" />
 
-               <category android:name="android.intent.category.LAUNCHER" />
-           </intent-filter>-->
         </activity>
         <activity android:name=".activity.AddVehicleDetailsActiivity" />
         <activity android:name=".activity.VehicleActivity" />
@@ -34,7 +30,6 @@
         <activity android:name=".activity.NotificationSettingActivity" />
         <activity android:name=".activity.NotificationActivity" />
         <activity android:name=".activity.HomeActivity">
-
 
         </activity>
         <activity android:name=".activity.AddPhotoActivity" />
@@ -50,6 +45,7 @@
                    <category android:name="android.intent.category.LAUNCHER" />
                </intent-filter>
             -->
+
         </activity>
         <activity android:name=".activity.CreateNameActivity" />
         <activity android:name=".activity.CreatePasswordActivity" />

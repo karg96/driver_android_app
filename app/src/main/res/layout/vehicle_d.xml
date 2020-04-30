@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/makePrime"
     android:layout_height="110dp"
     android:background="@color/colorWhite">
-
 
     <ImageView
         android:id="@+id/bell"
@@ -20,6 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15sp"
         android:layout_marginTop="25dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/check"
         android:layout_toRightOf="@+id/bell"
         android:fontFamily="@font/nunitosans_regular"
         android:text="Maruti Suzuki"
@@ -33,11 +35,24 @@
         android:layout_below="@+id/vehicleName"
         android:layout_marginLeft="15sp"
         android:layout_marginTop="2dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/check"
         android:layout_toRightOf="@+id/bell"
         android:fontFamily="@font/nunitosans_regular"
         android:text="Baleno / CH01QL1238"
         android:textColor="@color/colorGray"
         android:textSize="15sp" />
+
+
+    <ImageView
+        android:id="@+id/check"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="18sp"
+        android:src="@drawable/ic_check"
+        android:visibility="gone" />
 
 
     <View

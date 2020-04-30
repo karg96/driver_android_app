@@ -16,6 +16,7 @@ object URLHelper {
     const val GetUploadDocs = "api/provider/user-document-list"
     const val AddVehicle = "api/provider/vehicle/store"
     const val GetVehicle = "api/provider/vehicle/list"
+    const val MakePrime = "api/provider/vehicle/"
 
 
 }

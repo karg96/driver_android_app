@@ -17,6 +17,7 @@ class AddDocumentActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddDocumentBinding
     private val apiInterface = Comman.getApiToken()
     private var UserName: String = ""
+    private var IsApproved: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,11 +82,21 @@ class AddDocumentActivity : AppCompatActivity() {
                                             binding.photoCheck.visibility = View.VISIBLE
 
                                         }
+
+                                        if (response.body()!!.driverDocuments.get(x).status.equals(
+                                                "approved",
+                                                ignoreCase = true
+                                            )
+                                        ) {
+                                            IsApproved += 1
+                                        }
+
+
                                     }
 
                                 }
 
-                                if (response.body()!!.vehicleDocuments.size != 0) {
+                                /*if (response.body()!!.vehicleDocuments.size != 0) {
                                     for (x in 0 until response.body()!!.vehicleDocuments.size) {
 
                                         if (response.body()!!.vehicleDocuments.get(x).document_id == "5") {
@@ -95,7 +106,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                         }
 
                                     }
-                                }
+                                }*/
 
                                 if (binding.driverCheck.visibility == View.VISIBLE
                                     && binding.photoCheck.visibility == View.VISIBLE
@@ -105,6 +116,8 @@ class AddDocumentActivity : AppCompatActivity() {
                                     binding.btnNext.visibility = View.VISIBLE
 
                                 }
+
+
                             } else {
                                 Comman.makeToast(applicationContext, "Please try again later")
 
@@ -160,15 +173,22 @@ class AddDocumentActivity : AppCompatActivity() {
 
         }
 
-
         binding.btnNext.setOnClickListener {
 
-            val intent = Intent(this@AddDocumentActivity, HomeActivity::class.java)
-            intent.flags =
-                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
+            if (IsApproved == 3) {
+                val intent = Intent(
+                    this@AddDocumentActivity,
+                    HomeActivity::class.java
+                )
+                intent.flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+            }
+
 
         }
+
+
     }
 
 }
