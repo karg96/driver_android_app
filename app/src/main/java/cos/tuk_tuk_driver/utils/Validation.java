@@ -24,9 +24,11 @@ public  class Validation {
 
     // validating password with retype password
     public static boolean isValidPassword(String pass) {
-        if (pass != null && pass.length() >= 6) {
+        if (pass != null && pass.length() >= 7 && !(pass.length() > 16)) {
             return true;
         }
+
+
         return false;
     }
 

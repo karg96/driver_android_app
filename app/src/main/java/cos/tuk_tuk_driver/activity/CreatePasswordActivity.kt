@@ -44,11 +44,11 @@ class CreatePasswordActivity : AppCompatActivity() {
                     binding.password.hint = "Password"
                 }
             }
-      /*  binding.confirmPassword.setOnClickListener {
+        /*  binding.confirmPassword.setOnClickListener {
 
-            binding.confirmPassword.hint = ""
-            binding.password.hint = "Password"
-        }*/
+              binding.confirmPassword.hint = ""
+              binding.password.hint = "Password"
+          }*/
 
         binding.ivBack.setOnClickListener {
 
@@ -58,10 +58,6 @@ class CreatePasswordActivity : AppCompatActivity() {
 
     }
 
-
-    override fun onResume() {
-        super.onResume()
-    }
 
     private fun validate() {
 
@@ -73,7 +69,10 @@ class CreatePasswordActivity : AppCompatActivity() {
             Comman.makeToast(applicationContext, "Please enter fields")
 
         } else if (!isValidPassword(Password) || !isValidPassword(ConfirmPassword)) {
-            Toast.makeText(this, "Both Password must 6 chracter", Toast.LENGTH_SHORT).show()
+            Comman.makeToast(
+                applicationContext,
+                "Password must be greater than 7 characters and less than 16 characters long"
+            )
         } else if (Password != ConfirmPassword) {
             Toast.makeText(this, "Password & Confirm Password are not same", Toast.LENGTH_SHORT)
                 .show()
