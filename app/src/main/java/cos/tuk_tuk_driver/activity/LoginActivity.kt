@@ -21,6 +21,8 @@ class LoginActivity : AppCompatActivity() {
 
     private val apiInterface = Comman.getApi()
     private var mobileNumber: String = ""
+    private var isDocsUpload: Int = 0
+    private var IsApproved: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -166,14 +168,102 @@ class LoginActivity : AppCompatActivity() {
                             pd.dismiss()
                             if (response.code() == 200) {
                                 if (response.body()!!.status) {
-                                    Prefs.putKey(applicationContext, "isLogin", "true")
 
-                                    val intent = Intent(
+                                    Prefs.putKey(
                                         applicationContext,
-                                        HomeActivity::class.java
-                                    ) //not application context
-                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                    startActivity(intent)
+                                        "Authorization",
+                                        response.body()!!.data.access_token
+                                    )
+                                    Prefs.putKey(
+                                        applicationContext,
+                                        "driveName",
+                                        response.body()!!.data.first_name + " " + response.body()!!.data.last_name
+                                    )
+
+
+                                    if (response.body()!!.documents.driverDocuments.size != 0) {
+
+                                        for (x in 0 until response.body()!!.documents.driverDocuments.size) {
+
+                                            if (response.body()!!.documents.driverDocuments.get(x).document_id == "1") {
+                                                isDocsUpload += 1
+                                            }
+
+                                            if (response.body()!!.documents.driverDocuments.get(x).document_id == "8") {
+                                                isDocsUpload += 1
+
+                                            }
+
+                                            if (response.body()!!.documents.driverDocuments.get(x).document_id == "9") {
+                                                isDocsUpload += 1
+
+                                            }
+
+                                            if (response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                    "approved",
+                                                    ignoreCase = true
+                                                )
+                                            ) {
+                                                IsApproved += 1
+                                            }
+
+                                        }
+
+                                        if (isDocsUpload == 3) {
+                                            if (IsApproved == 3) {
+                                                Comman.makeToast(
+                                                    applicationContext,
+                                                    "Login Success"
+                                                )
+
+                                                Prefs.putKey(applicationContext, "isLogin", "true")
+
+                                                val intent = Intent(
+                                                    applicationContext,
+                                                    HomeActivity::class.java
+                                                ) //not application context
+                                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                                startActivity(intent)
+                                            } else {
+                                                Comman.makeToast(
+                                                    applicationContext,
+                                                    "Please wait your documents is not approved yet"
+                                                )
+                                                val intent = Intent(
+                                                    applicationContext,
+                                                    AddDocumentActivity::class.java
+                                                ) //not application context
+                                                intent.putExtra(
+                                                    "name",
+                                                    response.body()!!.data.first_name + " " + response.body()!!.data.last_name
+                                                )
+                                                intent.flags =
+                                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                                startActivity(intent)
+                                            }
+
+                                        } else {
+                                            Comman.makeToast(
+                                                applicationContext,
+                                                "Please upload your documents"
+                                            )
+
+                                            val intent = Intent(
+                                                applicationContext,
+                                                AddDocumentActivity::class.java
+                                            ) //not application context
+                                            intent.putExtra(
+                                                "name",
+                                                response.body()!!.data.first_name + " " + response.body()!!.data.last_name
+                                            )
+                                            intent.flags =
+                                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                            startActivity(intent)
+                                        }
+
+                                    }
+
+
                                 } else {
                                     Comman.makeToast(
                                         applicationContext,

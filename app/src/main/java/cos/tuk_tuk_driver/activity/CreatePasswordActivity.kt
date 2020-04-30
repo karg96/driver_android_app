@@ -37,6 +37,7 @@ class CreatePasswordActivity : AppCompatActivity() {
             binding.password.hint = ""
             binding.confirmPassword.hint = "Confirm Password"
         }
+
         binding.confirmPassword.onFocusChangeListener =
             View.OnFocusChangeListener { v, hasFocus ->
                 if (hasFocus) {
@@ -44,6 +45,7 @@ class CreatePasswordActivity : AppCompatActivity() {
                     binding.password.hint = "Password"
                 }
             }
+
         /*  binding.confirmPassword.setOnClickListener {
 
               binding.confirmPassword.hint = ""

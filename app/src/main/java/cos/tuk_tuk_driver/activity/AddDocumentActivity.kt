@@ -91,7 +91,6 @@ class AddDocumentActivity : AppCompatActivity() {
                                             IsApproved += 1
                                         }
 
-
                                     }
 
                                 }
@@ -183,6 +182,11 @@ class AddDocumentActivity : AppCompatActivity() {
                 intent.flags =
                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
+            } else {
+                Comman.makeToast(
+                    applicationContext,
+                    "Please wait your documents is not approved yet"
+                )
             }
 
 

@@ -8,7 +8,6 @@ data class UploadDocsModal(
     @SerializedName("documents") val documents: Documents,
     @SerializedName("message") val message: String
 
-
 )
 
 data class Documents(

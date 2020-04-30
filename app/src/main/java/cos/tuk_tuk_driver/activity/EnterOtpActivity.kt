@@ -505,7 +505,6 @@ class EnterOtpActivity : BaseActivity() {
                                 makeToast(applicationContext, "OTP send Successfully")
                                 runTimer()
 
-
                             } else {
 
                                 if (isSendCount == 1) {
@@ -526,7 +525,6 @@ class EnterOtpActivity : BaseActivity() {
                         } catch (Ex: java.lang.Exception) {
 
                         }
-
                     }
 
                 })
@@ -594,7 +592,6 @@ class EnterOtpActivity : BaseActivity() {
                             pd.dismiss()
 
                             if (response.body()?.status!!) {
-
 
                                 Prefs.putKey(
                                     applicationContext,

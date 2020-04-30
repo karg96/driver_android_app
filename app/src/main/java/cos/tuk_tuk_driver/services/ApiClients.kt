@@ -28,19 +28,19 @@ object ApiClients {
             try {
 
                 val gson = GsonBuilder()
-                        .setLenient()
-                        .create()
+                    .setLenient()
+                    .create()
 
                 initOkHttp()
 
                 if (retrofit == null) {
 
                     retrofit = Retrofit.Builder()
-                            .baseUrl(BaseUrl)
-                            .client(okHttpClient!!)
-                           // .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create(gson))
-                            .build()
+                        .baseUrl(BaseUrl)
+                        .client(okHttpClient!!)
+                        // .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .build()
                 }
 
             } catch (e: Exception) {
@@ -54,18 +54,18 @@ object ApiClients {
     val client_token: Retrofit?
         get() {
             val gson = GsonBuilder()
-                    .setLenient()
-                    .create()
+                .setLenient()
+                .create()
 
             initOkHttp_token()
 
             if (retrofit1 == null) {
                 retrofit1 = Retrofit.Builder()
-                        .baseUrl(BaseUrl)
-                        .client(okHttpClient1!!)
-                       // .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                        .addConverterFactory(GsonConverterFactory.create(gson))
-                        .build()
+                    .baseUrl(BaseUrl)
+                    .client(okHttpClient1!!)
+                    // .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build()
             }
             return retrofit1
         }
@@ -75,8 +75,8 @@ object ApiClients {
 
         val httpClient = OkHttpClient().newBuilder()
         httpClient.connectTimeout(100, TimeUnit.SECONDS)
-                .writeTimeout(100, TimeUnit.SECONDS)
-                .readTimeout(300, TimeUnit.SECONDS)
+            .writeTimeout(100, TimeUnit.SECONDS)
+            .readTimeout(300, TimeUnit.SECONDS)
 
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -85,9 +85,9 @@ object ApiClients {
             val original = chain.request()
 
             val requestBuilder = original.newBuilder()
-                    .addHeader("Accept", "application/json")
-                    //                        .addHeader("Cache-Control", "no-cache")
-                    .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
+                //                        .addHeader("Cache-Control", "no-cache")
+                .addHeader("Content-Type", "application/json")
             // .addHeader("Authorization", "Bearer " + Prefs.getKey(GarageOwnerApp.context, "token"));
             //.header("Authorization", "Bearer " + Prefs.getKey(MechanicApp.context, "token"));
 
@@ -103,8 +103,8 @@ object ApiClients {
 
         val httpClient = OkHttpClient().newBuilder()
         httpClient.connectTimeout(100, TimeUnit.SECONDS)
-                .writeTimeout(100, TimeUnit.SECONDS)
-                .readTimeout(300, TimeUnit.SECONDS)
+            .writeTimeout(100, TimeUnit.SECONDS)
+            .readTimeout(300, TimeUnit.SECONDS)
 
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -112,9 +112,9 @@ object ApiClients {
         httpClient.addInterceptor { chain ->
             val original = chain.request()
             val requestBuilder = original.newBuilder()
-                    //.addHeader("Accept", "application/json")
-//                    .header("Authorization","Bearer " + Prefs.getKey(DriverApp.context, "Authorization"))
-                                    .header("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9zZXJ2ZXIudmlzaW9udml2YW50ZS5jb206ODA4MFwvdHVrdHVrXC9wdWJsaWNcL2FwaVwvcHJvdmlkZXJcL29hdXRoXC90b2tlbiIsImlhdCI6MTU4ODA1NDgzNCwiZXhwIjo2MDE1ODgwNTQ3NzQsIm5iZiI6MTU4ODA1NDgzNCwianRpIjoiVWpGZGV3bEJQWk94d25DUyIsInN1YiI6MTU1LCJwcnYiOiJiMzY4ZmMwYjVhMGJlOTgxYjFkOTBiMTA0OTU4ZTg2NmJkZjYwZDViIn0.5epLSv9rFPQkbGfDcL8a8QhYxoIcyxvs2q5ARhhYbnI");
+                //.addHeader("Accept", "application/json")
+                .header("Authorization", "Bearer " + Prefs.getKey(DriverApp.context, "Authorization"))
+//                                    .header("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9zZXJ2ZXIudmlzaW9udml2YW50ZS5jb206ODA4MFwvdHVrdHVrXC9wdWJsaWNcL2FwaVwvcHJvdmlkZXJcL29hdXRoXC90b2tlbiIsImlhdCI6MTU4ODA1NDgzNCwiZXhwIjo2MDE1ODgwNTQ3NzQsIm5iZiI6MTU4ODA1NDgzNCwianRpIjoiVWpGZGV3bEJQWk94d25DUyIsInN1YiI6MTU1LCJwcnYiOiJiMzY4ZmMwYjVhMGJlOTgxYjFkOTBiMTA0OTU4ZTg2NmJkZjYwZDViIn0.5epLSv9rFPQkbGfDcL8a8QhYxoIcyxvs2q5ARhhYbnI");
 
 
             val request = requestBuilder.build()
