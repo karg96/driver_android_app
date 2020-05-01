@@ -8,11 +8,14 @@ import android.provider.MediaStore
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.services.ApiClients.client
 import cos.tuk_tuk_driver.services.ApiClients.client_token
 import cos.tuk_tuk_driver.services.ApiInterface
+import cos.tuk_tuk_driver.utils.URLHelper.BaseUrl
 
 object Comman {
 
@@ -59,10 +62,31 @@ object Comman {
 
         cursor.close()
         Glide.with(context).load("file://$profile_img")
-           /* .apply(RequestOptions.circleCropTransform())*/.into(first!!)
+            /* .apply(RequestOptions.circleCropTransform())*/.into(first!!)
         return "file://$profile_img"
         /*Prefs.putKey(context,"profile_img","file://"+profile_img);*/
     }
 
+
+    fun setImageUri(
+        mContext: Context?,
+        url: String?,
+        imageView: ImageView?
+    ) {
+        val circularProgressDrawable = CircularProgressDrawable(mContext!!)
+        circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.start()
+         val request = RequestOptions()
+         request.placeholder(circularProgressDrawable)
+         request.error(R.drawable.location)
+        if (url != null) {
+            if (imageView != null) {
+                Glide.with(mContext).load(BaseUrl + "uploads" + url)
+                    // .apply(request)
+                    .into(imageView)
+            }
+        }
+    }
 
 }

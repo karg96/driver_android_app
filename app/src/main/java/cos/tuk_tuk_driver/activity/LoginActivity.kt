@@ -23,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
     private var mobileNumber: String = ""
     private var isDocsUpload: Int = 0
     private var IsApproved: Int = 0
+    private var IsBanned: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -206,7 +207,22 @@ class LoginActivity : AppCompatActivity() {
                                             ) {
                                                 IsApproved += 1
                                             }
+                                            if (response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                    "banned",
+                                                    ignoreCase = true
+                                                )
+                                            ) {
+                                                IsBanned += 1
+                                            }
 
+                                        }
+
+                                        if (IsBanned > 0) {
+                                            Comman.makeToast(
+                                                applicationContext,
+                                                "Your account is Suspended"
+                                            )
+                                            return
                                         }
 
                                         if (isDocsUpload == 3) {

@@ -5,16 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.DriverApp
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.models.Vehicles
+import cos.tuk_tuk_driver.utils.URLHelper
 import kotlinx.android.synthetic.main.vehicle_d.view.*
 
 class AllVehicleAdapter(val context: Context, val dataList: ArrayList<Vehicles>) :
     RecyclerView.Adapter<AllVehicleAdapter.ViewHolder>() {
 
     init {
+
         val apiInterface = Comman.getApiToken()
 
     }
@@ -42,6 +47,22 @@ class AllVehicleAdapter(val context: Context, val dataList: ArrayList<Vehicles>)
 
         holder.vehicleName.text = data.service_model
         holder.vehicleDes.text = data.service_number
+        if (data.serviceDetail.image != null) {
+
+            val circularProgressDrawable = CircularProgressDrawable(context)
+            circularProgressDrawable.strokeWidth = 5f
+            circularProgressDrawable.centerRadius = 30f
+            circularProgressDrawable.start()
+            val request = RequestOptions()
+            request.placeholder(circularProgressDrawable)
+            request.error(R.drawable.taxi)
+
+            Glide.with(context).load(URLHelper.BaseUrl + "uploads" + data.serviceDetail.image)
+                .apply(request)
+                .into(holder.image)
+
+        }
+
 
         if (data.prime == 1) {
             holder.check.visibility = View.VISIBLE
@@ -61,6 +82,7 @@ class AllVehicleAdapter(val context: Context, val dataList: ArrayList<Vehicles>)
         val vehicleDes = view.vehicleDec
         val check = view.check
         val makePrime = view.makePrime
+        val image = view.image
     }
 
 }
