@@ -94,10 +94,11 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
                         if (response.body()!!.status) {
 
-                            /*  binding.licensePlate.text = "" as EditText
-                              binding.model.text = ""
-                              binding.year.text = ""
-                              binding.vehilceColor.text = ""*/
+
+                            binding.licensePlate.setText("")
+                            binding.model.setText("")
+                            binding.year.setText("")
+                            binding.vehilceColor.setText("")
 
                             Comman.makeToast(applicationContext, response.body()!!.message)
                             finish()

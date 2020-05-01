@@ -143,7 +143,7 @@
                 android:cursorVisible="true"
                 android:fontFamily="@font/nunitosans_regular"
                 android:hint="@string/enter"
-                android:inputType="text"
+                android:inputType="number"
                 android:lineHeight="27sp"
                 android:paddingLeft="5dp"
                 android:paddingBottom="10dp"
