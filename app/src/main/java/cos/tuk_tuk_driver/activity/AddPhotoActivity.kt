@@ -145,6 +145,7 @@ class AddPhotoActivity : AppCompatActivity() {
                                 isImage = 0
                                 SelectedImage = ""
                                 Comman.makeToast(applicationContext, response.body()!!.message)
+                                finish()
 
                             } else if (!response.body()!!.status) {
                                 Comman.makeToast(applicationContext, response.body()!!.message)

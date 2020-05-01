@@ -113,9 +113,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                 ) {
 
                                     binding.btnNext.visibility = View.VISIBLE
-
                                 }
-
 
                             } else {
                                 Comman.makeToast(applicationContext, "Please try again later")

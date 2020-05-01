@@ -127,7 +127,6 @@ class AddDrivingLicenseActivity : AppCompatActivity() {
                 )
             ) {
 
-
                 dialog.show()
                 val uri1 = Uri.parse(SelectedImage)
                 val Li_file = File(uri1.path)
@@ -151,6 +150,7 @@ class AddDrivingLicenseActivity : AppCompatActivity() {
                                 isImage = 0
                                 SelectedImage = ""
                                 Comman.makeToast(applicationContext, response.body()!!.message)
+                                finish()
 
                             } else if (!response.body()!!.status) {
                                 Comman.makeToast(applicationContext, response.body()!!.message)

@@ -1,6 +1,7 @@
 package cos.tuk_tuk_driver.activity
 
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -36,6 +37,11 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
         binding.btnAddVehicle.setOnClickListener {
 
             validate()
+
+        }
+        binding.close.setOnClickListener {
+
+            finish()
 
         }
 
@@ -88,12 +94,20 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
                         if (response.body()!!.status) {
 
-                          /*  binding.licensePlate.text = "" as EditText
-                            binding.model.text = ""
-                            binding.year.text = ""
-                            binding.vehilceColor.text = ""*/
+                            /*  binding.licensePlate.text = "" as EditText
+                              binding.model.text = ""
+                              binding.year.text = ""
+                              binding.vehilceColor.text = ""*/
 
                             Comman.makeToast(applicationContext, response.body()!!.message)
+                            finish()
+                            /*  val intent = Intent(
+                                  this@AddVehicleDetailsActiivity,
+                                  AllVehicleActivity::class.java
+                              )
+                              intent.flags =
+                                  Intent.FLAG_ACTIVITY_NEW_TASK *//*or Intent.FLAG_ACTIVITY_CLEAR_TASK*//*
+                            startActivity(intent)*/
 
                         } else if (!response.body()!!.status) {
                             Comman.makeToast(applicationContext, response.body()!!.message)

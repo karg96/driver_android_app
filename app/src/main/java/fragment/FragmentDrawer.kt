@@ -106,7 +106,7 @@ class FragmentDrawer : Fragment() {
 
             val intent = Intent(context, AccountActivity::class.java)
             intent.flags =
-                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
         }
 
