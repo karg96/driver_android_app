@@ -16,7 +16,6 @@ import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
-
     private lateinit var binding: ActivityLoginBinding
 
     private val apiInterface = Comman.getApi()
@@ -52,7 +51,6 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                 binding.edtPhoneNumber.isCursorVisible = true
-
                 binding.edtPhoneNumber.hint = ""
                 binding.edtPasswordNumber.hint = "Enter Password"
             }
@@ -175,6 +173,7 @@ class LoginActivity : AppCompatActivity() {
                                         "Authorization",
                                         response.body()!!.data.access_token
                                     )
+
                                     Prefs.putKey(
                                         applicationContext,
                                         "driveName",

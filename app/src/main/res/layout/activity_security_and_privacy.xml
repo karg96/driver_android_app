@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SecurityAndPrivacy">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:elevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginLeft="15sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_clear" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17sp"
+                android:layout_marginRight="15sp"
+                android:fontFamily="@font/nunitosans_regular"
+                android:text="@string/security"
+                android:textColor="@color/colorBlack"
+                android:textSize="23sp" />
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:background="@color/colorLightGray"
+                android:gravity="center_vertical"
+                android:paddingLeft="18sp"
+                android:layout_marginTop="10dp"
+                android:text="Privacy Settings"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:id="@+id/locationSetting"
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:background="@color/colorWhite">
+
+
+                <ImageView
+                    android:id="@+id/locationIcon"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/location" />
+
+                <TextView
+                    android:id="@+id/locationText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/locationIcon"
+                    android:fontFamily="@font/nunitosans_regular"
+                    android:text="Location"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/locationText"
+                    android:layout_marginLeft="19dp"
+                    android:layout_toRightOf="@+id/locationIcon"
+                    android:fontFamily="@font/nunitosans_regular"
+                    android:text="Update your location sharing preferences"
+                    android:textColor="@color/colorGray"
+                    android:textSize="15sp" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/colorExtraLightGray" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/notificationSetting"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/colorWhite">
+
+
+                <ImageView
+                    android:id="@+id/notificationIcon"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/ic_notifications_black" />
+
+                <TextView
+                    android:id="@+id/notificationText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/notificationIcon"
+                    android:fontFamily="@font/nunitosans_regular"
+                    android:text="@string/notifications"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/notificationText"
+                    android:layout_marginLeft="19dp"
+                    android:layout_toRightOf="@+id/notificationIcon"
+                    android:fontFamily="@font/nunitosans_regular"
+                    android:text="Control which messages you receive from\ntuktuk"
+                    android:textColor="@color/colorGray"
+                    android:textSize="15sp" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/colorExtraLightGray" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:background="@color/colorLightGray"
+                android:gravity="center_vertical"
+                android:paddingLeft="18sp"
+                android:text="Security"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/colorWhite">
+
+
+                <ImageView
+                    android:id="@+id/stepIcon"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/ic_verified" />
+
+                <TextView
+                    android:id="@+id/stepText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/stepIcon"
+                    android:fontFamily="@font/nunitosans_regular"
+                    android:text="2-step verification"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/stepText"
+                    android:layout_marginLeft="19dp"
+                    android:layout_toRightOf="@+id/stepIcon"
+                    android:fontFamily="@font/nunitosans_regular"
+                    android:text="control you account security with 2-step\nverification"
+                    android:textColor="@color/colorGray"
+                    android:textSize="15sp" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/colorExtraLightGray" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

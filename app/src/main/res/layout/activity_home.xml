@@ -32,15 +32,17 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp">
 
                     <TextView
+                        android:id="@+id/Title"
                         android:layout_width="wrap_content"
                         android:layout_height="40sp"
-                        android:layout_marginLeft="90dp"
-                        android:gravity="center_vertical"
-                        android:text="Home"
+                        android:layout_centerInParent="true"
                         android:fontFamily="@font/bebasneue_regular"
+                        android:gravity="center"
+                        android:text="Home"
                         android:textAllCaps="true"
                         android:textColor="@color/colorBlack"
                         android:textSize="32sp" />

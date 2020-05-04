@@ -106,10 +106,11 @@ class AllVehicleActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
         binding.close.setOnClickListener {
-            val intent = Intent(this@AllVehicleActivity, HomeActivity::class.java)
+          /*  val intent = Intent(this@AllVehicleActivity, HomeActivity::class.java)
             intent.flags =
                 Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
+            startActivity(intent)*/
+            finish()
         }
 
         binding.btnAddVehicle.setOnClickListener {

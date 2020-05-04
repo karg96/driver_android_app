@@ -15,6 +15,10 @@ class NotificationSettingActivity : AppCompatActivity() {
         binding = ActivityNotificationSettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
+
 
     }
 }

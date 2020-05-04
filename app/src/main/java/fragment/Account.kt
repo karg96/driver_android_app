@@ -1,49 +1,74 @@
-package cos.tuk_tuk_driver.activity
+package fragment
 
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import com.tuktuk.utils.Comman
-import cos.tuk_tuk_driver.adapter.AllVehicleAdapter
-import cos.tuk_tuk_driver.databinding.ActivityAccountBinding
+
+import cos.tuk_tuk_driver.R
+import cos.tuk_tuk_driver.activity.AllVehicleActivity
+import cos.tuk_tuk_driver.activity.LocationSettingActivity
+import cos.tuk_tuk_driver.activity.SecurityAndPrivacy
+import cos.tuk_tuk_driver.activity.VehicleActivity
+import cos.tuk_tuk_driver.databinding.FragmentAccountBinding
 import cos.tuk_tuk_driver.models.GetVehicleModal
-import cos.tuk_tuk_driver.models.Vehicles
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.Exception
 
-class AccountActivity : AppCompatActivity() {
+/**
+ * A simple [Fragment] subclass.
+ */
+class Account : Fragment() {
 
-    private lateinit var binding: ActivityAccountBinding
     private val apiInterface = Comman.getApiToken()
+    private var vehilce: LinearLayout? = null
+    private var securityPrivacy: LinearLayout? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityAccountBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+//    private var fragmentAccountBinding: FragmentAccountBinding? = null
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        var view = inflater.inflate(R.layout.fragment_account, container, false)
+
+        /*  val binding = fragmentAccountBinding.bind(view)
+
+          fragmentAccountBinding = binding*/
 
         try {
 
-            init()
+            vehilce = view.findViewById<LinearLayout>(R.id.vehilce)
+            securityPrivacy = view.findViewById<LinearLayout>(R.id.securityPrivacy)
+
+
+            securityPrivacy!!.setOnClickListener {
+                val intent = Intent(context, SecurityAndPrivacy::class.java)
+                Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
+                startActivity(intent)
+            }
+            vehilce!!.setOnClickListener {
+                getVehiclesList()
+
+            }
+
 
         } catch (Ex: Exception) {
 
         }
 
-    }
 
-    private fun init() {
+        return view
 
-        binding.vehilce.setOnClickListener {
-            getVehiclesList()
-
-        }
-
-        binding.close.setOnClickListener {
-            finish()
-        }
     }
 
 
@@ -51,7 +76,7 @@ class AccountActivity : AppCompatActivity() {
 
         try {
 
-            val dialog = ProgressDialog(this)
+            val dialog = ProgressDialog(context)
             dialog.setMessage("Please wait....")
             dialog.show()
 
@@ -76,7 +101,7 @@ class AccountActivity : AppCompatActivity() {
 
                                     if (response.body()!!.vehicles.isEmpty()) {
                                         val intent = Intent(
-                                            this@AccountActivity,
+                                            context,
                                             VehicleActivity::class.java
                                         )
                                         intent.flags =
@@ -85,7 +110,7 @@ class AccountActivity : AppCompatActivity() {
                                         return
                                     } else {
                                         val intent = Intent(
-                                            this@AccountActivity,
+                                            context,
                                             AllVehicleActivity::class.java
                                         )
                                         intent.flags =
@@ -96,7 +121,7 @@ class AccountActivity : AppCompatActivity() {
                                 }
                             } else {
 
-                                Comman.makeToast(applicationContext, "Please try again later")
+                                Comman.makeToast(context, "Please try again later")
 
                             }
 
@@ -108,11 +133,10 @@ class AccountActivity : AppCompatActivity() {
 
                 })
         } catch (Ex: Exception) {
-            Comman.makeToast(applicationContext, "Please try again later")
+            Comman.makeToast(context, "Please try again later")
 
         }
 
     }
-
 
 }

@@ -13,6 +13,8 @@ class LocationSettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLocationSettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
     }
 }

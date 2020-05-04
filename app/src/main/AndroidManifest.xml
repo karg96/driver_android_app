@@ -19,18 +19,20 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme.Base"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.AllVehicleActivity">
-
-        </activity>
+        <activity android:name=".activity.SecurityAndPrivacy"></activity>
+        <activity android:name=".activity.AllVehicleActivity"></activity>
         <activity android:name=".activity.AddVehicleDetailsActiivity" />
-        <activity android:name=".activity.VehicleActivity" />
-        <activity android:name=".activity.AccountActivity" />
+        <activity android:name=".activity.VehicleActivity" /> <!-- <activity android:name=".activity.AccountActivity" /> -->
         <activity android:name=".activity.SearchSavedPlacesActivity" />
         <activity android:name=".activity.LocationSettingActivity" />
         <activity android:name=".activity.NotificationSettingActivity" />
         <activity android:name=".activity.NotificationActivity" />
         <activity android:name=".activity.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".activity.AddPhotoActivity" />
         <activity android:name=".activity.AddIdentityCardActivity" />
@@ -56,13 +58,7 @@
         <activity android:name=".activity.EnterOtpActivity" />
         <activity
             android:name=".activity.SplashActivity"
-            android:theme="@style/Theme.Splash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/Theme.Splash"></activity>
         <activity android:name=".activity.MainActivity" />
 
         <meta-data

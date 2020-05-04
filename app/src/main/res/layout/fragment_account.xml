@@ -1,50 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AccountActivity">
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:elevation="4dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-
-            <ImageView
-                android:id="@+id/close"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="15sp"
-                android:scaleType="fitXY"
-                android:src="@drawable/arrow_back" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="17sp"
-                android:layout_marginRight="15sp"
-                android:fontFamily="@font/nunitosans_regular"
-                android:text="@string/account"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="@color/colorBlack"
-                android:textSize="23sp" />
-
-
-        </RelativeLayout>
-
-
-    </androidx.cardview.widget.CardView>
+    tools:context="fragment.Account">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -244,6 +202,7 @@
 
 
             <LinearLayout
+                android:id="@+id/securityPrivacy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
@@ -279,5 +238,4 @@
 
     </ScrollView>
 
-
-</RelativeLayout>
+</FrameLayout>

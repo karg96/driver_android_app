@@ -37,6 +37,10 @@ class NotificationActivity : AppCompatActivity() {
         binding.notificationRecyclerview.adapter = adapter
         adapter.notifyDataSetChanged()
 
+        binding.close.setOnClickListener {
+            finish()
+        }
+
     }
 
 
