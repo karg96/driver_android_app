@@ -19,8 +19,10 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme.Base"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.SecurityAndPrivacy"></activity>
-        <activity android:name=".activity.AllVehicleActivity"></activity>
+        <activity android:name=".activity.ReportIssueActivity"></activity>
+        <activity android:name=".activity.AboutActivity" />
+        <activity android:name=".activity.SecurityAndPrivacy" />
+        <activity android:name=".activity.AllVehicleActivity" />
         <activity android:name=".activity.AddVehicleDetailsActiivity" />
         <activity android:name=".activity.VehicleActivity" /> <!-- <activity android:name=".activity.AccountActivity" /> -->
         <activity android:name=".activity.SearchSavedPlacesActivity" />
@@ -58,7 +60,7 @@
         <activity android:name=".activity.EnterOtpActivity" />
         <activity
             android:name=".activity.SplashActivity"
-            android:theme="@style/Theme.Splash"></activity>
+            android:theme="@style/Theme.Splash" />
         <activity android:name=".activity.MainActivity" />
 
         <meta-data

@@ -11,10 +11,7 @@ import android.widget.LinearLayout
 import com.tuktuk.utils.Comman
 
 import cos.tuk_tuk_driver.R
-import cos.tuk_tuk_driver.activity.AllVehicleActivity
-import cos.tuk_tuk_driver.activity.LocationSettingActivity
-import cos.tuk_tuk_driver.activity.SecurityAndPrivacy
-import cos.tuk_tuk_driver.activity.VehicleActivity
+import cos.tuk_tuk_driver.activity.*
 import cos.tuk_tuk_driver.databinding.FragmentAccountBinding
 import cos.tuk_tuk_driver.models.GetVehicleModal
 import retrofit2.Call
@@ -30,6 +27,8 @@ class Account : Fragment() {
     private val apiInterface = Comman.getApiToken()
     private var vehilce: LinearLayout? = null
     private var securityPrivacy: LinearLayout? = null
+    private var about: LinearLayout? = null
+    private var reportIssue: LinearLayout? = null
 
 //    private var fragmentAccountBinding: FragmentAccountBinding? = null
 
@@ -49,10 +48,23 @@ class Account : Fragment() {
 
             vehilce = view.findViewById<LinearLayout>(R.id.vehilce)
             securityPrivacy = view.findViewById<LinearLayout>(R.id.securityPrivacy)
+            about = view.findViewById<LinearLayout>(R.id.about)
+            reportIssue = view.findViewById<LinearLayout>(R.id.reportIssue)
 
 
             securityPrivacy!!.setOnClickListener {
                 val intent = Intent(context, SecurityAndPrivacy::class.java)
+                Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
+                startActivity(intent)
+            }
+            about!!.setOnClickListener {
+                val intent = Intent(context, AboutActivity::class.java)
+                Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
+                startActivity(intent)
+            }
+            reportIssue!!.setOnClickListener {
+
+                val intent = Intent(context, ReportIssueActivity::class.java)
                 Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
                 startActivity(intent)
             }

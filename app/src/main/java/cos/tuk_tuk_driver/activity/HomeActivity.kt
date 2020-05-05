@@ -90,7 +90,7 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         when (p0!!.id) {
             R.id.payment -> {
 
-                binding.Title.text = "Payment"
+               // binding.Title.text = "Payment"
 
                 //changeView(Payment())
             }

@@ -140,6 +140,7 @@
 
 
             <LinearLayout
+                android:id="@+id/reportIssue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
@@ -170,6 +171,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"

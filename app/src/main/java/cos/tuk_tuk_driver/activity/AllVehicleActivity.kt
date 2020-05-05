@@ -101,7 +101,6 @@ class AllVehicleActivity : AppCompatActivity() {
     @SuppressLint("WrongConstant")
     private fun init() {
 
-
         binding.vehicleRecyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
