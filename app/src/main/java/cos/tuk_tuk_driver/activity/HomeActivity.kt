@@ -18,6 +18,8 @@ import fragment.Home
 class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
     View.OnClickListener {
 
+
+
     var mToolbar: Toolbar? = null
     var drawerFragment: FragmentDrawer? = null
     var drawerLayout: DrawerLayout? = null
