@@ -1,9 +1,12 @@
 package cos.tuk_tuk_driver.adapter
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
@@ -11,16 +14,25 @@ import com.bumptech.glide.request.RequestOptions
 import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.DriverApp
 import cos.tuk_tuk_driver.R
+import cos.tuk_tuk_driver.activity.AllVehicleActivity
+import cos.tuk_tuk_driver.models.GetVehicleModal
 import cos.tuk_tuk_driver.models.Vehicles
+import cos.tuk_tuk_driver.services.ApiInterface
 import cos.tuk_tuk_driver.utils.URLHelper
 import kotlinx.android.synthetic.main.vehicle_d.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class AllVehicleAdapter(val context: Context, val dataList: ArrayList<Vehicles>) :
     RecyclerView.Adapter<AllVehicleAdapter.ViewHolder>() {
 
+    val apiInterface: ApiInterface?
+
     init {
 
-        val apiInterface = Comman.getApiToken()
+        apiInterface = Comman.getApiToken()
 
     }
 
@@ -69,9 +81,81 @@ class AllVehicleAdapter(val context: Context, val dataList: ArrayList<Vehicles>)
         }
 
         holder.makePrime.setOnClickListener {
+            val builder =
+                androidx.appcompat.app.AlertDialog.Builder(context, R.style.AlertDialogCustom)
+            //set title for alert dialog
+//            builder.setTitle("Are you sure! Do you want to make suv vehicle as a prime")
+            //set message for alert dialog
+            builder.setMessage("Are you sure! Do you want to make SUV vehicle as a prime?")
+//            builder.setIcon(android.R.drawable.ic_dialog_alert)
 
+            //performing positive action
+            builder.setPositiveButton("Yes") { dialogInterface, which ->
+                MakePrime(data.id, holder.check)
+            }
+
+            //performing negative action
+            builder.setNegativeButton("No") { dialogInterface, which ->
+            }
+            // Create the AlertDialog
+            val alertDialog: AlertDialog = builder.create()
+            // Set other dialog properties
+            alertDialog.setCancelable(false)
+            alertDialog.show()
         }
 
+
+    }
+
+    private fun MakePrime(id: Int, check: ImageView) {
+
+        try {
+
+            val dialog = ProgressDialog(context)
+            dialog.setMessage("Please wait....")
+            dialog.show()
+
+            apiInterface!!.makePrime("$id")
+                .enqueue(object : Callback<GetVehicleModal> {
+                    override fun onFailure(call: Call<GetVehicleModal>, t: Throwable) {
+                        dialog.dismiss()
+
+                    }
+
+                    override fun onResponse(
+                        call: Call<GetVehicleModal>,
+                        response: Response<GetVehicleModal>
+                    ) {
+                        try {
+
+                            dialog.dismiss()
+
+                            if (response.body()!!.status) {
+                                check.visibility = View.VISIBLE
+                                Comman.makeToast(context, response.body()!!.message)
+
+                                if (context is AllVehicleActivity) {
+                                    context.getVehiclesList()
+                                }
+
+                            } else {
+
+                                Comman.makeToast(context, response.body()!!.message)
+
+                            }
+
+                        } catch (Ex: Exception) {
+
+                        }
+
+                    }
+
+                })
+        } catch (Ex: Exception) {
+
+            Comman.makeToast(context, "Please try again later")
+
+        }
 
     }
 

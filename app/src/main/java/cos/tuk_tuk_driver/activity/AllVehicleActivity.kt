@@ -3,15 +3,21 @@ package cos.tuk_tuk_driver.activity
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.tuktuk.utils.Comman
+import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.adapter.AllVehicleAdapter
 import cos.tuk_tuk_driver.databinding.ActivityAllVehicleBinding
+import cos.tuk_tuk_driver.listener.MyButtonClickListener
 import cos.tuk_tuk_driver.models.GetVehicleModal
 import cos.tuk_tuk_driver.models.Vehicles
+import cos.tuk_tuk_driver.utils.MyButton
+import cos.tuk_tuk_driver.utils.MySwipeHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,14 +43,14 @@ class AllVehicleActivity : AppCompatActivity() {
         }
     }
 
-    private fun getVehiclesList() {
+    fun getVehiclesList() {
 
         try {
 
             val dialog = ProgressDialog(this)
             dialog.setMessage("Please wait....")
             dialog.show()
-
+            dataList.clear()
             apiInterface!!.getVehicle("")
                 .enqueue(object : Callback<GetVehicleModal> {
                     override fun onFailure(call: Call<GetVehicleModal>, t: Throwable) {
@@ -75,12 +81,60 @@ class AllVehicleActivity : AppCompatActivity() {
                                         return
                                     }
                                     dataList.addAll(response.body()!!.vehicles)
-                                    val adapter = AllVehicleAdapter(applicationContext, dataList)
+                                    val adapter =
+                                        AllVehicleAdapter(this@AllVehicleActivity, dataList)
                                     binding.vehicleRecyclerview.adapter = adapter
                                 }
                             } else {
 
                                 Comman.makeToast(applicationContext, "Please try again later")
+
+                            }
+
+                        } catch (Ex: Exception) {
+
+                        }
+
+                    }
+
+                })
+        } catch (Ex: Exception) {
+            Comman.makeToast(applicationContext, "Please try again later")
+
+        }
+
+    }
+
+    fun deleteVehicleData(id: String) {
+
+        try {
+
+            val dialog = ProgressDialog(this)
+            dialog.setMessage("Please wait....")
+            dialog.show()
+            apiInterface!!.deleteVehicle(id,"")
+                .enqueue(object : Callback<GetVehicleModal> {
+                    override fun onFailure(call: Call<GetVehicleModal>, t: Throwable) {
+                        dialog.dismiss()
+
+                    }
+
+                    override fun onResponse(
+                        call: Call<GetVehicleModal>,
+                        response: Response<GetVehicleModal>
+                    ) {
+                        try {
+
+                            dialog.dismiss()
+
+                            if (response.body()!!.status) {
+                                Comman.makeToast(applicationContext, response.body()!!.message)
+                                getVehiclesList()
+
+
+                            } else {
+
+                                Comman.makeToast(applicationContext, response.body()!!.message)
 
                             }
 
@@ -105,10 +159,10 @@ class AllVehicleActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
         binding.close.setOnClickListener {
-          /*  val intent = Intent(this@AllVehicleActivity, HomeActivity::class.java)
-            intent.flags =
-                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)*/
+            /*  val intent = Intent(this@AllVehicleActivity, HomeActivity::class.java)
+              intent.flags =
+                  Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+              startActivity(intent)*/
             finish()
         }
 
@@ -120,6 +174,46 @@ class AllVehicleActivity : AppCompatActivity() {
             intent.flags =
                 Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
             startActivity(intent)
+        }
+
+        var swipeHelper = object : MySwipeHelper(this, binding.vehicleRecyclerview, 200) {
+            override fun instantiateMyButton(
+                viewHolder: RecyclerView.ViewHolder,
+                buffer: MutableList<MyButton>
+            ) {
+
+                buffer.add(
+                    MyButton(this@AllVehicleActivity,
+                        "Edit",
+                        60,
+                        R.drawable.ic_edit,
+                        Color.parseColor("#FF8800"),
+                        object : MyButtonClickListener {
+                            override fun onclick(pos: Int) {
+                                Comman.makeToast(applicationContext, "Delete $pos")
+
+                            }
+
+                        })
+                )
+
+                buffer.add(
+                    MyButton(this@AllVehicleActivity,
+                        "Delete",
+                        60,
+                        R.drawable.ic_delete,
+                        Color.parseColor("#E31A2B"),
+                        object : MyButtonClickListener {
+                            override fun onclick(pos: Int) {
+                                deleteVehicleData("" + dataList.get(pos).id)
+
+                            }
+
+                        })
+                )
+
+            }
+
         }
 
     }

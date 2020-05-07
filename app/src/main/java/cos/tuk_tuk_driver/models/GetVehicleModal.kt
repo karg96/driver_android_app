@@ -50,6 +50,5 @@ data class ServiceDetail(
     @SerializedName("description") val description: String
 
 
-
 )
 

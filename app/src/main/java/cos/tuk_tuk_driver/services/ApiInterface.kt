@@ -106,9 +106,13 @@ interface ApiInterface {
     fun getVehicle(@Field("empty") empty: String): Call<GetVehicleModal>
 
 
-  /*  @POST(URLHelper.MakePrime + primeId + "/set-prime")
+    @GET(URLHelper.MakePrime + "{id}/set-prime")
+    fun makePrime(@Path("id") id: String): Call<GetVehicleModal>
+
+    @POST(URLHelper.DeleteVehicle + "{id}")
     @FormUrlEncoded
-    fun makePrime(@Query("empty") primeId: String): Call<GetVehicleModal>
-*/
+    fun deleteVehicle(@Path("id") id: String,
+                      @Field("empty") empty: String): Call<GetVehicleModal>
+
 
 }
