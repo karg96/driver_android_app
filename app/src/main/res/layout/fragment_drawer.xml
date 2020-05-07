@@ -31,11 +31,24 @@
             android:layout_marginLeft="0dp"
             android:paddingLeft="14.7dp"
             android:text="@string/sign_out"
+            android:fontFamily="@font/nunitosans_regular"
             android:textColor="@color/colorBlack"
             android:textSize="22sp" />
 
 
     </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Version 1.1"
+        android:fontFamily="@font/nunitosans_regular"
+        android:layout_marginBottom="8dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorGray"
+        android:textSize="15dp" />
 
 
     <RelativeLayout
@@ -56,7 +69,7 @@
 
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/DriverName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -69,33 +82,30 @@
             android:visibility="visible" />
 
         <TextView
-            android:id="@+id/number"
-            android:layout_width="match_parent"
+            android:id="@+id/driverRating"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/name"
+            android:layout_below="@+id/DriverName"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginTop="2dp"
             android:layout_toRightOf="@+id/Image"
-            android:text="9876543210"
+            android:maxLength="3"
+            android:text="5.00"
             android:textColor="@color/colorGray"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:visibility="visible" />
 
+        <ImageView
+            android:id="@+id/star"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_below="@+id/DriverName"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/driverRating"
+            android:src="@drawable/ic_star" />
 
-        <TextView
-            android:id="@+id/wallets"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/number"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toRightOf="@+id/Image"
-            android:text="Wallet Balance: Rs. 260"
-            android:textColor="@color/colorBlue"
-            android:textSize="14sp"
-            android:visibility="visible" />
 
     </RelativeLayout>
 
@@ -135,6 +145,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="14.7dp"
                     android:text="@string/home"
+                    android:fontFamily="@font/nunitosans_regular"
                     android:textColor="@color/colorBlack"
                     android:textSize="22sp" />
 
@@ -165,6 +176,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="14.7dp"
                     android:text="@string/profile"
+                    android:fontFamily="@font/nunitosans_regular"
                     android:textColor="@color/colorBlack"
                     android:textSize="22sp" />
 
@@ -196,6 +208,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="14.7dp"
                     android:text="@string/payment"
+                    android:fontFamily="@font/nunitosans_regular"
                     android:textColor="@color/colorBlack"
                     android:textSize="22sp" />
 
@@ -227,6 +240,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="14.7dp"
                     android:text="@string/account"
+                    android:fontFamily="@font/nunitosans_regular"
                     android:textColor="@color/colorBlack"
                     android:textSize="22sp" />
 
@@ -258,6 +272,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="14.7dp"
                     android:text="@string/notifications"
+                    android:fontFamily="@font/nunitosans_regular"
                     android:textColor="@color/colorBlack"
                     android:textSize="22sp" />
 
@@ -288,6 +303,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="14.7dp"
                     android:text="Help"
+                    android:fontFamily="@font/nunitosans_regular"
                     android:textColor="@color/colorBlack"
                     android:textSize="22sp" />
 

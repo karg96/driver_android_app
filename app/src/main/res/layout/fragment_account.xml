@@ -7,6 +7,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/deleteAccount"
         android:scrollbars="none">
 
         <LinearLayout
@@ -240,6 +241,7 @@
     </ScrollView>
 
     <TextView
+        android:id="@+id/deleteAccount"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="0dp"

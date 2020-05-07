@@ -16,6 +16,7 @@ import cos.tuk_tuk_driver.services.ApiClients.client
 import cos.tuk_tuk_driver.services.ApiClients.client_token
 import cos.tuk_tuk_driver.services.ApiInterface
 import cos.tuk_tuk_driver.utils.URLHelper.BaseUrl
+import cos.tuk_tuk_driver.utils.URLHelper.BaseUrlImage
 
 object Comman {
 
@@ -68,6 +69,12 @@ object Comman {
     }
 
 
+    fun singleCapsName(first: String?): String? {
+        return if (first == null || first == "") {
+            " "
+        } else first.substring(0, 1).toUpperCase() + first.substring(1)
+    }
+
     fun setImageUri(
         mContext: Context?,
         url: String?,
@@ -77,16 +84,39 @@ object Comman {
         circularProgressDrawable.strokeWidth = 5f
         circularProgressDrawable.centerRadius = 30f
         circularProgressDrawable.start()
-         val request = RequestOptions()
-         request.placeholder(circularProgressDrawable)
-         request.error(R.drawable.location)
+        val request = RequestOptions()
+        request.placeholder(circularProgressDrawable)
+        request.error(R.drawable.muslim_girl)
         if (url != null) {
             if (imageView != null) {
-                Glide.with(mContext).load(BaseUrl + "uploads" + url)
+                Glide.with(mContext).load(BaseUrlImage + url)
                     // .apply(request)
                     .into(imageView)
             }
         }
     }
+
+    fun setCircleImage(
+        mContext: Context?,
+        url: String?,
+        imageView: ImageView?
+    ) {
+
+        val circularProgressDrawable = CircularProgressDrawable(mContext!!)
+        circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.start()
+
+        val request = RequestOptions()
+        request.apply(RequestOptions.circleCropTransform())
+        request.placeholder(circularProgressDrawable)
+        request.error(R.drawable.muslim_girl)
+
+        Glide.with(mContext)
+            .load(BaseUrlImage + url) //                load(UrlHelper.BASE_URL+"storage/"+url)
+            .apply(request)
+            .into(imageView!!)
+    }
+
 
 }

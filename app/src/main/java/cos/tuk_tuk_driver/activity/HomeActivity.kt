@@ -4,20 +4,26 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityHomeBinding
+import cos.tuk_tuk_driver.utils.Prefs
 import fragment.Account
 import fragment.FragmentDrawer
 import fragment.Home
 
 class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
     View.OnClickListener {
-
 
 
     var mToolbar: Toolbar? = null
@@ -28,6 +34,12 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
     private var home: LinearLayout? = null
     private var account: LinearLayout? = null
     private var notification: LinearLayout? = null
+    private var Image: ImageView? = null
+    private var DriverName: TextView? = null
+    private var driverRating: TextView? = null
+    private var driveName: String? = ""
+    private var driveImage: String? = ""
+    private var driveRating: String? = ""
 
     lateinit var binding: ActivityHomeBinding
 
@@ -61,6 +73,10 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
 
     private fun init() {
 
+        driveName = Prefs.getKey(applicationContext, "driveName")
+        driveImage = Prefs.getKey(applicationContext, "driveImage")
+        driveRating = Prefs.getKey(applicationContext, "driveRating")
+
         drawerLayout = findViewById(R.id.drawer)
         mToolbar = findViewById(R.id.toolbar)
 //        title = findViewById(R.id.title);
@@ -69,6 +85,9 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         supportActionBar!!.title = null
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 
+        Image = findViewById<ImageView>(R.id.Image)
+        DriverName = findViewById<TextView>(R.id.DriverName)
+        driverRating = findViewById<TextView>(R.id.driverRating)
         payment = findViewById<LinearLayout>(R.id.payment)
         home = findViewById<LinearLayout>(R.id.home)
         account = findViewById<LinearLayout>(R.id.account)
@@ -77,6 +96,10 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         home!!.setOnClickListener(this)
         account!!.setOnClickListener(this)
         notification!!.setOnClickListener(this)
+        DriverName!!.text = Comman.singleCapsName(driveName)
+        driverRating!!.text = Comman.singleCapsName(driveRating)
+
+        Comman.setCircleImage(applicationContext, driveImage, Image)
 
     }
 

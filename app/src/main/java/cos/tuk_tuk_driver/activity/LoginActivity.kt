@@ -179,6 +179,21 @@ class LoginActivity : AppCompatActivity() {
                                         "driveName",
                                         response.body()!!.data.first_name + " " + response.body()!!.data.last_name
                                     )
+                                    Prefs.putKey(
+                                        applicationContext,
+                                        "driveImage",
+                                        response.body()!!.data.avatar
+                                    )
+                                    Prefs.putKey(
+                                        applicationContext,
+                                        "driveMobile",
+                                        response.body()!!.data.mobile
+                                    )
+                                    Prefs.putKey(
+                                        applicationContext,
+                                        "driveRating",
+                                        response.body()!!.data.rating
+                                    )
 
 
                                     if (response.body()!!.documents.driverDocuments.size != 0) {

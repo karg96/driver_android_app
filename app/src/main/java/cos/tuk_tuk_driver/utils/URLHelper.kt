@@ -3,6 +3,7 @@ package cos.tuk_tuk_driver.utils
 object URLHelper {
 
     //testing
+    const val BaseUrlImage = "http://server.visionvivante.com:8080/tuktuk/storage/app/"
     const val BaseUrl = "http://server.visionvivante.com:8080/tuktuk/public/"
 
     const val RegisterMobile = "api/provider/register-mobile"
