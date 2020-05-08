@@ -10,6 +10,7 @@ data class GetVehicleModal(
 
 )
 
+
 data class Vehicles(
 
     @SerializedName("id") val id: Int,

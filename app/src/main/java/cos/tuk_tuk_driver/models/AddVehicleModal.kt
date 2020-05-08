@@ -6,7 +6,8 @@ data class AddVehicleModal(
 
     @SerializedName("status") val status: Boolean,
     @SerializedName("data") val data: VehicleData,
-    @SerializedName("message") val message: String
+    @SerializedName("message") val message: String,
+    @SerializedName("error") val error: String
 
 
 )

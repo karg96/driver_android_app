@@ -77,6 +77,8 @@ class AllVehicleActivity : AppCompatActivity() {
                                         )
                                         intent.flags =
                                             Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
+                                        intent.putExtra("from", "add")
+
                                         startActivity(intent)
                                         return
                                     }
@@ -112,7 +114,7 @@ class AllVehicleActivity : AppCompatActivity() {
             val dialog = ProgressDialog(this)
             dialog.setMessage("Please wait....")
             dialog.show()
-            apiInterface!!.deleteVehicle(id,"")
+            apiInterface!!.deleteVehicle(id, "")
                 .enqueue(object : Callback<GetVehicleModal> {
                     override fun onFailure(call: Call<GetVehicleModal>, t: Throwable) {
                         dialog.dismiss()
@@ -170,9 +172,12 @@ class AllVehicleActivity : AppCompatActivity() {
             val intent = Intent(
                 this@AllVehicleActivity,
                 AddVehicleDetailsActiivity::class.java
+
             )
             intent.flags =
                 Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
+            intent.putExtra("from", "add")
+
             startActivity(intent)
         }
 
@@ -190,7 +195,20 @@ class AllVehicleActivity : AppCompatActivity() {
                         Color.parseColor("#FF8800"),
                         object : MyButtonClickListener {
                             override fun onclick(pos: Int) {
-                                Comman.makeToast(applicationContext, "Delete $pos")
+                                // Comman.makeToast(applicationContext, "Delete $pos")
+                                val intent = Intent(
+                                    this@AllVehicleActivity,
+                                    AddVehicleDetailsActiivity::class.java
+                                )
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
+                                intent.putExtra("from", "update")
+                                intent.putExtra("vehicleId", "" + dataList.get(pos).id)
+                                intent.putExtra("service_color", "" + dataList.get(pos).service_color)
+                                intent.putExtra("service_model", "" + dataList.get(pos).service_model)
+                                intent.putExtra("service_year", "" + dataList.get(pos).service_year)
+                                intent.putExtra("service_number", "" + dataList.get(pos).service_number)
+                                startActivity(intent)
 
                             }
 

@@ -111,8 +111,26 @@ interface ApiInterface {
 
     @POST(URLHelper.DeleteVehicle + "{id}")
     @FormUrlEncoded
-    fun deleteVehicle(@Path("id") id: String,
-                      @Field("empty") empty: String): Call<GetVehicleModal>
+    fun deleteVehicle(
+        @Path("id") id: String,
+        @Field("empty") empty: String
+    ): Call<GetVehicleModal>
 
+
+    @POST(URLHelper.UpdateVehicle)
+    @FormUrlEncoded
+    fun updateVehicle(
+        @Path("id") id: String,
+        @Field("service_type") service_type: String,
+        @Field("service_model") service_model: String,
+        @Field("service_year") service_year: String,
+        @Field("service_color") service_color: String
+    ): Call<AddVehicleModal>
+
+    @POST(URLHelper.Services)
+    @FormUrlEncoded
+    fun services(
+        @Field("empty") empty: String
+    ): Call<GetVehicleServiceModal>
 
 }

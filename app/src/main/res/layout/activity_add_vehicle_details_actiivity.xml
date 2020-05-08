@@ -63,12 +63,28 @@
                 android:fontFamily="@font/nunitosans_regular"
                 android:lineHeight="40sp"
                 android:text="@string/make"
-                android:visibility="gone"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:visibility="visible" />
 
 
-            <EditText
+            <org.angmarch.views.NiceSpinner
+                android:id="@+id/make"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginRight="19dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="19dp"
+                android:layout_marginRight="19dp"
+                android:background="@color/colorGray"/>
+
+
+            <!--<EditText
                 android:id="@+id/make"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,11 +99,11 @@
                 android:lineHeight="27sp"
                 android:paddingLeft="5dp"
                 android:paddingBottom="10dp"
-                android:visibility="gone"
                 android:textColor="@color/colorBlack"
                 android:textCursorDrawable="@null"
                 android:textSize="20sp"
-                android:theme="@style/TextLabel" />
+                android:theme="@style/TextLabel"
+                android:visibility="visible" />-->
 
 
             <TextView

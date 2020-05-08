@@ -30,11 +30,11 @@
         <activity android:name=".activity.NotificationSettingActivity" />
         <activity android:name=".activity.NotificationActivity" />
         <activity android:name=".activity.HomeActivity">
-           <!-- <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
         <activity android:name=".activity.AddPhotoActivity" />
         <activity android:name=".activity.AddIdentityCardActivity" />
@@ -58,13 +58,14 @@
         <activity android:name=".activity.WelcomeActivity" />
         <activity android:name=".activity.GetOtpActivity" />
         <activity android:name=".activity.EnterOtpActivity" />
+
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/Theme.Splash">
-                        <intent-filter>
-                            <action android:name="android.intent.action.MAIN" />
-                            <category android:name="android.intent.category.LAUNCHER" />
-                        </intent-filter>
+            <!--      <intent-filter>
+                      <action android:name="android.intent.action.MAIN" />
+                      <category android:name="android.intent.category.LAUNCHER" />
+                  </intent-filter>-->
         </activity>
         <activity android:name=".activity.MainActivity" />
 

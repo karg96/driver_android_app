@@ -113,7 +113,10 @@ object ApiClients {
             val original = chain.request()
             val requestBuilder = original.newBuilder()
                 //.addHeader("Accept", "application/json")
-                .header("Authorization", "Bearer " + Prefs.getKey(DriverApp.context, "Authorization"))
+                .header(
+                    "Authorization",
+                    "Bearer " + Prefs.getKey(DriverApp.context, "Authorization")
+                )
 //                                    .header("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9zZXJ2ZXIudmlzaW9udml2YW50ZS5jb206ODA4MFwvdHVrdHVrXC9wdWJsaWNcL2FwaVwvcHJvdmlkZXJcL29hdXRoXC90b2tlbiIsImlhdCI6MTU4ODA1NDgzNCwiZXhwIjo2MDE1ODgwNTQ3NzQsIm5iZiI6MTU4ODA1NDgzNCwianRpIjoiVWpGZGV3bEJQWk94d25DUyIsInN1YiI6MTU1LCJwcnYiOiJiMzY4ZmMwYjVhMGJlOTgxYjFkOTBiMTA0OTU4ZTg2NmJkZjYwZDViIn0.5epLSv9rFPQkbGfDcL8a8QhYxoIcyxvs2q5ARhhYbnI");
 
 

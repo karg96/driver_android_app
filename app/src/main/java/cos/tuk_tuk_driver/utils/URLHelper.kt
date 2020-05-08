@@ -19,6 +19,8 @@ object URLHelper {
     const val GetVehicle = "api/provider/vehicle/list"
     const val MakePrime = "api/provider/vehicle/"
     const val DeleteVehicle = "api/provider/vehicle/delete/"
+    const val UpdateVehicle = "api/provider/vehicle/update/{id}"
+    const val Services = "api/provider/services"
 
 
 }

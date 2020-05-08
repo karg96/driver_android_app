@@ -16,13 +16,13 @@ class VehicleActivity : AppCompatActivity() {
 
         binding.btnAddVehicle.setOnClickListener {
             val intent = Intent(this@VehicleActivity, AddVehicleDetailsActiivity::class.java)
-            intent.flags =
-                Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
+            intent.putExtra("from", "add")
             startActivity(intent)
         }
 
         binding.close.setOnClickListener {
-           finish()
+            finish()
         }
 
     }
