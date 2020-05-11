@@ -88,6 +88,7 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginRight="13sp"
                 android:elevation="1dp"
+                android:visibility="gone"
                 app:cardCornerRadius="5dp">
 
                 <RelativeLayout
@@ -127,7 +128,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_check" />
+                        android:src="@drawable/ic_check"
+                        android:visibility="gone" />
 
 
                 </RelativeLayout>
@@ -135,7 +137,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/searchBox"
+                android:id="@+id/card"
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
                 android:layout_below="@+id/cash"
@@ -143,6 +145,7 @@
                 android:layout_marginTop="16sp"
                 android:layout_marginRight="13sp"
                 android:elevation="1dp"
+                android:visibility="gone"
                 app:cardCornerRadius="5dp">
 
                 <RelativeLayout
@@ -182,7 +185,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_check" />
+                        android:src="@drawable/ic_check"
+                        android:visibility="gone" />
 
 
                 </RelativeLayout>
@@ -193,15 +197,16 @@
                 android:id="@+id/paypal"
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
-                android:layout_below="@+id/searchBox"
+                android:layout_below="@+id/card"
                 android:layout_marginLeft="13sp"
                 android:layout_marginTop="16sp"
                 android:layout_marginRight="13sp"
                 android:elevation="1dp"
+                android:visibility="gone"
                 app:cardCornerRadius="5dp">
 
                 <RelativeLayout
-                    android:id="@+id/cashpaypal"
+                    android:id="@+id/paypalPay"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/colorWhite"
@@ -237,8 +242,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_check" />
-
+                        android:src="@drawable/ic_check"
+                        android:visibility="gone" />
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -251,7 +256,9 @@
                 android:layout_marginLeft="13sp"
                 android:layout_marginTop="16sp"
                 android:layout_marginRight="13sp"
+                android:layout_marginBottom="10dp"
                 android:elevation="1dp"
+                android:visibility="gone"
                 app:cardCornerRadius="5dp">
 
                 <RelativeLayout
@@ -291,7 +298,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_check" />
+                        android:src="@drawable/ic_check"
+                        android:visibility="gone" />
 
 
                 </RelativeLayout>

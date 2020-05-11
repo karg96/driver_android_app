@@ -37,6 +37,7 @@ data class Data(
     @SerializedName("access_token") val access_token: String,
     @SerializedName("bio") val bio: String,
     @SerializedName("fun_fact") val fun_fact: String,
+    @SerializedName("payment_mode") val payment_mode: String,
     @SerializedName("updated_at") val updated_at: String,
     @SerializedName("free_triel_date") val free_triel_date: String
 

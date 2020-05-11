@@ -21,6 +21,8 @@ object URLHelper {
     const val DeleteVehicle = "api/provider/vehicle/delete/"
     const val UpdateVehicle = "api/provider/vehicle/update/{id}"
     const val Services = "api/provider/services"
+    const val PaymentsList = "api/provider/payment-methods/list"
+    const val ChangePayments = "api/provider/change/payment-methods"
 
 
 }

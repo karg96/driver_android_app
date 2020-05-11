@@ -5,6 +5,7 @@ import cos.tuk_tuk_driver.utils.URLHelper
 import cos.tuk_tuk_driver.utils.URLHelper.GetUploadDocs
 import cos.tuk_tuk_driver.utils.URLHelper.Logout
 import cos.tuk_tuk_driver.utils.URLHelper.MobileLogin
+import cos.tuk_tuk_driver.utils.URLHelper.PaymentsList
 import cos.tuk_tuk_driver.utils.URLHelper.RegisterMobile
 import cos.tuk_tuk_driver.utils.URLHelper.Resend
 import cos.tuk_tuk_driver.utils.URLHelper.UpdateDriverData
@@ -132,5 +133,16 @@ interface ApiInterface {
     fun services(
         @Field("empty") empty: String
     ): Call<GetVehicleServiceModal>
+
+
+    @POST(URLHelper.ChangePayments)
+    @FormUrlEncoded
+    fun changePayments(
+        @Field("method") method: String
+    ): Call<RegisterModal>
+
+    @GET(PaymentsList)
+    fun paymentsList(): Call<UploadDocsModal>
+
 
 }

@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
     private val apiInterface = Comman.getApi()
     private var mobileNumber: String = ""
     private var isDocsUpload: Int = 0
-    private var IsApproved: Int = 0
+    // private var IsApproved: Int = 0
     private var IsBanned: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -214,13 +214,13 @@ class LoginActivity : AppCompatActivity() {
 
                                             }
 
-                                            if (response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                            /*if (response.body()!!.documents.driverDocuments.get(x).status.equals(
                                                     "approved",
                                                     ignoreCase = true
                                                 )
                                             ) {
                                                 IsApproved += 1
-                                            }
+                                            }*/
                                             if (response.body()!!.documents.driverDocuments.get(x).status.equals(
                                                     "banned",
                                                     ignoreCase = true
@@ -240,14 +240,23 @@ class LoginActivity : AppCompatActivity() {
                                         }
 
                                         if (isDocsUpload == 3) {
-                                            if (IsApproved == 3) {
+                                            if (response.body()!!.data.status.equals(
+                                                    "approved",
+                                                    ignoreCase = true
+                                                )
+                                            ) {
+
                                                 Comman.makeToast(
                                                     applicationContext,
                                                     "Login Success"
                                                 )
 
                                                 Prefs.putKey(applicationContext, "isLogin", "true")
-
+                                                Prefs.putKey(
+                                                    applicationContext,
+                                                    "payment_mode",
+                                                    response.body()!!.data.payment_mode
+                                                )
                                                 val intent = Intent(
                                                     applicationContext,
                                                     HomeActivity::class.java
@@ -273,6 +282,7 @@ class LoginActivity : AppCompatActivity() {
                                             }
 
                                         } else {
+
                                             Comman.makeToast(
                                                 applicationContext,
                                                 "Please upload your documents"

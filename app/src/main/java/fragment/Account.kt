@@ -34,6 +34,7 @@ class Account : Fragment() {
     private var securityPrivacy: LinearLayout? = null
     private var about: LinearLayout? = null
     private var reportIssue: LinearLayout? = null
+    private var payment: LinearLayout? = null
     private var deleteAccount: TextView? = null
 
 //    private var fragmentAccountBinding: FragmentAccountBinding? = null
@@ -52,6 +53,7 @@ class Account : Fragment() {
 
         try {
 
+            payment = view.findViewById<LinearLayout>(R.id.payment)
             vehilce = view.findViewById<LinearLayout>(R.id.vehilce)
             deleteAccount = view.findViewById<TextView>(R.id.deleteAccount)
             securityPrivacy = view.findViewById<LinearLayout>(R.id.securityPrivacy)
@@ -72,6 +74,12 @@ class Account : Fragment() {
             reportIssue!!.setOnClickListener {
 
                 val intent = Intent(context, ReportIssueActivity::class.java)
+                Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
+                startActivity(intent)
+            }
+            payment!!.setOnClickListener {
+
+                val intent = Intent(context, PaymentTypeActivity::class.java)
                 Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
                 startActivity(intent)
             }
