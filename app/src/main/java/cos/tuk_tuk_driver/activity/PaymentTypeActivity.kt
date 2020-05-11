@@ -10,6 +10,7 @@ import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.DriverApp
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityPaymentTypeBinding
+import cos.tuk_tuk_driver.models.GetpaymentModaal
 import cos.tuk_tuk_driver.models.RegisterModal
 import cos.tuk_tuk_driver.models.UploadDocsModal
 import cos.tuk_tuk_driver.utils.Prefs
@@ -115,8 +116,6 @@ class PaymentTypeActivity : AppCompatActivity() {
         // Set a positive button and its click listener on alert dialog
         builder.setPositiveButton("YES") { dialog, which ->
             // Do something when user press the positive button
-            // doLogout()
-            Prefs.clearSharedPreferences(DriverApp.context)
             ChangePayments(method.toUpperCase())
 
         }
@@ -144,16 +143,16 @@ class PaymentTypeActivity : AppCompatActivity() {
             dialog.show()
 
             apiInterface!!.changePayments(method.toUpperCase())
-                .enqueue(object : Callback<RegisterModal> {
-                    override fun onFailure(call: Call<RegisterModal>, t: Throwable) {
+                .enqueue(object : Callback<GetpaymentModaal> {
+                    override fun onFailure(call: Call<GetpaymentModaal>, t: Throwable) {
                         dialog.dismiss()
                         Comman.makeToast(applicationContext, "Please try again later")
 
                     }
 
                     override fun onResponse(
-                        call: Call<RegisterModal>,
-                        response: Response<RegisterModal>
+                        call: Call<GetpaymentModaal>,
+                        response: Response<GetpaymentModaal>
                     ) {
                         try {
 

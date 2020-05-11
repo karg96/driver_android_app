@@ -139,7 +139,7 @@ interface ApiInterface {
     @FormUrlEncoded
     fun changePayments(
         @Field("method") method: String
-    ): Call<RegisterModal>
+    ): Call<GetpaymentModaal>
 
     @GET(PaymentsList)
     fun paymentsList(): Call<UploadDocsModal>
