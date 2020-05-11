@@ -8,12 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import com.tuktuk.utils.Comman
+import cos.tuk_tuk_driver.DriverApp
 
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.activity.*
 import cos.tuk_tuk_driver.databinding.FragmentAccountBinding
 import cos.tuk_tuk_driver.models.GetVehicleModal
+import cos.tuk_tuk_driver.utils.Prefs
+import kotlinx.android.synthetic.main.fragment_account.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,6 +34,7 @@ class Account : Fragment() {
     private var securityPrivacy: LinearLayout? = null
     private var about: LinearLayout? = null
     private var reportIssue: LinearLayout? = null
+    private var deleteAccount: TextView? = null
 
 //    private var fragmentAccountBinding: FragmentAccountBinding? = null
 
@@ -47,6 +53,7 @@ class Account : Fragment() {
         try {
 
             vehilce = view.findViewById<LinearLayout>(R.id.vehilce)
+            deleteAccount = view.findViewById<TextView>(R.id.deleteAccount)
             securityPrivacy = view.findViewById<LinearLayout>(R.id.securityPrivacy)
             about = view.findViewById<LinearLayout>(R.id.about)
             reportIssue = view.findViewById<LinearLayout>(R.id.reportIssue)
@@ -72,6 +79,10 @@ class Account : Fragment() {
                 getVehiclesList()
 
             }
+            deleteAccount!!.setOnClickListener {
+                DeleteAlerts(view)
+
+            }
 
 
         } catch (Ex: Exception) {
@@ -81,6 +92,48 @@ class Account : Fragment() {
 
         return view
 
+    }
+
+    fun DeleteAlerts(view: View) {
+
+        // Initialize a new instance of
+        val builder = AlertDialog.Builder(view.context, R.style.AlertDialogCustom)
+
+        // Set the alert dialog title
+        builder.setTitle("Delete")
+
+        // Display a message on alert dialog
+        builder.setMessage("Are you sure want to delete?")
+
+        // Set a positive button and its click listener on alert dialog
+        builder.setPositiveButton("YES") { dialog, which ->
+            // Do something when user press the positive button
+            // doLogout()
+            Prefs.clearSharedPreferences(DriverApp.context)
+            val intent = Intent(
+                context,
+                WelcomeActivity::class.java
+            ) //not application context
+            intent.putExtra("from", "register")
+
+            intent.flags =
+                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            startActivity(intent)
+        }
+
+
+        // Display a negative button on alert dialog
+        builder.setNegativeButton("No") { dialog, which ->
+
+        }
+
+
+        // Finally, make the alert dialog using builder
+        val dialog: AlertDialog = builder.create()
+
+        // Display the alert dialog on app interface
+        dialog.show()
     }
 
 

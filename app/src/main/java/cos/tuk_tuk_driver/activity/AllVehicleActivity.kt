@@ -198,12 +198,12 @@ class AllVehicleActivity : AppCompatActivity() {
                                 // Comman.makeToast(applicationContext, "Delete $pos")
                                 val intent = Intent(
                                     this@AllVehicleActivity,
-                                    AddVehicleDetailsActiivity::class.java
-                                )
+                                    AddVehicleDetailsActiivity::class.java)
                                 intent.flags =
                                     Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
                                 intent.putExtra("from", "update")
                                 intent.putExtra("vehicleId", "" + dataList.get(pos).id)
+                                intent.putExtra("service_type_id", "" + dataList.get(pos).service_type_id)
                                 intent.putExtra("service_color", "" + dataList.get(pos).service_color)
                                 intent.putExtra("service_model", "" + dataList.get(pos).service_model)
                                 intent.putExtra("service_year", "" + dataList.get(pos).service_year)

@@ -244,16 +244,14 @@
         android:id="@+id/deleteAccount"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginLeft="0dp"
+        android:layout_alignParentBottom="true"
         android:fontFamily="@font/nunitosans_regular"
         android:gravity="center_vertical"
-        android:layout_alignParentBottom="true"
         android:paddingLeft="18sp"
         android:paddingBottom="18sp"
-        android:text="Delete your Account"
+        android:text="@string/delete_your_account"
         android:textColor="@color/colorRed"
-        android:textSize="15dp" />
-
+        android:textSize="15sp" />
 
 
 </RelativeLayout>

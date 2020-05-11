@@ -27,6 +27,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
     private var service_model: String = ""
     private var service_year: String = ""
     private var service_number: String = ""
+    private var service_type_id: String = ""
     private var vehicleId: String = ""
     private var makeId: String = ""
     private var mCatAdapter: ArrayAdapter<String>? = null
@@ -47,10 +48,11 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
             Items.add(0, "Please select Make")
             ItemsId.add(0, "Please select Make")
 
-
             binding.licensePlate.isEnabled = true
 
             if (from.equals("update", ignoreCase = true)) {
+
+                service_type_id = intent.getStringExtra("service_type_id")
                 service_color = intent.getStringExtra("service_color")
                 service_model = intent.getStringExtra("service_model")
                 service_year = intent.getStringExtra("service_year")
@@ -64,37 +66,38 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                 binding.licensePlate.isEnabled = false
             }
 
-             mCatAdapter = ArrayAdapter<String>(
-                 applicationContext,
-                 R.layout.simple_spinner_dropdown_item,
-                 Items
-             )
-             binding.make.setAdapter(mCatAdapter)
-             binding.make.setOnItemSelectedListener(object : OnItemSelectedListener {
-                 override fun onItemSelected(
-                     parent: AdapterView<*>?,
-                     view: View,
-                     position: Int,
-                     id: Long
-                 ) {
-                     try {
-                         if (position == 0) {
-                             makeId = ""
-                             makeToast(applicationContext, "Please select Make")
+            mCatAdapter = ArrayAdapter<String>(
+                applicationContext,
+                R.layout.simple_spinner_dropdown_item,
+                Items
+            )
+            binding.make.setAdapter(mCatAdapter)
+            binding.make.setOnItemSelectedListener(object : OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
+                    try {
+                        if (position == 0) {
+                            makeId = ""
+                            makeToast(applicationContext, "Please select Make")
 
-                         } else {
-                             makeId = ItemsId.get(position) as String
-                             // mCategory = (String) Items.get(position);
-                         }
-                     } catch (e: java.lang.Exception) {
-                     }
-                 }
+                        } else {
+                            makeId = ItemsId.get(position)
+                            // mCategory = (String) Items.get(position);
+                        }
+                    } catch (e: java.lang.Exception) {
+                    }
+                }
 
-                 override fun onNothingSelected(parent: AdapterView<*>?) {}
-             })
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            })
 
             getServices()
         } catch (Ex: Exception) {
+            makeToast(applicationContext, "${Ex.message}")
 
         }
 
@@ -237,7 +240,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                             binding.year.setText("")
                             binding.vehilceColor.setText("")
 
-                            Comman.makeToast(applicationContext, response.body()!!.message)
+                            makeToast(applicationContext, response.body()!!.message)
                             // finish()
                             val intent = Intent(
                                 this@AddVehicleDetailsActiivity,
@@ -248,7 +251,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                             startActivity(intent)
 
                         } else if (!response.body()!!.status) {
-                            Comman.makeToast(
+                            makeToast(
                                 applicationContext,
                                 "Registration Number has already been taken."
                             )
@@ -275,9 +278,10 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
             dialog.show()
             Items.clear()
             ItemsId.clear()
+            Items.add(0, "Please select Make")
+            ItemsId.add(0, "Please select Make")
 
-            apiInterface!!.services(
-                "0")
+            apiInterface!!.services("0")
                 .enqueue(object : retrofit2.Callback<GetVehicleServiceModal> {
                     override fun onFailure(call: Call<GetVehicleServiceModal>, t: Throwable) {
                         dialog.dismiss()
@@ -293,16 +297,23 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                         dialog.dismiss()
 
                         if (response.body()!!.status) {
-                            makeToast(applicationContext, response.body()!!.message)
-                            Items.add(0, "Please select Make")
-                            ItemsId.add(0, "Please select Make")
+
 
                             for (x in 0 until response.body()!!.data.size) {
 
                                 Items.add(x + 1, response.body()!!.data.get(x).name)
-                                ItemsId.add(x + 1, response.body()!!.data.get(x).id as String)
+                                ItemsId.add(x + 1, "" + response.body()!!.data.get(x).id)
 
+                                if (service_type_id.equals(
+                                        "" + response.body()!!.data.get(x).id,
+                                        ignoreCase = true
+                                    )
+                                ) {
+                                    binding.make.text = response.body()!!.data.get(x).name
+                                    makeId = "" + response.body()!!.data.get(x).id
+                                }
                             }
+
                             mCatAdapter!!.notifyDataSetChanged()
 
                         } else if (!response.body()!!.status) {
