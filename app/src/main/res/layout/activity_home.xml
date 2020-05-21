@@ -33,7 +33,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp">
+                    android:layout_marginRight="55dp">
 
                     <TextView
                         android:id="@+id/Title"
@@ -43,6 +43,7 @@
                         android:fontFamily="@font/bebasneue_regular"
                         android:gravity="center"
                         android:text="Home"
+                        android:layout_centerVertical="true"
                         android:textAllCaps="true"
                         android:textColor="@color/colorBlack"
                         android:textSize="32sp" />

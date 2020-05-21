@@ -43,6 +43,7 @@ class AllVehicleActivity : AppCompatActivity() {
         }
     }
 
+
     fun getVehiclesList() {
 
         try {
@@ -51,6 +52,7 @@ class AllVehicleActivity : AppCompatActivity() {
             dialog.setMessage("Please wait....")
             dialog.show()
             dataList.clear()
+
             apiInterface!!.getVehicle("")
                 .enqueue(object : Callback<GetVehicleModal> {
                     override fun onFailure(call: Call<GetVehicleModal>, t: Throwable) {
@@ -75,11 +77,12 @@ class AllVehicleActivity : AppCompatActivity() {
                                             this@AllVehicleActivity,
                                             AddVehicleDetailsActiivity::class.java
                                         )
+
                                         intent.flags =
                                             Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
                                         intent.putExtra("from", "add")
-
                                         startActivity(intent)
+
                                         return
                                     }
                                     dataList.addAll(response.body()!!.vehicles)
@@ -172,8 +175,8 @@ class AllVehicleActivity : AppCompatActivity() {
             val intent = Intent(
                 this@AllVehicleActivity,
                 AddVehicleDetailsActiivity::class.java
-
             )
+
             intent.flags =
                 Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
             intent.putExtra("from", "add")
@@ -198,16 +201,30 @@ class AllVehicleActivity : AppCompatActivity() {
                                 // Comman.makeToast(applicationContext, "Delete $pos")
                                 val intent = Intent(
                                     this@AllVehicleActivity,
-                                    AddVehicleDetailsActiivity::class.java)
+                                    AddVehicleDetailsActiivity::class.java
+                                )
+
                                 intent.flags =
                                     Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
                                 intent.putExtra("from", "update")
                                 intent.putExtra("vehicleId", "" + dataList.get(pos).id)
-                                intent.putExtra("service_type_id", "" + dataList.get(pos).service_type_id)
-                                intent.putExtra("service_color", "" + dataList.get(pos).service_color)
-                                intent.putExtra("service_model", "" + dataList.get(pos).service_model)
+                                intent.putExtra(
+                                    "service_type_id",
+                                    "" + dataList.get(pos).service_type_id
+                                )
+                                intent.putExtra(
+                                    "service_color",
+                                    "" + dataList.get(pos).service_color
+                                )
+                                intent.putExtra(
+                                    "service_model",
+                                    "" + dataList.get(pos).service_model
+                                )
                                 intent.putExtra("service_year", "" + dataList.get(pos).service_year)
-                                intent.putExtra("service_number", "" + dataList.get(pos).service_number)
+                                intent.putExtra(
+                                    "service_number",
+                                    "" + dataList.get(pos).service_number
+                                )
                                 startActivity(intent)
 
                             }
@@ -223,7 +240,17 @@ class AllVehicleActivity : AppCompatActivity() {
                         Color.parseColor("#E31A2B"),
                         object : MyButtonClickListener {
                             override fun onclick(pos: Int) {
-                                deleteVehicleData("" + dataList.get(pos).id)
+
+                                if (dataList.get(pos).prime != 1) {
+                                    deleteVehicleData("" + dataList.get(pos).id)
+                                } else {
+
+                                    Comman.makeToast(
+                                        applicationContext,
+                                        "You cannot delete prime vehicle "
+                                    )
+
+                                }
 
                             }
 

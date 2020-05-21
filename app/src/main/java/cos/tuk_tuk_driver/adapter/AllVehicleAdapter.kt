@@ -58,7 +58,7 @@ class AllVehicleAdapter(val context: Context, val dataList: ArrayList<Vehicles>)
         var data = dataList.get(position)
 
         holder.vehicleName.text = data.service_model
-        holder.vehicleDes.text = data.service_number
+        holder.vehicleDes.text = "${data.service_model} / ${data.service_number}"
         if (data.serviceDetail.image != null) {
 
             val circularProgressDrawable = CircularProgressDrawable(context)

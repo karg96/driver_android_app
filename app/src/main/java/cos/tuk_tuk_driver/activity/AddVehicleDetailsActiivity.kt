@@ -59,6 +59,9 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                 service_number = intent.getStringExtra("service_number")
                 vehicleId = intent.getStringExtra("vehicleId")
 
+                binding.vehicleTitle.setText("Edit Vehicle")
+                binding.btnAddVehicle.setText("Update Vehicle")
+
                 binding.model.setText(service_model)
                 binding.licensePlate.setText(service_number)
                 binding.year.setText(service_year)
@@ -184,7 +187,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                                 AllVehicleActivity::class.java
                             )
                             intent.flags =
-                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
                             startActivity(intent)
 
                         } else if (!response.body()!!.status) {

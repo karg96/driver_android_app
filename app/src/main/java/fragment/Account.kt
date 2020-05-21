@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.tuktuk.utils.Comman
@@ -15,10 +16,8 @@ import cos.tuk_tuk_driver.DriverApp
 
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.activity.*
-import cos.tuk_tuk_driver.databinding.FragmentAccountBinding
 import cos.tuk_tuk_driver.models.GetVehicleModal
 import cos.tuk_tuk_driver.utils.Prefs
-import kotlinx.android.synthetic.main.fragment_account.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,12 +29,13 @@ import java.lang.Exception
 class Account : Fragment() {
 
     private val apiInterface = Comman.getApiToken()
-    private var vehilce: LinearLayout? = null
+    private var vehilce: RelativeLayout? = null
     private var securityPrivacy: LinearLayout? = null
     private var about: LinearLayout? = null
     private var reportIssue: LinearLayout? = null
     private var payment: LinearLayout? = null
     private var deleteAccount: TextView? = null
+    private var vehicleText: TextView? = null
 
 //    private var fragmentAccountBinding: FragmentAccountBinding? = null
 
@@ -54,7 +54,8 @@ class Account : Fragment() {
         try {
 
             payment = view.findViewById<LinearLayout>(R.id.payment)
-            vehilce = view.findViewById<LinearLayout>(R.id.vehilce)
+            vehilce = view.findViewById<RelativeLayout>(R.id.vehilce)
+            vehicleText = view.findViewById<TextView>(R.id.vehicleText)
             deleteAccount = view.findViewById<TextView>(R.id.deleteAccount)
             securityPrivacy = view.findViewById<LinearLayout>(R.id.securityPrivacy)
             about = view.findViewById<LinearLayout>(R.id.about)
@@ -84,13 +85,14 @@ class Account : Fragment() {
                 startActivity(intent)
             }
             vehilce!!.setOnClickListener {
-                getVehiclesList()
+                getVehiclesList(1)
 
             }
             deleteAccount!!.setOnClickListener {
                 DeleteAlerts(view)
 
             }
+            getVehiclesList(0)
 
 
         } catch (Ex: Exception) {
@@ -145,7 +147,7 @@ class Account : Fragment() {
     }
 
 
-    private fun getVehiclesList() {
+    private fun getVehiclesList(status: Int) {
 
         try {
 
@@ -172,7 +174,10 @@ class Account : Fragment() {
 
                                 if (response.body()!!.vehicles != null) {
 
+
                                     if (response.body()!!.vehicles.isEmpty()) {
+
+
                                         val intent = Intent(
                                             context,
                                             VehicleActivity::class.java
@@ -182,13 +187,25 @@ class Account : Fragment() {
                                         startActivity(intent)
                                         return
                                     } else {
-                                        val intent = Intent(
-                                            context,
-                                            AllVehicleActivity::class.java
-                                        )
-                                        intent.flags =
-                                            Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
-                                        startActivity(intent)
+
+                                        if (status == 0) {
+                                            for (x in 0..response.body()!!.vehicles.size) {
+                                                if (response.body()!!.vehicles.get(x).prime == 1) {
+                                                    vehicleText!!.visibility = View.GONE
+                                                }
+                                            }
+                                        }
+
+                                        if (status == 1) {
+                                            val intent = Intent(
+                                                context,
+                                                AllVehicleActivity::class.java
+                                            )
+                                            intent.flags =
+                                                Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
+                                            startActivity(intent)
+                                        }
+
                                     }
 
                                 }
