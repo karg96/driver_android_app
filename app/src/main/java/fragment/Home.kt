@@ -65,7 +65,7 @@ class Home : Fragment(), OnMapReadyCallback {
     }
 
 
-     private fun currentLocation() {
+    private fun currentLocation() {
 
         Dexter.withActivity(activity)
             .withPermissions(Manifest.permission.ACCESS_FINE_LOCATION)

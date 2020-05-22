@@ -174,7 +174,7 @@
                             android:layout_marginRight="10dp"
                             android:scaleType="fitXY"
                             android:visibility="gone"
-                            android:src="@drawable/check_circle_24_px" />
+                            android:src="@drawable/ic_check_green" />
 
 
                     </RelativeLayout>
@@ -223,7 +223,7 @@
                             android:layout_marginRight="10dp"
                             android:scaleType="fitXY"
                             android:visibility="gone"
-                            android:src="@drawable/check_circle_24_px" />
+                            android:src="@drawable/ic_check_green" />
 
 
                     </RelativeLayout>
@@ -258,7 +258,7 @@
                             android:fontFamily="@font/nunitosans_regular"
                             android:lineHeight="45dp"
                             android:lineSpacingExtra="25sp"
-                            android:text="Identity Card"
+                            android:text="Passport"
                             android:textColor="@color/colorGray"
                             android:textSize="20dp" />
 
@@ -271,7 +271,7 @@
                             android:layout_marginRight="10dp"
                             android:scaleType="fitXY"
                             android:visibility="gone"
-                            android:src="@drawable/check_circle_24_px" />
+                            android:src="@drawable/ic_check_green" />
 
                     </RelativeLayout>
 
@@ -319,7 +319,7 @@
                             android:layout_marginRight="10dp"
                             android:scaleType="fitXY"
                             android:visibility="gone"
-                            android:src="@drawable/check_circle_24_px" />
+                            android:src="@drawable/ic_check_green" />
 
 
                     </RelativeLayout>

@@ -1,13 +1,21 @@
 package cos.tuk_tuk_driver.activity
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.os.StrictMode
+import android.provider.MediaStore
+import android.util.Log
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.bumptech.glide.Glide
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -15,22 +23,30 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.R
-import cos.tuk_tuk_driver.databinding.ActivityAddDocumentBinding
 import cos.tuk_tuk_driver.databinding.ActivityAddIdentityCardBinding
 import cos.tuk_tuk_driver.models.UploadDocsModal
+import cos.tuk_tuk_driver.utils.Prefs
+import cos.tuk_tuk_driver.utils.URLHelper
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
-class AddIdentityCardActivity : AppCompatActivity() {
+
+class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityAddIdentityCardBinding
     private val apiInterface = Comman.getApiToken()
-    private var isImage: Int = 0
-    private var SelectedImage: String = ""
+    private var mCurrentPhotoPath: String = ""
+    private var SelectedFrontImage: String = ""
+    private var SelectedBackImage: String = ""
+    private var driverPassportFrontImage: String = ""
+    private var driverPassportBackImage: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +55,12 @@ class AddIdentityCardActivity : AppCompatActivity() {
 
         try {
 
+            driverPassportFrontImage = Prefs.getKey(applicationContext, "driverPassportFrontImage")
+            driverPassportBackImage = Prefs.getKey(applicationContext, "driverPassportBackImage")
+
+
             init()
+
 
         } catch (Ex: Exception) {
 
@@ -53,11 +74,232 @@ class AddIdentityCardActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.uploadDoc.setOnClickListener {
+        binding.passportBack.setOnClickListener(this)
+        binding.passportFront.setOnClickListener(this)
+        binding.uploadDoc.setOnClickListener(this)
 
-            if (SelectedImage != "" && isImage != 0) {
-                uploadDocIdentity()
-            } else {
+        if (!driverPassportFrontImage.isEmpty() || !driverPassportFrontImage.isEmpty()) {
+            Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverPassportFrontImage)
+                .into(binding.passportFront)
+            Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverPassportBackImage)
+                .into(binding.passportBack)
+            binding.uploadDoc.visibility -= View.GONE
+            binding.imagetitle.visibility -= View.GONE
+            binding.passportBack.setOnClickListener(null)
+            binding.passportFront.setOnClickListener(null)
+        }
+    }
+
+    private fun validate() {
+
+        if (SelectedFrontImage == "") {
+
+            Comman.makeToast(applicationContext, "Please Select Passport Front Image")
+
+        } else if (SelectedBackImage == "") {
+
+            Comman.makeToast(applicationContext, "Please Select Passport Back Image")
+
+        } else if (binding.expiryDate.text.isEmpty()) {
+            Comman.makeToast(applicationContext, "Please enter expiry date")
+
+        } else {
+            uploadDocIdentity()
+        }
+
+    }
+
+    fun showAlert(actionNo: Int) {
+
+        val builder = AlertDialog.Builder(this@AddIdentityCardActivity, R.style.AlertDialogCustom)
+//        builder.setTitle("Carbon")
+        builder.setMessage("Choose Image from ?")
+        builder.setPositiveButton("Gallery") { dialog, which ->
+            dialog.dismiss()
+
+            val insurance = Intent()
+            insurance.type = "image/*"
+            insurance.action = Intent.ACTION_GET_CONTENT
+            startActivityForResult(
+                Intent.createChooser(
+                    insurance,
+                    "Select Picture"
+                ), actionNo
+            )
+        }
+        builder.setNegativeButton("Camera") { dialog, which ->
+            dialog.dismiss()
+            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            if (cameraIntent.resolveActivity(packageManager) != null) {
+                var photoFile: File? = null
+                try {
+                    photoFile = createImageFile()
+                } catch (ex: IOException) {
+                    Log.i("Main", "IOException")
+                }
+                if (photoFile != null) {
+                    val builder = StrictMode.VmPolicy.Builder()
+                    StrictMode.setVmPolicy(builder.build())
+                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile))
+                    if (actionNo == 12) {
+                        startActivityForResult(cameraIntent, 121)
+                    }
+
+                    if (actionNo == 13) {
+                        startActivityForResult(cameraIntent, 131)
+                    }
+                }
+            }
+        }
+        builder.setNeutralButton("Cancel") { dialog, _ ->
+            dialog.dismiss()
+        }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        // Create an image file name
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val imageFileName = "JPEG_" + timeStamp + "_"
+        val storageDir = Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_PICTURES
+        )
+        val image = File.createTempFile(
+            imageFileName, // prefix
+            ".jpg", // suffix
+            storageDir      // directory
+        )
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = "file:" + image.absolutePath
+        return image
+    }
+
+
+    private fun uploadDocIdentity() {
+        try {
+
+            val dialog = ProgressDialog(this)
+            dialog.setMessage("Please wait....")
+            dialog.show()
+
+            val documentId: RequestBody = RequestBody.create(MediaType.parse("text/plain"), "8")
+            val expiry: RequestBody = RequestBody.create(
+                MediaType.parse("text/plain"),
+                binding.expiryDate.text.toString()
+            )
+
+
+            if (!SelectedFrontImage.equals(null, ignoreCase = true) && !SelectedFrontImage.equals(
+                    "",
+                    ignoreCase = true
+                )
+            ) {
+
+
+                dialog.show()
+                val uriFront = Uri.parse(SelectedFrontImage)
+                val fileFront = File(uriFront.path)
+                val reqFileFront = RequestBody.create(MediaType.parse("image/*"), fileFront)
+                val document =
+                    MultipartBody.Part.createFormData("document", fileFront.name, reqFileFront)
+
+                val uriBack = Uri.parse(SelectedBackImage)
+                val fileBack = File(uriBack.path)
+                val reqFileBack = RequestBody.create(MediaType.parse("image/*"), fileBack)
+                val additonal_doc =
+                    MultipartBody.Part.createFormData(
+                        "additonal_doc[]",
+                        fileBack.name,
+                        reqFileBack
+                    )
+
+                apiInterface!!.uploadDocsPassport(documentId, document, additonal_doc, expiry)
+                    .enqueue(object : retrofit2.Callback<UploadDocsModal> {
+                        override fun onFailure(call: Call<UploadDocsModal>, t: Throwable) {
+                            dialog.dismiss()
+
+                            Comman.makeToast(applicationContext, "Please try again later")
+
+                        }
+
+                        override fun onResponse(
+                            call: Call<UploadDocsModal>,
+                            response: Response<UploadDocsModal>
+                        ) {
+
+                            dialog.dismiss()
+
+                            if (response.body()!!.status) {
+
+                                SelectedFrontImage = ""
+                                SelectedBackImage = ""
+                                binding.imagetitle.visibility = View.VISIBLE
+                                binding.passportFront.setImageResource(R.drawable.pass_front)
+                                binding.passportBack.setImageResource(R.drawable.pass_front)
+
+                                Comman.makeToast(applicationContext, response.body()!!.message)
+                                finish()
+
+                            } else if (!response.body()!!.status) {
+                                Comman.makeToast(
+                                    applicationContext,
+                                    response.body()!!.error.get(0).error
+                                )
+
+                            }
+
+                        }
+
+                    })
+
+            }
+        } catch (Ex: Exception) {
+
+        }
+
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 12 && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+            binding.imagetitle.visibility = View.GONE
+            SelectedFrontImage = Comman.getImages(data, binding.passportFront, applicationContext)
+        }
+        if (requestCode == 13 && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+            binding.imagetitle.visibility = View.GONE
+            SelectedBackImage = Comman.getImages(data, binding.passportBack, applicationContext)
+        }
+        if (requestCode == 121 && resultCode == Activity.RESULT_OK) {
+            binding.imagetitle.visibility = View.GONE
+            Glide.with(this).load(mCurrentPhotoPath).into(binding.passportFront)
+            SelectedFrontImage = mCurrentPhotoPath
+
+        }
+        if (requestCode == 131 && resultCode == Activity.RESULT_OK) {
+
+            binding.imagetitle.visibility = View.GONE
+            Glide.with(this).load(mCurrentPhotoPath).into(binding.passportBack)
+            SelectedBackImage = mCurrentPhotoPath
+
+        }
+    }
+
+    override fun onClick(p0: View?) {
+        when (p0!!.id) {
+            R.id.uploadDoc -> {
+
+                validate()
+
+            }
+            R.id.passportFront -> {
+
                 Dexter.withActivity(this)
                     .withPermissions(
                         Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -66,15 +308,17 @@ class AddIdentityCardActivity : AppCompatActivity() {
                     .withListener(object : MultiplePermissionsListener {
                         override fun onPermissionsChecked(report: MultiplePermissionsReport) { // check if all permissions are granted
                             if (report.areAllPermissionsGranted()) {
-                                val insurance = Intent()
-                                insurance.type = "image/*"
-                                insurance.action = Intent.ACTION_GET_CONTENT
-                                startActivityForResult(
-                                    Intent.createChooser(
-                                        insurance,
-                                        "Select Picture"
-                                    ), 12
-                                )
+
+                                showAlert(12)
+//                                val insurance = Intent()
+//                                insurance.type = "image/*"
+//                                insurance.action = Intent.ACTION_GET_CONTENT
+//                                startActivityForResult(
+//                                    Intent.createChooser(
+//                                        insurance,
+//                                        "Select Picture"
+//                                    ), 12
+//                                )
                             }
                             // check for permanent denial of any permission
                             if (report.isAnyPermissionPermanentlyDenied) { // show alert dialog navigating to Settings
@@ -101,78 +345,58 @@ class AddIdentityCardActivity : AppCompatActivity() {
                     }
                     .onSameThread()
                     .check()
+
             }
 
-        }
-    }
+            R.id.passportBack -> {
 
-    private fun uploadDocIdentity() {
-        try {
+                Dexter.withActivity(this)
+                    .withPermissions(
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    )
+                    .withListener(object : MultiplePermissionsListener {
+                        override fun onPermissionsChecked(report: MultiplePermissionsReport) { // check if all permissions are granted
+                            if (report.areAllPermissionsGranted()) {
+//                                val insurance = Intent()
+//                                insurance.type = "image/*"
+//                                insurance.action = Intent.ACTION_GET_CONTENT
+//                                startActivityForResult(
+//                                    Intent.createChooser(
+//                                        insurance,
+//                                        "Select Picture"
+//                                    ), 13
+//                                )
 
-            val dialog = ProgressDialog(this)
-            dialog.setMessage("Please wait....")
-            dialog.show()
-
-            val documentId: RequestBody = RequestBody.create(MediaType.parse("text/plain"), "8")
-            val expiry: RequestBody = RequestBody.create(MediaType.parse("text/plain"), "")
-
-
-
-            if (!SelectedImage.equals(null, ignoreCase = true) && !SelectedImage.equals(
-                    "",
-                    ignoreCase = true
-                )
-            ) {
-
-
-                dialog.show()
-                val uri1 = Uri.parse(SelectedImage)
-                val Li_file = File(uri1.path)
-                val Li_file_reqFile = RequestBody.create(MediaType.parse("image/*"), Li_file)
-                val document =
-                    MultipartBody.Part.createFormData("document", Li_file.name, Li_file_reqFile)
-
-                apiInterface!!.uploadDocs(documentId, document, expiry)
-                    .enqueue(object : retrofit2.Callback<UploadDocsModal> {
-                        override fun onFailure(call: Call<UploadDocsModal>, t: Throwable) {
-
-                        }
-
-                        override fun onResponse(
-                            call: Call<UploadDocsModal>,
-                            response: Response<UploadDocsModal>
-                        ) {
-                            dialog.dismiss()
-
-                            if (response.body()!!.status) {
-                                isImage = 0
-                                SelectedImage = ""
-                                Comman.makeToast(applicationContext, response.body()!!.message)
-                                finish()
-
-                            } else if (!response.body()!!.status) {
-                                Comman.makeToast(applicationContext, response.body()!!.message)
-
+                                showAlert(13)
                             }
-
+                            // check for permanent denial of any permission
+                            if (report.isAnyPermissionPermanentlyDenied) { // show alert dialog navigating to Settings
+                                Toast.makeText(
+                                    applicationContext,
+                                    " permissions are not granted!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
 
-                    })
+                        override fun onPermissionRationaleShouldBeShown(
+                            permissions: List<PermissionRequest>,
+                            token: PermissionToken
+                        ) {
+                            token.continuePermissionRequest()
+                        }
+                    }).withErrorListener {
+                        Toast.makeText(
+                            applicationContext,
+                            "Error occurred! ",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    .onSameThread()
+                    .check()
 
             }
-        } catch (Ex: Exception) {
-
-        }
-
-    }
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == 12 && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
-            isImage = 1
-            SelectedImage = Comman.getImages(data, binding.imgLicense, applicationContext)
         }
     }
 

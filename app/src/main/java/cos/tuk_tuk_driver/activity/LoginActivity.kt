@@ -202,16 +202,36 @@ class LoginActivity : AppCompatActivity() {
 
                                             if (response.body()!!.documents.driverDocuments.get(x).document_id == "1") {
                                                 isDocsUpload += 1
+                                                Prefs.putKey(applicationContext, "driverLicenceImage", response.body()!!.documents.driverDocuments.get(x).url)
                                             }
 
                                             if (response.body()!!.documents.driverDocuments.get(x).document_id == "8") {
                                                 isDocsUpload += 1
-
+                                                Prefs.putKey(
+                                                    applicationContext,
+                                                    "driverPassportFrontImage",
+                                                    response.body()!!.documents.driverDocuments.get(
+                                                        x
+                                                    ).url
+                                                )
+                                                Prefs.putKey(
+                                                    applicationContext,
+                                                    "driverPassportBackImage",
+                                                    response.body()!!.documents.driverDocuments.get(
+                                                        x
+                                                    ).additonal_doc
+                                                )
                                             }
 
                                             if (response.body()!!.documents.driverDocuments.get(x).document_id == "9") {
                                                 isDocsUpload += 1
-
+                                                Prefs.putKey(
+                                                    applicationContext,
+                                                    "driverAddImage",
+                                                    response.body()!!.documents.driverDocuments.get(
+                                                        x
+                                                    ).url
+                                                )
                                             }
 
                                             /*if (response.body()!!.documents.driverDocuments.get(x).status.equals(

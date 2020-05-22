@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,14 +13,13 @@
         android:layout_height="match_parent" />
 
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="69dp"
-        android:visibility="visible"
         android:layout_alignParentBottom="true"
-        android:elevation="5dp">
+        android:elevation="5dp"
+        android:visibility="visible">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -41,11 +41,14 @@
 
             <Switch
                 android:id="@+id/online"
+                style="@style/SwitchCompatStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="16dp" />
+                android:layout_marginRight="16dp"
+                android:checked="false"
+                android:thumb="@drawable/ic_radio" />
 
 
         </RelativeLayout>
@@ -57,9 +60,9 @@
         android:id="@+id/finding_trip"
         android:layout_width="match_parent"
         android:layout_height="69dp"
-        android:visibility="gone"
         android:layout_alignParentBottom="true"
-        android:elevation="5dp">
+        android:elevation="5dp"
+        android:visibility="gone">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -76,9 +79,6 @@
                 android:text="You're offline"
                 android:textColor="@color/colorBlack"
                 android:textSize="23dp" />
-
-
-
 
 
         </RelativeLayout>
@@ -110,8 +110,8 @@
     </RelativeLayout>
 
 
-<!--
-    <include layout="@layout/online_bottom_sheet"/>
--->
+    <!--
+        <include layout="@layout/online_bottom_sheet"/>
+    -->
 
 </RelativeLayout>

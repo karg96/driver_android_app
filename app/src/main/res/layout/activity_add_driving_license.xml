@@ -47,12 +47,30 @@
 
                 <ImageView
                     android:id="@+id/img_license"
-                    android:layout_width="313dp"
+                    android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_marginLeft="31dp"
                     android:layout_marginRight="31dp"
                     android:src="@drawable/driving_license" />
 
+                <EditText
+                    android:id="@+id/expiryDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="31dp"
+                    android:layout_marginRight="31dp"
+                    android:layout_marginTop="20sp"
+                    android:cursorVisible="true"
+                    android:fontFamily="@font/nunitosans_regular"
+                    android:hint="@string/enter_expiry"
+                    android:inputType="number"
+                    android:lineHeight="27sp"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/colorBlack"
+                    android:textCursorDrawable="@null"
+                    android:textSize="20sp"
+                    android:theme="@style/TextLabel" />
 
                 <TextView
                     android:id="@+id/text_upload"
@@ -60,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/img_license"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="50dp"
                     android:fontFamily="@font/nunitosans_regular"
                     android:lineHeight="45dp"
                     android:lineSpacingExtra="25sp"

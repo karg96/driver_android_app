@@ -31,17 +31,25 @@
         <activity android:name=".activity.NotificationSettingActivity" />
         <activity android:name=".activity.NotificationActivity" />
         <activity android:name=".activity.HomeActivity">
+
+        </activity>
+        <activity android:name=".activity.AddPhotoActivity">
             <!--  <intent-filter>
                   <action android:name="android.intent.action.MAIN" />
-
                   <category android:name="android.intent.category.LAUNCHER" />
               </intent-filter>-->
         </activity>
-        <activity android:name=".activity.AddPhotoActivity" />
-        <activity android:name=".activity.AddIdentityCardActivity" />
+        <activity android:name=".activity.AddIdentityCardActivity">
+
+        </activity>
+
         <activity android:name=".activity.AddVehicleRegistrationActivity" />
-        <activity android:name=".activity.AddDrivingLicenseActivity" />
-        <activity android:name=".activity.AddDocumentActivity" />
+        <activity android:name=".activity.AddDrivingLicenseActivity">
+
+        </activity>
+        <activity android:name=".activity.AddDocumentActivity" >
+
+        </activity>
         <activity android:name=".activity.TermsAndPolicyActivity">
 
             <!--
@@ -62,11 +70,12 @@
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/Theme.Splash">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".activity.MainActivity" />
 

@@ -3,6 +3,7 @@ package cos.tuk_tuk_driver.activity
 import android.R
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -18,6 +19,7 @@ import retrofit2.Call
 import retrofit2.Response
 import java.util.*
 
+
 class AddVehicleDetailsActiivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddVehicleDetailsActiivityBinding
@@ -30,9 +32,12 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
     private var service_type_id: String = ""
     private var vehicleId: String = ""
     private var makeId: String = ""
+    private var makeYear: String = ""
     private var mCatAdapter: ArrayAdapter<String>? = null
+    private var mYearAdapter: ArrayAdapter<String>? = null
     private val Items: ArrayList<String> = ArrayList<String>()
     private val ItemsId: ArrayList<String> = ArrayList<String>()
+    private val ItemsYear: ArrayList<String> = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +49,15 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
             from = intent.getStringExtra("from")
 
             init()
+
+            ItemsYear.add("Please select Year")
+
+            val thisYear = Calendar.getInstance()[Calendar.YEAR]
+            for (i in 1990..thisYear) {
+                ItemsYear.add(Integer.toString(i))
+            }
+
+
 
             Items.add(0, "Please select Make")
             ItemsId.add(0, "Please select Make")
@@ -59,15 +73,56 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                 service_number = intent.getStringExtra("service_number")
                 vehicleId = intent.getStringExtra("vehicleId")
 
-                binding.vehicleTitle.setText("Edit Vehicle")
-                binding.btnAddVehicle.setText("Update Vehicle")
+                binding.vehicleTitle.text = "Edit Vehicle"
+                binding.btnAddVehicle.text = "Update Vehicle"
 
                 binding.model.setText(service_model)
                 binding.licensePlate.setText(service_number)
-                binding.year.setText(service_year)
+
                 binding.vehilceColor.setText(service_color)
                 binding.licensePlate.isEnabled = false
+                binding.licensePlate.setBackgroundColor(Color.parseColor("#f4f4f4"))
+                //  binding.licensePlate.setBackgroundColor(R.color.holo_blue_dark);
+
+
             }
+
+            mYearAdapter = ArrayAdapter<String>(
+                applicationContext,
+                R.layout.simple_spinner_dropdown_item,
+                ItemsYear
+            )
+            binding.year.setAdapter(mYearAdapter)
+            binding.year.setOnItemSelectedListener(object : OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
+                    try {
+                        if (position == 0) {
+                            makeYear = ""
+                            makeToast(applicationContext, "Please select Year")
+
+                        } else {
+                            makeYear = ItemsYear.get(position)
+                            // mCategory = (String) Items.get(position);
+                        }
+                    } catch (e: java.lang.Exception) {
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            })
+
+            /* for (x in 0..ItemsYear.size) {
+                 if (ItemsYear.get(x).equals(service_year, ignoreCase = true)) {
+                     binding.year.text = service_year
+                     makeYear = service_year
+                 }
+             }
+             mYearAdapter!!.notifyDataSetChanged()*/
 
             mCatAdapter = ArrayAdapter<String>(
                 applicationContext,
@@ -124,14 +179,17 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
     private fun validate() {
 
-        if (binding.model.text.isEmpty() || binding.licensePlate.text.isEmpty() || binding.year.text.isEmpty()
-        ) {
+        if (binding.model.text.isEmpty() || binding.licensePlate.text.isEmpty()) {
 
             makeToast(applicationContext, "Please fill all mandatory fields")
 
         } else if (makeId.isEmpty()) {
 
             makeToast(applicationContext, "Please select make field")
+
+        } else if (makeYear.isEmpty()) {
+
+            makeToast(applicationContext, "Please select Year field")
 
         } else {
 
@@ -161,7 +219,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                 vehicleId,
                 makeId,
                 binding.model.text.toString(),
-                binding.year.text.toString(),
+                makeYear,
                 binding.vehilceColor.text.toString()
             )
                 .enqueue(object : retrofit2.Callback<AddVehicleModal> {
@@ -219,7 +277,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                 makeId,
                 binding.licensePlate.text.toString(),
                 binding.model.text.toString(),
-                binding.year.text.toString(),
+                makeYear,
                 binding.vehilceColor.text.toString()
             )
                 .enqueue(object : retrofit2.Callback<AddVehicleModal> {
@@ -240,7 +298,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
                             binding.licensePlate.setText("")
                             binding.model.setText("")
-                            binding.year.setText("")
+                            binding.year.text = ""
                             binding.vehilceColor.setText("")
 
                             makeToast(applicationContext, response.body()!!.message)
@@ -318,6 +376,12 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                             }
 
                             mCatAdapter!!.notifyDataSetChanged()
+
+                            binding.year.text = service_year
+                            makeYear = service_year
+
+                            mYearAdapter!!.notifyDataSetChanged()
+
 
                         } else if (!response.body()!!.status) {
                             makeToast(applicationContext, response.body()!!.message)

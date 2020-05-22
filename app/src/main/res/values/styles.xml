@@ -81,4 +81,9 @@
         <item name="buttonTint">@color/colorDarkBlue</item>
     </style>
 
+    <style name="SwitchCompatStyle">
+        <item name="android:thumb">@drawable/track_selector</item>
+        <item name="trackTint">@color/colorGray</item>
+    </style>
+
 </resources>

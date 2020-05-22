@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.tuktuk.utils.Comman
+import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityAddDocumentBinding
 import cos.tuk_tuk_driver.models.Documents
 import retrofit2.Call
@@ -71,16 +72,69 @@ class AddDocumentActivity : AppCompatActivity() {
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "1") {
                                             binding.driverCheck.visibility = View.VISIBLE
+
+                                            if (response.body()!!.driverDocuments.get(x).status.equals("ACTIVE",ignoreCase = true)) {
+                                                binding.driverCheck.setImageResource(R.drawable.ic_check_green)
+                                            }
+
+                                            if (response.body()!!.driverDocuments.get(x).status.equals("REJECT",ignoreCase = true) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals("EXPIRED",ignoreCase = true) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals("EXPIRETODAY",ignoreCase = true)
+                                            ) {
+                                                binding.driverCheck.setImageResource(R.drawable.ic_check_red)
+                                            }
+
+                                            if (response.body()!!.driverDocuments.get(x).status.equals("NEARTOEXPIRE",ignoreCase = true) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals("Processing",ignoreCase = true) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals("EXPIRETODAY",ignoreCase = true)
+                                            ) {
+                                                binding.driverCheck.setImageResource(R.drawable.ic_check_yellow)
+                                            }
                                         }
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "8") {
                                             binding.identyCheck.visibility = View.VISIBLE
 
+                                            if (response.body()!!.driverDocuments.get(x).status.equals("ACTIVE",ignoreCase = true)) {
+                                                binding.identyCheck.setImageResource(R.drawable.ic_check_green)
+                                            }
+
+                                            if (response.body()!!.driverDocuments.get(x).status.equals("REJECT",ignoreCase = true) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals("EXPIRED",ignoreCase = true) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals("EXPIRETODAY",ignoreCase = true)
+                                            ) {
+                                                binding.identyCheck.setImageResource(R.drawable.ic_check_red)
+                                            }
+
+                                            if (response.body()!!.driverDocuments.get(x).status.equals("NEARTOEXPIRE",ignoreCase = true) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals("Processing",ignoreCase = true) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals("EXPIRETODAY",ignoreCase = true)
+                                            ) {
+                                                binding.identyCheck.setImageResource(R.drawable.ic_check_yellow)
+                                            }
+
                                         }
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "9") {
-                                            binding.photoCheck.visibility = View.VISIBLE
+                                                binding.photoCheck.visibility = View.VISIBLE
 
+                                            if (response.body()!!.driverDocuments.get(x).status.equals("ACTIVE",ignoreCase = true)) {
+                                                binding.photoCheck.setImageResource(R.drawable.ic_check_green)
+                                            }
+
+                                            if (response.body()!!.driverDocuments.get(x).status.equals("REJECT",ignoreCase = true) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals("EXPIRED",ignoreCase = true) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals("EXPIRETODAY",ignoreCase = true)
+                                            ) {
+                                                binding.photoCheck.setImageResource(R.drawable.ic_check_red)
+                                            }
+
+                                            if (response.body()!!.driverDocuments.get(x).status.equals("NEARTOEXPIRE",ignoreCase = true) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals("Processing",ignoreCase = true) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals("EXPIRETODAY",ignoreCase = true)
+                                            ) {
+                                                binding.photoCheck.setImageResource(R.drawable.ic_check_yellow)
+                                            }
                                         }
 
                                         if (response.body()!!.driverDocuments.get(x).status.equals(
