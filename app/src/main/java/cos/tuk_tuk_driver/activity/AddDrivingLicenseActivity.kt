@@ -63,7 +63,7 @@ class AddDrivingLicenseActivity : AppCompatActivity() {
 
             if (!driverLicenceImage.isEmpty()) {
                 Glide.with(applicationContext).load(URLHelper.BaseUrlImage +driverLicenceImage).into(binding.imgLicense)
-                binding.uploadDoc.visibility -= View.GONE
+//                binding.uploadDoc.visibility -= View.GONE
             }
         } catch (Ex: Exception) {
 

@@ -5,10 +5,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import com.tuktuk.utils.Comman
+import cos.tuk_tuk_driver.DriverApp
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityAddDocumentBinding
 import cos.tuk_tuk_driver.models.Documents
+import cos.tuk_tuk_driver.utils.Prefs
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -237,14 +240,63 @@ class AddDocumentActivity : AppCompatActivity() {
             } else {
                 Comman.makeToast(
                     applicationContext,
-                    "Please wait your documents is not approved yet"
+                    "Your account need some attentions."
                 )
             }
 
 
         }
 
+        binding.signOut.setOnClickListener {
+
+            LogoutAlert();
+        }
+
 
     }
+
+    private fun LogoutAlert() {
+
+        // Initialize a new instance of
+//        val builder = AlertDialog.Builder(binding.signOut, R.style.AlertDialogCustom)
+//
+//        // Set the alert dialog title
+//        builder.setTitle("Logout")
+//
+//        // Display a message on alert dialog
+//        builder.setMessage("Are you sure you want to logout?")
+//
+//        // Set a positive button and its click listener on alert dialog
+//        builder.setPositiveButton("YES") { dialog, which ->
+            // Do something when user press the positive button
+            // doLogout()
+            Prefs.clearSharedPreferences(DriverApp.context)
+            val intent = Intent(
+                this,
+                GetOtpActivity::class.java
+            ) //not application context
+//            intent.putExtra("from", "register")
+
+            intent.flags =
+                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            startActivity(intent)
+//        }
+//
+//
+//        // Display a negative button on alert dialog
+//        builder.setNegativeButton("No") { dialog, which ->
+//
+//        }
+//
+//
+//        // Finally, make the alert dialog using builder
+//        val dialog: AlertDialog = builder.create()
+//
+//        // Display the alert dialog on app interface
+//        dialog.show()
+    }
+
+
 
 }

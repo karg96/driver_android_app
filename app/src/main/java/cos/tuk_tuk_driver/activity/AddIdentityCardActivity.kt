@@ -83,7 +83,7 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
                 .into(binding.passportFront)
             Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverPassportBackImage)
                 .into(binding.passportBack)
-            binding.uploadDoc.visibility -= View.GONE
+//            binding.uploadDoc.visibility -= View.GONE
             binding.imagetitle.visibility -= View.GONE
             binding.passportBack.setOnClickListener(null)
             binding.passportFront.setOnClickListener(null)

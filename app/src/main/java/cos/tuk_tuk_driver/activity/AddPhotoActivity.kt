@@ -59,7 +59,7 @@ class AddPhotoActivity : AppCompatActivity() {
 
             if (!driverAddImage.isEmpty()) {
                 Glide.with(applicationContext).load(URLHelper.BaseUrlImage +driverAddImage).into(binding.imgLicense)
-                binding.uploadDoc.visibility -= View.GONE
+//                binding.uploadDoc.visibility -= View.GONE
             }
         } catch (Ex: Exception) {
 
