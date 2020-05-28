@@ -33,6 +33,7 @@ class Account : Fragment() {
     private var securityPrivacy: LinearLayout? = null
     private var about: LinearLayout? = null
     private var reportIssue: LinearLayout? = null
+    private var document: LinearLayout? = null
     private var payment: LinearLayout? = null
     private var deleteAccount: TextView? = null
     private var vehicleText: TextView? = null
@@ -54,6 +55,7 @@ class Account : Fragment() {
         try {
 
             payment = view.findViewById<LinearLayout>(R.id.payment)
+            document = view.findViewById<LinearLayout>(R.id.document)
             vehilce = view.findViewById<RelativeLayout>(R.id.vehilce)
             vehicleText = view.findViewById<TextView>(R.id.vehicleText)
             deleteAccount = view.findViewById<TextView>(R.id.deleteAccount)
@@ -62,6 +64,11 @@ class Account : Fragment() {
             reportIssue = view.findViewById<LinearLayout>(R.id.reportIssue)
 
 
+            document!!.setOnClickListener {
+                val intent = Intent(context, DocumentsActivity::class.java)
+                Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
+                startActivity(intent)
+            }
             securityPrivacy!!.setOnClickListener {
                 val intent = Intent(context, SecurityAndPrivacy::class.java)
                 Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/

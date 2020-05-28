@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -117,6 +118,7 @@ class AllVehicleActivity : AppCompatActivity() {
             val dialog = ProgressDialog(this)
             dialog.setMessage("Please wait....")
             dialog.show()
+
             apiInterface!!.deleteVehicle(id, "")
                 .enqueue(object : Callback<GetVehicleModal> {
                     override fun onFailure(call: Call<GetVehicleModal>, t: Throwable) {
@@ -135,7 +137,6 @@ class AllVehicleActivity : AppCompatActivity() {
                             if (response.body()!!.status) {
                                 Comman.makeToast(applicationContext, response.body()!!.message)
                                 getVehiclesList()
-
 
                             } else {
 
@@ -193,7 +194,7 @@ class AllVehicleActivity : AppCompatActivity() {
                 buffer.add(
                     MyButton(this@AllVehicleActivity,
                         "Edit",
-                        60,
+                        80,
                         R.drawable.ic_edit,
                         Color.parseColor("#FF8800"),
                         object : MyButtonClickListener {
@@ -235,7 +236,7 @@ class AllVehicleActivity : AppCompatActivity() {
                 buffer.add(
                     MyButton(this@AllVehicleActivity,
                         "Delete",
-                        60,
+                        80,
                         R.drawable.ic_delete,
                         Color.parseColor("#E31A2B"),
                         object : MyButtonClickListener {
@@ -260,6 +261,7 @@ class AllVehicleActivity : AppCompatActivity() {
             }
 
         }
+
 
     }
 }

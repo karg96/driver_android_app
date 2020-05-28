@@ -37,7 +37,6 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityAddIdentityCardBinding

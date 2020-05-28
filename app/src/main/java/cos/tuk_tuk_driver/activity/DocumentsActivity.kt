@@ -7,40 +7,58 @@ import android.os.Bundle
 import android.view.View
 import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.R
-import cos.tuk_tuk_driver.databinding.ActivityAddDocumentBinding
+import cos.tuk_tuk_driver.databinding.ActivityDocumentsBinding
 import cos.tuk_tuk_driver.models.Documents
+import cos.tuk_tuk_driver.utils.Prefs
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AddDocumentActivity : AppCompatActivity() {
+class DocumentsActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAddDocumentBinding
+    private lateinit var binding: ActivityDocumentsBinding
     private val apiInterface = Comman.getApiToken()
-    private var UserName: String = ""
-    private var IsApproved: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddDocumentBinding.inflate(layoutInflater)
+        binding = ActivityDocumentsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        try {
-
-            UserName = intent.getStringExtra("name")
-            init()
-
-            binding.name.text = "Hi, " + UserName
-
-        } catch (Ex: Exception) {
-
-        }
-
+        init()
+        GetUploadDocuments()
     }
 
-    override fun onResume() {
-        super.onResume()
-        GetUploadDocuments()
+    private fun init() {
+
+        binding.close.setOnClickListener {
+            finish()
+        }
+
+        binding.driver.setOnClickListener {
+
+            val intent = Intent(this@DocumentsActivity, AddDrivingLicenseActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+
+
+
+        binding.passport.setOnClickListener {
+
+            val intent = Intent(this@DocumentsActivity, AddIdentityCardActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+
+        binding.addPhoto.setOnClickListener {
+
+            val intent = Intent(this@DocumentsActivity, AddPhotoActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+
+        }
 
     }
 
@@ -71,14 +89,16 @@ class AddDocumentActivity : AppCompatActivity() {
                                     for (x in 0 until response.body()!!.driverDocuments.size) {
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "1") {
-                                            binding.driverCheck.visibility = View.VISIBLE
-
+                                            binding.driver.visibility = View.VISIBLE
+                                            Prefs.putKey(applicationContext, "driverLicenceImage",response.body()!!.driverDocuments.get(x).url)
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "ACTIVE",
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.driverCheck.setImageResource(R.drawable.ic_check_green)
+                                                binding.vehicleText.text = "Document approved"
+                                                binding.driverImage.setImageResource(R.drawable.ic_check_white)
+                                                binding.driverImage.setBackgroundResource(R.drawable.edt_round_green)
                                             }
 
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
@@ -94,7 +114,10 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.driverCheck.setImageResource(R.drawable.ic_check_red)
+                                                binding.vehicleText.text = "Document expired"
+
+                                                binding.driverImage.setImageResource(R.drawable.ic_remove_white)
+                                                binding.driverImage.setBackgroundResource(R.drawable.edt_round_red)
                                             }
 
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
@@ -110,19 +133,28 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.driverCheck.setImageResource(R.drawable.ic_check_yellow)
+                                                binding.vehicleText.text = "Document will expire soon"
+
+                                                binding.driverImage.setImageResource(R.drawable.ic_alarm_white)
+                                                binding.driverImage.setBackgroundResource(R.drawable.edt_round_oranges)
+
                                             }
                                         }
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "8") {
-                                            binding.identyCheck.visibility = View.VISIBLE
+                                            binding.passport.visibility = View.VISIBLE
+                                           Prefs.putKey(applicationContext, "driverPassportFrontImage",response.body()!!.driverDocuments.get(x).url)
+                                            Prefs.putKey(applicationContext, "driverPassportBackImage",response.body()!!.driverDocuments.get(x).additonal_doc)
 
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "ACTIVE",
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.identyCheck.setImageResource(R.drawable.ic_check_green)
+                                                binding.statusText.text = "Document approved"
+
+                                                binding.PassportImage.setImageResource(R.drawable.ic_check_white)
+                                                binding.PassportImage.setBackgroundResource(R.drawable.edt_round_green)
                                             }
 
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
@@ -138,7 +170,10 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.identyCheck.setImageResource(R.drawable.ic_check_red)
+                                                binding.statusText.text = "Document expired"
+
+                                                binding.PassportImage.setImageResource(R.drawable.ic_remove_white)
+                                                binding.PassportImage.setBackgroundResource(R.drawable.edt_round_red)
                                             }
 
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
@@ -154,20 +189,27 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.identyCheck.setImageResource(R.drawable.ic_check_yellow)
+                                                binding.statusText.text = "Document will expire soon"
+
+                                                binding.PassportImage.setImageResource(R.drawable.ic_alarm_white)
+                                                binding.PassportImage.setBackgroundResource(R.drawable.edt_round_oranges)
                                             }
 
                                         }
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "9") {
-                                            binding.photoCheck.visibility = View.VISIBLE
-
+                                            binding.addPhoto.visibility = View.VISIBLE
+                                            Prefs.putKey(applicationContext, "driverLicenceImage",response.body()!!.driverDocuments.get(x).url)
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "ACTIVE",
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.photoCheck.setImageResource(R.drawable.ic_check_green)
+                                                binding.statusPhoto.text = "Document approved"
+
+                                                binding.PhotoImage.setImageResource(R.drawable.ic_check_white)
+                                                binding.PhotoImage.setBackgroundResource(R.drawable.edt_round_green)
+
                                             }
 
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
@@ -183,7 +225,11 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.photoCheck.setImageResource(R.drawable.ic_check_red)
+                                                binding.statusPhoto.text = "Document expired"
+
+                                                binding.PhotoImage.setImageResource(R.drawable.ic_remove_white)
+                                                binding.PhotoImage.setBackgroundResource(R.drawable.edt_round_red)
+
                                             }
 
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
@@ -199,46 +245,21 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.photoCheck.setImageResource(R.drawable.ic_check_yellow)
+                                                binding.statusPhoto.text = "Document will expire soon"
+
+                                                binding.PhotoImage.setImageResource(R.drawable.ic_alarm_white)
+                                                binding.PhotoImage.setBackgroundResource(R.drawable.edt_round_oranges)
                                             }
-                                        }
 
-                                        if (response.body()!!.driverDocuments.get(x).status.equals(
-                                                "approved",
-                                                ignoreCase = true
-                                            )
-                                        ) {
-                                            IsApproved += 1
-                                        }
 
+                                        }
                                     }
 
+
                                 }
-
-                                /*if (response.body()!!.vehicleDocuments.size != 0) {
-                                    for (x in 0 until response.body()!!.vehicleDocuments.size) {
-
-                                        if (response.body()!!.vehicleDocuments.get(x).document_id == "5") {
-
-                                            binding.registerationCheck.visibility = View.VISIBLE
-
-                                        }
-
-                                    }
-                                }*/
-
-                                if (binding.driverCheck.visibility == View.VISIBLE
-                                    && binding.photoCheck.visibility == View.VISIBLE
-                                    && binding.identyCheck.visibility == View.VISIBLE
-                                ) {
-
-                                    binding.btnNext.visibility = View.VISIBLE
-                                }
-
-                            } else {
-                                Comman.makeToast(applicationContext, "Please try again later")
 
                             }
+
 
                         } catch (Ex: Exception) {
 
@@ -250,66 +271,6 @@ class AddDocumentActivity : AppCompatActivity() {
         } catch (Ex: java.lang.Exception) {
 
         }
-
-    }
-
-    private fun init() {
-
-
-        binding.cardLicense.setOnClickListener {
-
-            val intent = Intent(this@AddDocumentActivity, AddDrivingLicenseActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-        }
-
-        binding.cardRegDocument.setOnClickListener {
-
-            val intent =
-                Intent(this@AddDocumentActivity, AddVehicleRegistrationActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-        }
-
-        binding.cardIdentity.setOnClickListener {
-
-            val intent = Intent(this@AddDocumentActivity, AddIdentityCardActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-        }
-
-        binding.cardPhoto.setOnClickListener {
-
-            val intent = Intent(this@AddDocumentActivity, AddPhotoActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-
-        }
-
-        binding.btnNext.setOnClickListener {
-
-            if (IsApproved == 3) {
-                val intent = Intent(
-                    this@AddDocumentActivity,
-                    HomeActivity::class.java
-                )
-                intent.flags =
-                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-            } else {
-                Comman.makeToast(
-                    applicationContext,
-                    "Please wait your documents is not approved yet"
-                )
-            }
-
-
-        }
-
 
     }
 
