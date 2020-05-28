@@ -15,7 +15,16 @@
             android:layout_height="match_parent"
             android:background="@color/colorWhite"
             android:orientation="vertical">
-
+            <TextView
+                android:id="@+id/signOut"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="textEnd"
+                android:text="Sign Out"
+                android:fontFamily="@font/nunitosans_bold"
+                android:padding="20dp"
+                android:textSize="15dp"
+                android:textColor="@color/colorBlue"/>
 
             <TextView
                 android:id="@+id/name"
@@ -23,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="51sp"
+                android:layout_marginTop="11sp"
                 android:layout_marginRight="15dp"
                 android:fontFamily="@font/nunitosans_bold"
                 android:lineHeight="40dp"
@@ -341,6 +350,7 @@
                     android:text="@string/lets_start"
                     android:textAllCaps="false"
                     android:visibility="gone"
+                    android:layout_alignParentBottom="true"
                     android:textColor="@color/colorWhite"
                     android:textSize="23sp" />
 
