@@ -11,12 +11,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityHomeBinding
+import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.Prefs
 import fragment.Account
 import fragment.FragmentDrawer
@@ -24,7 +21,6 @@ import fragment.Home
 
 class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
     View.OnClickListener {
-
 
     var mToolbar: Toolbar? = null
     var drawerFragment: FragmentDrawer? = null
@@ -61,8 +57,7 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
                 supportFragmentManager.findFragmentById(R.id.fragment_navigation_drawer) as FragmentDrawer?
             drawerFragment!!.setUp(
                 R.id.fragment_navigation_drawer,
-                findViewById<View>(R.id.drawer) as DrawerLayout,
-                mToolbar
+                findViewById<View>(R.id.drawer) as DrawerLayout, mToolbar
             )
             drawerFragment!!.setDrawerListener(this)
 

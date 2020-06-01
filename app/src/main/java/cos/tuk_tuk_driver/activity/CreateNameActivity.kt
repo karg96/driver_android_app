@@ -5,8 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View.OnFocusChangeListener
 import androidx.appcompat.app.AppCompatActivity
-import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.databinding.ActivityCreateNameBinding
+import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.Prefs
 
 class CreateNameActivity : AppCompatActivity() {

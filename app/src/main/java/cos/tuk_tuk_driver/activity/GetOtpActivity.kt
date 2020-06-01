@@ -4,11 +4,11 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import android.content.Intent
 import com.tuktuk.utils.BaseActivity
-import com.tuktuk.utils.Comman
-import com.tuktuk.utils.Comman.makeToast
-import com.tuktuk.utils.Constants
 import cos.tuk_tuk_driver.databinding.ActivityGetOtpBinding
 import cos.tuk_tuk_driver.models.RegisterModal
+import cos.tuk_tuk_driver.utils.Comman
+import cos.tuk_tuk_driver.utils.Comman.makeToast
+import cos.tuk_tuk_driver.utils.Constants
 import kotlinx.android.synthetic.main.activity_get_otp.*
 import retrofit2.Call
 import retrofit2.Callback

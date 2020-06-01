@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.tuktuk.utils.Comman
+
 import cos.tuk_tuk_driver.DriverApp
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.activity.AllVehicleActivity
 import cos.tuk_tuk_driver.models.GetVehicleModal
 import cos.tuk_tuk_driver.models.Vehicles
 import cos.tuk_tuk_driver.services.ApiInterface
+import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.URLHelper
 import kotlinx.android.synthetic.main.vehicle_d.view.*
 import retrofit2.Call

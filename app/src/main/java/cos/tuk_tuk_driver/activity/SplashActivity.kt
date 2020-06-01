@@ -11,9 +11,10 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import com.tuktuk.utils.BaseActivity
-import com.tuktuk.utils.Comman
+
 import cos.tuk_tuk_driver.databinding.ActivitySplashBinding
 import cos.tuk_tuk_driver.models.Documents
+import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.Prefs
 import cos.tuk_tuk_driver.utils.ProgressBarAnimation
 import retrofit2.Call

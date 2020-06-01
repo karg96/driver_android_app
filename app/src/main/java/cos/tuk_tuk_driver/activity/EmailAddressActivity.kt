@@ -4,8 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.tuktuk.utils.Comman
+
 import cos.tuk_tuk_driver.databinding.ActivityEmailAddressBinding
+import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.Prefs
 import cos.tuk_tuk_driver.utils.Validation.isValidEmail
 

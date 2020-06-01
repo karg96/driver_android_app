@@ -10,11 +10,11 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import com.tuktuk.utils.Comman
-import com.tuktuk.utils.Comman.makeToast
 import cos.tuk_tuk_driver.databinding.ActivityAddVehicleDetailsActiivityBinding
 import cos.tuk_tuk_driver.models.AddVehicleModal
 import cos.tuk_tuk_driver.models.GetVehicleServiceModal
+import cos.tuk_tuk_driver.utils.Comman
+import cos.tuk_tuk_driver.utils.Comman.makeToast
 import retrofit2.Call
 import retrofit2.Response
 import java.util.*

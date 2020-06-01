@@ -11,11 +11,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.tuktuk.utils.Comman
+
 import cos.tuk_tuk_driver.DriverApp
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.activity.GetOtpActivity
 import cos.tuk_tuk_driver.models.RegisterModal
+import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.Prefs
 import kotlinx.android.synthetic.main.fragment_drawer.view.*
 import retrofit2.Call

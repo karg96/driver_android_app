@@ -21,10 +21,10 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityAddPhotoBinding
 import cos.tuk_tuk_driver.models.UploadDocsModal
+import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.Prefs
 import cos.tuk_tuk_driver.utils.URLHelper
 import okhttp3.MediaType

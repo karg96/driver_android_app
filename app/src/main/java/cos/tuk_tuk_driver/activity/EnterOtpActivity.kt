@@ -13,12 +13,12 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.tuktuk.utils.BaseActivity
-import com.tuktuk.utils.Comman
-import com.tuktuk.utils.Comman.makeToast
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityEnterOtpBinding
 import cos.tuk_tuk_driver.models.OtpModal
 import cos.tuk_tuk_driver.models.RegisterModal
+import cos.tuk_tuk_driver.utils.Comman
+import cos.tuk_tuk_driver.utils.Comman.makeToast
 import cos.tuk_tuk_driver.utils.Prefs
 import retrofit2.Call
 import retrofit2.Callback

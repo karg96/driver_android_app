@@ -11,12 +11,13 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import com.tuktuk.utils.Comman
+
 import cos.tuk_tuk_driver.DriverApp
 
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.activity.*
 import cos.tuk_tuk_driver.models.GetVehicleModal
+import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.Prefs
 import retrofit2.Call
 import retrofit2.Callback

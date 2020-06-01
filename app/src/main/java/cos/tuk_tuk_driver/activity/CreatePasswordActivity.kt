@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.databinding.ActivityCreatePasswordBinding
+import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.Prefs
 import cos.tuk_tuk_driver.utils.Validation.isValidPassword
 

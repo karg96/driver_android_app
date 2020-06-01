@@ -1,20 +1,11 @@
 package cos.tuk_tuk_driver.utils
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.os.Build
-import android.view.Gravity
-import android.widget.Button
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.core.util.lruCache
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import cos.tuk_tuk_driver.DriverApp.Companion.context
 import cos.tuk_tuk_driver.listener.MyButtonClickListener
 
 class MyButton(
@@ -63,14 +54,21 @@ class MyButton(
         var x = 0f
         var y = 0f
         if (imageResId == 0) {
+
             x = cWidth / 2f - r.width() / 2f - r.left.toFloat()
             y = cHeight / 2f + r.height() / 2f - r.bottom.toFloat()
             c.drawText(text, rectF.left + x, rectF.top + y, p)
+
         } else {
             val d = ContextCompat.getDrawable(context, imageResId)
-            val bitmap = drawableToBitmap(d)
+            val bitmap = drawableToBitmap(d!!)
 //            c.drawBitmap(bitmap, (rectF.left + rectF.right) / 2, (rectF.top + rectF.bottom) / 2, p)
-            c.drawBitmap(bitmap, (rectF.left + rectF.right) / 2, (rectF.top + rectF.bottom) / 2, p)
+            c.drawBitmap(
+                bitmap,
+                (rectF.left + rectF.right) / 2,
+                (rectF.top + rectF.bottom) / 2,
+                p
+            )
         }
 
         clickRegion = rectF
@@ -89,5 +87,32 @@ class MyButton(
         d.draw(canvas)
         return bitmap
     }
+
+    /* fun drawableToBitmap(drawable: Drawable): Bitmap? {
+         var bitmap: Bitmap? = null
+         if (drawable is BitmapDrawable) {
+             val bitmapDrawable = drawable
+             if (bitmapDrawable.bitmap != null) {
+                 return bitmapDrawable.bitmap
+             }
+         }
+         bitmap = if (drawable.intrinsicWidth <= 0 || drawable.intrinsicHeight <= 0) {
+             Bitmap.createBitmap(
+                 1,
+                 1,
+                 Bitmap.Config.ARGB_8888
+             ) // Single color bitmap will be created of 1x1 pixel
+         } else {
+             Bitmap.createBitmap(
+                 drawable.intrinsicWidth,
+                 drawable.intrinsicHeight,
+                 Bitmap.Config.ARGB_8888
+             )
+         }
+         val canvas = Canvas(bitmap)
+         drawable.setBounds(0, 0, canvas.width, canvas.height)
+         drawable.draw(canvas)
+         return bitmap
+     }*/
 
 }

@@ -5,10 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.tuktuk.utils.Comman
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityDocumentsBinding
 import cos.tuk_tuk_driver.models.Documents
+import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.Prefs
 import retrofit2.Call
 import retrofit2.Callback

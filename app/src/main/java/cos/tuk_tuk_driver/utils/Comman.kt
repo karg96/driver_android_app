@@ -1,4 +1,4 @@
-package com.tuktuk.utils
+package cos.tuk_tuk_driver.utils
 
 import android.content.Context
 import android.content.Intent
