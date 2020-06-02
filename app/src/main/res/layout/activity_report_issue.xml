@@ -61,7 +61,7 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/edt_phone_number"
+        android:id="@+id/edt_message"
         android:layout_width="match_parent"
         android:layout_height="221dp"
         android:layout_below="@+id/message"

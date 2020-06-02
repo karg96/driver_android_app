@@ -99,7 +99,6 @@ interface ApiInterface {
     @GET(GetUploadDocs)
     fun getUploadDocs(): Call<Documents>
 
-
     @POST(URLHelper.AddVehicle)
     @FormUrlEncoded
     fun addVehicle(
@@ -110,14 +109,15 @@ interface ApiInterface {
         @Field("service_color") service_color: String
     ): Call<AddVehicleModal>
 
-
     @POST(URLHelper.GetVehicle)
     @FormUrlEncoded
     fun getVehicle(@Field("empty") empty: String): Call<GetVehicleModal>
 
-
     @GET(URLHelper.MakePrime + "{id}/set-prime")
     fun makePrime(@Path("id") id: String): Call<GetVehicleModal>
+
+    @GET(URLHelper.MakePrime + "{id}/unset-prime")
+    fun unsetPrime(@Path("id") id: String): Call<GetVehicleModal>
 
     @POST(URLHelper.DeleteVehicle + "{id}")
     @FormUrlEncoded
@@ -125,7 +125,6 @@ interface ApiInterface {
         @Path("id") id: String,
         @Field("empty") empty: String
     ): Call<GetVehicleModal>
-
 
     @POST(URLHelper.UpdateVehicle)
     @FormUrlEncoded
@@ -143,11 +142,24 @@ interface ApiInterface {
         @Field("empty") empty: String
     ): Call<GetVehicleServiceModal>
 
-
     @POST(URLHelper.ChangePayments)
     @FormUrlEncoded
     fun changePayments(
         @Field("method") method: String
+    ): Call<GetpaymentModaal>
+
+    @POST(URLHelper.ReportIssue)
+    @FormUrlEncoded
+    fun reportIssue(
+        @Field("title") title: String,
+        @Field("description") description: String,
+        @Field("category") category: String
+    ): Call<GetpaymentModaal>
+
+    @POST(URLHelper.Available)
+    @FormUrlEncoded
+    fun available(
+        @Field("service_status") service_status: String
     ): Call<GetpaymentModaal>
 
     @GET(PaymentsList)

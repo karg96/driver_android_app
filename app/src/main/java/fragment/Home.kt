@@ -1,14 +1,16 @@
 package fragment
 
 import android.Manifest
+import android.app.ProgressDialog
 import android.content.pm.PackageManager
-import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
+import android.widget.Switch
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.android.volley.VolleyLog
@@ -27,9 +29,12 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import cos.tuk_tuk_driver.R
+import cos.tuk_tuk_driver.models.GetpaymentModaal
+import cos.tuk_tuk_driver.utils.Comman
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.online_bottom_sheet.*
-import java.io.IOException
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 /**
@@ -41,6 +46,9 @@ class Home : Fragment(), OnMapReadyCallback {
     var initial_latitude = 0.0
     var initial_longitude = 0.0
     var initial_marker = "Seed nay"
+    lateinit var online: Switch
+
+    val apiInterface = Comman.getApiToken()
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -59,11 +67,70 @@ class Home : Fragment(), OnMapReadyCallback {
 
         var view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        online = view.findViewById(R.id.online)
+
+        online.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
+                if (online.isChecked) {
+                    makeAvailable("active")
+                } else {
+                    makeAvailable("offline")
+
+                }
+            }
+        })
         currentLocation()
 
         return view
     }
 
+
+    private fun makeAvailable(s: String) {
+
+        try {
+
+            val dialog = ProgressDialog(context)
+            dialog.setMessage("Please wait....")
+            dialog.show()
+
+            apiInterface!!.available(s)
+                .enqueue(object : Callback<GetpaymentModaal> {
+                    override fun onFailure(call: Call<GetpaymentModaal>, t: Throwable) {
+                        dialog.dismiss()
+                        Comman.makeToast(context, "Please try again later")
+
+                    }
+
+                    override fun onResponse(
+                        call: Call<GetpaymentModaal>,
+                        response: Response<GetpaymentModaal>
+                    ) {
+                        try {
+
+                            dialog.dismiss()
+
+                            if (response.body()!!.status) {
+                                Comman.makeToast(context, response.body()!!.message)
+
+                            } else {
+
+                                Comman.makeToast(context, "Please try again later")
+
+                            }
+
+                        } catch (Ex: Exception) {
+
+                        }
+
+                    }
+
+                })
+        } catch (Ex: Exception) {
+            Comman.makeToast(context, "Please try again later")
+
+        }
+
+    }
 
     private fun currentLocation() {
 

@@ -23,6 +23,8 @@ object URLHelper {
     const val Services = "api/provider/services"
     const val PaymentsList = "api/provider/payment-methods/list"
     const val ChangePayments = "api/provider/change/payment-methods"
+    const val ReportIssue = "api/provider/report-issue"
+    const val Available = "api/provider/profile/available"
 
 
 }

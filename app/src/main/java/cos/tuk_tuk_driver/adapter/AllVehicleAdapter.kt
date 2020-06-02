@@ -82,17 +82,24 @@ class AllVehicleAdapter(val context: Context, val dataList: ArrayList<Vehicles>)
         }
 
         holder.makePrime.setOnClickListener {
+
             val builder =
                 androidx.appcompat.app.AlertDialog.Builder(context, R.style.AlertDialogCustom)
-            //set title for alert dialog
-//            builder.setTitle("Are you sure! Do you want to make suv vehicle as a prime")
             //set message for alert dialog
-            builder.setMessage("Are you sure! Do you want to make SUV vehicle as a prime?")
+            if (data.prime == 1) {
+                builder.setMessage("Are you sure! Do you want to unset SUV vehicle from prime?")
+            } else if (data.prime == 0) {
+                builder.setMessage("Are you sure! Do you want to make SUV vehicle as a prime?")
+            }
 //            builder.setIcon(android.R.drawable.ic_dialog_alert)
 
             //performing positive action
             builder.setPositiveButton("Yes") { dialogInterface, which ->
-                MakePrime(data.id, holder.check)
+                if (data.prime == 1) {
+                    UnsetPrime(data.id, holder.check)
+                } else if (data.prime == 0) {
+                    MakePrime(data.id, holder.check)
+                }
             }
 
             //performing negative action
@@ -133,6 +140,58 @@ class AllVehicleAdapter(val context: Context, val dataList: ArrayList<Vehicles>)
 
                             if (response.body()!!.status) {
                                 check.visibility = View.VISIBLE
+                                Comman.makeToast(context, response.body()!!.message)
+
+                                if (context is AllVehicleActivity) {
+                                    context.getVehiclesList()
+                                }
+
+                            } else {
+
+                                Comman.makeToast(context, response.body()!!.message)
+
+                            }
+
+                        } catch (Ex: Exception) {
+
+                        }
+
+                    }
+
+                })
+        } catch (Ex: Exception) {
+
+            Comman.makeToast(context, "Please try again later")
+
+        }
+
+    }
+
+    private fun UnsetPrime(id: Int, check: ImageView) {
+
+        try {
+
+            val dialog = ProgressDialog(context)
+            dialog.setMessage("Please wait....")
+            dialog.show()
+
+            apiInterface!!.unsetPrime("$id")
+                .enqueue(object : Callback<GetVehicleModal> {
+                    override fun onFailure(call: Call<GetVehicleModal>, t: Throwable) {
+                        dialog.dismiss()
+
+                    }
+
+                    override fun onResponse(
+                        call: Call<GetVehicleModal>,
+                        response: Response<GetVehicleModal>
+                    ) {
+                        try {
+
+                            dialog.dismiss()
+
+                            if (response.body()!!.status) {
+                                check.visibility = View.GONE
                                 Comman.makeToast(context, response.body()!!.message)
 
                                 if (context is AllVehicleActivity) {

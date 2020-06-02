@@ -19,7 +19,6 @@ import retrofit2.Call
 import retrofit2.Response
 import java.util.*
 
-
 class AddVehicleDetailsActiivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddVehicleDetailsActiivityBinding
@@ -33,6 +32,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
     private var vehicleId: String = ""
     private var makeId: String = ""
     private var makeYear: String = ""
+    private var count: Int = 0
     private var mCatAdapter: ArrayAdapter<String>? = null
     private var mYearAdapter: ArrayAdapter<String>? = null
     private val Items: ArrayList<String> = ArrayList<String>()
@@ -50,13 +50,17 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
             init()
 
-            ItemsYear.add("Please select Year")
 
             val thisYear = Calendar.getInstance()[Calendar.YEAR]
             for (i in 1990..thisYear) {
-                ItemsYear.add(Integer.toString(i))
-            }
+                if (count == 0) {
 
+                    ItemsYear.add(0, "Please select Year")
+
+                }
+                count++
+                ItemsYear.add(count, "" + i)
+            }
 
 
             Items.add(0, "Please select Make")
@@ -84,8 +88,8 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                 binding.licensePlate.setBackgroundColor(Color.parseColor("#f4f4f4"))
                 //  binding.licensePlate.setBackgroundColor(R.color.holo_blue_dark);
 
-
             }
+
 
             mYearAdapter = ArrayAdapter<String>(
                 applicationContext,
@@ -101,7 +105,9 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                     id: Long
                 ) {
                     try {
-                        if (position == 0) {
+                        makeYear = ItemsYear.get(position)
+
+                        if (makeYear.equals("Please select Year", ignoreCase = true)) {
                             makeYear = ""
                             makeToast(applicationContext, "Please select Year")
 
@@ -122,6 +128,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                      makeYear = service_year
                  }
              }
+
              mYearAdapter!!.notifyDataSetChanged()*/
 
             mCatAdapter = ArrayAdapter<String>(
