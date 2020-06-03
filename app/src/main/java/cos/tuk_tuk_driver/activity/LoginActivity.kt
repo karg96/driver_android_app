@@ -202,17 +202,27 @@ class LoginActivity : AppCompatActivity() {
 
                                             if (response.body()!!.documents.driverDocuments.get(x).document_id == "1") {
                                                 isDocsUpload += 1
-                                                Prefs.putKey(applicationContext, "driverLicenceImage", response.body()!!.documents.driverDocuments.get(x).url)
+                                                Prefs.putKey(applicationContext, "driverLicenceFrontImage", response.body()!!.documents.driverDocuments.get(x).url)
+                                                Prefs.putKey(applicationContext, "driverLicenceBackImage", response.body()!!.documents.driverDocuments.get(x).additonal_doc)
+                                                Prefs.putKey(applicationContext, "driverLicenceExpiry", response.body()!!.documents.driverDocuments.get(x).expiry)
                                             }
 
                                             if (response.body()!!.documents.driverDocuments.get(x).document_id == "8") {
                                                 isDocsUpload += 1
+
                                                 Prefs.putKey(
                                                     applicationContext,
                                                     "driverPassportFrontImage",
                                                     response.body()!!.documents.driverDocuments.get(
                                                         x
                                                     ).url
+                                                )
+                                                Prefs.putKey(
+                                                    applicationContext,
+                                                    "driverPassportExpiry",
+                                                    response.body()!!.documents.driverDocuments.get(
+                                                        x
+                                                    ).expiry
                                                 )
                                                 Prefs.putKey(
                                                     applicationContext,

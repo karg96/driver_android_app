@@ -3,6 +3,7 @@ package cos.tuk_tuk_driver.activity
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
@@ -46,6 +47,8 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
     private var SelectedBackImage: String = ""
     private var driverPassportFrontImage: String = ""
     private var driverPassportBackImage: String = ""
+    private var driverPassportExpiry: String = ""
+    private var afterLogin: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,10 +59,10 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
 
             driverPassportFrontImage = Prefs.getKey(applicationContext, "driverPassportFrontImage")
             driverPassportBackImage = Prefs.getKey(applicationContext, "driverPassportBackImage")
-
+            driverPassportExpiry = Prefs.getKey(applicationContext, "driverPassportExpiry")
+            afterLogin = intent.getStringExtra("from")
 
             init()
-
 
         } catch (Ex: Exception) {
 
@@ -73,6 +76,27 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
             finish()
         }
 
+        binding.expiryDate.setOnClickListener {
+
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val dpd = DatePickerDialog(
+                this,
+                R.style.AlertDialogCustom,
+                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+                    // Display Selected date in textbox
+                    binding.expiryDate.setText("" + year + "-" + monthOfYear + "-" + dayOfMonth)
+
+                }, year, month, day
+            )
+
+            dpd.show()
+        }
+
         binding.passportBack.setOnClickListener(this)
         binding.passportFront.setOnClickListener(this)
         binding.uploadDoc.setOnClickListener(this)
@@ -82,12 +106,21 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
                 .into(binding.passportFront)
             Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverPassportBackImage)
                 .into(binding.passportBack)
-//            binding.uploadDoc.visibility -= View.GONE
-            binding.imagetitle.visibility -= View.GONE
+            binding.imagetitle.visibility = View.GONE
             binding.passportBack.setOnClickListener(null)
             binding.passportFront.setOnClickListener(null)
         }
+        if (afterLogin.equals("afterLogin", ignoreCase = true)) {
+            binding.uploadDoc.visibility = View.VISIBLE
+            binding.passportBack.setOnClickListener(this)
+            binding.passportFront.setOnClickListener(this)
+            binding.uploadDoc.setOnClickListener(this)
+        }
+        binding.expiryDate.setText(driverPassportExpiry)
+
+
     }
+
 
     private fun validate() {
 
@@ -95,11 +128,11 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
 
             Comman.makeToast(applicationContext, "Please Select Passport Front Image")
 
-        } else if (SelectedBackImage == "") {
+        } /*else if (SelectedBackImage == "") {
 
             Comman.makeToast(applicationContext, "Please Select Passport Back Image")
 
-        } else if (binding.expiryDate.text.isEmpty()) {
+        }*/ else if (binding.expiryDate.text.isEmpty()) {
             Comman.makeToast(applicationContext, "Please enter expiry date")
 
         } else {
@@ -207,55 +240,97 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
                 val document =
                     MultipartBody.Part.createFormData("document", fileFront.name, reqFileFront)
 
-                val uriBack = Uri.parse(SelectedBackImage)
-                val fileBack = File(uriBack.path)
-                val reqFileBack = RequestBody.create(MediaType.parse("image/*"), fileBack)
-                val additonal_doc =
-                    MultipartBody.Part.createFormData(
-                        "additonal_doc[]",
-                        fileBack.name,
-                        reqFileBack
-                    )
+                if (!SelectedBackImage.isEmpty()) {
+                    val uriBack = Uri.parse(SelectedBackImage)
+                    val fileBack = File(uriBack.path)
+                    val reqFileBack = RequestBody.create(MediaType.parse("image/*"), fileBack)
+                    val additonal_doc =
+                        MultipartBody.Part.createFormData(
+                            "additonal_doc[]",
+                            fileBack.name,
+                            reqFileBack
+                        )
 
-                apiInterface!!.uploadDocsPassport(documentId, document, additonal_doc, expiry)
-                    .enqueue(object : retrofit2.Callback<UploadDocsModal> {
-                        override fun onFailure(call: Call<UploadDocsModal>, t: Throwable) {
-                            dialog.dismiss()
 
-                            Comman.makeToast(applicationContext, "Please try again later")
+                    apiInterface!!.uploadDocsPassport(documentId, document, additonal_doc, expiry)
+                        .enqueue(object : retrofit2.Callback<UploadDocsModal> {
+                            override fun onFailure(call: Call<UploadDocsModal>, t: Throwable) {
+                                dialog.dismiss()
 
-                        }
-
-                        override fun onResponse(
-                            call: Call<UploadDocsModal>,
-                            response: Response<UploadDocsModal>
-                        ) {
-
-                            dialog.dismiss()
-
-                            if (response.body()!!.status) {
-
-                                SelectedFrontImage = ""
-                                SelectedBackImage = ""
-                                binding.imagetitle.visibility = View.VISIBLE
-                                binding.passportFront.setImageResource(R.drawable.pass_front)
-                                binding.passportBack.setImageResource(R.drawable.pass_front)
-
-                                Comman.makeToast(applicationContext, response.body()!!.message)
-                                finish()
-
-                            } else if (!response.body()!!.status) {
-                                Comman.makeToast(
-                                    applicationContext,
-                                    response.body()!!.error.get(0).error
-                                )
+                                Comman.makeToast(applicationContext, "Please try again later")
 
                             }
 
-                        }
+                            override fun onResponse(
+                                call: Call<UploadDocsModal>,
+                                response: Response<UploadDocsModal>
+                            ) {
 
-                    })
+                                dialog.dismiss()
 
+                                if (response.body()!!.status) {
+
+                                    SelectedFrontImage = ""
+                                    SelectedBackImage = ""
+                                    binding.imagetitle.visibility = View.VISIBLE
+                                    binding.passportFront.setImageResource(R.drawable.pass_front)
+                                    binding.passportBack.setImageResource(R.drawable.pass_front)
+
+                                    Comman.makeToast(applicationContext, response.body()!!.message)
+                                    finish()
+
+                                } else if (!response.body()!!.status) {
+                                    Comman.makeToast(
+                                        applicationContext,
+                                        response.body()!!.error.get(0).error
+                                    )
+
+                                }
+
+                            }
+
+                        })
+
+                } else {
+                    apiInterface!!.uploadDocsPassport(documentId, document, expiry)
+                        .enqueue(object : retrofit2.Callback<UploadDocsModal> {
+                            override fun onFailure(call: Call<UploadDocsModal>, t: Throwable) {
+                                dialog.dismiss()
+
+                                Comman.makeToast(applicationContext, "Please try again later")
+
+                            }
+
+                            override fun onResponse(
+                                call: Call<UploadDocsModal>,
+                                response: Response<UploadDocsModal>
+                            ) {
+
+                                dialog.dismiss()
+
+                                if (response.body()!!.status) {
+
+                                    SelectedFrontImage = ""
+                                    SelectedBackImage = ""
+                                    binding.imagetitle.visibility = View.VISIBLE
+                                    binding.passportFront.setImageResource(R.drawable.pass_front)
+                                    binding.passportBack.setImageResource(R.drawable.pass_front)
+
+                                    Comman.makeToast(applicationContext, response.body()!!.message)
+                                    finish()
+
+                                } else if (!response.body()!!.status) {
+                                    Comman.makeToast(
+                                        applicationContext,
+                                        response.body()!!.error.get(0).error
+                                    )
+
+                                }
+
+                            }
+
+                        })
+                }
             }
         } catch (Ex: Exception) {
 

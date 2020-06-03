@@ -52,7 +52,7 @@ class AddPhotoActivity : AppCompatActivity() {
         setContentView(binding.root)
         try {
 
-            driverAddImage = Prefs.getKey(applicationContext, "driverLicenceImage")
+            driverAddImage = Prefs.getKey(applicationContext, "driverAddImage")
 
 
             init()

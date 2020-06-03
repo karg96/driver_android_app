@@ -132,6 +132,7 @@
                     android:layout_marginRight="31dp"
                     android:layout_marginBottom="30dp"
                     android:cursorVisible="true"
+                    android:focusable="false"
                     android:fontFamily="@font/nunitosans_regular"
                     android:hint="@string/enter_expiry"
                     android:inputType="date"

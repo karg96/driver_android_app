@@ -264,6 +264,7 @@ class AddDocumentActivity : AppCompatActivity() {
             val intent = Intent(this@AddDocumentActivity, AddDrivingLicenseActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.putExtra("from", "beforeLogin")
             startActivity(intent)
         }
 
@@ -281,6 +282,8 @@ class AddDocumentActivity : AppCompatActivity() {
             val intent = Intent(this@AddDocumentActivity, AddIdentityCardActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.putExtra("from", "beforeLogin")
+
             startActivity(intent)
         }
 
@@ -315,7 +318,7 @@ class AddDocumentActivity : AppCompatActivity() {
 
         binding.signOut.setOnClickListener {
 
-            LogoutAlert();
+            LogoutAlert()
         }
 
 
@@ -334,19 +337,19 @@ class AddDocumentActivity : AppCompatActivity() {
 //
 //        // Set a positive button and its click listener on alert dialog
 //        builder.setPositiveButton("YES") { dialog, which ->
-            // Do something when user press the positive button
-            // doLogout()
-            Prefs.clearSharedPreferences(DriverApp.context)
-            val intent = Intent(
-                this,
-                GetOtpActivity::class.java
-            ) //not application context
+        // Do something when user press the positive button
+        // doLogout()
+        Prefs.clearSharedPreferences(DriverApp.context)
+        val intent = Intent(
+            this,
+            GetOtpActivity::class.java
+        ) //not application context
 //            intent.putExtra("from", "register")
 
-            intent.flags =
-                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        intent.flags =
+            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
-            startActivity(intent)
+        startActivity(intent)
 //        }
 //
 //
@@ -362,7 +365,6 @@ class AddDocumentActivity : AppCompatActivity() {
 //        // Display the alert dialog on app interface
 //        dialog.show()
     }
-
 
 
 }

@@ -96,6 +96,14 @@ interface ApiInterface {
         @Part("expiry") expiry: RequestBody?
     ): Call<UploadDocsModal>
 
+    @POST(UploadDocs)
+    @Multipart
+    fun uploadDocsPassport(
+        @Part("document_id") document_id: RequestBody?,
+        @Part front: MultipartBody.Part,
+        @Part("expiry") expiry: RequestBody?
+    ): Call<UploadDocsModal>
+
     @GET(GetUploadDocs)
     fun getUploadDocs(): Call<Documents>
 

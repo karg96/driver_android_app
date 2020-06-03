@@ -38,6 +38,7 @@ class DocumentsActivity : AppCompatActivity() {
             val intent = Intent(this@DocumentsActivity, AddDrivingLicenseActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.putExtra("from", "afterLogin")
             startActivity(intent)
         }
 
@@ -48,6 +49,7 @@ class DocumentsActivity : AppCompatActivity() {
             val intent = Intent(this@DocumentsActivity, AddIdentityCardActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.putExtra("from", "afterLogin")
             startActivity(intent)
         }
 
@@ -90,7 +92,22 @@ class DocumentsActivity : AppCompatActivity() {
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "1") {
                                             binding.driver.visibility = View.VISIBLE
-                                            Prefs.putKey(applicationContext, "driverLicenceImage",response.body()!!.driverDocuments.get(x).url)
+                                            Prefs.putKey(
+                                                applicationContext,
+                                                "driverLicenceExpiry",
+                                                response.body()!!.driverDocuments.get(x).expiry
+                                            )
+                                            Prefs.putKey(
+                                                applicationContext,
+                                                "driverLicenceFrontImage",
+                                                response.body()!!.driverDocuments.get(x).url
+                                            )
+                                            Prefs.putKey(
+                                                applicationContext,
+                                                "driverLicenceBackImage",
+                                                response.body()!!.driverDocuments.get(x).additonal_doc
+                                            )
+                                            //  Prefs.putKey(applicationContext, "driverLicenceImage",response.body()!!.driverDocuments.get(x).url)
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "ACTIVE",
                                                     ignoreCase = true
@@ -133,7 +150,8 @@ class DocumentsActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.vehicleText.text = "Document will expire soon"
+                                                binding.vehicleText.text =
+                                                    "Document will expire soon"
 
                                                 binding.driverImage.setImageResource(R.drawable.ic_alarm_white)
                                                 binding.driverImage.setBackgroundResource(R.drawable.edt_round_oranges)
@@ -143,8 +161,21 @@ class DocumentsActivity : AppCompatActivity() {
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "8") {
                                             binding.passport.visibility = View.VISIBLE
-                                           Prefs.putKey(applicationContext, "driverPassportFrontImage",response.body()!!.driverDocuments.get(x).url)
-                                            Prefs.putKey(applicationContext, "driverPassportBackImage",response.body()!!.driverDocuments.get(x).additonal_doc)
+                                            Prefs.putKey(
+                                                applicationContext,
+                                                "driverPassportExpiry",
+                                                response.body()!!.driverDocuments.get(x).expiry
+                                            )
+                                            Prefs.putKey(
+                                                applicationContext,
+                                                "driverPassportFrontImage",
+                                                response.body()!!.driverDocuments.get(x).url
+                                            )
+                                            Prefs.putKey(
+                                                applicationContext,
+                                                "driverPassportBackImage",
+                                                response.body()!!.driverDocuments.get(x).additonal_doc
+                                            )
 
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "ACTIVE",
@@ -189,7 +220,8 @@ class DocumentsActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.statusText.text = "Document will expire soon"
+                                                binding.statusText.text =
+                                                    "Document will expire soon"
 
                                                 binding.PassportImage.setImageResource(R.drawable.ic_alarm_white)
                                                 binding.PassportImage.setBackgroundResource(R.drawable.edt_round_oranges)
@@ -199,7 +231,11 @@ class DocumentsActivity : AppCompatActivity() {
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "9") {
                                             binding.addPhoto.visibility = View.VISIBLE
-                                            Prefs.putKey(applicationContext, "driverLicenceImage",response.body()!!.driverDocuments.get(x).url)
+                                            Prefs.putKey(
+                                                applicationContext,
+                                                "driverAddImage",
+                                                response.body()!!.driverDocuments.get(x).url
+                                            )
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "ACTIVE",
                                                     ignoreCase = true
@@ -245,7 +281,8 @@ class DocumentsActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.statusPhoto.text = "Document will expire soon"
+                                                binding.statusPhoto.text =
+                                                    "Document will expire soon"
 
                                                 binding.PhotoImage.setImageResource(R.drawable.ic_alarm_white)
                                                 binding.PhotoImage.setBackgroundResource(R.drawable.edt_round_oranges)
