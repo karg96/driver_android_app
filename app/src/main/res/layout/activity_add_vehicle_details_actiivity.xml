@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".activity.AddVehicleDetailsActiivity">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -71,22 +70,22 @@
 
             <org.angmarch.views.NiceSpinner
                 android:id="@+id/make"
-                android:textAlignment="textStart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="19dp"
-                android:padding="0dp"
                 android:layout_marginTop="13dp"
-                android:fontFamily="@font/nunitosans_regular"
                 android:layout_marginRight="19dp"
-                android:textSize="20dp"/>
+                android:fontFamily="@font/nunitosans_regular"
+                android:padding="0dp"
+                android:textAlignment="textStart"
+                android:textSize="20dp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginLeft="19dp"
                 android:layout_marginRight="19dp"
-                android:background="@color/colorGray"/>
+                android:background="@color/colorGray" />
 
 
             <!--<EditText
@@ -159,37 +158,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="19dp"
-                android:fontFamily="@font/nunitosans_regular"
-                android:textSize="20dp"
                 android:layout_marginTop="13dp"
-                android:layout_marginRight="19dp"/>
+                android:layout_marginRight="19dp"
+                android:fontFamily="@font/nunitosans_regular"
+                android:textSize="20dp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginLeft="19dp"
                 android:layout_marginRight="19dp"
-                android:background="@color/colorGray"/>
+                android:background="@color/colorGray" />
 
 
-           <!-- <EditText
-                android:id="@+id/year"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="19dp"
-                android:layout_marginTop="13dp"
-                android:layout_marginRight="19dp"
-                android:cursorVisible="true"
-                android:fontFamily="@font/nunitosans_regular"
-                android:hint="@string/enter"
-                android:inputType="number"
-                android:lineHeight="27sp"
-                android:paddingLeft="5dp"
-                android:paddingBottom="10dp"
-                android:textColor="@color/colorBlack"
-                android:textCursorDrawable="@null"
-                android:textSize="20sp"
-                android:theme="@style/TextLabel" />-->
+            <!-- <EditText
+                 android:id="@+id/year"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="19dp"
+                 android:layout_marginTop="13dp"
+                 android:layout_marginRight="19dp"
+                 android:cursorVisible="true"
+                 android:fontFamily="@font/nunitosans_regular"
+                 android:hint="@string/enter"
+                 android:inputType="number"
+                 android:lineHeight="27sp"
+                 android:paddingLeft="5dp"
+                 android:paddingBottom="10dp"
+                 android:textColor="@color/colorBlack"
+                 android:textCursorDrawable="@null"
+                 android:textSize="20sp"
+                 android:theme="@style/TextLabel" />-->
 
             <TextView
                 android:layout_width="wrap_content"

@@ -26,6 +26,8 @@ import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityAddIdentityCardBinding
 import cos.tuk_tuk_driver.models.UploadDocsModal
 import cos.tuk_tuk_driver.utils.Comman
+import cos.tuk_tuk_driver.utils.Comman.setImageUri
+import cos.tuk_tuk_driver.utils.Comman.setImageUriWithDefault
 import cos.tuk_tuk_driver.utils.Prefs
 import cos.tuk_tuk_driver.utils.URLHelper
 import okhttp3.MediaType
@@ -102,10 +104,23 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
         binding.uploadDoc.setOnClickListener(this)
 
         if (!driverPassportFrontImage.isEmpty() || !driverPassportFrontImage.isEmpty()) {
-            Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverPassportFrontImage)
-                .into(binding.passportFront)
-            Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverPassportBackImage)
-                .into(binding.passportBack)
+            /*Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverPassportFrontImage)
+                .into(binding.passportFront)*/
+            /*  Glide.with(applicationContext).
+                  load(URLHelper.BaseUrlImage + driverPassportBackImage)
+                  .into(binding.passportBack)*/
+            setImageUriWithDefault(
+                applicationContext,
+                driverPassportFrontImage,
+                binding.passportFront,
+                R.drawable.pass_front
+            )
+            setImageUriWithDefault(
+                applicationContext,
+                driverPassportBackImage,
+                binding.passportBack,
+                R.drawable.pass_back
+            )
             binding.imagetitle.visibility = View.GONE
             binding.passportBack.setOnClickListener(null)
             binding.passportFront.setOnClickListener(null)

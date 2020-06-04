@@ -1,5 +1,6 @@
 package cos.tuk_tuk_driver.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -15,7 +16,6 @@ import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.services.ApiClients.client
 import cos.tuk_tuk_driver.services.ApiClients.client_token
 import cos.tuk_tuk_driver.services.ApiInterface
-import cos.tuk_tuk_driver.utils.URLHelper.BaseUrl
 import cos.tuk_tuk_driver.utils.URLHelper.BaseUrlImage
 
 object Comman {
@@ -75,13 +75,16 @@ object Comman {
         } else first.substring(0, 1).toUpperCase() + first.substring(1)
     }
 
+    @SuppressLint("WrongConstant")
     fun setImageUri(
         mContext: Context?,
         url: String?,
         imageView: ImageView?
     ) {
+
         val circularProgressDrawable = CircularProgressDrawable(mContext!!)
         circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.setStyle(R.style.AlertDialogCustom)
         circularProgressDrawable.centerRadius = 30f
         circularProgressDrawable.start()
         val request = RequestOptions()
@@ -90,7 +93,32 @@ object Comman {
         if (url != null) {
             if (imageView != null) {
                 Glide.with(mContext).load(BaseUrlImage + url)
-                    // .apply(request)
+                    .apply(request)
+                    .into(imageView)
+            }
+        }
+    }
+
+    @SuppressLint("WrongConstant")
+    fun setImageUriWithDefault(
+        mContext: Context?,
+        url: String?,
+        imageView: ImageView?,
+        passFront: Int
+    ) {
+
+        val circularProgressDrawable = CircularProgressDrawable(mContext!!)
+        circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.setStyle(R.style.AlertDialogCustom)
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.start()
+        val request = RequestOptions()
+        request.placeholder(circularProgressDrawable)
+        request.error(passFront)
+        if (url != null) {
+            if (imageView != null) {
+                Glide.with(mContext).load(BaseUrlImage + url)
+                    .apply(request)
                     .into(imageView)
             }
         }

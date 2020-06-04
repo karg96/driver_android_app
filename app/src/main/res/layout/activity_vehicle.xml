@@ -78,7 +78,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
         android:fontFamily="@font/nunitosans_bold"
-        android:lineHeight="40sp"
+        android:lineHeight="30dp"
         android:lineSpacingExtra="8sp"
         android:paddingLeft="23dp"
         android:paddingRight="23dp"

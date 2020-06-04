@@ -12,7 +12,6 @@ import android.os.Environment
 import android.os.StrictMode
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
@@ -58,8 +57,16 @@ class AddPhotoActivity : AppCompatActivity() {
             init()
 
             if (!driverAddImage.isEmpty()) {
-                Glide.with(applicationContext).load(URLHelper.BaseUrlImage +driverAddImage).into(binding.imgLicense)
+                Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverAddImage)
+                    .into(binding.imgLicense)
 //                binding.uploadDoc.visibility -= View.GONE
+                Comman.setImageUriWithDefault(
+                    applicationContext,
+                    driverAddImage,
+                    binding.imgLicense,
+                    R.drawable.account
+                )
+
             }
         } catch (Ex: Exception) {
 

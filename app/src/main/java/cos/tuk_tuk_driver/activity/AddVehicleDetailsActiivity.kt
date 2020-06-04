@@ -32,12 +32,16 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
     private var vehicleId: String = ""
     private var makeId: String = ""
     private var makeYear: String = ""
-    private var count: Int = 0
+    private var count: Int = 1
     private var mCatAdapter: ArrayAdapter<String>? = null
     private var mYearAdapter: ArrayAdapter<String>? = null
     private val Items: ArrayList<String> = ArrayList<String>()
     private val ItemsId: ArrayList<String> = ArrayList<String>()
     private val ItemsYear: ArrayList<String> = ArrayList<String>()
+
+    init {
+        ItemsYear.add(0, "Please select Year")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,18 +54,12 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
             init()
 
-
             val thisYear = Calendar.getInstance()[Calendar.YEAR]
-            for (i in 1990..thisYear) {
-                if (count == 0) {
 
-                    ItemsYear.add(0, "Please select Year")
-
-                }
-                count++
+            for (i in 1995 until thisYear) {
                 ItemsYear.add(count, "" + i)
+                count++
             }
-
 
             Items.add(0, "Please select Make")
             ItemsId.add(0, "Please select Make")
@@ -90,12 +88,12 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
             }
 
-
             mYearAdapter = ArrayAdapter<String>(
                 applicationContext,
                 R.layout.simple_spinner_dropdown_item,
                 ItemsYear
             )
+
             binding.year.setAdapter(mYearAdapter)
             binding.year.setOnItemSelectedListener(object : OnItemSelectedListener {
                 override fun onItemSelected(
@@ -122,14 +120,6 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             })
 
-            /* for (x in 0..ItemsYear.size) {
-                 if (ItemsYear.get(x).equals(service_year, ignoreCase = true)) {
-                     binding.year.text = service_year
-                     makeYear = service_year
-                 }
-             }
-
-             mYearAdapter!!.notifyDataSetChanged()*/
 
             mCatAdapter = ArrayAdapter<String>(
                 applicationContext,
@@ -232,7 +222,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                 .enqueue(object : retrofit2.Callback<AddVehicleModal> {
                     override fun onFailure(call: Call<AddVehicleModal>, t: Throwable) {
                         dialog.dismiss()
-                        Comman.makeToast(applicationContext, "Please try again later")
+                        makeToast(applicationContext, "Please try again later")
 
                     }
 
@@ -346,6 +336,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
             dialog.show()
             Items.clear()
             ItemsId.clear()
+
             Items.add(0, "Please select Make")
             ItemsId.add(0, "Please select Make")
 
@@ -366,7 +357,6 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
                         if (response.body()!!.status) {
 
-
                             for (x in 0 until response.body()!!.data.size) {
 
                                 Items.add(x + 1, response.body()!!.data.get(x).name)
@@ -384,8 +374,22 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
                             mCatAdapter!!.notifyDataSetChanged()
 
-                            binding.year.text = service_year
-                            makeYear = service_year
+
+                            for (x in 0 until ItemsYear.size) {
+
+                                if (service_year.equals(
+                                        "" + ItemsYear.get(x),
+                                        ignoreCase = true
+                                    )
+                                ) {
+
+                                    binding.year.text = service_year
+                                    makeYear = service_year
+                                    binding.year.selectedIndex = x
+                                }
+                            }
+
+
 
                             mYearAdapter!!.notifyDataSetChanged()
 

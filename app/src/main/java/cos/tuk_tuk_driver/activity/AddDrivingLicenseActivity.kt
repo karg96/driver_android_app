@@ -26,9 +26,7 @@ import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityAddDrivingLicenseBinding
 import cos.tuk_tuk_driver.models.UploadDocsModal
 import cos.tuk_tuk_driver.utils.Comman
-import cos.tuk_tuk_driver.utils.Comman.getImages
 import cos.tuk_tuk_driver.utils.Prefs
-import cos.tuk_tuk_driver.utils.URLHelper
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -107,12 +105,26 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
         binding.uploadDoc.setOnClickListener(this)
 
         if (!driverLicenceFrontImage.isEmpty() || !driverLicenceBackImage.isEmpty()) {
-            Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverLicenceFrontImage)
-                .into(binding.drivingFront)
-            Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverLicenceBackImage)
-                .into(binding.drivingBack)
+            /* Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverLicenceFrontImage)
+                 .into(binding.drivingFront)
+             Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverLicenceBackImage)
+                 .into(binding.drivingBack)*/
+
+            Comman.setImageUriWithDefault(
+                applicationContext,
+                driverLicenceFrontImage,
+                binding.drivingFront,
+                R.drawable.pass_front
+            )
+            Comman.setImageUriWithDefault(
+                applicationContext,
+                driverLicenceBackImage,
+                binding.drivingBack,
+                R.drawable.pass_back
+            )
+
 //            binding.uploadDoc.visibility -= View.GONE
-            binding.imagetitle.visibility -= View.GONE
+            binding.uploadDoc.visibility = View.GONE
             binding.drivingBack.setOnClickListener(null)
             binding.drivingFront.setOnClickListener(null)
         }

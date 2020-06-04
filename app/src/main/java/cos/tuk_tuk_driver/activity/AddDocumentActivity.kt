@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import cos.tuk_tuk_driver.DriverApp
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityAddDocumentBinding
@@ -44,7 +43,6 @@ class AddDocumentActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         GetUploadDocuments()
-
     }
 
     private fun GetUploadDocuments() {
@@ -79,8 +77,21 @@ class AddDocumentActivity : AppCompatActivity() {
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "ACTIVE",
                                                     ignoreCase = true
+                                                ) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "ASSESSING",
+                                                    ignoreCase = true
                                                 )
                                             ) {
+
+                                                if (response.body()!!.driverDocuments.get(x).status.equals(
+                                                        "ACTIVE",
+                                                        ignoreCase = true
+                                                    )
+                                                ) {
+                                                    IsApproved += 1
+                                                }
+
                                                 binding.driverCheck.setImageResource(R.drawable.ic_check_green)
                                             }
 
@@ -113,7 +124,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.driverCheck.setImageResource(R.drawable.ic_check_yellow)
+                                                binding.driverCheck.setImageResource(R.drawable.ic_check_red)
                                             }
                                         }
 
@@ -123,8 +134,20 @@ class AddDocumentActivity : AppCompatActivity() {
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "ACTIVE",
                                                     ignoreCase = true
+                                                ) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "ASSESSING",
+                                                    ignoreCase = true
                                                 )
                                             ) {
+                                                if (response.body()!!.driverDocuments.get(x).status.equals(
+                                                        "ACTIVE",
+                                                        ignoreCase = true
+                                                    )
+                                                ) {
+                                                    IsApproved += 1
+                                                }
+
                                                 binding.identyCheck.setImageResource(R.drawable.ic_check_green)
                                             }
 
@@ -157,7 +180,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.identyCheck.setImageResource(R.drawable.ic_check_yellow)
+                                                binding.identyCheck.setImageResource(R.drawable.ic_check_red)
                                             }
 
                                         }
@@ -168,8 +191,21 @@ class AddDocumentActivity : AppCompatActivity() {
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "ACTIVE",
                                                     ignoreCase = true
+                                                ) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "ASSESSING",
+                                                    ignoreCase = true
                                                 )
                                             ) {
+
+                                                if (response.body()!!.driverDocuments.get(x).status.equals(
+                                                        "ACTIVE",
+                                                        ignoreCase = true
+                                                    )
+                                                ) {
+                                                    IsApproved += 1
+                                                }
+
                                                 binding.photoCheck.setImageResource(R.drawable.ic_check_green)
                                             }
 
@@ -202,40 +238,18 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.photoCheck.setImageResource(R.drawable.ic_check_yellow)
+                                                binding.photoCheck.setImageResource(R.drawable.ic_check_red)
                                             }
-                                        }
-
-                                        if (response.body()!!.driverDocuments.get(x).status.equals(
-                                                "approved",
-                                                ignoreCase = true
-                                            )
-                                        ) {
-                                            IsApproved += 1
                                         }
 
                                     }
 
                                 }
 
-                                /*if (response.body()!!.vehicleDocuments.size != 0) {
-                                    for (x in 0 until response.body()!!.vehicleDocuments.size) {
 
-                                        if (response.body()!!.vehicleDocuments.get(x).document_id == "5") {
-
-                                            binding.registerationCheck.visibility = View.VISIBLE
-
-                                        }
-
-                                    }
-                                }*/
-
-                                if (binding.driverCheck.visibility == View.VISIBLE
-                                    && binding.photoCheck.visibility == View.VISIBLE
-                                    && binding.identyCheck.visibility == View.VISIBLE
-                                ) {
-
+                                if (IsApproved == 3) {
                                     binding.btnNext.visibility = View.VISIBLE
+
                                 }
 
                             } else {
