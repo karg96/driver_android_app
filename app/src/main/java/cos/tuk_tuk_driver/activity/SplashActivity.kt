@@ -11,6 +11,7 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import com.tuktuk.utils.BaseActivity
+import cos.tuk_tuk_driver.R
 
 import cos.tuk_tuk_driver.databinding.ActivitySplashBinding
 import cos.tuk_tuk_driver.models.Documents
@@ -86,7 +87,7 @@ class SplashActivity : BaseActivity() {
                         startActivity(intent)
                         // overridePendingTransition(R.anim.enter)
 
-                    } else if (isLogin != "true") {
+                    } else if (isLogin != "true" || isLogin.isEmpty()) {
 
                         var Authorization = Prefs.getKey(applicationContext, "Authorization")
 
@@ -94,12 +95,14 @@ class SplashActivity : BaseActivity() {
 
                             checkUploadDocuments()
 
-                        } else {
+                        } else if (Authorization.isEmpty()) {
                             //call when user not  login it will redirect to WelcomeActivity screen
                             val intent = Intent(this@SplashActivity, WelcomeActivity::class.java)
                             intent.flags =
                                 Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             startActivity(intent)
+                            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
+
                         }
 
                     }
@@ -127,6 +130,7 @@ class SplashActivity : BaseActivity() {
                 .enqueue(object : Callback<Documents> {
                     override fun onFailure(call: Call<Documents>, t: Throwable) {
                         //   dialog.dismiss()
+                        Comman.makeToast(applicationContext, "Please try again later")
 
                     }
 

@@ -27,6 +27,7 @@ import cos.tuk_tuk_driver.databinding.ActivityAddDrivingLicenseBinding
 import cos.tuk_tuk_driver.models.UploadDocsModal
 import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.Prefs
+import kotlinx.android.synthetic.main.activity_payment_type.view.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -92,7 +93,7 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
                 DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
                     // Display Selected date in textbox
-                    binding.expiryDate.setText("" + year + "-" + monthOfYear + "-" + dayOfMonth)
+                    binding.expiryDate.setText("" + year + "-" + (monthOfYear + 1) + "-" + dayOfMonth)
 
                 }, year, month, day
             )
@@ -122,8 +123,12 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
                 binding.drivingBack,
                 R.drawable.pass_back
             )
+            binding.expiryDate.setText(driverLicenceExpiry)
+            binding.drivingFront.scaleType = null
+            binding.drivingBack.scaleType = null
 
-//            binding.uploadDoc.visibility -= View.GONE
+
+            binding.imagetitle.visibility = View.GONE
             binding.uploadDoc.visibility = View.GONE
             binding.drivingBack.setOnClickListener(null)
             binding.drivingFront.setOnClickListener(null)
@@ -287,9 +292,9 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
 
                                 SelectedFrontImage = ""
                                 SelectedBackImage = ""
-                                binding.imagetitle.visibility = View.VISIBLE
-                                binding.drivingFront.setImageResource(R.drawable.pass_front)
-                                binding.drivingBack.setImageResource(R.drawable.pass_front)
+                                /* binding.imagetitle.visibility = View.VISIBLE
+                                 binding.drivingFront.setImageResource(R.drawable.pass_front)
+                                 binding.drivingBack.setImageResource(R.drawable.pass_front)*/
 
                                 Comman.makeToast(applicationContext, response.body()!!.message)
                                 finish()

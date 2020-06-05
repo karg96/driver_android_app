@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
     private val apiInterface = Comman.getApi()
     private var mobileNumber: String = ""
     private var isDocsUpload: Int = 0
-    // private var IsApproved: Int = 0
+    private var IsApproved: Int = 0
     private var IsBanned: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -202,9 +202,27 @@ class LoginActivity : AppCompatActivity() {
 
                                             if (response.body()!!.documents.driverDocuments.get(x).document_id == "1") {
                                                 isDocsUpload += 1
-                                                Prefs.putKey(applicationContext, "driverLicenceFrontImage", response.body()!!.documents.driverDocuments.get(x).url)
-                                                Prefs.putKey(applicationContext, "driverLicenceBackImage", response.body()!!.documents.driverDocuments.get(x).additonal_doc)
-                                                Prefs.putKey(applicationContext, "driverLicenceExpiry", response.body()!!.documents.driverDocuments.get(x).expiry)
+                                                Prefs.putKey(
+                                                    applicationContext,
+                                                    "driverLicenceFrontImage",
+                                                    response.body()!!.documents.driverDocuments.get(
+                                                        x
+                                                    ).url
+                                                )
+                                                Prefs.putKey(
+                                                    applicationContext,
+                                                    "driverLicenceBackImage",
+                                                    response.body()!!.documents.driverDocuments.get(
+                                                        x
+                                                    ).additonal_doc
+                                                )
+                                                Prefs.putKey(
+                                                    applicationContext,
+                                                    "driverLicenceExpiry",
+                                                    response.body()!!.documents.driverDocuments.get(
+                                                        x
+                                                    ).expiry
+                                                )
                                             }
 
                                             if (response.body()!!.documents.driverDocuments.get(x).document_id == "8") {
@@ -244,13 +262,13 @@ class LoginActivity : AppCompatActivity() {
                                                 )
                                             }
 
-                                            /*if (response.body()!!.documents.driverDocuments.get(x).status.equals(
-                                                    "approved",
+                                            if (response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                    "active",
                                                     ignoreCase = true
                                                 )
                                             ) {
                                                 IsApproved += 1
-                                            }*/
+                                            }
                                             if (response.body()!!.documents.driverDocuments.get(x).status.equals(
                                                     "banned",
                                                     ignoreCase = true
@@ -270,11 +288,7 @@ class LoginActivity : AppCompatActivity() {
                                         }
 
                                         if (isDocsUpload == 3) {
-                                            if (response.body()!!.data.status.equals(
-                                                    "approved",
-                                                    ignoreCase = true
-                                                )
-                                            ) {
+                                            if (IsApproved == 3) {
 
                                                 Comman.makeToast(
                                                     applicationContext,

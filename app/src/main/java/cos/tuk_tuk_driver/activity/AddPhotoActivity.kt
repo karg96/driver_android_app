@@ -57,8 +57,8 @@ class AddPhotoActivity : AppCompatActivity() {
             init()
 
             if (!driverAddImage.isEmpty()) {
-                Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverAddImage)
-                    .into(binding.imgLicense)
+                /*Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverAddImage)
+                    .into(binding.imgLicense)*/
 //                binding.uploadDoc.visibility -= View.GONE
                 Comman.setImageUriWithDefault(
                     applicationContext,

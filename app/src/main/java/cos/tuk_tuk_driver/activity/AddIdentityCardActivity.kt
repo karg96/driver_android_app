@@ -91,7 +91,7 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
                 DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
                     // Display Selected date in textbox
-                    binding.expiryDate.setText("" + year + "-" + monthOfYear + "-" + dayOfMonth)
+                    binding.expiryDate.setText("" + year + "-" + (monthOfYear + 1) + "-" + dayOfMonth)
 
                 }, year, month, day
             )
@@ -121,6 +121,11 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
                 binding.passportBack,
                 R.drawable.pass_back
             )
+            binding.expiryDate.setText(driverPassportExpiry)
+
+            binding.passportFront.scaleType = null
+            binding.passportBack.scaleType = null
+
             binding.imagetitle.visibility = View.GONE
             binding.passportBack.setOnClickListener(null)
             binding.passportFront.setOnClickListener(null)
@@ -287,9 +292,9 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
 
                                     SelectedFrontImage = ""
                                     SelectedBackImage = ""
-                                    binding.imagetitle.visibility = View.VISIBLE
+                                    /*binding.imagetitle.visibility = View.VISIBLE
                                     binding.passportFront.setImageResource(R.drawable.pass_front)
-                                    binding.passportBack.setImageResource(R.drawable.pass_front)
+                                    binding.passportBack.setImageResource(R.drawable.pass_front)*/
 
                                     Comman.makeToast(applicationContext, response.body()!!.message)
                                     finish()

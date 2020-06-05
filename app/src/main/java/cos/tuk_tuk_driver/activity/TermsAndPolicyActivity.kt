@@ -58,7 +58,6 @@ class TermsAndPolicyActivity : AppCompatActivity() {
             pd.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             pd.show()
 
-
             var DriverFirstName = Prefs.getKey(applicationContext, "DriverFirstName")
             var DriverLastName = Prefs.getKey(applicationContext, "DriverLastName")
             var DriverEmail = Prefs.getKey(applicationContext, "DriverEmail")
@@ -85,7 +84,7 @@ class TermsAndPolicyActivity : AppCompatActivity() {
                     pd.dismiss()
                     if (response.code() == 200) {
                         if (response.body()!!.status) {
-                            Prefs.putKey(applicationContext, "isLogin", "true")
+                            // Prefs.putKey(applicationContext, "isLogin", "true")
                             makeToast(applicationContext, "Login Success")
                             val intent = Intent(
                                 applicationContext,

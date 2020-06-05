@@ -45,7 +45,7 @@
 
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="267dp"
                     android:layout_height="193.4dp"
                     android:layout_marginLeft="31.3dp"
                     android:layout_marginRight="31dp">
@@ -82,7 +82,7 @@
                     <ImageView
                         android:id="@+id/imagetitle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/pass_above" />
@@ -90,38 +90,6 @@
                 </RelativeLayout>
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="20sp"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:id="@+id/text_upload"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/nunitosans_regular"
-                        android:lineHeight="25dp"
-                        android:lineSpacingExtra="5sp"
-                        android:text="Front side"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorGray"
-                        android:textSize="20dp" />
-
-                    <TextView
-                        android:id="@+id/text_uploadBack"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/nunitosans_regular"
-                        android:lineHeight="25dp"
-                        android:lineSpacingExtra="5sp"
-                        android:text="Back side"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorGray"
-                        android:textSize="20dp" />
-                </LinearLayout>
 
 
                 <EditText
@@ -129,7 +97,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="31.3dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="35dp"
                     android:layout_marginRight="31dp"
                     android:layout_marginBottom="30dp"
                     android:cursorVisible="true"
@@ -145,6 +113,27 @@
                     android:textSize="20sp"
                     android:theme="@style/TextLabel" />
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20sp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/text_upload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitosans_regular"
+                    android:gravity="center"
+                    android:lineHeight="25dp"
+                    android:lineSpacingExtra="5sp"
+                    android:text="Front &amp; Back both photos\nare mandatory."
+                    android:textAlignment="center"
+                    android:textColor="@color/colorGray"
+                    android:textSize="20dp" />
 
             </LinearLayout>
 

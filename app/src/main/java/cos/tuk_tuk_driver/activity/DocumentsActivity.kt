@@ -24,7 +24,7 @@ class DocumentsActivity : AppCompatActivity() {
         binding = ActivityDocumentsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
-        GetUploadDocuments()
+
     }
 
     private fun init() {
@@ -62,6 +62,11 @@ class DocumentsActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        GetUploadDocuments()
     }
 
     private fun GetUploadDocuments() {

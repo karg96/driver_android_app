@@ -96,4 +96,8 @@ dependencies {
     //******************  Permission check **************************/
     implementation 'com.karumi:dexter:5.0.0'
 
+    //******************  Permission check **************************/
+    implementation "org.permissionsdispatcher:permissionsdispatcher:$rootProject.Permission_Dispacther_ver"
+    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:$rootProject.Permission_Dispacther_ver"
+
 }
