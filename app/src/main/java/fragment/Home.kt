@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import android.widget.Switch
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.android.volley.VolleyLog
@@ -68,13 +69,16 @@ class Home : Fragment(), OnMapReadyCallback {
         var view = inflater.inflate(R.layout.fragment_home, container, false)
 
         online = view.findViewById(R.id.online)
+        val driverStatus = view.findViewById<TextView>(R.id.Destination)
 
         online.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
             override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
                 if (online.isChecked) {
                     makeAvailable("active")
+                    driverStatus.setText("You're online")
                 } else {
                     makeAvailable("offline")
+                    driverStatus.setText("You're offline")
 
                 }
             }

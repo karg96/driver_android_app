@@ -288,11 +288,13 @@ class EnterOtpActivity : BaseActivity() {
             binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
             binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
             binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+            binding.edtOtp5.setBackgroundResource(R.drawable.edt_round)
+            binding.edtOtp6.setBackgroundResource(R.drawable.edt_round)
 
         }
 
-        binding.edtOtp4.setOnClickListener {
-            binding.edtOtp4.setBackgroundResource(R.drawable.edt_round_orange)
+        binding.edtOtp6.setOnClickListener {
+            binding.edtOtp6.setBackgroundResource(R.drawable.edt_round_orange)
         }
 
 
@@ -312,6 +314,8 @@ class EnterOtpActivity : BaseActivity() {
                     binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
                     binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
                     binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp5.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp6.setBackgroundResource(R.drawable.edt_round)
 
                 } else {
 
@@ -327,6 +331,8 @@ class EnterOtpActivity : BaseActivity() {
                     binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
                     binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
                     binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp5.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp6.setBackgroundResource(R.drawable.edt_round)
 
                 }
             }
@@ -341,7 +347,6 @@ class EnterOtpActivity : BaseActivity() {
             override fun afterTextChanged(s: Editable) { // TODO Auto-generated method stub
             }
         })
-
         binding.edtOtp2.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
                 s: CharSequence,
@@ -357,6 +362,8 @@ class EnterOtpActivity : BaseActivity() {
                     binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
                     binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
                     binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp5.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp6.setBackgroundResource(R.drawable.edt_round)
 
                 } else if (s.length == 0) //size as per your requirement
                 {
@@ -366,6 +373,8 @@ class EnterOtpActivity : BaseActivity() {
                     binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
                     binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
                     binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp5.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp6.setBackgroundResource(R.drawable.edt_round)
 
                 }
             }
@@ -379,7 +388,6 @@ class EnterOtpActivity : BaseActivity() {
             override fun afterTextChanged(s: Editable) { // TODO Auto-generated method stub
             }
         })
-
         binding.edtOtp3.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
                 s: CharSequence,
@@ -405,6 +413,8 @@ class EnterOtpActivity : BaseActivity() {
                     binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
                     binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
                     binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp5.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp6.setBackgroundResource(R.drawable.edt_round)
 
                 }
             }
@@ -427,6 +437,95 @@ class EnterOtpActivity : BaseActivity() {
             ) { // TODO Auto-generated method stub
                 if (s.length == 1) //size as per your requirement
                 {
+                    binding.edtOtp5.requestFocus()
+                    binding.edtOtp5.setBackgroundResource(R.drawable.edt_round_orange)
+
+                    binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp6.setBackgroundResource(R.drawable.edt_round)
+
+
+                } else if (s.length == 0) //size as per your requirement
+                {
+                    binding.edtOtp3.requestFocus()
+                    binding.edtOtp3.setBackgroundResource(R.drawable.edt_round_orange)
+
+                    binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp5.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp6.setBackgroundResource(R.drawable.edt_round)
+
+                }
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) { // TODO Auto-generated method stub
+            }
+
+            override fun afterTextChanged(s: Editable) { // TODO Auto-generated method stub
+            }
+        })
+        binding.edtOtp5.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) { // TODO Auto-generated method stub
+                if (s.length == 1) //size as per your requirement
+                {
+                    binding.edtOtp6.requestFocus()
+                    binding.edtOtp6.setBackgroundResource(R.drawable.edt_round_orange)
+
+                    binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp5.setBackgroundResource(R.drawable.edt_round)
+
+
+                } else if (s.length == 0) //size as per your requirement
+                {
+                    binding.edtOtp4.requestFocus()
+                    binding.edtOtp4.setBackgroundResource(R.drawable.edt_round_orange)
+
+                    binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp5.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp6.setBackgroundResource(R.drawable.edt_round)
+
+                }
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) { // TODO Auto-generated method stub
+            }
+
+            override fun afterTextChanged(s: Editable) { // TODO Auto-generated method stub
+            }
+        })
+
+
+
+
+
+        binding.edtOtp6.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) { // TODO Auto-generated method stub
+                if (s.length == 1) //size as per your requirement
+                {
                     val inputManager: InputMethodManager =
                         getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                     inputManager.hideSoftInputFromWindow(
@@ -438,16 +537,20 @@ class EnterOtpActivity : BaseActivity() {
                     binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
                     binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
                     binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp5.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp6.setBackgroundResource(R.drawable.edt_round)
 
                 } else if (s.length == 0) //size as per your requirement
                 {
-                    binding.edtOtp3.requestFocus()
-                    binding.edtOtp3.setBackgroundResource(R.drawable.edt_round_orange)
+                    binding.edtOtp5.requestFocus()
+                    binding.edtOtp5.setBackgroundResource(R.drawable.edt_round_orange)
                     binding.edtOtp4.setBackgroundResource(R.drawable.edt_round_orange)
 
                     binding.edtOtp1.setBackgroundResource(R.drawable.edt_round)
                     binding.edtOtp2.setBackgroundResource(R.drawable.edt_round)
                     binding.edtOtp4.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp3.setBackgroundResource(R.drawable.edt_round)
+                    binding.edtOtp6.setBackgroundResource(R.drawable.edt_round)
 
                 }
             }
@@ -551,15 +654,17 @@ class EnterOtpActivity : BaseActivity() {
         var OtpTwo: String = binding.edtOtp2.text.toString()
         var OtpThree: String = binding.edtOtp3.text.toString()
         var OtpFour: String = binding.edtOtp4.text.toString()
+        var OtpFive: String = binding.edtOtp5.text.toString()
+        var OtpSix: String = binding.edtOtp6.text.toString()
 
 
-        if (OtpOne.isEmpty() || OtpTwo.isEmpty() || OtpThree.isEmpty() || OtpFour.isEmpty()) {
+        if (OtpOne.isEmpty() || OtpTwo.isEmpty() || OtpThree.isEmpty() || OtpFour.isEmpty() || OtpFive.isEmpty() || OtpSix.isEmpty()) {
 
             makeToast(applicationContext, "Please fill  OTP")
 
         } else {
 
-            validateOTP(OtpOne + OtpTwo + OtpThree + OtpFour)
+            validateOTP(OtpOne + OtpTwo + OtpThree + OtpFour + OtpFive + OtpSix)
 
         }
 
