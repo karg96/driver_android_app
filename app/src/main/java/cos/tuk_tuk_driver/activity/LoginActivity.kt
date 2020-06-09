@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.google.firebase.iid.FirebaseInstanceId
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityLoginBinding
 import cos.tuk_tuk_driver.models.RegisterModal
@@ -19,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
     private val apiInterface = Comman.getApi()
+  //  private val DeviceToken = FirebaseInstanceId.getInstance().getToken();
     private var mobileNumber: String = ""
     private var isDocsUpload: Int = 0
     private var IsApproved: Int = 0
@@ -142,6 +144,7 @@ class LoginActivity : AppCompatActivity() {
     private fun doLogin(mobileNumber: String, password: String) {
 
         try {
+            var device_token = FirebaseInstanceId.getInstance().getToken();
 
             val pd = ProgressDialog(this)
             pd.setMessage("Please wait....")
@@ -149,169 +152,190 @@ class LoginActivity : AppCompatActivity() {
             pd.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             pd.show()
 
-            apiInterface!!.Login(mobileNumber, password, "123", "android")
-                .enqueue(object : Callback<RegisterModal> {
-                    override fun onFailure(call: Call<RegisterModal>, t: Throwable) {
-                        pd.dismiss()
-                        Comman.makeToast(applicationContext, "Please try again later")
-
-                    }
-
-                    override fun onResponse(
-                        call: Call<RegisterModal>,
-                        response: Response<RegisterModal>
-                    ) {
-
-                        try {
-
+            device_token?.let {
+                apiInterface!!.Login(mobileNumber, password, it, "android")
+                    .enqueue(object : Callback<RegisterModal> {
+                        override fun onFailure(call: Call<RegisterModal>, t: Throwable) {
                             pd.dismiss()
-                            if (response.code() == 200) {
-                                if (response.body()!!.status) {
+                            Comman.makeToast(applicationContext, "Please try again later")
 
-                                    Prefs.putKey(
-                                        applicationContext,
-                                        "Authorization",
-                                        response.body()!!.data.access_token
-                                    )
+                        }
 
-                                    Prefs.putKey(
-                                        applicationContext,
-                                        "driveName",
-                                        response.body()!!.data.first_name + " " + response.body()!!.data.last_name
-                                    )
-                                    Prefs.putKey(
-                                        applicationContext,
-                                        "driveImage",
-                                        response.body()!!.data.avatar
-                                    )
-                                    Prefs.putKey(
-                                        applicationContext,
-                                        "driveMobile",
-                                        response.body()!!.data.mobile
-                                    )
-                                    Prefs.putKey(
-                                        applicationContext,
-                                        "driveRating",
-                                        response.body()!!.data.rating
-                                    )
+                        override fun onResponse(
+                            call: Call<RegisterModal>,
+                            response: Response<RegisterModal>
+                        ) {
+
+                            try {
+
+                                pd.dismiss()
+                                if (response.code() == 200) {
+                                    if (response.body()!!.status) {
+
+                                        Prefs.putKey(
+                                            applicationContext,
+                                            "Authorization",
+                                            response.body()!!.data.access_token
+                                        )
+
+                                        Prefs.putKey(
+                                            applicationContext,
+                                            "driveName",
+                                            response.body()!!.data.first_name + " " + response.body()!!.data.last_name
+                                        )
+                                        Prefs.putKey(
+                                            applicationContext,
+                                            "driveImage",
+                                            response.body()!!.data.avatar
+                                        )
+                                        Prefs.putKey(
+                                            applicationContext,
+                                            "driveMobile",
+                                            response.body()!!.data.mobile
+                                        )
+                                        Prefs.putKey(
+                                            applicationContext,
+                                            "driveRating",
+                                            response.body()!!.data.rating
+                                        )
 
 
-                                    if (response.body()!!.documents.driverDocuments.size != 0) {
+                                        if (response.body()!!.documents.driverDocuments.size != 0) {
 
-                                        for (x in 0 until response.body()!!.documents.driverDocuments.size) {
+                                            for (x in 0 until response.body()!!.documents.driverDocuments.size) {
 
-                                            if (response.body()!!.documents.driverDocuments.get(x).document_id == "1") {
-                                                isDocsUpload += 1
-                                                Prefs.putKey(
-                                                    applicationContext,
-                                                    "driverLicenceFrontImage",
-                                                    response.body()!!.documents.driverDocuments.get(
-                                                        x
-                                                    ).url
-                                                )
-                                                Prefs.putKey(
-                                                    applicationContext,
-                                                    "driverLicenceBackImage",
-                                                    response.body()!!.documents.driverDocuments.get(
-                                                        x
-                                                    ).additonal_doc
-                                                )
-                                                Prefs.putKey(
-                                                    applicationContext,
-                                                    "driverLicenceExpiry",
-                                                    response.body()!!.documents.driverDocuments.get(
-                                                        x
-                                                    ).expiry
-                                                )
+                                                if (response.body()!!.documents.driverDocuments.get(x).document_id == "1") {
+                                                    isDocsUpload += 1
+                                                    Prefs.putKey(
+                                                        applicationContext,
+                                                        "driverLicenceFrontImage",
+                                                        response.body()!!.documents.driverDocuments.get(
+                                                            x
+                                                        ).url
+                                                    )
+                                                    Prefs.putKey(
+                                                        applicationContext,
+                                                        "driverLicenceBackImage",
+                                                        response.body()!!.documents.driverDocuments.get(
+                                                            x
+                                                        ).additonal_doc
+                                                    )
+                                                    Prefs.putKey(
+                                                        applicationContext,
+                                                        "driverLicenceExpiry",
+                                                        response.body()!!.documents.driverDocuments.get(
+                                                            x
+                                                        ).expiry
+                                                    )
+                                                }
+
+                                                if (response.body()!!.documents.driverDocuments.get(x).document_id == "8") {
+                                                    isDocsUpload += 1
+
+                                                    Prefs.putKey(
+                                                        applicationContext,
+                                                        "driverPassportFrontImage",
+                                                        response.body()!!.documents.driverDocuments.get(
+                                                            x
+                                                        ).url
+                                                    )
+                                                    Prefs.putKey(
+                                                        applicationContext,
+                                                        "driverPassportExpiry",
+                                                        response.body()!!.documents.driverDocuments.get(
+                                                            x
+                                                        ).expiry
+                                                    )
+                                                    Prefs.putKey(
+                                                        applicationContext,
+                                                        "driverPassportBackImage",
+                                                        response.body()!!.documents.driverDocuments.get(
+                                                            x
+                                                        ).additonal_doc
+                                                    )
+                                                }
+
+                                                if (response.body()!!.documents.driverDocuments.get(x).document_id == "9") {
+                                                    isDocsUpload += 1
+                                                    Prefs.putKey(
+                                                        applicationContext,
+                                                        "driverAddImage",
+                                                        response.body()!!.documents.driverDocuments.get(
+                                                            x
+                                                        ).url
+                                                    )
+                                                }
+
+                                                if (response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                        "active",
+                                                        ignoreCase = true
+                                                    )
+                                                ) {
+                                                    IsApproved += 1
+                                                }
+                                                if (response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                        "banned",
+                                                        ignoreCase = true
+                                                    )
+                                                ) {
+                                                    IsBanned += 1
+                                                }
+
                                             }
 
-                                            if (response.body()!!.documents.driverDocuments.get(x).document_id == "8") {
-                                                isDocsUpload += 1
-
-                                                Prefs.putKey(
-                                                    applicationContext,
-                                                    "driverPassportFrontImage",
-                                                    response.body()!!.documents.driverDocuments.get(
-                                                        x
-                                                    ).url
-                                                )
-                                                Prefs.putKey(
-                                                    applicationContext,
-                                                    "driverPassportExpiry",
-                                                    response.body()!!.documents.driverDocuments.get(
-                                                        x
-                                                    ).expiry
-                                                )
-                                                Prefs.putKey(
-                                                    applicationContext,
-                                                    "driverPassportBackImage",
-                                                    response.body()!!.documents.driverDocuments.get(
-                                                        x
-                                                    ).additonal_doc
-                                                )
-                                            }
-
-                                            if (response.body()!!.documents.driverDocuments.get(x).document_id == "9") {
-                                                isDocsUpload += 1
-                                                Prefs.putKey(
-                                                    applicationContext,
-                                                    "driverAddImage",
-                                                    response.body()!!.documents.driverDocuments.get(
-                                                        x
-                                                    ).url
-                                                )
-                                            }
-
-                                            if (response.body()!!.documents.driverDocuments.get(x).status.equals(
-                                                    "active",
-                                                    ignoreCase = true
-                                                )
-                                            ) {
-                                                IsApproved += 1
-                                            }
-                                            if (response.body()!!.documents.driverDocuments.get(x).status.equals(
-                                                    "banned",
-                                                    ignoreCase = true
-                                                )
-                                            ) {
-                                                IsBanned += 1
-                                            }
-
-                                        }
-
-                                        if (IsBanned > 0) {
-                                            Comman.makeToast(
-                                                applicationContext,
-                                                "Your account is Suspended"
-                                            )
-                                            return
-                                        }
-
-                                        if (isDocsUpload == 3) {
-                                            if (IsApproved == 3) {
-
+                                            if (IsBanned > 0) {
                                                 Comman.makeToast(
                                                     applicationContext,
-                                                    "Login Success"
+                                                    "Your account is Suspended"
                                                 )
+                                                return
+                                            }
 
-                                                Prefs.putKey(applicationContext, "isLogin", "true")
-                                                Prefs.putKey(
-                                                    applicationContext,
-                                                    "payment_mode",
-                                                    response.body()!!.data.payment_mode
-                                                )
-                                                val intent = Intent(
-                                                    applicationContext,
-                                                    HomeActivity::class.java
-                                                ) //not application context
-                                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                                startActivity(intent)
+                                            if (isDocsUpload == 3) {
+                                                if (IsApproved == 3) {
+
+                                                    Comman.makeToast(
+                                                        applicationContext,
+                                                        "Login Success"
+                                                    )
+
+                                                    Prefs.putKey(applicationContext, "isLogin", "true")
+                                                    Prefs.putKey(
+                                                        applicationContext,
+                                                        "payment_mode",
+                                                        response.body()!!.data.payment_mode
+                                                    )
+                                                    val intent = Intent(
+                                                        applicationContext,
+                                                        HomeActivity::class.java
+                                                    ) //not application context
+                                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                                    startActivity(intent)
+                                                } else {
+                                                    Comman.makeToast(
+                                                        applicationContext,
+                                                        "Please wait your documents is not approved yet"
+                                                    )
+                                                    val intent = Intent(
+                                                        applicationContext,
+                                                        AddDocumentActivity::class.java
+                                                    ) //not application context
+                                                    intent.putExtra(
+                                                        "name",
+                                                        response.body()!!.data.first_name + " " + response.body()!!.data.last_name
+                                                    )
+                                                    intent.flags =
+                                                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                                    startActivity(intent)
+                                                }
+
                                             } else {
+
                                                 Comman.makeToast(
                                                     applicationContext,
-                                                    "Please wait your documents is not approved yet"
+                                                    "Please upload your documents"
                                                 )
+
                                                 val intent = Intent(
                                                     applicationContext,
                                                     AddDocumentActivity::class.java
@@ -325,56 +349,37 @@ class LoginActivity : AppCompatActivity() {
                                                 startActivity(intent)
                                             }
 
-                                        } else {
-
-                                            Comman.makeToast(
-                                                applicationContext,
-                                                "Please upload your documents"
-                                            )
-
-                                            val intent = Intent(
-                                                applicationContext,
-                                                AddDocumentActivity::class.java
-                                            ) //not application context
-                                            intent.putExtra(
-                                                "name",
-                                                response.body()!!.data.first_name + " " + response.body()!!.data.last_name
-                                            )
-                                            intent.flags =
-                                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                            startActivity(intent)
                                         }
 
+
+                                    } else {
+                                        Comman.makeToast(
+                                            applicationContext,
+                                            getString(R.string.error_login)
+                                        )
                                     }
+
+                                } else if (response.code() == 401) {
+                                    Comman.makeToast(
+                                        applicationContext,
+                                        "The mobile number or password you entered is incorrect!"
+                                    )
 
 
                                 } else {
-                                    Comman.makeToast(
-                                        applicationContext,
-                                        getString(R.string.error_login)
-                                    )
+
+                                    Comman.makeToast(applicationContext, "Please try again later")
+
                                 }
-
-                            } else if (response.code() == 401) {
-                                Comman.makeToast(
-                                    applicationContext,
-                                    "The mobile number or password you entered is incorrect!"
-                                )
-
-
-                            } else {
-
-                                Comman.makeToast(applicationContext, "Please try again later")
+                            } catch (Ex: java.lang.Exception) {
 
                             }
-                        } catch (Ex: java.lang.Exception) {
+
 
                         }
 
-
-                    }
-
-                })
+                    })
+            }
 
         } catch (Ex: java.lang.Exception) {
 
