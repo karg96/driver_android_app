@@ -18,12 +18,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     @SuppressLint("LongLogTag")
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        Log.d(TAG, "Dikirim dari: ${remoteMessage.from}")
+        Log.d(TAG, "Dikir: ${remoteMessage.from}")
 
         if (remoteMessage.notification != null) {
             showNotification(remoteMessage.notification?.title, remoteMessage.notification?.body)
         }
     }
+
 
     private fun showNotification(title: String?, body: String?) {
         val intent = Intent(this, MainActivity::class.java)

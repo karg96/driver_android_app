@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1080717279112",
+    "firebase_url": "https://tuktukdriver-c9e86.firebaseio.com",
+    "project_id": "tuktukdriver-c9e86",
+    "storage_bucket": "tuktukdriver-c9e86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080717279112:android:04185c1b0c4e005e7c043d",
+        "android_client_info": {
+          "package_name": "cos.tuk_tuk_driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1080717279112-gke7rbf02vjb830hti68hdoh2ee70aef.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC65016cMjWOSh7VuhsGd4OToqYos1kiUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1080717279112-gke7rbf02vjb830hti68hdoh2ee70aef.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
