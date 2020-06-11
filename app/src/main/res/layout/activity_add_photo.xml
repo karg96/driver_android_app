@@ -52,7 +52,7 @@
                     android:layout_height="192dp"
                     android:layout_marginLeft="92dp"
                     android:layout_marginRight="91dp"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/account" />
 
 

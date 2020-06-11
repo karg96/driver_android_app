@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context="fragment.Account">
 
     <ScrollView
@@ -18,7 +19,7 @@
             <RelativeLayout
                 android:id="@+id/vehilce"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="75dp"
                 android:layout_marginTop="60dp"
                 android:clickable="true"
                 android:orientation="horizontal">
@@ -58,8 +59,8 @@
                     android:fontFamily="@font/nunitosans_regular"
                     android:gravity="center_vertical"
                     android:paddingLeft="21dp"
-                    android:text="No vehicle selected"
-                    android:textColor="@color/colorBlack"
+                    android:text="No Vehicle Selected"
+                    android:textColor="@color/colorGray"
                     android:textSize="12dp" />
 
 
@@ -69,7 +70,7 @@
             <LinearLayout
                 android:id="@+id/document"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="75dp"
                 android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:orientation="horizontal"
@@ -86,6 +87,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="0dp"
                     android:fontFamily="@font/nunitosans_regular"
                     android:gravity="center_vertical"
@@ -101,7 +103,7 @@
             <LinearLayout
                 android:id="@+id/payment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="75dp"
                 android:layout_marginTop="20sp"
                 android:clickable="true"
                 android:orientation="horizontal"
@@ -118,6 +120,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="0dp"
                     android:fontFamily="@font/nunitosans_regular"
                     android:gravity="center_vertical"
@@ -132,7 +135,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="75dp"
                 android:layout_marginTop="20sp"
                 android:clickable="true"
                 android:orientation="horizontal"
@@ -150,6 +153,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="0dp"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/nunitosans_regular"
                     android:gravity="center_vertical"
                     android:paddingLeft="21dp"
@@ -164,7 +168,7 @@
             <LinearLayout
                 android:id="@+id/reportIssue"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="75dp"
                 android:layout_marginTop="20sp"
                 android:clickable="true"
                 android:orientation="horizontal"
@@ -182,6 +186,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="0dp"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/nunitosans_regular"
                     android:gravity="center_vertical"
                     android:paddingLeft="21dp"
@@ -195,7 +200,7 @@
             <LinearLayout
                 android:id="@+id/about"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="75dp"
                 android:layout_marginTop="20sp"
                 android:clickable="true"
                 android:orientation="horizontal"
@@ -214,6 +219,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="0dp"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/nunitosans_regular"
                     android:gravity="center_vertical"
                     android:paddingLeft="21dp"
@@ -228,7 +234,7 @@
             <LinearLayout
                 android:id="@+id/securityPrivacy"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="75dp"
                 android:layout_marginTop="20sp"
                 android:clickable="true"
                 android:orientation="horizontal"
@@ -249,6 +255,7 @@
                     android:layout_marginLeft="0dp"
                     android:fontFamily="@font/nunitosans_regular"
                     android:gravity="center_vertical"
+                    android:layout_marginTop="15dp"
                     android:paddingLeft="21dp"
                     android:text="@string/security"
                     android:textColor="@color/colorBlack"

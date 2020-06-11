@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".activity.ReportIssueActivity">
 
     <androidx.cardview.widget.CardView
@@ -72,7 +73,7 @@
         android:gravity="top"
         android:background="@drawable/edt_round_grey"
         android:fontFamily="@font/nunitosans_regular"
-        android:hint="@string/enter"
+        android:hint="@string/enterIssue"
         android:imeOptions="actionNext"
         android:inputType="text"
         android:lineHeight="27sp"

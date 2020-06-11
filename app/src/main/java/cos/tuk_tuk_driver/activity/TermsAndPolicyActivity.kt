@@ -84,7 +84,7 @@ class TermsAndPolicyActivity : AppCompatActivity() {
                     pd.dismiss()
                     if (response.code() == 200) {
                         if (response.body()!!.status) {
-                            // Prefs.putKey(applicationContext, "isLogin", "true")
+//                             Prefs.putKey(applicationContext, "isLogin", "true")
                             makeToast(applicationContext, "Login Success")
                             val intent = Intent(
                                 applicationContext,

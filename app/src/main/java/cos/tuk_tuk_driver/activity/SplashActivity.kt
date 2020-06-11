@@ -148,10 +148,42 @@ class SplashActivity : BaseActivity() {
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "1") {
                                             isDocsUpload += 1
+                                            if (response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "ACTIVE",
+                                                    ignoreCase = true
+                                                ) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "ASSESSING",
+                                                    ignoreCase = true
+                                                )
+                                                ||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "NEARTOEXPIRE",
+                                                    ignoreCase = true
+                                                )
+                                            ) {
+                                                IsApproved += 1
+                                            }
                                         }
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "8") {
                                             isDocsUpload += 1
+                                            if (response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "ACTIVE",
+                                                    ignoreCase = true
+                                                ) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "ASSESSING",
+                                                    ignoreCase = true
+                                                )
+                                                ||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "NEARTOEXPIRE",
+                                                    ignoreCase = true
+                                                )
+                                            ) {
+                                                IsApproved += 1
+                                            }
 
                                         }
 
@@ -160,20 +192,14 @@ class SplashActivity : BaseActivity() {
 
                                         }
 
-                                        if (response.body()!!.driverDocuments.get(x).status.equals(
-                                                "approved",
-                                                ignoreCase = true
-                                            )
-                                        ) {
-                                            IsApproved += 1
-                                        }
+
 
                                     }
 
                                     if (isDocsUpload == 3) {
 
 
-                                        if (IsApproved == 3) {
+                                        if (IsApproved == 2) {
 
                                             Prefs.putKey(applicationContext, "isLogin", "true")
 
@@ -221,6 +247,23 @@ class SplashActivity : BaseActivity() {
 
                                 }
 
+                                else{
+                                    Comman.makeToast(
+                                        applicationContext,
+                                        "Please upload your documents"
+                                    )
+
+                                    val intent = Intent(
+                                        applicationContext,
+                                        AddDocumentActivity::class.java
+                                    ) //not application context
+                                    intent.putExtra(
+                                        "name", Prefs.getKey(applicationContext, "driveName")
+                                    )
+                                    intent.flags =
+                                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    startActivity(intent)
+                                }
 
                             } else {
                                 Comman.makeToast(applicationContext, "Please try again later")

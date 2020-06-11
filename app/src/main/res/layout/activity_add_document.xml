@@ -34,6 +34,7 @@
                 android:layout_gravity="left"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="11sp"
+                android:paddingBottom="11sp"
                 android:layout_marginRight="15dp"
                 android:fontFamily="@font/nunitosans_bold"
                 android:lineHeight="40dp"

@@ -230,7 +230,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="18dp"
-                    android:src="@drawable/free_ride" />
+                    android:src="@drawable/setting" />
 
 
                 <TextView
@@ -262,7 +262,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="18dp"
-                    android:src="@drawable/setting" />
+                    android:src="@drawable/notifications" />
 
 
                 <TextView

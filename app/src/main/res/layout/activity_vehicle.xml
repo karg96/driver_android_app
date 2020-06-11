@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".activity.VehicleActivity">
 
     <androidx.cardview.widget.CardView
@@ -22,11 +23,11 @@
 
             <ImageView
                 android:id="@+id/close"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:layout_marginLeft="15sp"
                 android:scaleType="fitXY"
-                android:src="@drawable/arrow_back" />
+                android:src="@drawable/ic_clear" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -77,8 +78,8 @@
         android:layout_below="@+id/yourVehicle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
-        android:fontFamily="@font/nunitosans_bold"
-        android:lineHeight="30dp"
+        android:fontFamily="@font/nunitosans_regular"
+        android:lineHeight="25sp"
         android:lineSpacingExtra="8sp"
         android:paddingLeft="23dp"
         android:paddingRight="23dp"

@@ -223,6 +223,32 @@ class LoginActivity : AppCompatActivity() {
                                         for (x in 0 until response.body()!!.documents.driverDocuments.size) {
 
                                             if (response.body()!!.documents.driverDocuments.get(x).document_id == "1") {
+
+
+                                                if (response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                        "ACTIVE",
+                                                        ignoreCase = true
+                                                    ) ||
+                                                    response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                        "ASSESSING",
+                                                        ignoreCase = true
+                                                    )
+                                                    ||
+                                                    response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                        "NEARTOEXPIRE",
+                                                        ignoreCase = true
+                                                    )
+                                                ) {
+//                                                if (response.body()!!.driverDocuments.get(x).status.equals(
+//                                                        "ACTIVE",
+//                                                        ignoreCase = true
+//                                                    )
+//                                                ) {
+                                                    IsApproved += 1
+
+                                                }
+
+
                                                 isDocsUpload += 1
                                                 Prefs.putKey(
                                                     applicationContext,
@@ -248,6 +274,33 @@ class LoginActivity : AppCompatActivity() {
                                             }
 
                                             if (response.body()!!.documents.driverDocuments.get(x).document_id == "8") {
+
+
+                                                if (response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                        "ACTIVE",
+                                                        ignoreCase = true
+                                                    ) ||
+                                                    response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                        "ASSESSING",
+                                                        ignoreCase = true
+                                                    )
+                                                    ||
+                                                    response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                        "NEARTOEXPIRE",
+                                                        ignoreCase = true
+                                                    )
+                                                ) {
+//                                                if (response.body()!!.driverDocuments.get(x).status.equals(
+//                                                        "ACTIVE",
+//                                                        ignoreCase = true
+//                                                    )
+//                                                ) {
+                                                    IsApproved += 1
+
+                                                }
+
+
+
                                                 isDocsUpload += 1
 
                                                 Prefs.putKey(
@@ -284,13 +337,17 @@ class LoginActivity : AppCompatActivity() {
                                                 )
                                             }
 
-                                            if (response.body()!!.documents.driverDocuments.get(x).status.equals(
-                                                    "active",
-                                                    ignoreCase = true
-                                                )
-                                            ) {
-                                                IsApproved += 1
-                                            }
+
+
+
+
+//                                            if (response.body()!!.documents.driverDocuments.get(x).status.equals(
+//                                                    "active",
+//                                                    ignoreCase = true
+//                                                )
+//                                            ) {
+//                                                IsApproved += 1
+//                                            }
                                             if (response.body()!!.documents.driverDocuments.get(x).status.equals(
                                                     "banned",
                                                     ignoreCase = true
@@ -310,7 +367,7 @@ class LoginActivity : AppCompatActivity() {
                                         }
 
                                         if (isDocsUpload == 3) {
-                                            if (IsApproved == 3) {
+                                            if (IsApproved == 2) {
 
                                                 Comman.makeToast(
                                                     applicationContext,
@@ -368,6 +425,23 @@ class LoginActivity : AppCompatActivity() {
                                         }
 
                                     }
+
+//                                    Comman.makeToast(
+//                                        applicationContext,
+//                                        "Please upload your documents"
+//                                    )
+//
+//                                    val intent = Intent(
+//                                        applicationContext,
+//                                        AddDocumentActivity::class.java
+//                                    ) //not application context
+//                                    intent.putExtra(
+//                                        "name",
+//                                        response.body()!!.data.first_name + " " + response.body()!!.data.last_name
+//                                    )
+//                                    intent.flags =
+//                                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                                    startActivity(intent)
 
 
                                 } else {

@@ -82,15 +82,20 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     "ASSESSING",
                                                     ignoreCase = true
                                                 )
+                                                ||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "NEARTOEXPIRE",
+                                                    ignoreCase = true
+                                                )
                                             ) {
 
-                                                if (response.body()!!.driverDocuments.get(x).status.equals(
-                                                        "ACTIVE",
-                                                        ignoreCase = true
-                                                    )
-                                                ) {
+//                                                if (response.body()!!.driverDocuments.get(x).status.equals(
+//                                                        "ACTIVE",
+//                                                        ignoreCase = true
+//                                                    )
+//                                                ) {
                                                     IsApproved += 1
-                                                }
+//                                                }
 
                                                 Prefs.putKey(
                                                     applicationContext,
@@ -111,7 +116,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 binding.driverCheck.setImageResource(R.drawable.ic_check_green)
                                             }
 
-                                            /* if (response.body()!!.driverDocuments.get(x).status.equals(
+                                             if (response.body()!!.driverDocuments.get(x).status.equals(
                                                      "REJECT",
                                                      ignoreCase = true
                                                  ) ||
@@ -126,22 +131,22 @@ class AddDocumentActivity : AppCompatActivity() {
                                              ) {
                                                  binding.driverCheck.setImageResource(R.drawable.ic_check_red)
                                              }
-
-                                             if (response.body()!!.driverDocuments.get(x).status.equals(
-                                                     "NEARTOEXPIRE",
-                                                     ignoreCase = true
-                                                 ) ||
-                                                 response.body()!!.driverDocuments.get(x).status.equals(
-                                                     "Processing",
-                                                     ignoreCase = true
-                                                 ) ||
-                                                 response.body()!!.driverDocuments.get(x).status.equals(
-                                                     "EXPIRETODAY",
-                                                     ignoreCase = true
-                                                 )
-                                             ) {
-                                                 binding.driverCheck.setImageResource(R.drawable.ic_check_red)
-                                             }*/
+//
+//                                             if (response.body()!!.driverDocuments.get(x).status.equals(
+//                                                     "NEARTOEXPIRE",
+//                                                     ignoreCase = true
+//                                                 ) ||
+//                                                 response.body()!!.driverDocuments.get(x).status.equals(
+//                                                     "Processing",
+//                                                     ignoreCase = true
+//                                                 ) ||
+//                                                 response.body()!!.driverDocuments.get(x).status.equals(
+//                                                     "EXPIRETODAY",
+//                                                     ignoreCase = true
+//                                                 )
+//                                             ) {
+//                                                 binding.driverCheck.setImageResource(R.drawable.ic_check_red)
+//                                             }
                                         }
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "8") {
@@ -155,14 +160,19 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     "ASSESSING",
                                                     ignoreCase = true
                                                 )
+                                                ||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "NEARTOEXPIRE",
+                                                    ignoreCase = true
+                                                )
                                             ) {
-                                                if (response.body()!!.driverDocuments.get(x).status.equals(
-                                                        "ACTIVE",
-                                                        ignoreCase = true
-                                                    )
-                                                ) {
+//                                                if (response.body()!!.driverDocuments.get(x).status.equals(
+//                                                        "ACTIVE",
+//                                                        ignoreCase = true
+//                                                    )
+//                                                ) {
                                                     IsApproved += 1
-                                                }
+//                                                }
                                                 Prefs.putKey(
                                                     applicationContext,
                                                     "driverPassportExpiry",
@@ -181,7 +191,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 binding.identyCheck.setImageResource(R.drawable.ic_check_green)
                                             }
 
-                                            /*if (response.body()!!.driverDocuments.get(x).status.equals(
+                                            if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "REJECT",
                                                     ignoreCase = true
                                                 ) ||
@@ -197,53 +207,55 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 binding.identyCheck.setImageResource(R.drawable.ic_check_red)
                                             }
 
-                                            if (response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "NEARTOEXPIRE",
-                                                    ignoreCase = true
-                                                ) ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "Processing",
-                                                    ignoreCase = true
-                                                ) ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "EXPIRETODAY",
-                                                    ignoreCase = true
-                                                )
-                                            ) {
-                                                binding.identyCheck.setImageResource(R.drawable.ic_check_red)
-                                            }*/
+//                                            if (response.body()!!.driverDocuments.get(x).status.equals(
+//                                                    "NEARTOEXPIRE",
+//                                                    ignoreCase = true
+//                                                ) ||
+//                                                response.body()!!.driverDocuments.get(x).status.equals(
+//                                                    "Processing",
+//                                                    ignoreCase = true
+//                                                ) ||
+//                                                response.body()!!.driverDocuments.get(x).status.equals(
+//                                                    "EXPIRETODAY",
+//                                                    ignoreCase = true
+//                                                )
+//                                            ) {
+//                                                binding.identyCheck.setImageResource(R.drawable.ic_check_red)
+//                                            }
 
                                         }
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "9") {
                                             binding.photoCheck.visibility = View.VISIBLE
 
-                                            if (response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "ACTIVE",
-                                                    ignoreCase = true
-                                                ) ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "ASSESSING",
-                                                    ignoreCase = true
-                                                )
-                                            ) {
+//                                            if (response.body()!!.driverDocuments.get(x).status.equals(
+//                                                    "ACTIVE",
+//                                                    ignoreCase = true
+//                                                ) ||
+//                                                response.body()!!.driverDocuments.get(x).status.equals(
+//                                                    "ASSESSING",
+//                                                    ignoreCase = true
+//                                                )
+//                                            ) {
+//
+//                                                if (response.body()!!.driverDocuments.get(x).status.equals(
+//                                                        "ACTIVE",
+//                                                        ignoreCase = true
+//                                                    )
+//                                                ) {
+//                                                    IsApproved += 1
+//                                                }
+//                                                Prefs.putKey(
+//                                                    applicationContext,
+//                                                    "driverAddImage",
+//                                                    response.body()!!.driverDocuments.get(x).url
+//                                                )
+//
+//
+//                                                binding.photoCheck.setImageResource(R.drawable.ic_check_green)
+//                                            }
 
-                                                if (response.body()!!.driverDocuments.get(x).status.equals(
-                                                        "ACTIVE",
-                                                        ignoreCase = true
-                                                    )
-                                                ) {
-                                                    IsApproved += 1
-                                                }
-                                                Prefs.putKey(
-                                                    applicationContext,
-                                                    "driverAddImage",
-                                                    response.body()!!.driverDocuments.get(x).url
-                                                )
-
-
-                                                binding.photoCheck.setImageResource(R.drawable.ic_check_green)
-                                            }
+                                            binding.photoCheck.setImageResource(R.drawable.ic_check_green)
 
                                             /*if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "REJECT",
@@ -283,7 +295,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                 }
 
 
-                                if (IsApproved == 3) {
+                                if (IsApproved == 2) {
                                     binding.btnNext.visibility = View.VISIBLE
 
                                 }
@@ -348,7 +360,7 @@ class AddDocumentActivity : AppCompatActivity() {
 
         binding.btnNext.setOnClickListener {
 
-            if (IsApproved == 3) {
+            if (IsApproved == 2) {
                 val intent = Intent(
                     this@AddDocumentActivity,
                     HomeActivity::class.java

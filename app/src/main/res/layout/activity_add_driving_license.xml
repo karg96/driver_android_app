@@ -63,7 +63,7 @@
                             android:layout_height="193.4dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
-                            android:scaleType="fitXY"
+                            android:scaleType="centerCrop"
                             android:src="@drawable/pass_front" />
 
                         <ImageView
@@ -73,7 +73,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
-                            android:scaleType="fitXY"
+                            android:scaleType="centerCrop"
                             android:src="@drawable/pass_back" />
 
                     </LinearLayout>
