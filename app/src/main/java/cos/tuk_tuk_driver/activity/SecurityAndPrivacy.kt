@@ -9,6 +9,7 @@ import cos.tuk_tuk_driver.databinding.ActivityNotificationBinding
 import cos.tuk_tuk_driver.databinding.ActivitySecurityAndPrivacyBinding
 
 class SecurityAndPrivacy : AppCompatActivity() {
+
     private lateinit var binding: ActivitySecurityAndPrivacyBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

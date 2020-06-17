@@ -104,7 +104,7 @@
                 android:id="@+id/payment"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:orientation="horizontal"
                 android:visibility="visible">
@@ -136,7 +136,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:orientation="horizontal"
                 android:visibility="visible">
@@ -169,7 +169,7 @@
                 android:id="@+id/reportIssue"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:orientation="horizontal"
                 android:visibility="visible">
@@ -201,7 +201,7 @@
                 android:id="@+id/about"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:orientation="horizontal"
                 android:visibility="visible">
@@ -235,7 +235,7 @@
                 android:id="@+id/securityPrivacy"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:orientation="horizontal"
                 android:visibility="visible">

@@ -66,6 +66,11 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
 
             init()
 
+            if (!driverPassportFrontImage.isEmpty() && !driverPassportBackImage.isEmpty()) {
+                binding.imageTitle.visibility = View.GONE
+            } else if (driverPassportFrontImage.isEmpty() || driverPassportBackImage.isEmpty()) {
+                binding.imageTitle.visibility = View.VISIBLE
+            }
         } catch (Ex: Exception) {
 
         }
@@ -103,7 +108,7 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
         binding.passportFront.setOnClickListener(this)
         binding.uploadDoc.setOnClickListener(this)
 
-        if (!driverPassportFrontImage.isEmpty() || !driverPassportFrontImage.isEmpty()) {
+        if (!driverPassportFrontImage.isEmpty() || !driverPassportBackImage.isEmpty()) {
             /*Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverPassportFrontImage)
                 .into(binding.passportFront)*/
             /*  Glide.with(applicationContext).
@@ -126,7 +131,7 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
             binding.passportFront.scaleType = null
             binding.passportBack.scaleType = null
 
-            binding.imagetitle.visibility = View.GONE
+
             binding.passportBack.setOnClickListener(null)
             binding.passportFront.setOnClickListener(null)
         }
@@ -292,7 +297,7 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
 
                                     SelectedFrontImage = ""
                                     SelectedBackImage = ""
-                                    /*binding.imagetitle.visibility = View.VISIBLE
+                                    /*binding.imageTitle.visibility = View.VISIBLE
                                     binding.passportFront.setImageResource(R.drawable.pass_front)
                                     binding.passportBack.setImageResource(R.drawable.pass_front)*/
 
@@ -332,10 +337,10 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
 
                                     SelectedFrontImage = ""
                                     SelectedBackImage = ""
-                                    binding.imagetitle.visibility = View.VISIBLE
-                                    binding.passportFront.setImageResource(R.drawable.pass_front)
+                                  //  binding.imageTitle.visibility = View.VISIBLE
+                                    /*binding.passportFront.setImageResource(R.drawable.pass_front)
                                     binding.passportBack.setImageResource(R.drawable.pass_front)
-
+*/
                                     Comman.makeToast(applicationContext, response.body()!!.message)
                                     finish()
 
@@ -363,22 +368,22 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 12 && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
-            binding.imagetitle.visibility = View.GONE
+            binding.imageTitle.visibility = View.GONE
             SelectedFrontImage = Comman.getImages(data, binding.passportFront, applicationContext)
         }
         if (requestCode == 13 && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
-            binding.imagetitle.visibility = View.GONE
+            binding.imageTitle.visibility = View.GONE
             SelectedBackImage = Comman.getImages(data, binding.passportBack, applicationContext)
         }
         if (requestCode == 121 && resultCode == Activity.RESULT_OK) {
-            binding.imagetitle.visibility = View.GONE
+            binding.imageTitle.visibility = View.GONE
             Glide.with(this).load(mCurrentPhotoPath).into(binding.passportFront)
             SelectedFrontImage = mCurrentPhotoPath
 
         }
         if (requestCode == 131 && resultCode == Activity.RESULT_OK) {
 
-            binding.imagetitle.visibility = View.GONE
+            binding.imageTitle.visibility = View.GONE
             Glide.with(this).load(mCurrentPhotoPath).into(binding.passportBack)
             SelectedBackImage = mCurrentPhotoPath
 

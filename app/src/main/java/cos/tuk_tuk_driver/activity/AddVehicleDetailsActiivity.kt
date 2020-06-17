@@ -235,7 +235,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
                         if (response.body()!!.status) {
 
-                            Comman.makeToast(applicationContext, response.body()!!.message)
+                            makeToast(applicationContext, response.body()!!.message)
                             // finish()
                             val intent = Intent(
                                 this@AddVehicleDetailsActiivity,
@@ -246,7 +246,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                             startActivity(intent)
 
                         } else if (!response.body()!!.status) {
-                            Comman.makeToast(applicationContext, response.body()!!.error)
+                            makeToast(applicationContext, response.body()!!.error)
 
                         }
 
@@ -256,7 +256,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
 
         } catch (Ex: Exception) {
-            Comman.makeToast(applicationContext, Ex.message)
+            makeToast(applicationContext, Ex.message)
 
         }
 
@@ -280,7 +280,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                 .enqueue(object : retrofit2.Callback<AddVehicleModal> {
                     override fun onFailure(call: Call<AddVehicleModal>, t: Throwable) {
                         dialog.dismiss()
-                        Comman.makeToast(applicationContext, "Please try again later")
+                        makeToast(applicationContext, "Please try again later")
 
                     }
 
@@ -305,7 +305,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                                 AllVehicleActivity::class.java
                             )
                             intent.flags =
-                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
                             startActivity(intent)
 
                         } else if (!response.body()!!.status) {

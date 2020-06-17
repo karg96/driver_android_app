@@ -80,7 +80,7 @@
 
 
                     <ImageView
-                        android:id="@+id/imagetitle"
+                        android:id="@+id/imageTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
                         android:layout_centerHorizontal="true"

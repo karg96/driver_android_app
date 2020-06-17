@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".activity.AddVehicleDetailsActiivity">
 
     <androidx.cardview.widget.CardView
@@ -131,7 +132,7 @@
                 android:layout_marginRight="19dp"
                 android:cursorVisible="true"
                 android:fontFamily="@font/nunitosans_regular"
-                android:hint="@string/enterModel"
+                android:hint="@string/enter_modal"
                 android:inputType="text"
                 android:lineHeight="27sp"
                 android:paddingLeft="5dp"
@@ -211,7 +212,7 @@
                 android:layout_marginRight="19dp"
                 android:cursorVisible="true"
                 android:fontFamily="@font/nunitosans_regular"
-                android:hint="@string/enterLic"
+                android:hint="@string/enter_licence"
                 android:inputType="text"
                 android:lineHeight="27sp"
                 android:paddingLeft="5dp"
@@ -243,7 +244,7 @@
                 android:layout_marginRight="19dp"
                 android:cursorVisible="true"
                 android:fontFamily="@font/nunitosans_regular"
-                android:hint="@string/enterVeh"
+                android:hint="@string/enter_color"
                 android:inputType="text"
                 android:lineHeight="27sp"
                 android:paddingLeft="5dp"
@@ -264,7 +265,7 @@
                 android:layout_marginBottom="20sp"
                 android:background="@drawable/red_rounded_btn"
                 android:fontFamily="@font/nunitosans_bold"
-                android:text="@string/addvehicle"
+                android:text="@string/addVehicleData"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"

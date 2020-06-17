@@ -1,18 +1,13 @@
 package cos.tuk_tuk_driver.activity
 
-import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Build
 import android.os.Handler
-import android.view.View
+import android.os.Looper
 import android.view.Window
 import android.view.WindowManager
-import androidx.annotation.RequiresApi
 import com.tuktuk.utils.BaseActivity
 import cos.tuk_tuk_driver.R
-
 import cos.tuk_tuk_driver.databinding.ActivitySplashBinding
 import cos.tuk_tuk_driver.models.Documents
 import cos.tuk_tuk_driver.utils.Comman
@@ -21,7 +16,6 @@ import cos.tuk_tuk_driver.utils.ProgressBarAnimation
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 
 
 class SplashActivity : BaseActivity() {
@@ -31,7 +25,9 @@ class SplashActivity : BaseActivity() {
     private lateinit var binding: ActivitySplashBinding
     private var isDocsUpload: Int = 0
     private var IsApproved: Int = 0
+    private var mHandler: Handler? = null
 
+    private var mRunnable: Runnable? = null
     private val apiInterface = Comman.getApiToken()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +42,10 @@ class SplashActivity : BaseActivity() {
         setContentView(binding.root)
         try {
 
+            // Initialize other stuff
+            mHandler = Handler(Looper.getMainLooper())
+
+
             runTimer()
 
         } catch (Ex: Exception) {
@@ -56,8 +56,7 @@ class SplashActivity : BaseActivity() {
 
     private fun runTimer() {
 
-        Handler().postDelayed({
-
+        mRunnable = Runnable {
             try {
 
                 if (i < 100) {
@@ -112,8 +111,16 @@ class SplashActivity : BaseActivity() {
 
                 Comman.makeToast(applicationContext, "Error ${Ex.message}")
             }
+        }
 
-        }, 1000)
+        mHandler!!.postDelayed(mRunnable, 1000)
+
+
+       /* Handler().postDelayed({
+
+
+
+        }, 1000)*/
 
 
     }

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.adapter.AllVehicleAdapter
 import cos.tuk_tuk_driver.databinding.ActivityAllVehicleBinding
+import cos.tuk_tuk_driver.databinding.ActivityVehicleBinding
 import cos.tuk_tuk_driver.listener.MyButtonClickListener
 import cos.tuk_tuk_driver.models.GetVehicleModal
 import cos.tuk_tuk_driver.models.Vehicles
@@ -76,12 +77,12 @@ class AllVehicleActivity : AppCompatActivity() {
                                     if (response.body()!!.vehicles.isEmpty()) {
                                         val intent = Intent(
                                             this@AllVehicleActivity,
-                                            AddVehicleDetailsActiivity::class.java
+                                            VehicleActivity::class.java
                                         )
 
                                         intent.flags =
                                             Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
-                                        intent.putExtra("from", "add")
+                                        // intent.putExtra("from", "add")
                                         startActivity(intent)
 
                                         return

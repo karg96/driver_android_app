@@ -43,7 +43,6 @@ class DocumentsActivity : AppCompatActivity() {
         }
 
 
-
         binding.passport.setOnClickListener {
 
             val intent = Intent(this@DocumentsActivity, AddIdentityCardActivity::class.java)
@@ -53,14 +52,14 @@ class DocumentsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-//        binding.addPhoto.setOnClickListener {
-//
-//            val intent = Intent(this@DocumentsActivity, AddPhotoActivity::class.java)
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            startActivity(intent)
-//
-//        }
+        /* binding.addPhoto.setOnClickListener {
+
+             val intent = Intent(this@DocumentsActivity, AddPhotoActivity::class.java)
+             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+             startActivity(intent)
+
+         }*/
 
     }
 
@@ -185,10 +184,6 @@ class DocumentsActivity : AppCompatActivity() {
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "ACTIVE",
                                                     ignoreCase = true
-                                                ) ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "ASSESSING",
-                                                    ignoreCase = true
                                                 )
                                             ) {
                                                 binding.statusText.text = "Document approved"
@@ -238,67 +233,68 @@ class DocumentsActivity : AppCompatActivity() {
 
                                         }
 
-//                                        if (response.body()!!.driverDocuments.get(x).document_id == "9") {
-//                                            binding.addPhoto.visibility = View.VISIBLE
-//                                            Prefs.putKey(
-//                                                applicationContext,
-//                                                "driverAddImage",
-//                                                response.body()!!.driverDocuments.get(x).url
-//                                            )
-//                                            if (response.body()!!.driverDocuments.get(x).status.equals(
-//                                                    "ACTIVE",
-//                                                    ignoreCase = true
-//                                                )
-//                                            ) {
-//                                                binding.statusPhoto.text = "Document approved"
-//
-//                                                binding.PhotoImage.setImageResource(R.drawable.ic_check_white)
-//                                                binding.PhotoImage.setBackgroundResource(R.drawable.edt_round_green)
-//
-//                                            }
-//
-//                                            if (response.body()!!.driverDocuments.get(x).status.equals(
-//                                                    "REJECT",
-//                                                    ignoreCase = true
-//                                                ) ||
-//                                                response.body()!!.driverDocuments.get(x).status.equals(
-//                                                    "EXPIRED",
-//                                                    ignoreCase = true
-//                                                ) ||
-//                                                response.body()!!.driverDocuments.get(x).status.equals(
-//                                                    "EXPIRETODAY",
-//                                                    ignoreCase = true
-//                                                )
-//                                            ) {
-//                                                binding.statusPhoto.text = "Document expired"
-//
-//                                                binding.PhotoImage.setImageResource(R.drawable.ic_remove_white)
-//                                                binding.PhotoImage.setBackgroundResource(R.drawable.edt_round_red)
-//
-//                                            }
-//
-//                                            if (response.body()!!.driverDocuments.get(x).status.equals(
-//                                                    "NEARTOEXPIRE",
-//                                                    ignoreCase = true
-//                                                ) ||
-//                                                response.body()!!.driverDocuments.get(x).status.equals(
-//                                                    "Processing",
-//                                                    ignoreCase = true
-//                                                ) ||
-//                                                response.body()!!.driverDocuments.get(x).status.equals(
-//                                                    "EXPIRETODAY",
-//                                                    ignoreCase = true
-//                                                )
-//                                            ) {
-//                                                binding.statusPhoto.text =
-//                                                    "Document will expire soon"
-//
-//                                                binding.PhotoImage.setImageResource(R.drawable.ic_alarm_white)
-//                                                binding.PhotoImage.setBackgroundResource(R.drawable.edt_round_oranges)
-//                                            }
-//
-//
-//                                        }
+                                        /* if (response.body()!!.driverDocuments.get(x).document_id == "9") {
+                                             binding.addPhoto.visibility = View.VISIBLE
+                                             Prefs.putKey(
+                                                 applicationContext,
+                                                 "driverAddImage",
+                                                 response.body()!!.driverDocuments.get(x).url
+                                             )
+                                             if (response.body()!!.driverDocuments.get(x).status.equals(
+                                                     "ACTIVE",
+                                                     ignoreCase = true
+                                                 )
+                                             ) {
+                                                 binding.statusPhoto.text = "Document approved"
+
+                                                 binding.PhotoImage.setImageResource(R.drawable.ic_check_white)
+                                                 binding.PhotoImage.setBackgroundResource(R.drawable.edt_round_green)
+
+                                             }
+
+                                             if (response.body()!!.driverDocuments.get(x).status.equals(
+                                                     "REJECT",
+                                                     ignoreCase = true
+                                                 ) ||
+                                                 response.body()!!.driverDocuments.get(x).status.equals(
+                                                     "EXPIRED",
+                                                     ignoreCase = true
+                                                 ) ||
+                                                 response.body()!!.driverDocuments.get(x).status.equals(
+                                                     "EXPIRETODAY",
+                                                     ignoreCase = true
+                                                 )
+                                             ) {
+                                                 binding.statusPhoto.text = "Document expired"
+
+                                                 binding.PhotoImage.setImageResource(R.drawable.ic_remove_white)
+                                                 binding.PhotoImage.setBackgroundResource(R.drawable.edt_round_red)
+
+                                             }
+
+                                             if (response.body()!!.driverDocuments.get(x).status.equals(
+                                                     "NEARTOEXPIRE",
+                                                     ignoreCase = true
+                                                 ) ||
+                                                 response.body()!!.driverDocuments.get(x).status.equals(
+                                                     "Processing",
+                                                     ignoreCase = true
+                                                 ) ||
+                                                 response.body()!!.driverDocuments.get(x).status.equals(
+                                                     "EXPIRETODAY",
+                                                     ignoreCase = true
+                                                 )
+                                             ) {
+                                                 binding.statusPhoto.text =
+                                                     "Document will expire soon"
+
+                                                 binding.PhotoImage.setImageResource(R.drawable.ic_alarm_white)
+                                                 binding.PhotoImage.setBackgroundResource(R.drawable.edt_round_oranges)
+                                             }
+
+
+                                         }
+                                   */
                                     }
 
 

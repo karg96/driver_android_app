@@ -16,6 +16,7 @@ import cos.tuk_tuk_driver.DriverApp
 
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.activity.*
+import cos.tuk_tuk_driver.databinding.ActivityVehicleBinding
 import cos.tuk_tuk_driver.models.GetVehicleModal
 import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.Prefs
@@ -167,6 +168,7 @@ class Account : Fragment() {
                 .enqueue(object : Callback<GetVehicleModal> {
                     override fun onFailure(call: Call<GetVehicleModal>, t: Throwable) {
                         dialog.dismiss()
+                        Comman.makeToast(context, "Please try again later")
 
                     }
 
@@ -180,43 +182,44 @@ class Account : Fragment() {
 
                             if (response.body()!!.status) {
 
-                                if (response.body()!!.vehicles != null) {
 
+                                if (response.body()!!.vehicles.isEmpty()) {
 
-                                    if (response.body()!!.vehicles.isEmpty()) {
-
+                                    if (status == 1) {
 
                                         val intent = Intent(
                                             context,
                                             VehicleActivity::class.java
                                         )
                                         intent.flags =
-                                            Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
+                                            Intent.FLAG_ACTIVITY_NEW_TASK/* or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
                                         startActivity(intent)
                                         return
-                                    } else {
+                                    }
 
-                                        if (status == 0) {
-                                            for (x in 0..response.body()!!.vehicles.size) {
-                                                if (response.body()!!.vehicles.get(x).prime == 1) {
-                                                    vehicleText!!.visibility = View.GONE
-                                                }
+                                } else {
+
+                                    if (status == 0) {
+                                        for (x in 0..response.body()!!.vehicles.size) {
+                                            if (response.body()!!.vehicles.get(x).prime == 1) {
+                                                vehicleText!!.visibility = View.GONE
                                             }
                                         }
+                                    }
 
-                                        if (status == 1) {
-                                            val intent = Intent(
-                                                context,
-                                                AllVehicleActivity::class.java
-                                            )
-                                            intent.flags =
-                                                Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
-                                            startActivity(intent)
-                                        }
-
+                                    if (status == 1) {
+                                        val intent = Intent(
+                                            context,
+                                            AllVehicleActivity::class.java
+                                        )
+                                        intent.flags =
+                                            Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
+                                        startActivity(intent)
                                     }
 
                                 }
+
+
                             } else {
 
                                 Comman.makeToast(context, "Please try again later")
