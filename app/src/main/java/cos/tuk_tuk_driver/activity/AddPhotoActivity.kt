@@ -25,7 +25,6 @@ import cos.tuk_tuk_driver.databinding.ActivityAddPhotoBinding
 import cos.tuk_tuk_driver.models.UploadDocsModal
 import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.Prefs
-import cos.tuk_tuk_driver.utils.URLHelper
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -49,10 +48,10 @@ class AddPhotoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddPhotoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         try {
 
             driverAddImage = Prefs.getKey(applicationContext, "driverAddImage")
-
 
             init()
 

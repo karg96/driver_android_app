@@ -221,8 +221,7 @@ class SplashActivity : BaseActivity() {
 
                                             Comman.makeToast(
                                                 applicationContext,
-                                                "Please wait your documents is not approved yet"
-                                            )
+                                                "Please wait your documents is not approved yet")
                                         }
                                     } else {
                                         Comman.makeToast(

@@ -119,7 +119,6 @@ class GetOtpActivity : BaseActivity() {
                             if (response.code() == 200) {
                                 if (response.body()!!.status) {
 
-
                                     if (response.body()!!.password) {
 
                                         val intent = Intent(
