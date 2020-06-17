@@ -63,14 +63,11 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
             driverPassportBackImage = Prefs.getKey(applicationContext, "driverPassportBackImage")
             driverPassportExpiry = Prefs.getKey(applicationContext, "driverPassportExpiry")
             afterLogin = intent.getStringExtra("from")
-
+            if(afterLogin.equals("beforeLogin")){
+                binding.imageTitle.visibility = View.GONE
+            }
             init()
 
-            if (!driverPassportFrontImage.isEmpty() && !driverPassportBackImage.isEmpty()) {
-                binding.imageTitle.visibility = View.GONE
-            } else if (driverPassportFrontImage.isEmpty() || driverPassportBackImage.isEmpty()) {
-                binding.imageTitle.visibility = View.VISIBLE
-            }
         } catch (Ex: Exception) {
 
         }

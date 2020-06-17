@@ -27,7 +27,6 @@ import cos.tuk_tuk_driver.databinding.ActivityAddDrivingLicenseBinding
 import cos.tuk_tuk_driver.models.UploadDocsModal
 import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.Prefs
-import kotlinx.android.synthetic.main.activity_payment_type.view.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -64,6 +63,10 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
             driverLicenceBackImage = Prefs.getKey(applicationContext, "driverLicenceBackImage")
             driverLicenceExpiry = Prefs.getKey(applicationContext, "driverLicenceExpiry")
             afterLogin = intent.getStringExtra("from")
+            if (afterLogin.equals("beforeLogin")) {
+                binding.imagetitle.visibility = View.GONE
+            }
+
             init()
 
 
@@ -106,6 +109,7 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
         binding.uploadDoc.setOnClickListener(this)
 
         if (!driverLicenceFrontImage.isEmpty() || !driverLicenceBackImage.isEmpty()) {
+
             /* Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverLicenceFrontImage)
                  .into(binding.drivingFront)
              Glide.with(applicationContext).load(URLHelper.BaseUrlImage + driverLicenceBackImage)
@@ -127,12 +131,12 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
             binding.drivingFront.scaleType = null
             binding.drivingBack.scaleType = null
 
-
             binding.imagetitle.visibility = View.GONE
             binding.uploadDoc.visibility = View.GONE
             binding.drivingBack.setOnClickListener(null)
             binding.drivingFront.setOnClickListener(null)
         }
+
         if (afterLogin.equals("afterLogin", ignoreCase = true)) {
             binding.uploadDoc.visibility = View.VISIBLE
             binding.drivingBack.setOnClickListener(this)
@@ -194,6 +198,7 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
                 if (photoFile != null) {
                     val builder = StrictMode.VmPolicy.Builder()
                     StrictMode.setVmPolicy(builder.build())
+                    cameraIntent.putExtra("crop", true)
                     cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile))
                     if (actionNo == 12) {
                         startActivityForResult(cameraIntent, 121)

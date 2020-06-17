@@ -21,6 +21,7 @@ class AddDocumentActivity : AppCompatActivity() {
     private val apiInterface = Comman.getApiToken()
     private var UserName: String = ""
     private var IsApproved: Int = 0
+    private var IsReject: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +46,7 @@ class AddDocumentActivity : AppCompatActivity() {
         GetUploadDocuments()
     }
 
+
     private fun GetUploadDocuments() {
 
         try {
@@ -52,6 +54,9 @@ class AddDocumentActivity : AppCompatActivity() {
             val dialog = ProgressDialog(this)
             dialog.setMessage("Please wait....")
             dialog.show()
+
+            IsApproved = 0
+            IsReject = 0
 
             apiInterface!!.getUploadDocs()
                 .enqueue(object : Callback<Documents> {
@@ -78,6 +83,10 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 ) ||
                                                 response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "NEARTOEXPIRE",
+                                                    ignoreCase = true
+                                                ) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
                                                     "ASSESSING",
                                                     ignoreCase = true
                                                 )
@@ -86,6 +95,10 @@ class AddDocumentActivity : AppCompatActivity() {
 
                                                 if (response.body()!!.driverDocuments.get(x).status.equals(
                                                         "ACTIVE",
+                                                        ignoreCase = true
+                                                    ) ||
+                                                    response.body()!!.driverDocuments.get(x).status.equals(
+                                                        "NEARTOEXPIRE",
                                                         ignoreCase = true
                                                     )
                                                 ) {
@@ -111,43 +124,36 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 binding.driverCheck.setImageResource(R.drawable.ic_check_green)
                                             }
 
-                                            /* if (response.body()!!.driverDocuments.get(x).status.equals(
-                                                     "REJECT",
-                                                     ignoreCase = true
-                                                 ) ||
-                                                 response.body()!!.driverDocuments.get(x).status.equals(
-                                                     "EXPIRED",
-                                                     ignoreCase = true
-                                                 ) ||
-                                                 response.body()!!.driverDocuments.get(x).status.equals(
-                                                     "EXPIRETODAY",
-                                                     ignoreCase = true
-                                                 )
-                                             ) {
-                                                 binding.driverCheck.setImageResource(R.drawable.ic_check_red)
-                                             }
+                                            if (response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "REJECT",
+                                                    ignoreCase = true
+                                                ) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "EXPIRED",
+                                                    ignoreCase = true
+                                                ) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "EXPIRETODAY",
+                                                    ignoreCase = true
+                                                )
+                                            ) {
+                                                IsReject += 1
+                                                binding.driverCheck.visibility = View.VISIBLE
 
-                                             if (response.body()!!.driverDocuments.get(x).status.equals(
-                                                     "NEARTOEXPIRE",
-                                                     ignoreCase = true
-                                                 ) ||
-                                                 response.body()!!.driverDocuments.get(x).status.equals(
-                                                     "Processing",
-                                                     ignoreCase = true
-                                                 ) ||
-                                                 response.body()!!.driverDocuments.get(x).status.equals(
-                                                     "EXPIRETODAY",
-                                                     ignoreCase = true
-                                                 )
-                                             ) {
-                                                 binding.driverCheck.setImageResource(R.drawable.ic_check_red)
-                                             }*/
+                                                binding.driverCheck.setImageResource(R.drawable.ic_check_red)
+                                            }
+
+
                                         }
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "8") {
 
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "ACTIVE",
+                                                    ignoreCase = true
+                                                ) ||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "NEARTOEXPIRE",
                                                     ignoreCase = true
                                                 ) ||
                                                 response.body()!!.driverDocuments.get(x).status.equals(
@@ -159,6 +165,10 @@ class AddDocumentActivity : AppCompatActivity() {
 
                                                 if (response.body()!!.driverDocuments.get(x).status.equals(
                                                         "ACTIVE",
+                                                        ignoreCase = true
+                                                    ) ||
+                                                    response.body()!!.driverDocuments.get(x).status.equals(
+                                                        "NEARTOEXPIRE",
                                                         ignoreCase = true
                                                     )
                                                 ) {
@@ -182,7 +192,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 binding.identyCheck.setImageResource(R.drawable.ic_check_green)
                                             }
 
-                                            /*if (response.body()!!.driverDocuments.get(x).status.equals(
+                                            if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "REJECT",
                                                     ignoreCase = true
                                                 ) ||
@@ -195,8 +205,13 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
+                                                IsReject += 1
+
+                                                binding.identyCheck.visibility = View.VISIBLE
                                                 binding.identyCheck.setImageResource(R.drawable.ic_check_red)
                                             }
+
+                                            /*
 
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "NEARTOEXPIRE",
@@ -229,54 +244,15 @@ class AddDocumentActivity : AppCompatActivity() {
                                             ) {
                                                 binding.photoCheck.visibility = View.VISIBLE
 
-                                                if (response.body()!!.driverDocuments.get(x).status.equals(
-                                                        "ACTIVE",
-                                                        ignoreCase = true
-                                                    )
-                                                ) {
-                                                    IsApproved += 1
-                                                }
                                                 Prefs.putKey(
                                                     applicationContext,
                                                     "driverAddImage",
                                                     response.body()!!.driverDocuments.get(x).url
                                                 )
 
-
                                                 binding.photoCheck.setImageResource(R.drawable.ic_check_green)
                                             }
 
-                                            /*if (response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "REJECT",
-                                                    ignoreCase = true
-                                                ) ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "EXPIRED",
-                                                    ignoreCase = true
-                                                ) ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "EXPIRETODAY",
-                                                    ignoreCase = true
-                                                )
-                                            ) {
-                                                binding.photoCheck.setImageResource(R.drawable.ic_check_red)
-                                            }
-
-                                            if (response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "NEARTOEXPIRE",
-                                                    ignoreCase = true
-                                                ) ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "Processing",
-                                                    ignoreCase = true
-                                                ) ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "EXPIRETODAY",
-                                                    ignoreCase = true
-                                                )
-                                            ) {
-                                                binding.photoCheck.setImageResource(R.drawable.ic_check_red)
-                                            }*/
                                         }
 
                                     }
@@ -284,7 +260,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                 }
 
 
-                                if (IsApproved == 3) {
+                                if (IsApproved == 2) {
                                     binding.btnNext.visibility = View.VISIBLE
 
                                 }
@@ -317,6 +293,7 @@ class AddDocumentActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
             intent.putExtra("from", "beforeLogin")
             startActivity(intent)
+
         }
 
         binding.cardRegDocument.setOnClickListener {
@@ -326,6 +303,7 @@ class AddDocumentActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+
         }
 
         binding.cardIdentity.setOnClickListener {
@@ -334,8 +312,8 @@ class AddDocumentActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
             intent.putExtra("from", "beforeLogin")
-
             startActivity(intent)
+
         }
 
         binding.cardPhoto.setOnClickListener {
@@ -349,19 +327,25 @@ class AddDocumentActivity : AppCompatActivity() {
 
         binding.btnNext.setOnClickListener {
 
-            if (IsApproved == 3) {
-                val intent = Intent(
-                    this@AddDocumentActivity,
-                    HomeActivity::class.java
-                )
-                intent.flags =
-                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            /* IsApproved=0
+             IsReject=0
+             GetUploadDocuments()*/
+
+            if (IsApproved == 2) {
+                val intent = Intent(this@AddDocumentActivity, HomeActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             } else {
-                Comman.makeToast(
-                    applicationContext,
-                    "Your account need some attentions."
-                )
+
+                if (IsReject > 0) {
+                    Comman.makeToast(applicationContext, "Your account is Expire or REJECT.")
+
+                } else {
+
+                    Comman.makeToast(applicationContext, "Your account need some attentions.")
+
+                }
+
             }
 
 
@@ -375,6 +359,7 @@ class AddDocumentActivity : AppCompatActivity() {
 
     }
 
+
     private fun LogoutAlert() {
 
         Prefs.clearSharedPreferences(DriverApp.context)
@@ -382,7 +367,7 @@ class AddDocumentActivity : AppCompatActivity() {
             this,
             GetOtpActivity::class.java
         ) //not application context
-        intent.putExtra("from", "register")
+        intent.putExtra("from", "login")
 
         intent.flags =
             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

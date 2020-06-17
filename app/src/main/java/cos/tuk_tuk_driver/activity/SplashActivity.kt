@@ -116,11 +116,11 @@ class SplashActivity : BaseActivity() {
         mHandler!!.postDelayed(mRunnable, 1000)
 
 
-       /* Handler().postDelayed({
+        /* Handler().postDelayed({
 
 
 
-        }, 1000)*/
+         }, 1000)*/
 
 
     }
@@ -159,11 +159,7 @@ class SplashActivity : BaseActivity() {
                                                     "ACTIVE",
                                                     ignoreCase = true
                                                 ) ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "ASSESSING",
-                                                    ignoreCase = true
-                                                )
-                                                ||
+
                                                 response.body()!!.driverDocuments.get(x).status.equals(
                                                     "NEARTOEXPIRE",
                                                     ignoreCase = true
@@ -180,11 +176,6 @@ class SplashActivity : BaseActivity() {
                                                     ignoreCase = true
                                                 ) ||
                                                 response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "ASSESSING",
-                                                    ignoreCase = true
-                                                )
-                                                ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
                                                     "NEARTOEXPIRE",
                                                     ignoreCase = true
                                                 )
@@ -198,7 +189,6 @@ class SplashActivity : BaseActivity() {
                                             isDocsUpload += 1
 
                                         }
-
 
 
                                     }
@@ -252,9 +242,7 @@ class SplashActivity : BaseActivity() {
                                         startActivity(intent)
                                     }
 
-                                }
-
-                                else{
+                                } else {
                                     Comman.makeToast(
                                         applicationContext,
                                         "Please upload your documents"

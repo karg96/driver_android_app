@@ -95,7 +95,6 @@ class DocumentsActivity : AppCompatActivity() {
                                     for (x in 0 until response.body()!!.driverDocuments.size) {
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "1") {
-                                            binding.driver.visibility = View.VISIBLE
                                             Prefs.putKey(
                                                 applicationContext,
                                                 "driverLicenceExpiry",
@@ -117,6 +116,9 @@ class DocumentsActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
+
+                                                binding.driver.visibility = View.VISIBLE
+
                                                 binding.vehicleText.text = "Document approved"
                                                 binding.driverImage.setImageResource(R.drawable.ic_check_white)
                                                 binding.driverImage.setBackgroundResource(R.drawable.edt_round_green)
@@ -135,7 +137,10 @@ class DocumentsActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.vehicleText.text = "Document expired"
+                                                binding.driver.visibility = View.VISIBLE
+
+                                                binding.vehicleText.text =
+                                                    "Document will expire soon"
 
                                                 binding.driverImage.setImageResource(R.drawable.ic_remove_white)
                                                 binding.driverImage.setBackgroundResource(R.drawable.edt_round_red)
@@ -154,9 +159,10 @@ class DocumentsActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
+                                                binding.driver.visibility = View.VISIBLE
+
                                                 binding.vehicleText.text =
                                                     "Document will expire soon"
-
                                                 binding.driverImage.setImageResource(R.drawable.ic_alarm_white)
                                                 binding.driverImage.setBackgroundResource(R.drawable.edt_round_oranges)
 
@@ -164,7 +170,6 @@ class DocumentsActivity : AppCompatActivity() {
                                         }
 
                                         if (response.body()!!.driverDocuments.get(x).document_id == "8") {
-                                            binding.passport.visibility = View.VISIBLE
                                             Prefs.putKey(
                                                 applicationContext,
                                                 "driverPassportExpiry",
@@ -186,7 +191,9 @@ class DocumentsActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.statusText.text = "Document approved"
+                                                binding.passport.visibility = View.VISIBLE
+
+                                                binding.PassportText.text = "Document approved"
 
                                                 binding.PassportImage.setImageResource(R.drawable.ic_check_white)
                                                 binding.PassportImage.setBackgroundResource(R.drawable.edt_round_green)
@@ -205,7 +212,10 @@ class DocumentsActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.statusText.text = "Document expired"
+                                                binding.passport.visibility = View.VISIBLE
+
+                                                binding.PassportText.text =
+                                                    "Document will expire soon"
 
                                                 binding.PassportImage.setImageResource(R.drawable.ic_remove_white)
                                                 binding.PassportImage.setBackgroundResource(R.drawable.edt_round_red)
@@ -224,7 +234,9 @@ class DocumentsActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.statusText.text =
+                                                binding.passport.visibility = View.VISIBLE
+
+                                                binding.PassportText.text =
                                                     "Document will expire soon"
 
                                                 binding.PassportImage.setImageResource(R.drawable.ic_alarm_white)
@@ -295,6 +307,7 @@ class DocumentsActivity : AppCompatActivity() {
 
                                          }
                                    */
+
                                     }
 
 

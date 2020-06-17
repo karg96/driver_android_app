@@ -230,11 +230,6 @@ class LoginActivity : AppCompatActivity() {
                                                         ignoreCase = true
                                                     ) ||
                                                     response.body()!!.documents.driverDocuments.get(x).status.equals(
-                                                        "ASSESSING",
-                                                        ignoreCase = true
-                                                    )
-                                                    ||
-                                                    response.body()!!.documents.driverDocuments.get(x).status.equals(
                                                         "NEARTOEXPIRE",
                                                         ignoreCase = true
                                                     )
@@ -281,11 +276,6 @@ class LoginActivity : AppCompatActivity() {
                                                         ignoreCase = true
                                                     ) ||
                                                     response.body()!!.documents.driverDocuments.get(x).status.equals(
-                                                        "ASSESSING",
-                                                        ignoreCase = true
-                                                    )
-                                                    ||
-                                                    response.body()!!.documents.driverDocuments.get(x).status.equals(
                                                         "NEARTOEXPIRE",
                                                         ignoreCase = true
                                                     )
@@ -298,7 +288,6 @@ class LoginActivity : AppCompatActivity() {
                                                     IsApproved += 1
 
                                                 }
-
 
 
                                                 isDocsUpload += 1
@@ -336,8 +325,6 @@ class LoginActivity : AppCompatActivity() {
                                                     ).url
                                                 )
                                             }
-
-
 
 
 

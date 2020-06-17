@@ -161,6 +161,7 @@ class AddPhotoActivity : AppCompatActivity() {
                     cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile))
                     startActivityForResult(cameraIntent, 121)
 
+
                 }
             }
         }

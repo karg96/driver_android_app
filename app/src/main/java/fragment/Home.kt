@@ -156,11 +156,9 @@ class Home : Fragment(), OnMapReadyCallback {
                         //   Places.initialize(getContext(), getString(R.string.google_maps_key), Locale.US);
                         if (!Places.isInitialized()) {
                             context?.let {
-                                Places.initialize(
-                                    it,
+                                Places.initialize(it,
                                     getString(R.string.google_maps_key),
-                                    Locale.US
-                                )
+                                    Locale.US)
                             }
                         }
                         if (context?.let {
@@ -210,12 +208,7 @@ class Home : Fragment(), OnMapReadyCallback {
                     }
                     // check for permanent denial of any permission
                     if (report.isAnyPermissionPermanentlyDenied) {
-                        Toast.makeText(
-                            context,
-                            "Please allow permission",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
+                        Toast.makeText(context, "Please allow permission", Toast.LENGTH_SHORT).show()
                         // permission is denied permenantly, navigate user to app settings
                     }
                 }
