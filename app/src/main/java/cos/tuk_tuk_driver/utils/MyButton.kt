@@ -61,16 +61,16 @@ class MyButton(
             c.drawText(text, rectF.left + x, rectF.top + y, p)
 
         } else {
-            x = cWidth / 2f - r.width() / 2f - r.left.toFloat()
-            y = cHeight / 2f + r.height() / 2f - r.bottom.toFloat()
             val d = ContextCompat.getDrawable(context, imageResId)
             val bitmap = drawableToBitmap(d!!)
 //            c.drawBitmap(bitmap, (rectF.left + rectF.right) / 2, (rectF.top + rectF.bottom) / 2, p)
             c.drawBitmap(
                 bitmap,
-                rectF.left + x, rectF.top + y, p
+                (rectF.left + rectF.right- bitmap.width) / 2,
+                (rectF.top + rectF.bottom- bitmap.height) / 2,
+                p
             )
-            //  c.drawBitmap(bitmap, ((bitmap.getWidth()/2)-250), ((bitmap.getHeight()/2)-450), null);
+          //  c.drawBitmap(bitmap, ((bitmap.getWidth()/2)-250), ((bitmap.getHeight()/2)-450), null);
 
         }
 

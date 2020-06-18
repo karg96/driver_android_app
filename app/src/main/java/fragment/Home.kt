@@ -19,6 +19,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
@@ -183,7 +184,11 @@ class Home : Fragment(), OnMapReadyCallback {
                                 initial_longitude = latLngVal.longitude
 
                                 val sydney = LatLng(initial_latitude, initial_longitude)
-                                mMap.addMarker(MarkerOptions().position(sydney).title(initial_marker))
+                                mMap.addMarker(
+                                    MarkerOptions().position(sydney).title(initial_marker).icon(
+                                        BitmapDescriptorFactory.fromResource(R.drawable.current_location)
+                                    )
+                                )
                                 mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
                                 mMap.animateCamera(
                                     CameraUpdateFactory.newLatLngZoom(
@@ -227,7 +232,11 @@ class Home : Fragment(), OnMapReadyCallback {
         mMap = map as GoogleMap
 
         val sydney = LatLng(initial_latitude, initial_longitude)
-        mMap.addMarker(MarkerOptions().position(sydney).title(initial_marker))
+        mMap.addMarker(
+            MarkerOptions().position(sydney).title(initial_marker).icon(
+                BitmapDescriptorFactory.fromResource(R.drawable.current_location)
+            )
+        )
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         mMap.animateCamera(
             CameraUpdateFactory.newLatLngZoom(

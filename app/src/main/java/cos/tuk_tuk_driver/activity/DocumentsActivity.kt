@@ -140,7 +140,7 @@ class DocumentsActivity : AppCompatActivity() {
                                                 binding.driver.visibility = View.VISIBLE
 
                                                 binding.vehicleText.text =
-                                                    "Document will expire soon"
+                                                    "Document will expire today"
 
                                                 binding.driverImage.setImageResource(R.drawable.ic_remove_white)
                                                 binding.driverImage.setBackgroundResource(R.drawable.edt_round_red)
@@ -152,10 +152,6 @@ class DocumentsActivity : AppCompatActivity() {
                                                 ) ||
                                                 response.body()!!.driverDocuments.get(x).status.equals(
                                                     "Processing",
-                                                    ignoreCase = true
-                                                ) ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "EXPIRETODAY",
                                                     ignoreCase = true
                                                 )
                                             ) {
@@ -215,7 +211,7 @@ class DocumentsActivity : AppCompatActivity() {
                                                 binding.passport.visibility = View.VISIBLE
 
                                                 binding.PassportText.text =
-                                                    "Document will expire soon"
+                                                    "Document will expire today"
 
                                                 binding.PassportImage.setImageResource(R.drawable.ic_remove_white)
                                                 binding.PassportImage.setBackgroundResource(R.drawable.edt_round_red)
@@ -227,10 +223,6 @@ class DocumentsActivity : AppCompatActivity() {
                                                 ) ||
                                                 response.body()!!.driverDocuments.get(x).status.equals(
                                                     "Processing",
-                                                    ignoreCase = true
-                                                ) ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "EXPIRETODAY",
                                                     ignoreCase = true
                                                 )
                                             ) {

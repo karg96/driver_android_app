@@ -100,6 +100,10 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     response.body()!!.driverDocuments.get(x).status.equals(
                                                         "NEARTOEXPIRE",
                                                         ignoreCase = true
+                                                    )||
+                                                    response.body()!!.driverDocuments.get(x).status.equals(
+                                                        "EXPIRETODAY",
+                                                        ignoreCase = true
                                                     )
                                                 ) {
                                                     IsApproved += 1
@@ -130,10 +134,6 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 ) ||
                                                 response.body()!!.driverDocuments.get(x).status.equals(
                                                     "EXPIRED",
-                                                    ignoreCase = true
-                                                ) ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "EXPIRETODAY",
                                                     ignoreCase = true
                                                 )
                                             ) {
@@ -170,6 +170,10 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     response.body()!!.driverDocuments.get(x).status.equals(
                                                         "NEARTOEXPIRE",
                                                         ignoreCase = true
+                                                    )||
+                                                    response.body()!!.driverDocuments.get(x).status.equals(
+                                                        "EXPIRETODAY",
+                                                        ignoreCase = true
                                                     )
                                                 ) {
                                                     IsApproved += 1
@@ -198,10 +202,6 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 ) ||
                                                 response.body()!!.driverDocuments.get(x).status.equals(
                                                     "EXPIRED",
-                                                    ignoreCase = true
-                                                ) ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
-                                                    "EXPIRETODAY",
                                                     ignoreCase = true
                                                 )
                                             ) {

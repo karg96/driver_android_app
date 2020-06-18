@@ -163,6 +163,10 @@ class SplashActivity : BaseActivity() {
                                                 response.body()!!.driverDocuments.get(x).status.equals(
                                                     "NEARTOEXPIRE",
                                                     ignoreCase = true
+                                                )||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "EXPIRETODAY",
+                                                    ignoreCase = true
                                                 )
                                             ) {
                                                 IsApproved += 1
@@ -177,6 +181,10 @@ class SplashActivity : BaseActivity() {
                                                 ) ||
                                                 response.body()!!.driverDocuments.get(x).status.equals(
                                                     "NEARTOEXPIRE",
+                                                    ignoreCase = true
+                                                )||
+                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "EXPIRETODAY",
                                                     ignoreCase = true
                                                 )
                                             ) {
