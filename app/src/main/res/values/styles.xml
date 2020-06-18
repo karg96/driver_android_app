@@ -86,4 +86,20 @@
         <item name="trackTint">@color/colorGray</item>
     </style>
 
+
+    <style name="Icon">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:src">@mipmap/ic_launcher</item>
+    </style>
+
+    <style name="SwipeItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">?listPreferredItemHeight</item>
+        <item name="android:background">@android:color/darker_gray</item>
+    </style>
 </resources>

@@ -5,6 +5,8 @@ import android.content.res.Resources
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.view.Gravity
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import cos.tuk_tuk_driver.listener.MyButtonClickListener
 
@@ -24,7 +26,6 @@ class MyButton(
 
     init {
         resources = context.resources
-
     }
 
     fun onClick(x: Float, y: Float): Boolean {
@@ -60,15 +61,17 @@ class MyButton(
             c.drawText(text, rectF.left + x, rectF.top + y, p)
 
         } else {
+            x = cWidth / 2f - r.width() / 2f - r.left.toFloat()
+            y = cHeight / 2f + r.height() / 2f - r.bottom.toFloat()
             val d = ContextCompat.getDrawable(context, imageResId)
             val bitmap = drawableToBitmap(d!!)
 //            c.drawBitmap(bitmap, (rectF.left + rectF.right) / 2, (rectF.top + rectF.bottom) / 2, p)
             c.drawBitmap(
                 bitmap,
-                (rectF.left + rectF.right) / 2,
-                (rectF.top + rectF.bottom) / 2,
-                p
+                rectF.left + x, rectF.top + y, p
             )
+            //  c.drawBitmap(bitmap, ((bitmap.getWidth()/2)-250), ((bitmap.getHeight()/2)-450), null);
+
         }
 
         clickRegion = rectF
@@ -87,32 +90,5 @@ class MyButton(
         d.draw(canvas)
         return bitmap
     }
-
-    /* fun drawableToBitmap(drawable: Drawable): Bitmap? {
-         var bitmap: Bitmap? = null
-         if (drawable is BitmapDrawable) {
-             val bitmapDrawable = drawable
-             if (bitmapDrawable.bitmap != null) {
-                 return bitmapDrawable.bitmap
-             }
-         }
-         bitmap = if (drawable.intrinsicWidth <= 0 || drawable.intrinsicHeight <= 0) {
-             Bitmap.createBitmap(
-                 1,
-                 1,
-                 Bitmap.Config.ARGB_8888
-             ) // Single color bitmap will be created of 1x1 pixel
-         } else {
-             Bitmap.createBitmap(
-                 drawable.intrinsicWidth,
-                 drawable.intrinsicHeight,
-                 Bitmap.Config.ARGB_8888
-             )
-         }
-         val canvas = Canvas(bitmap)
-         drawable.setBounds(0, 0, canvas.width, canvas.height)
-         drawable.draw(canvas)
-         return bitmap
-     }*/
 
 }
