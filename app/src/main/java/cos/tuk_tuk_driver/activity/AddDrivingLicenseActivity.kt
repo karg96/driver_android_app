@@ -66,7 +66,10 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
             if (afterLogin.equals("beforeLogin")) {
                 binding.imagetitle.visibility = View.GONE
             }
+            if (!driverLicenceFrontImage.isEmpty() || !driverLicenceBackImage.isEmpty()) {
+                binding.imagetitle.visibility = View.GONE
 
+            }
             init()
 
 

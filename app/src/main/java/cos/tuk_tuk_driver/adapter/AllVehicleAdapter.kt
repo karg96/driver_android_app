@@ -87,35 +87,39 @@ class AllVehicleAdapter(
             holder.check.visibility = View.VISIBLE
         }
 
+
         holder.makePrime.setOnClickListener {
 
-            val builder =
-                androidx.appcompat.app.AlertDialog.Builder(context, R.style.AlertDialogCustom)
-            //set message for alert dialog
-            if (data.prime == 1) {
-                builder.setMessage("Are you sure! Do you want to unset SUV vehicle from prime?")
-            } else if (data.prime == 0) {
-                builder.setMessage("Are you sure! Do you want to make SUV vehicle as a prime?")
-            }
+           // if (!holder.makePrime.isRightSwipeEnabled) {
+
+                val builder = AlertDialog.Builder(allVehicleActivity, R.style.AlertDialogCustom)
+                //set message for alert dialog
+                if (data.prime == 1) {
+                    builder.setMessage("Are you sure! Do you want to unset SUV vehicle from prime?")
+                } else if (data.prime == 0) {
+                    builder.setMessage("Are you sure! Do you want to make SUV vehicle as a prime?")
+                }
 //            builder.setIcon(android.R.drawable.ic_dialog_alert)
 
-            //performing positive action
-            builder.setPositiveButton("Yes") { dialogInterface, which ->
-                if (data.prime == 1) {
-                    UnsetPrime(data.id, holder.check)
-                } else if (data.prime == 0) {
-                    MakePrime(data.id, holder.check)
+                //performing positive action
+                builder.setPositiveButton("Yes") { dialogInterface, which ->
+                    if (data.prime == 1) {
+                        UnsetPrime(data.id, holder.check)
+                    } else if (data.prime == 0) {
+                        MakePrime(data.id, holder.check)
+                    }
                 }
-            }
 
-            //performing negative action
-            builder.setNegativeButton("No") { dialogInterface, which ->
-            }
-            // Create the AlertDialog
-            val alertDialog: AlertDialog = builder.create()
-            // Set other dialog properties
-            alertDialog.setCancelable(false)
-            alertDialog.show()
+                //performing negative action
+                builder.setNegativeButton("No") { dialogInterface, which ->
+                }
+                // Create the AlertDialog
+                val alertDialog: AlertDialog = builder.create()
+                // Set other dialog properties
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+
+          //  }
         }
 
         holder.edit.setOnClickListener {

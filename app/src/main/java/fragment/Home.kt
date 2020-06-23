@@ -19,9 +19,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest
@@ -76,14 +74,15 @@ class Home : Fragment(), OnMapReadyCallback {
             override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
                 if (online.isChecked) {
                     makeAvailable("active")
-                    driverStatus.setText("You're online")
+                    driverStatus.text = "You're online"
                 } else {
                     makeAvailable("offline")
-                    driverStatus.setText("You're offline")
+                    driverStatus.text = "You're offline"
 
                 }
             }
         })
+
         currentLocation()
 
         return view
@@ -157,9 +156,11 @@ class Home : Fragment(), OnMapReadyCallback {
                         //   Places.initialize(getContext(), getString(R.string.google_maps_key), Locale.US);
                         if (!Places.isInitialized()) {
                             context?.let {
-                                Places.initialize(it,
+                                Places.initialize(
+                                    it,
                                     getString(R.string.google_maps_key),
-                                    Locale.US)
+                                    Locale.US
+                                )
                             }
                         }
                         if (context?.let {
@@ -184,11 +185,13 @@ class Home : Fragment(), OnMapReadyCallback {
                                 initial_longitude = latLngVal.longitude
 
                                 val sydney = LatLng(initial_latitude, initial_longitude)
-                                mMap.addMarker(
+                                /*mMap.addMarker(
                                     MarkerOptions().position(sydney).title(initial_marker).icon(
                                         BitmapDescriptorFactory.fromResource(R.drawable.current_location)
                                     )
-                                )
+                                )*/
+                                mMap.isMyLocationEnabled = true
+
                                 mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
                                 mMap.animateCamera(
                                     CameraUpdateFactory.newLatLngZoom(
@@ -213,7 +216,8 @@ class Home : Fragment(), OnMapReadyCallback {
                     }
                     // check for permanent denial of any permission
                     if (report.isAnyPermissionPermanentlyDenied) {
-                        Toast.makeText(context, "Please allow permission", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Please allow permission", Toast.LENGTH_SHORT)
+                            .show()
                         // permission is denied permenantly, navigate user to app settings
                     }
                 }
@@ -232,11 +236,13 @@ class Home : Fragment(), OnMapReadyCallback {
         mMap = map as GoogleMap
 
         val sydney = LatLng(initial_latitude, initial_longitude)
-        mMap.addMarker(
+        /*mMap.addMarker(
             MarkerOptions().position(sydney).title(initial_marker).icon(
                 BitmapDescriptorFactory.fromResource(R.drawable.current_location)
             )
-        )
+        )*/
+        mMap.isMyLocationEnabled = true
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         mMap.animateCamera(
             CameraUpdateFactory.newLatLngZoom(

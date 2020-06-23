@@ -20,6 +20,7 @@ class AddDocumentActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddDocumentBinding
     private val apiInterface = Comman.getApiToken()
     private var UserName: String = ""
+    private var Message: String = ""
     private var IsApproved: Int = 0
     private var IsReject: Int = 0
 
@@ -100,7 +101,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     response.body()!!.driverDocuments.get(x).status.equals(
                                                         "NEARTOEXPIRE",
                                                         ignoreCase = true
-                                                    )||
+                                                    ) ||
                                                     response.body()!!.driverDocuments.get(x).status.equals(
                                                         "EXPIRETODAY",
                                                         ignoreCase = true
@@ -131,8 +132,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
                                                     "REJECT",
                                                     ignoreCase = true
-                                                ) ||
-                                                response.body()!!.driverDocuments.get(x).status.equals(
+                                                ) || response.body()!!.driverDocuments.get(x).status.equals(
                                                     "EXPIRED",
                                                     ignoreCase = true
                                                 )
@@ -142,7 +142,6 @@ class AddDocumentActivity : AppCompatActivity() {
 
                                                 binding.driverCheck.setImageResource(R.drawable.ic_check_red)
                                             }
-
 
                                         }
 
@@ -170,7 +169,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     response.body()!!.driverDocuments.get(x).status.equals(
                                                         "NEARTOEXPIRE",
                                                         ignoreCase = true
-                                                    )||
+                                                    ) ||
                                                     response.body()!!.driverDocuments.get(x).status.equals(
                                                         "EXPIRETODAY",
                                                         ignoreCase = true
@@ -264,7 +263,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                     binding.btnNext.visibility = View.VISIBLE
 
                                 }
-
+                               // Message=response.body().u
                             } else {
                                 Comman.makeToast(applicationContext, "Please try again later")
 
@@ -343,7 +342,8 @@ class AddDocumentActivity : AppCompatActivity() {
 
                 } else {
 
-                    Comman.makeToast(applicationContext, "Your account need some attentions.")
+//                    Comman.makeToast(applicationContext, "Your account need some attentions.")
+                    Comman.makeToast(applicationContext, "Your account is not approved yet.Please try again later")
 
                 }
 

@@ -85,7 +85,11 @@ class AllVehicleActivity : AppCompatActivity() {
                                 }
                                 dataList.addAll(response.body()!!.vehicles)
                                 val adapter =
-                                    AllVehicleAdapter(this@AllVehicleActivity, dataList,this@AllVehicleActivity)
+                                    AllVehicleAdapter(
+                                        this@AllVehicleActivity,
+                                        dataList,
+                                        this@AllVehicleActivity
+                                    )
                                 binding.vehicleRecyclerview.adapter = adapter
                             } else {
 
@@ -181,81 +185,81 @@ class AllVehicleActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        /* var swipeHelper = object : MySwipeHelper(this, binding.vehicleRecyclerview, 200) {
-             override fun instantiateMyButton(
-                 viewHolder: RecyclerView.ViewHolder,
-                 buffer: MutableList<MyButton>
-             ) {
+        var swipeHelper = object : MySwipeHelper(this, binding.vehicleRecyclerview, 200) {
+            override fun instantiateMyButton(
+                viewHolder: RecyclerView.ViewHolder,
+                buffer: MutableList<MyButton>
+            ) {
 
-                 buffer.add(
-                     MyButton(this@AllVehicleActivity,
-                         "Edit",
-                         80,
-                         R.drawable.ic_edit,
-                         Color.parseColor("#FF8800"),
-                         object : MyButtonClickListener {
-                             override fun onclick(pos: Int) {
-                                 // Comman.makeToast(applicationContext, "Delete $pos")
-                                 val intent = Intent(
-                                     this@AllVehicleActivity,
-                                     AddVehicleDetailsActiivity::class.java
-                                 )
+                buffer.add(
+                    MyButton(this@AllVehicleActivity,
+                        "Edit",
+                        100,
+                        R.drawable.ic_edit,
+                        Color.parseColor("#FF8800"),
+                        object : MyButtonClickListener {
+                            override fun onclick(pos: Int) {
+                                // Comman.makeToast(applicationContext, "Delete $pos")
+                                val intent = Intent(
+                                    this@AllVehicleActivity,
+                                    AddVehicleDetailsActiivity::class.java
+                                )
 
-                                 intent.flags =
-                                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                 intent.putExtra("from", "update")
-                                 intent.putExtra("vehicleId", "" + dataList.get(pos).id)
-                                 intent.putExtra(
-                                     "service_type_id",
-                                     "" + dataList.get(pos).service_type_id
-                                 )
-                                 intent.putExtra(
-                                     "service_color",
-                                     "" + dataList.get(pos).service_color
-                                 )
-                                 intent.putExtra(
-                                     "service_model",
-                                     "" + dataList.get(pos).service_model
-                                 )
-                                 intent.putExtra("service_year", "" + dataList.get(pos).service_year)
-                                 intent.putExtra(
-                                     "service_number",
-                                     "" + dataList.get(pos).service_number
-                                 )
-                                 startActivity(intent)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                intent.putExtra("from", "update")
+                                intent.putExtra("vehicleId", "" + dataList.get(pos).id)
+                                intent.putExtra(
+                                    "service_type_id",
+                                    "" + dataList.get(pos).service_type_id
+                                )
+                                intent.putExtra(
+                                    "service_color",
+                                    "" + dataList.get(pos).service_color
+                                )
+                                intent.putExtra(
+                                    "service_model",
+                                    "" + dataList.get(pos).service_model
+                                )
+                                intent.putExtra("service_year", "" + dataList.get(pos).service_year)
+                                intent.putExtra(
+                                    "service_number",
+                                    "" + dataList.get(pos).service_number
+                                )
+                                startActivity(intent)
 
-                             }
+                            }
 
-                         })
-                 )
+                        })
+                )
 
-                 buffer.add(
-                     MyButton(this@AllVehicleActivity,
-                         "Delete",
-                         80,
-                         R.drawable.ic_delete,
-                         Color.parseColor("#E31A2B"),
-                         object : MyButtonClickListener {
-                             override fun onclick(pos: Int) {
+                buffer.add(
+                    MyButton(this@AllVehicleActivity,
+                        "Delete",
+                        100,
+                        R.drawable.ic_delete,
+                        Color.parseColor("#E31A2B"),
+                        object : MyButtonClickListener {
+                            override fun onclick(pos: Int) {
 
-                                 if (dataList.get(pos).prime != 1) {
-                                     deleteVehicleData("" + dataList.get(pos).id)
-                                 } else {
+                                if (dataList.get(pos).prime != 1) {
+                                    deleteVehicleData("" + dataList.get(pos).id)
+                                } else {
 
-                                     Comman.makeToast(
-                                         applicationContext,
-                                         "You cannot delete prime vehicle "
-                                     )
+                                    Comman.makeToast(
+                                        applicationContext,
+                                        "You cannot delete prime vehicle "
+                                    )
 
-                                 }
+                                }
 
-                             }
+                            }
 
-                         })
-                 )
+                        })
+                )
 
-             }
+            }
 
-         }*/
+        }
     }
 }

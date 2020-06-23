@@ -66,6 +66,10 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
             if(afterLogin.equals("beforeLogin")){
                 binding.imageTitle.visibility = View.GONE
             }
+            if(!driverPassportFrontImage.isEmpty()||!driverPassportBackImage.isEmpty()){
+                binding.imageTitle.visibility = View.GONE
+
+            }
             init()
 
         } catch (Ex: Exception) {
