@@ -104,7 +104,7 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
 
                 }, year, month, day
             )
-
+            dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
             dpd.show()
         }
 

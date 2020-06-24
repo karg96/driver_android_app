@@ -84,6 +84,9 @@ class AddPhotoActivity : AppCompatActivity() {
         binding.ivBack.setOnClickListener {
             finish()
         }
+        binding.imgLicense.setOnClickListener{
+            showAlert()
+        }
 
         binding.uploadDoc.setOnClickListener {
 

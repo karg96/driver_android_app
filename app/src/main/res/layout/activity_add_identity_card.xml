@@ -118,6 +118,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20sp"
+                android:layout_marginStart="67dp"
+                android:layout_marginEnd="67dp"
                 android:gravity="center">
 
                 <TextView
@@ -128,7 +130,7 @@
                     android:gravity="center"
                     android:lineHeight="25dp"
                     android:lineSpacingExtra="5sp"
-                    android:text="Front &amp; Back both photos\nare mandatory."
+                    android:text="Front photo is mandatory while Back photo is optional."
                     android:textAlignment="center"
                     android:textColor="@color/colorGray"
                     android:textSize="20dp" />
