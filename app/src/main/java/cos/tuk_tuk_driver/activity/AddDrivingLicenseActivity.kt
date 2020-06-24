@@ -105,7 +105,7 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
 
                 }, year, month, day
             )
-4            dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+            dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
             dpd.show()
         }
 
