@@ -109,4 +109,6 @@ dependencies {
     //****************** SwipeActionView Api **************************/
     implementation 'com.daimajia.swipelayout:library:1.2.0@aar'
 
+    //****************** image-cropper Api **************************/
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
 }

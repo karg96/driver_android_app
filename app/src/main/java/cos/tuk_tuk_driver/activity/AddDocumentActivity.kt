@@ -137,10 +137,24 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
+                                                Message =
+                                                    "Your Driving License document is ${response.body()!!.driverDocuments.get(
+                                                        x
+                                                    ).status}"
                                                 IsReject += 1
                                                 binding.driverCheck.visibility = View.VISIBLE
 
                                                 binding.driverCheck.setImageResource(R.drawable.ic_check_red)
+                                            }
+
+                                            if (response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "processing", ignoreCase = true
+                                                )
+                                            ) {
+                                                Message =
+                                                    "Your Driving License document is in ${response.body()!!.driverDocuments.get(
+                                                        x
+                                                    ).status}"
                                             }
 
                                         }
@@ -204,10 +218,25 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
+                                                Message =
+                                                    "Your Passport document is ${response.body()!!.driverDocuments.get(
+                                                        x
+                                                    ).status}"
+
                                                 IsReject += 1
 
                                                 binding.identyCheck.visibility = View.VISIBLE
                                                 binding.identyCheck.setImageResource(R.drawable.ic_check_red)
+                                            }
+
+                                            if (response.body()!!.driverDocuments.get(x).status.equals(
+                                                    "processing", ignoreCase = true
+                                                )
+                                            ) {
+                                                Message =
+                                                    "Your Passport document is in ${response.body()!!.driverDocuments.get(
+                                                        x
+                                                    ).status}"
                                             }
 
                                             /*
@@ -263,7 +292,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                     binding.btnNext.visibility = View.VISIBLE
 
                                 }
-                               // Message=response.body().u
+
                             } else {
                                 Comman.makeToast(applicationContext, "Please try again later")
 
@@ -338,12 +367,23 @@ class AddDocumentActivity : AppCompatActivity() {
             } else {
 
                 if (IsReject > 0) {
-                    Comman.makeToast(applicationContext, "Your account is Expire or REJECT.")
+                    Comman.makeToast(applicationContext, "Your Document is Expire or REJECT.")
 
                 } else {
 
 //                    Comman.makeToast(applicationContext, "Your account need some attentions.")
-                    Comman.makeToast(applicationContext, "Your account is not approved yet.Please try again later")
+                    if (!Message.isEmpty()) {
+                        Comman.makeToast(
+                            applicationContext,
+                            Message
+                        )
+                    } else {
+                        Comman.makeToast(
+                            applicationContext,
+                            "Your account is not approved yet"
+                        )
+                    }
+
 
                 }
 

@@ -22,6 +22,8 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityAddDrivingLicenseBinding
 import cos.tuk_tuk_driver.models.UploadDocsModal
@@ -41,7 +43,7 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityAddDrivingLicenseBinding
     private val apiInterface = Comman.getApiToken()
-    private var isImage: Int = 0
+    private var imageTypeSelected: Int = 0
     private var driverLicenceImage: String = ""
     private var afterLogin: String = ""
 
@@ -190,28 +192,43 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
         }
         builder.setNegativeButton("Camera") { dialog, which ->
             dialog.dismiss()
-            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            if (cameraIntent.resolveActivity(packageManager) != null) {
-                var photoFile: File? = null
-                try {
-                    photoFile = createImageFile()
-                } catch (ex: IOException) {
-                    Log.i("Main", "IOException")
-                }
-                if (photoFile != null) {
-                    val builder = StrictMode.VmPolicy.Builder()
-                    StrictMode.setVmPolicy(builder.build())
-                    cameraIntent.putExtra("crop", true)
-                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile))
-                    if (actionNo == 12) {
-                        startActivityForResult(cameraIntent, 121)
-                    }
 
-                    if (actionNo == 13) {
-                        startActivityForResult(cameraIntent, 131)
-                    }
-                }
+            if (actionNo == 12) {
+                imageTypeSelected = 12
+                CropImage.startPickImageActivity(this)
             }
+
+            if (actionNo == 13) {
+                imageTypeSelected = 13
+
+                CropImage.startPickImageActivity(this)
+            }
+
+//            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//            if (cameraIntent.resolveActivity(packageManager) != null) {
+//                var photoFile: File? = null
+//                try {
+//                    photoFile = createImageFile()
+//                } catch (ex: IOException) {
+//                    Log.i("Main", "IOException")
+//                }
+//                if (photoFile != null) {
+//                    val builder = StrictMode.VmPolicy.Builder()
+//                    StrictMode.setVmPolicy(builder.build())
+//                    cameraIntent.putExtra("crop", true)
+//                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile))
+//                    if (actionNo == 12) {
+//                        imageTypeSelected = 12
+//                        startActivityForResult(cameraIntent, 121)
+//                    }
+//
+//                    if (actionNo == 13) {
+//                        imageTypeSelected = 13
+//
+//                        startActivityForResult(cameraIntent, 131)
+//                    }
+//                }
+//            }
         }
         builder.setNeutralButton("Cancel") { dialog, _ ->
             dialog.dismiss()
@@ -331,19 +348,29 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 12 && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+            imageTypeSelected = 12
+
             binding.imagetitle.visibility = View.GONE
             SelectedFrontImage = Comman.getImages(data, binding.drivingFront, applicationContext)
+            startCropImageActivity(data.data!!)
+
         }
         if (requestCode == 13 && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+            imageTypeSelected = 13
+
             binding.imagetitle.visibility = View.GONE
             SelectedBackImage = Comman.getImages(data, binding.drivingBack, applicationContext)
+            startCropImageActivity(data.data!!)
+
         }
+
         if (requestCode == 121 && resultCode == Activity.RESULT_OK) {
             binding.imagetitle.visibility = View.GONE
             Glide.with(this).load(mCurrentPhotoPath).into(binding.drivingFront)
             SelectedFrontImage = mCurrentPhotoPath
 
         }
+
         if (requestCode == 131 && resultCode == Activity.RESULT_OK) {
 
             binding.imagetitle.visibility = View.GONE
@@ -351,6 +378,38 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
             SelectedBackImage = mCurrentPhotoPath
 
         }
+
+        if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+
+            var imageUri = CropImage.getPickImageResultUri(this, data)
+
+            startCropImageActivity(imageUri)
+        }
+
+        // handle result of CropImageActivity
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            var result = CropImage.getActivityResult(data)
+            if (resultCode == RESULT_OK) {
+
+                if (imageTypeSelected == 12) {
+                    Glide.with(this).load(result.uri).into(binding.drivingFront)
+                    SelectedFrontImage = result.uri.toString()
+
+                }
+
+                if (imageTypeSelected == 13) {
+                    Glide.with(this).load(result.uri).into(binding.drivingBack)
+                    SelectedBackImage = result.uri.toString()
+
+                }
+
+
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Toast.makeText(this, "Cropping failed: " + result.error, Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
+
     }
 
     override fun onClick(p0: View?) {
@@ -372,15 +431,7 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
                             if (report.areAllPermissionsGranted()) {
 
                                 showAlert(12)
-//                                val insurance = Intent()
-//                                insurance.type = "image/*"
-//                                insurance.action = Intent.ACTION_GET_CONTENT
-//                                startActivityForResult(
-//                                    Intent.createChooser(
-//                                        insurance,
-//                                        "Select Picture"
-//                                    ), 12
-//                                )
+
                             }
                             // check for permanent denial of any permission
                             if (report.isAnyPermissionPermanentlyDenied) { // show alert dialog navigating to Settings
@@ -420,15 +471,7 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
                     .withListener(object : MultiplePermissionsListener {
                         override fun onPermissionsChecked(report: MultiplePermissionsReport) { // check if all permissions are granted
                             if (report.areAllPermissionsGranted()) {
-//                                val insurance = Intent()
-//                                insurance.type = "image/*"
-//                                insurance.action = Intent.ACTION_GET_CONTENT
-//                                startActivityForResult(
-//                                    Intent.createChooser(
-//                                        insurance,
-//                                        "Select Picture"
-//                                    ), 13
-//                                )
+
 
                                 showAlert(13)
                             }
@@ -460,5 +503,15 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
 
             }
         }
+    }
+
+    /**
+     * Start crop image activity for the given image.
+     */
+    fun startCropImageActivity(imageUri: Uri) {
+        CropImage.activity(imageUri)
+            .setGuidelines(CropImageView.Guidelines.ON)
+            .setMultiTouchEnabled(true)
+            .start(this)
     }
 }

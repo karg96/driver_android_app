@@ -5,7 +5,9 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -13,6 +15,7 @@ import android.os.StrictMode
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.karumi.dexter.Dexter
@@ -20,6 +23,8 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityAddPhotoBinding
 import cos.tuk_tuk_driver.models.UploadDocsModal
@@ -40,6 +45,7 @@ class AddPhotoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddPhotoBinding
     private val apiInterface = Comman.getApiToken()
     private var isImage: Int = 0
+    private lateinit var mCropImageUri: Uri
     private var SelectedImage: String = ""
     private var mCurrentPhotoPath: String = ""
     private var driverAddImage: String = ""
@@ -138,31 +144,30 @@ class AddPhotoActivity : AppCompatActivity() {
             insurance.type = "image/*"
             insurance.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(
-                Intent.createChooser(
-                    insurance,
-                    "Select Picture"
-                ), 12
-            )
+                Intent.createChooser(insurance, "Select Picture"), 12)
         }
         builder.setNegativeButton("Camera") { dialog, which ->
             dialog.dismiss()
-            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            if (cameraIntent.resolveActivity(packageManager) != null) {
-                var photoFile: File? = null
-                try {
-                    photoFile = createImageFile()
-                } catch (ex: IOException) {
-                    Log.i("Main", "IOException")
-                }
-                if (photoFile != null) {
-                    val builder = StrictMode.VmPolicy.Builder()
-                    StrictMode.setVmPolicy(builder.build())
-                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile))
-                    startActivityForResult(cameraIntent, 121)
 
+            CropImage.startPickImageActivity(this)
 
-                }
-            }
+//            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//            if (cameraIntent.resolveActivity(packageManager) != null) {
+//                var photoFile: File? = null
+//                try {
+//                    photoFile = createImageFile()
+//                } catch (ex: IOException) {
+//                    Log.i("Main", "IOException")
+//                }
+//                if (photoFile != null) {
+//                    val builder = StrictMode.VmPolicy.Builder()
+//                    StrictMode.setVmPolicy(builder.build())
+//                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile))
+//                    startActivityForResult(cameraIntent, 121)
+//
+//
+//                }
+//            }
         }
         builder.setNeutralButton("Cancel") { dialog, _ ->
             dialog.dismiss()
@@ -253,12 +258,15 @@ class AddPhotoActivity : AppCompatActivity() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 12 && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             isImage = 1
             SelectedImage = Comman.getImages(data, binding.imgLicense, applicationContext)
+            startCropImageActivity(data.data!!)
+
         }
 
         if (requestCode == 121 && resultCode == Activity.RESULT_OK) {
@@ -266,7 +274,41 @@ class AddPhotoActivity : AppCompatActivity() {
 
             Glide.with(this).load(mCurrentPhotoPath).into(binding.imgLicense)
             SelectedImage = mCurrentPhotoPath
+           // startCropImageActivity(data!!.data!!)
 
         }
+
+        if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+
+            var imageUri = CropImage.getPickImageResultUri(this, data)
+
+            startCropImageActivity(imageUri)
+        }
+
+        // handle result of CropImageActivity
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            var result = CropImage.getActivityResult(data)
+            if (resultCode == RESULT_OK) {
+                isImage = 1
+
+                Glide.with(this).load(result.uri).into(binding.imgLicense)
+                SelectedImage = result.uri.toString()
+
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Toast.makeText(this, "Cropping failed: " + result.error, Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
+    }
+
+
+    /**
+     * Start crop image activity for the given image.
+     */
+    fun startCropImageActivity(imageUri: Uri) {
+        CropImage.activity(imageUri)
+            .setGuidelines(CropImageView.Guidelines.ON)
+            .setMultiTouchEnabled(true)
+            .start(this)
     }
 }

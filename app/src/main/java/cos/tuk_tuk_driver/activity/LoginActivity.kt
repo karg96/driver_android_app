@@ -92,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         } catch (Ex: Exception) {
-            Comman.makeToast(applicationContext, ""+Ex)
+            Comman.makeToast(applicationContext, "" + Ex)
 
         }
 
@@ -171,7 +171,7 @@ class LoginActivity : AppCompatActivity() {
             pd.setProgressStyle(ProgressDialog.STYLE_SPINNER)
             pd.show()
 
-            apiInterface!!.Login(mobileNumber, password,"123", "android")
+            apiInterface!!.Login(mobileNumber, password, "123", "android")
                 .enqueue(object : Callback<RegisterModal> {
                     override fun onFailure(call: Call<RegisterModal>, t: Throwable) {
                         pd.dismiss()
@@ -225,11 +225,15 @@ class LoginActivity : AppCompatActivity() {
                                             if (response.body()!!.documents.driverDocuments.get(x).document_id == "1") {
 
 
-                                                if (response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                if (response.body()!!.documents.driverDocuments.get(
+                                                        x
+                                                    ).status.equals(
                                                         "ACTIVE",
                                                         ignoreCase = true
                                                     ) ||
-                                                    response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                    response.body()!!.documents.driverDocuments.get(
+                                                        x
+                                                    ).status.equals(
                                                         "NEARTOEXPIRE",
                                                         ignoreCase = true
                                                     )
@@ -271,11 +275,15 @@ class LoginActivity : AppCompatActivity() {
                                             if (response.body()!!.documents.driverDocuments.get(x).document_id == "8") {
 
 
-                                                if (response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                if (response.body()!!.documents.driverDocuments.get(
+                                                        x
+                                                    ).status.equals(
                                                         "ACTIVE",
                                                         ignoreCase = true
                                                     ) ||
-                                                    response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                    response.body()!!.documents.driverDocuments.get(
+                                                        x
+                                                    ).status.equals(
                                                         "NEARTOEXPIRE",
                                                         ignoreCase = true
                                                     )
@@ -327,7 +335,6 @@ class LoginActivity : AppCompatActivity() {
                                             }
 
 
-
 //                                            if (response.body()!!.documents.driverDocuments.get(x).status.equals(
 //                                                    "active",
 //                                                    ignoreCase = true
@@ -371,7 +378,7 @@ class LoginActivity : AppCompatActivity() {
                                                     applicationContext,
                                                     HomeActivity::class.java
                                                 ) //not application context
-                                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                                                 startActivity(intent)
                                             } else {
                                                 Comman.makeToast(
@@ -451,7 +458,7 @@ class LoginActivity : AppCompatActivity() {
 
                             }
                         } catch (Ex: java.lang.Exception) {
-                            Comman.makeToast(applicationContext, ""+Ex)
+                            Comman.makeToast(applicationContext, "" + Ex)
 
                         }
 
@@ -461,7 +468,7 @@ class LoginActivity : AppCompatActivity() {
                 })
 
         } catch (Ex: java.lang.Exception) {
-            Comman.makeToast(applicationContext, ""+Ex)
+            Comman.makeToast(applicationContext, "" + Ex)
 
         }
 
