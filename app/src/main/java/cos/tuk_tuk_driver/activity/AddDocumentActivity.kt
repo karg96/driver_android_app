@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import cos.tuk_tuk_driver.DriverApp
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.databinding.ActivityAddDocumentBinding
@@ -56,8 +57,6 @@ class AddDocumentActivity : AppCompatActivity() {
             dialog.setMessage("Please wait....")
             dialog.show()
 
-
-
             apiInterface!!.getUploadDocs()
                 .enqueue(object : Callback<Documents> {
                     override fun onFailure(call: Call<Documents>, t: Throwable) {
@@ -67,6 +66,7 @@ class AddDocumentActivity : AppCompatActivity() {
 
                     override fun onResponse(call: Call<Documents>, response: Response<Documents>) {
                         try {
+                            Message = ""
                             IsApproved = 0
                             IsReject = 0
                             dialog.dismiss()
@@ -93,7 +93,16 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 )
                                             ) {
                                                 binding.driverCheck.visibility = View.VISIBLE
-
+                                                if (response.body()!!.driverDocuments.get(x).status.equals(
+                                                        "ASSESSING",
+                                                        ignoreCase = true
+                                                    )
+                                                ) {
+                                                    Message =
+                                                        "Your Driving License document is ${response.body()!!.driverDocuments.get(
+                                                            x
+                                                        ).status}"
+                                                }
                                                 if (response.body()!!.driverDocuments.get(x).status.equals(
                                                         "ACTIVE",
                                                         ignoreCase = true
@@ -175,6 +184,16 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 )
                                             ) {
                                                 binding.identyCheck.visibility = View.VISIBLE
+                                                if (response.body()!!.driverDocuments.get(x).status.equals(
+                                                        "ASSESSING",
+                                                        ignoreCase = true
+                                                    )
+                                                ) {
+                                                    Message =
+                                                        "Your Passport document is ${response.body()!!.driverDocuments.get(
+                                                            x
+                                                        ).status}"
+                                                }
 
                                                 if (response.body()!!.driverDocuments.get(x).status.equals(
                                                         "ACTIVE",
@@ -288,7 +307,11 @@ class AddDocumentActivity : AppCompatActivity() {
                                 }
 
 
-                                if (IsApproved == 2) {
+                                if (binding.photoCheck.visibility == View.VISIBLE &&
+                                    binding.identyCheck.visibility == View.VISIBLE &&
+                                    binding.driverCheck.visibility == View.VISIBLE
+
+                                ) {
                                     binding.btnNext.visibility = View.VISIBLE
 
                                 }
@@ -373,10 +396,11 @@ class AddDocumentActivity : AppCompatActivity() {
 
 //                    Comman.makeToast(applicationContext, "Your account need some attentions.")
                     if (!Message.isEmpty()) {
-                        Comman.makeToast(
+                        MessageAlert(Message)
+                        /*Comman.makeToast(
                             applicationContext,
                             Message
-                        )
+                        )*/
                     } else {
                         Comman.makeToast(
                             applicationContext,
@@ -398,6 +422,29 @@ class AddDocumentActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun MessageAlert(message: String) {
+
+        // Initialize a new instance of
+        val builder = AlertDialog.Builder(this, R.style.AlertDialogCustom)
+
+        // Set the alert dialog title
+        builder.setTitle("Alert")
+
+        // Display a message on alert dialog
+        builder.setMessage(message)
+
+        // Display a negative button on alert dialog
+        builder.setNegativeButton("OK") { dialog, which ->
+
+        }
+
+        // Finally, make the alert dialog using builder
+        val dialog: AlertDialog = builder.create()
+
+        // Display the alert dialog on app interface
+        dialog.show()
     }
 
 
