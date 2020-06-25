@@ -272,6 +272,10 @@ class LoginActivity : AppCompatActivity() {
                                                     ).status.equals(
                                                         "NEARTOEXPIRE",
                                                         ignoreCase = true
+                                                    ) ||
+                                                    response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                        "EXPIRETODAY",
+                                                        ignoreCase = true
                                                     )
                                                 ) {
 //                                                if (response.body()!!.driverDocuments.get(x).status.equals(
@@ -321,6 +325,10 @@ class LoginActivity : AppCompatActivity() {
                                                         x
                                                     ).status.equals(
                                                         "NEARTOEXPIRE",
+                                                        ignoreCase = true
+                                                    ) ||
+                                                    response.body()!!.documents.driverDocuments.get(x).status.equals(
+                                                        "EXPIRETODAY",
                                                         ignoreCase = true
                                                     )
                                                 ) {
@@ -456,10 +464,24 @@ class LoginActivity : AppCompatActivity() {
 
                                     }
 
-//                                    Comman.makeToast(
-//                                        applicationContext,
-//                                        "Please upload your documents"
-//                                    )
+                                    else{
+                                        Comman.makeToast(
+                                        applicationContext,
+                                        "Please upload your documents"
+                                    )
+
+                                    val intent = Intent(
+                                        applicationContext,
+                                        AddDocumentActivity::class.java
+                                    ) //not application context
+                                    intent.putExtra(
+                                        "name",
+                                        response.body()!!.data.first_name + " " + response.body()!!.data.last_name
+                                    )
+                                    intent.flags =
+                                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    startActivity(intent)
+                                    }
 //
 //                                    val intent = Intent(
 //                                        applicationContext,
