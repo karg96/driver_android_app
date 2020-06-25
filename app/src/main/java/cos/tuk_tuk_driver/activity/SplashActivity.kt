@@ -137,7 +137,7 @@ class SplashActivity : BaseActivity() {
                 .enqueue(object : Callback<Documents> {
                     override fun onFailure(call: Call<Documents>, t: Throwable) {
                         //   dialog.dismiss()
-                        // Comman.makeToast(applicationContext, "Please try again later")
+                       // Comman.makeToast(applicationContext, "Please try again later")
                         val intent = Intent(
                             applicationContext,
                             AddDocumentActivity::class.java
@@ -153,8 +153,7 @@ class SplashActivity : BaseActivity() {
 
                     override fun onResponse(call: Call<Documents>, response: Response<Documents>) {
                         try {
-                            isDocsUpload = 0
-                            IsApproved = 0
+
                             //  dialog.dismiss()
 
                             if (response.code() == 200) {
@@ -174,7 +173,7 @@ class SplashActivity : BaseActivity() {
                                                 response.body()!!.driverDocuments.get(x).status.equals(
                                                     "NEARTOEXPIRE",
                                                     ignoreCase = true
-                                                ) ||
+                                                )||
                                                 response.body()!!.driverDocuments.get(x).status.equals(
                                                     "EXPIRETODAY",
                                                     ignoreCase = true
@@ -193,7 +192,7 @@ class SplashActivity : BaseActivity() {
                                                 response.body()!!.driverDocuments.get(x).status.equals(
                                                     "NEARTOEXPIRE",
                                                     ignoreCase = true
-                                                ) ||
+                                                )||
                                                 response.body()!!.driverDocuments.get(x).status.equals(
                                                     "EXPIRETODAY",
                                                     ignoreCase = true
@@ -240,8 +239,7 @@ class SplashActivity : BaseActivity() {
 
                                             Comman.makeToast(
                                                 applicationContext,
-                                                "Please wait your documents is not approved yet"
-                                            )
+                                                "Please wait your documents is not approved yet")
                                         }
                                     } else {
                                         Comman.makeToast(
@@ -291,7 +289,7 @@ class SplashActivity : BaseActivity() {
                                 intent.flags =
                                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)
-                                // Comman.makeToast(applicationContext, "Please try again later")
+                               // Comman.makeToast(applicationContext, "Please try again later")
 
                             }
 
