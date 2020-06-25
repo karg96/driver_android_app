@@ -2,8 +2,11 @@ package fragment
 
 import android.Manifest
 import android.app.ProgressDialog
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,7 +16,9 @@ import android.widget.CompoundButton
 import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.android.volley.VolleyLog
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -136,6 +141,11 @@ class Home : Fragment(), OnMapReadyCallback {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        currentLocation()
+    }
+
     private fun currentLocation() {
 
         Dexter.withActivity(activity)
@@ -216,8 +226,9 @@ class Home : Fragment(), OnMapReadyCallback {
                     }
                     // check for permanent denial of any permission
                     if (report.isAnyPermissionPermanentlyDenied) {
-                        Toast.makeText(context, "Please allow permission", Toast.LENGTH_SHORT)
-                            .show()
+
+                        showSettingsDialog()
+
                         // permission is denied permenantly, navigate user to app settings
                     }
                 }
@@ -226,6 +237,7 @@ class Home : Fragment(), OnMapReadyCallback {
                     permissions: List<PermissionRequest?>?,
                     token: PermissionToken?
                 ) {
+                    token!!.continuePermissionRequest()
                 }
             }).check()
     }
@@ -235,28 +247,128 @@ class Home : Fragment(), OnMapReadyCallback {
         //System.err.println("OnMapReady start")
         mMap = map as GoogleMap
 
-        val sydney = LatLng(initial_latitude, initial_longitude)
-        /*mMap.addMarker(
-            MarkerOptions().position(sydney).title(initial_marker).icon(
-                BitmapDescriptorFactory.fromResource(R.drawable.current_location)
+        Dexter.withActivity(activity)
+            .withPermissions(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
             )
-        )*/
-        mMap.isMyLocationEnabled = true
+            .withListener(object : MultiplePermissionsListener {
+                override fun onPermissionsChecked(report: MultiplePermissionsReport) { // check if all permissions are granted
+                    if (report.areAllPermissionsGranted()) { // Use fields to define the data types to return.
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-        mMap.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(
-                LatLng(
-                    initial_latitude,
-                    initial_longitude
-                ), 12.0f
-            )
-        )
 
-        // Toast.makeText(this.context, "OnMapReady end", Toast.LENGTH_LONG).show()
+                        val sydney = LatLng(initial_latitude, initial_longitude)
+                        /*mMap.addMarker(
+                            MarkerOptions().position(sydney).title(initial_marker).icon(
+                                BitmapDescriptorFactory.fromResource(R.drawable.current_location)
+                            )
+                        )*/
+                        mMap.isMyLocationEnabled = true
 
-        /* map?.let {
-             mMap = it
-         }*/
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+                        mMap.animateCamera(
+                            CameraUpdateFactory.newLatLngZoom(
+                                LatLng(
+                                    initial_latitude,
+                                    initial_longitude
+                                ), 12.0f
+                            )
+                        )
+
+                        currentLocation()
+                    }
+                    // check for permanent denial of any permission
+
+                    if (report.isAnyPermissionPermanentlyDenied) {
+                        if (ContextCompat.checkSelfPermission(
+                                context!!,
+                                Manifest.permission.ACCESS_FINE_LOCATION
+                            ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                                context!!,
+                                Manifest.permission.ACCESS_COARSE_LOCATION
+                            ) == PackageManager.PERMISSION_GRANTED
+                        ) {
+                            mMap = map
+
+                            val sydney = LatLng(initial_latitude, initial_longitude)
+
+                            mMap.isMyLocationEnabled = true
+
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+                            mMap.animateCamera(
+                                CameraUpdateFactory.newLatLngZoom(
+                                    LatLng(
+                                        initial_latitude,
+                                        initial_longitude
+                                    ), 12.0f
+                                )
+                            )
+                            currentLocation()
+
+                            return
+                        } else {
+                            // show alert dialog navigating to Settings
+                            showSettingsDialog()
+                        }
+
+
+                    }
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    permissions: List<PermissionRequest?>?,
+                    token: PermissionToken?
+                ) {
+                    token!!.continuePermissionRequest()
+
+                }
+            }).check()
+
     }
+
+    /**
+     * Showing Alert Dialog with Settings option
+     * Navigates user to app settings
+     * NOTE: Keep proper title and message depending on your app
+     */
+    private fun showSettingsDialog() {
+
+        // Initialize a new instance of
+        val builder = AlertDialog.Builder(context!!, R.style.AlertDialogCustom)
+
+        builder.setTitle("Need Permissions")
+        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.")
+
+        // Set a positive button and its click listener on alert dialog
+        builder.setPositiveButton("GOTO SETTINGS") { dialog, which ->
+            // Do something when user press the positive button
+            dialog.cancel()
+            openSettings()
+
+        }
+
+
+        // Display a negative button on alert dialog
+        builder.setNegativeButton("Cancel") { dialog, which ->
+            dialog.cancel()
+            activity!!.finish()
+        }
+
+        // Finally, make the alert dialog using builder
+        val dialog: AlertDialog = builder.create()
+
+        // Display the alert dialog on app interface
+        dialog.show()
+
+    }
+
+    // navigating user to app settings
+    private fun openSettings() {
+        var intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        var uri = Uri.fromParts("package", context!!.packageName, null)
+        intent.data = uri
+        startActivityForResult(intent, 101)
+    }
+
+
 }

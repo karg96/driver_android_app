@@ -56,8 +56,7 @@ class AddDocumentActivity : AppCompatActivity() {
             dialog.setMessage("Please wait....")
             dialog.show()
 
-            IsApproved = 0
-            IsReject = 0
+
 
             apiInterface!!.getUploadDocs()
                 .enqueue(object : Callback<Documents> {
@@ -68,7 +67,8 @@ class AddDocumentActivity : AppCompatActivity() {
 
                     override fun onResponse(call: Call<Documents>, response: Response<Documents>) {
                         try {
-
+                            IsApproved = 0
+                            IsReject = 0
                             dialog.dismiss()
 
                             if (response.code() == 200) {
@@ -357,8 +357,8 @@ class AddDocumentActivity : AppCompatActivity() {
 
             /* IsApproved=0
              IsReject=0
-             GetUploadDocuments()*/
-
+             */
+            GetUploadDocuments()
             if (IsApproved == 2) {
                 val intent = Intent(this@AddDocumentActivity, HomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

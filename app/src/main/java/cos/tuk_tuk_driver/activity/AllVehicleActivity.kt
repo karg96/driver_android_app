@@ -36,13 +36,17 @@ class AllVehicleActivity : AppCompatActivity() {
         try {
 
             init()
-            getVehiclesList()
+
 
         } catch (Ex: Exception) {
 
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        getVehiclesList()
+    }
 
     fun getVehiclesList() {
 

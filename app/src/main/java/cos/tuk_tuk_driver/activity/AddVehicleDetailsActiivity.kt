@@ -236,14 +236,14 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                         if (response.body()!!.status) {
 
                             makeToast(applicationContext, response.body()!!.message)
-                            // finish()
-                            val intent = Intent(
+                           finish()
+                            /*val intent = Intent(
                                 this@AddVehicleDetailsActiivity,
                                 AllVehicleActivity::class.java
                             )
                             intent.flags =
-                                Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
-                            startActivity(intent)
+                                Intent.FLAG_ACTIVITY_NEW_TASK *//*or Intent.FLAG_ACTIVITY_CLEAR_TASK*//*
+                            startActivity(intent)*/
 
                         } else if (!response.body()!!.status) {
                             makeToast(applicationContext, response.body()!!.error)
@@ -299,14 +299,14 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                             binding.vehilceColor.setText("")
 
                             makeToast(applicationContext, response.body()!!.message)
-                            // finish()
-                            val intent = Intent(
+                            finish()
+                            /*val intent = Intent(
                                 this@AddVehicleDetailsActiivity,
                                 AllVehicleActivity::class.java
                             )
                             intent.flags =
-                                Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
-                            startActivity(intent)
+                                Intent.FLAG_ACTIVITY_NEW_TASK *//*or Intent.FLAG_ACTIVITY_CLEAR_TASK*//*
+                            startActivity(intent)*/
 
                         } else if (!response.body()!!.status) {
                             makeToast(

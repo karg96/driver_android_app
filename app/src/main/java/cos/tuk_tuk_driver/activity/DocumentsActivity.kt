@@ -23,7 +23,15 @@ class DocumentsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDocumentsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        init()
+
+        try {
+
+            init()
+
+
+        } catch (Ex: Exception) {
+
+        }
 
     }
 
@@ -37,7 +45,7 @@ class DocumentsActivity : AppCompatActivity() {
 
             val intent = Intent(this@DocumentsActivity, AddDrivingLicenseActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            // intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
             intent.putExtra("from", "afterLogin")
             startActivity(intent)
         }
@@ -47,7 +55,7 @@ class DocumentsActivity : AppCompatActivity() {
 
             val intent = Intent(this@DocumentsActivity, AddIdentityCardActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            //intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
             intent.putExtra("from", "afterLogin")
             startActivity(intent)
         }
@@ -65,8 +73,12 @@ class DocumentsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        binding.driver.visibility = View.GONE
+        binding.passport.visibility = View.GONE
+
         GetUploadDocuments()
     }
+
 
     private fun GetUploadDocuments() {
 

@@ -65,9 +65,9 @@ class AddDrivingLicenseActivity : AppCompatActivity(), View.OnClickListener {
             driverLicenceBackImage = Prefs.getKey(applicationContext, "driverLicenceBackImage")
             driverLicenceExpiry = Prefs.getKey(applicationContext, "driverLicenceExpiry")
             afterLogin = intent.getStringExtra("from")
-            if (afterLogin.equals("beforeLogin")) {
+           /* if (afterLogin.equals("beforeLogin")) {
                 binding.imagetitle.visibility = View.GONE
-            }
+            }*/
             if (!driverLicenceFrontImage.isEmpty() || !driverLicenceBackImage.isEmpty()) {
                 binding.imagetitle.visibility = View.GONE
 

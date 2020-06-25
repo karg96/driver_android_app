@@ -66,10 +66,10 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
             driverPassportBackImage = Prefs.getKey(applicationContext, "driverPassportBackImage")
             driverPassportExpiry = Prefs.getKey(applicationContext, "driverPassportExpiry")
             afterLogin = intent.getStringExtra("from")
-            if(afterLogin.equals("beforeLogin")){
-                binding.imageTitle.visibility = View.GONE
-            }
-            if(!driverPassportFrontImage.isEmpty()||!driverPassportBackImage.isEmpty()){
+            /* if (afterLogin.equals("beforeLogin")) {
+                 binding.imageTitle.visibility = View.GONE
+             }*/
+            if (!driverPassportFrontImage.isEmpty() || !driverPassportBackImage.isEmpty()) {
                 binding.imageTitle.visibility = View.GONE
 
             }
@@ -318,7 +318,7 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
                                     binding.passportBack.setImageResource(R.drawable.pass_front)*/
 
                                     Comman.makeToast(applicationContext, response.body()!!.message)
-                                    finish()
+                                     finish()
 
                                 } else if (!response.body()!!.status) {
                                     Comman.makeToast(
@@ -353,7 +353,7 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
 
                                     SelectedFrontImage = ""
                                     SelectedBackImage = ""
-                                  //  binding.imageTitle.visibility = View.VISIBLE
+                                    //  binding.imageTitle.visibility = View.VISIBLE
                                     /*binding.passportFront.setImageResource(R.drawable.pass_front)
                                     binding.passportBack.setImageResource(R.drawable.pass_front)
 */

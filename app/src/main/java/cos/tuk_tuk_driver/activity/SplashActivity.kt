@@ -137,8 +137,18 @@ class SplashActivity : BaseActivity() {
                 .enqueue(object : Callback<Documents> {
                     override fun onFailure(call: Call<Documents>, t: Throwable) {
                         //   dialog.dismiss()
-                        Comman.makeToast(applicationContext, "Please try again later")
-
+                       // Comman.makeToast(applicationContext, "Please try again later")
+                        val intent = Intent(
+                            applicationContext,
+                            AddDocumentActivity::class.java
+                        ) //not application context
+                        intent.putExtra(
+                            "name",
+                            Prefs.getKey(applicationContext, "driveName")
+                        )
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
                     }
 
                     override fun onResponse(call: Call<Documents>, response: Response<Documents>) {
@@ -268,7 +278,18 @@ class SplashActivity : BaseActivity() {
                                 }
 
                             } else {
-                                Comman.makeToast(applicationContext, "Please try again later")
+                                val intent = Intent(
+                                    applicationContext,
+                                    AddDocumentActivity::class.java
+                                ) //not application context
+                                intent.putExtra(
+                                    "name",
+                                    Prefs.getKey(applicationContext, "driveName")
+                                )
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                startActivity(intent)
+                               // Comman.makeToast(applicationContext, "Please try again later")
 
                             }
 
