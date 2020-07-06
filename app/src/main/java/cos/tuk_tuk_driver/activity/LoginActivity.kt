@@ -131,7 +131,17 @@ class LoginActivity : AppCompatActivity() {
 
 
         }
+        listener()
 
+    }
+
+
+
+    /**
+     * @param
+     * listener method we have  setOnClickListener
+     * */
+    private fun listener() {
         Dexter.withActivity(this)
             .withPermissions(
                 Manifest.permission.ACCESS_FINE_LOCATION,
@@ -157,9 +167,13 @@ class LoginActivity : AppCompatActivity() {
                     permissions: List<PermissionRequest?>?,
                     token: PermissionToken?
                 ) {
-                    token!!.continuePermissionRequest()
+
                 }
             }).check()
+        /* binding.tvCountryCode.setOnClickListener {
+             startActivityForResult(Intent(this, CountryCodeActivity::class.java), COUNTRY_CODE_ACT)
+         }*/
+
 
     }
 

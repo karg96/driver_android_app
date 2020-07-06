@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-
 import cos.tuk_tuk_driver.DriverApp
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.activity.AddVehicleDetailsActiivity
@@ -64,7 +63,7 @@ class AllVehicleAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var data = dataList.get(position)
 
-        holder.vehicleName.text = data.service_model
+        holder.vehicleName.text = data.serviceDetail!!.name
         holder.vehicleDes.text = "${data.service_model} / ${data.service_number}"
 
         if (data.serviceDetail.image != null) {
@@ -90,36 +89,36 @@ class AllVehicleAdapter(
 
         holder.makePrime.setOnClickListener {
 
-           // if (!holder.makePrime.isRightSwipeEnabled) {
+            // if (!holder.makePrime.isRightSwipeEnabled) {
 
-                val builder = AlertDialog.Builder(allVehicleActivity, R.style.AlertDialogCustom)
-                //set message for alert dialog
-                if (data.prime == 1) {
-                    builder.setMessage("Are you sure! Do you want to unset SUV vehicle from prime?")
-                } else if (data.prime == 0) {
-                    builder.setMessage("Are you sure! Do you want to make SUV vehicle as a prime?")
-                }
+            val builder = AlertDialog.Builder(allVehicleActivity, R.style.AlertDialogCustom)
+            //set message for alert dialog
+            if (data.prime == 1) {
+                builder.setMessage("Are you sure! Do you want to unset SUV vehicle from prime?")
+            } else if (data.prime == 0) {
+                builder.setMessage("Are you sure! Do you want to make SUV vehicle as a prime?")
+            }
 //            builder.setIcon(android.R.drawable.ic_dialog_alert)
 
-                //performing positive action
-                builder.setPositiveButton("Yes") { dialogInterface, which ->
-                    if (data.prime == 1) {
-                        UnsetPrime(data.id, holder.check)
-                    } else if (data.prime == 0) {
-                        MakePrime(data.id, holder.check)
-                    }
+            //performing positive action
+            builder.setPositiveButton("Yes") { dialogInterface, which ->
+                if (data.prime == 1) {
+                    UnsetPrime(data.id, holder.check)
+                } else if (data.prime == 0) {
+                    MakePrime(data.id, holder.check)
                 }
+            }
 
-                //performing negative action
-                builder.setNegativeButton("No") { dialogInterface, which ->
-                }
-                // Create the AlertDialog
-                val alertDialog: AlertDialog = builder.create()
-                // Set other dialog properties
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+            //performing negative action
+            builder.setNegativeButton("No") { dialogInterface, which ->
+            }
+            // Create the AlertDialog
+            val alertDialog: AlertDialog = builder.create()
+            // Set other dialog properties
+            alertDialog.setCancelable(false)
+            alertDialog.show()
 
-          //  }
+            //  }
         }
 
         holder.edit.setOnClickListener {

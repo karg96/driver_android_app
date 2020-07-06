@@ -32,7 +32,7 @@ class AddDocumentActivity : AppCompatActivity() {
 
         try {
 
-            UserName = intent.getStringExtra("name")
+            UserName = Prefs.getKey(applicationContext, "driveName")
             init()
 
             binding.name.text = "Hi, " + UserName
@@ -41,6 +41,11 @@ class AddDocumentActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 
     override fun onResume() {

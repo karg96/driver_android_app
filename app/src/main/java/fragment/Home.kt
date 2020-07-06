@@ -180,7 +180,7 @@ class Home : Fragment(), OnMapReadyCallback {
                                 )
                             } != PackageManager.PERMISSION_GRANTED
                         ) { // TODO: Consider calling
-//    ActivityCompat#requestPermissions
+                        //    ActivityCompat#requestPermissions
                             return
                         }
                         val placesClient = Places.createClient(context!!)

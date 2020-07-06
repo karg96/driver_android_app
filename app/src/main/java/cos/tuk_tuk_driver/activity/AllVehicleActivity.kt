@@ -37,7 +37,6 @@ class AllVehicleActivity : AppCompatActivity() {
 
             init()
 
-
         } catch (Ex: Exception) {
 
         }

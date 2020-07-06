@@ -142,10 +142,7 @@ class SplashActivity : BaseActivity() {
                             applicationContext,
                             AddDocumentActivity::class.java
                         ) //not application context
-                        intent.putExtra(
-                            "name",
-                            Prefs.getKey(applicationContext, "driveName")
-                        )
+
                         intent.flags =
                             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
@@ -229,10 +226,7 @@ class SplashActivity : BaseActivity() {
                                                 applicationContext,
                                                 AddDocumentActivity::class.java
                                             ) //not application context
-                                            intent.putExtra(
-                                                "name",
-                                                Prefs.getKey(applicationContext, "driveName")
-                                            )
+
                                             intent.flags =
                                                 Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                             startActivity(intent)
@@ -251,9 +245,7 @@ class SplashActivity : BaseActivity() {
                                             applicationContext,
                                             AddDocumentActivity::class.java
                                         ) //not application context
-                                        intent.putExtra(
-                                            "name", Prefs.getKey(applicationContext, "driveName")
-                                        )
+
                                         intent.flags =
                                             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                         startActivity(intent)
@@ -269,9 +261,7 @@ class SplashActivity : BaseActivity() {
                                         applicationContext,
                                         AddDocumentActivity::class.java
                                     ) //not application context
-                                    intent.putExtra(
-                                        "name", Prefs.getKey(applicationContext, "driveName")
-                                    )
+
                                     intent.flags =
                                         Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     startActivity(intent)
@@ -282,10 +272,7 @@ class SplashActivity : BaseActivity() {
                                     applicationContext,
                                     AddDocumentActivity::class.java
                                 ) //not application context
-                                intent.putExtra(
-                                    "name",
-                                    Prefs.getKey(applicationContext, "driveName")
-                                )
+
                                 intent.flags =
                                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)

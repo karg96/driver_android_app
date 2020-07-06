@@ -318,7 +318,7 @@
                             android:fontFamily="@font/nunitosans_regular"
                             android:lineHeight="45dp"
                             android:lineSpacingExtra="25sp"
-                            android:text="Profile Photo"
+                            android:text="Photo"
                             android:textColor="@color/colorGray"
                             android:textSize="20dp" />
 

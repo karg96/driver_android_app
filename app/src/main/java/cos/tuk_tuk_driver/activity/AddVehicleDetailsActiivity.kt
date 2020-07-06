@@ -56,7 +56,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
             val thisYear = Calendar.getInstance()[Calendar.YEAR]
 
-            for (i in 1995 until thisYear) {
+            for (i in 1995..thisYear) {
                 ItemsYear.add(count, "" + i)
                 count++
             }
@@ -176,7 +176,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
     private fun validate() {
 
-        if (binding.model.text.isEmpty() || binding.licensePlate.text.isEmpty()) {
+        if (binding.model.text.isEmpty() || binding.licensePlate.text.isEmpty() || binding.vehilceColor.text.isEmpty()) {
 
             makeToast(applicationContext, "Please fill all mandatory fields")
 
@@ -233,22 +233,30 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
                         dialog.dismiss()
 
-                        if (response.body()!!.status) {
+                        if (response.code() == 200) {
+                            if (response.body()!!.status) {
 
-                            makeToast(applicationContext, response.body()!!.message)
-                           finish()
-                            /*val intent = Intent(
-                                this@AddVehicleDetailsActiivity,
-                                AllVehicleActivity::class.java
-                            )
-                            intent.flags =
-                                Intent.FLAG_ACTIVITY_NEW_TASK *//*or Intent.FLAG_ACTIVITY_CLEAR_TASK*//*
+                                makeToast(applicationContext, response.body()!!.message)
+                                finish()
+                                /*val intent = Intent(
+                                    this@AddVehicleDetailsActiivity,
+                                    AllVehicleActivity::class.java
+                                )
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK *//*or Intent.FLAG_ACTIVITY_CLEAR_TASK*//*
                             startActivity(intent)*/
 
-                        } else if (!response.body()!!.status) {
-                            makeToast(applicationContext, response.body()!!.error)
+                            } else if (!response.body()!!.status) {
+                                makeToast(applicationContext, response.body()!!.error)
 
+                            }
+                        } else {
+                            makeToast(
+                                applicationContext,
+                                response.message().toString()
+                            )
                         }
+
 
                     }
 
@@ -290,31 +298,39 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                     ) {
 
                         dialog.dismiss()
+                        if (response.code() == 200) {
+                            if (response.body()!!.status) {
 
-                        if (response.body()!!.status) {
+                                binding.licensePlate.setText("")
+                                binding.model.setText("")
+                                binding.year.text = ""
+                                binding.vehilceColor.setText("")
 
-                            binding.licensePlate.setText("")
-                            binding.model.setText("")
-                            binding.year.text = ""
-                            binding.vehilceColor.setText("")
-
-                            makeToast(applicationContext, response.body()!!.message)
-                            finish()
-                            /*val intent = Intent(
-                                this@AddVehicleDetailsActiivity,
-                                AllVehicleActivity::class.java
-                            )
-                            intent.flags =
-                                Intent.FLAG_ACTIVITY_NEW_TASK *//*or Intent.FLAG_ACTIVITY_CLEAR_TASK*//*
+                                makeToast(applicationContext, response.body()!!.message)
+                                finish()
+                                /*val intent = Intent(
+                                    this@AddVehicleDetailsActiivity,
+                                    AllVehicleActivity::class.java
+                                )
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK *//*or Intent.FLAG_ACTIVITY_CLEAR_TASK*//*
                             startActivity(intent)*/
 
-                        } else if (!response.body()!!.status) {
+                            } else if (!response.body()!!.status) {
+                                makeToast(
+                                    applicationContext,
+                                    "Registration Number has already been taken."
+                                )
+
+                            }
+                        } else {
                             makeToast(
                                 applicationContext,
-                                "Registration Number has already been taken."
+                                response.message().toString()
                             )
 
                         }
+
 
                     }
 
