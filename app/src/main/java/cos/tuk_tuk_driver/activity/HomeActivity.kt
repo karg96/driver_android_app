@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -36,6 +37,8 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
     private var driveName: String? = ""
     private var driveImage: String? = ""
     private var driveRating: String? = ""
+    private var finish: Boolean = false
+    private var isHome: Boolean = true
 
     lateinit var binding: ActivityHomeBinding
 
@@ -48,6 +51,7 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         try {
 
             init()
+            isHome=true
 
             val home = Home()
             fragmentManager = supportFragmentManager
@@ -116,12 +120,15 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
             }
 
             R.id.home -> {
+                isHome=true
                 binding.Title.text = "Home"
 
                 changeView(Home())
 
             }
             R.id.account -> {
+                isHome=false
+
                 binding.Title.text = "Account"
 
                 changeView(Account())
@@ -142,6 +149,25 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         fragmentManager = supportFragmentManager
         fragmentManager!!.beginTransaction().replace(R.id.container_body, fragment, "home.getTag()")
             .commit()
+    }
+
+
+    override fun onBackPressed() {
+        if (finish) {
+
+            super.onBackPressed()
+        }
+        if (!finish) {
+            if (!isHome) {
+                binding.Title.text = "Home"
+                changeView(Home())
+                isHome=true
+                return
+            }
+            finish = true
+            Toast.makeText(this, "Press One more time to exit", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
 

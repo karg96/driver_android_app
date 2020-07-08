@@ -227,7 +227,7 @@ class Home : Fragment(), OnMapReadyCallback {
                     // check for permanent denial of any permission
                     if (report.isAnyPermissionPermanentlyDenied) {
 
-                        showSettingsDialog()
+                       // showSettingsDialog()
 
                         // permission is denied permenantly, navigate user to app settings
                     }
@@ -237,7 +237,7 @@ class Home : Fragment(), OnMapReadyCallback {
                     permissions: List<PermissionRequest?>?,
                     token: PermissionToken?
                 ) {
-                    token!!.continuePermissionRequest()
+                  //  token!!.continuePermissionRequest()
                 }
             }).check()
     }
@@ -319,7 +319,7 @@ class Home : Fragment(), OnMapReadyCallback {
                     permissions: List<PermissionRequest?>?,
                     token: PermissionToken?
                 ) {
-                    token!!.continuePermissionRequest()
+                  //  token!!.continuePermissionRequest()
 
                 }
             }).check()

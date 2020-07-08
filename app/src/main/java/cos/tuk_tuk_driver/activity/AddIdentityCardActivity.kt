@@ -104,7 +104,7 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
 
                 }, year, month, day
             )
-            dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+            dpd.datePicker.minDate = System.currentTimeMillis() - 1000
             dpd.show()
         }
 
@@ -318,7 +318,7 @@ class AddIdentityCardActivity : AppCompatActivity(), View.OnClickListener {
                                     binding.passportBack.setImageResource(R.drawable.pass_front)*/
 
                                     Comman.makeToast(applicationContext, response.body()!!.message)
-                                     finish()
+                                    finish()
 
                                 } else if (!response.body()!!.status) {
                                     Comman.makeToast(

@@ -121,53 +121,53 @@ class AllVehicleAdapter(
             //  }
         }
 
-        holder.edit.setOnClickListener {
-            // Comman.makeToast(applicationContext, "Delete $pos")
-            val intent = Intent(
-                context,
-                AddVehicleDetailsActiivity::class.java
-            )
-
-            intent.flags =
-                Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
-            intent.putExtra("from", "update")
-            intent.putExtra("vehicleId", "" + data.id)
-            intent.putExtra(
-                "service_type_id",
-                "" + data.service_type_id
-            )
-            intent.putExtra(
-                "service_color",
-                "" + data.service_color
-            )
-            intent.putExtra(
-                "service_model",
-                "" + data.service_model
-            )
-            intent.putExtra("service_year", "" + data.service_year)
-            intent.putExtra(
-                "service_number",
-                "" + data.service_number
-            )
-            context.startActivity(intent)
-
-        }
-
-
-        holder.delete.setOnClickListener {
-            // Comman.makeToast(applicationContext, "Delete $pos")
-            if (data.prime != 1) {
-                allVehicleActivity.deleteVehicleData("" + data.id)
-            } else {
-
-                Comman.makeToast(
-                    context,
-                    "You cannot delete prime vehicle "
-                )
-
-            }
-
-        }
+//        holder.edit.setOnClickListener {
+//            // Comman.makeToast(applicationContext, "Delete $pos")
+//            val intent = Intent(
+//                context,
+//                AddVehicleDetailsActiivity::class.java
+//            )
+//
+//            intent.flags =
+//                Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
+//            intent.putExtra("from", "update")
+//            intent.putExtra("vehicleId", "" + data.id)
+//            intent.putExtra(
+//                "service_type_id",
+//                "" + data.service_type_id
+//            )
+//            intent.putExtra(
+//                "service_color",
+//                "" + data.service_color
+//            )
+//            intent.putExtra(
+//                "service_model",
+//                "" + data.service_model
+//            )
+//            intent.putExtra("service_year", "" + data.service_year)
+//            intent.putExtra(
+//                "service_number",
+//                "" + data.service_number
+//            )
+//            context.startActivity(intent)
+//
+//        }
+//
+//
+//        holder.delete.setOnClickListener {
+//            // Comman.makeToast(applicationContext, "Delete $pos")
+//            if (data.prime != 1) {
+//                allVehicleActivity.deleteVehicleData("" + data.id)
+//            } else {
+//
+//                Comman.makeToast(
+//                    context,
+//                    "You cannot delete prime vehicle "
+//                )
+//
+//            }
+//
+//        }
 
 
     }
@@ -284,8 +284,8 @@ class AllVehicleAdapter(
         val check = view.check
         val makePrime = view.makePrime
         val image = view.image
-        val delete = view.delete
-        val edit = view.edit
+//        val delete = view.delete
+//        val edit = view.edit
     }
 
 }

@@ -84,7 +84,7 @@ class AddPhotoActivity : AppCompatActivity() {
         binding.ivBack.setOnClickListener {
             finish()
         }
-        binding.imgLicense.setOnClickListener{
+        binding.imgLicense.setOnClickListener {
             showAlert()
         }
 
@@ -146,8 +146,7 @@ class AddPhotoActivity : AppCompatActivity() {
             val insurance = Intent()
             insurance.type = "image/*"
             insurance.action = Intent.ACTION_GET_CONTENT
-            startActivityForResult(
-                Intent.createChooser(insurance, "Select Picture"), 12)
+            startActivityForResult(Intent.createChooser(insurance, "Select Picture"), 12)
         }
         builder.setNegativeButton("Camera") { dialog, which ->
             dialog.dismiss()
@@ -277,7 +276,7 @@ class AddPhotoActivity : AppCompatActivity() {
 
             Glide.with(this).load(mCurrentPhotoPath).into(binding.imgLicense)
             SelectedImage = mCurrentPhotoPath
-           // startCropImageActivity(data!!.data!!)
+            // startCropImageActivity(data!!.data!!)
 
         }
 

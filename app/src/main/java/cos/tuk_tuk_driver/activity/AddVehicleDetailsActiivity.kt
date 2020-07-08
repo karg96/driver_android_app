@@ -50,7 +50,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
         try {
 
-            from = intent.getStringExtra("from")
+            from = intent.getStringExtra("from")//update and add
 
             init()
 
@@ -190,7 +190,7 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
 
         } else {
 
-            if (from.equals("add", ignoreCase = true)) {
+            if (from.equals("add", ignoreCase = true) || from.equals("addNew", ignoreCase = true)) {
                 addVehicles()
 
             }
@@ -307,14 +307,17 @@ class AddVehicleDetailsActiivity : AppCompatActivity() {
                                 binding.vehilceColor.setText("")
 
                                 makeToast(applicationContext, response.body()!!.message)
+                                if (from.equals("addNew")) {
+                                    val intent = Intent(
+                                        this@AddVehicleDetailsActiivity,
+                                        AllVehicleActivity::class.java
+                                    )
+                                    intent.flags =
+                                        Intent.FLAG_ACTIVITY_NEW_TASK //or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    startActivity(intent)
+                                }
+
                                 finish()
-                                /*val intent = Intent(
-                                    this@AddVehicleDetailsActiivity,
-                                    AllVehicleActivity::class.java
-                                )
-                                intent.flags =
-                                    Intent.FLAG_ACTIVITY_NEW_TASK *//*or Intent.FLAG_ACTIVITY_CLEAR_TASK*//*
-                            startActivity(intent)*/
 
                             } else if (!response.body()!!.status) {
                                 makeToast(

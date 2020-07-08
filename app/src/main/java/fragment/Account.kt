@@ -11,12 +11,9 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-
 import cos.tuk_tuk_driver.DriverApp
-
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.activity.*
-import cos.tuk_tuk_driver.databinding.ActivityVehicleBinding
 import cos.tuk_tuk_driver.models.GetVehicleModal
 import cos.tuk_tuk_driver.utils.Comman
 import cos.tuk_tuk_driver.utils.Prefs
@@ -42,7 +39,6 @@ class Account : Fragment() {
 
 //    private var fragmentAccountBinding: FragmentAccountBinding? = null
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,7 +47,6 @@ class Account : Fragment() {
         var view = inflater.inflate(R.layout.fragment_account, container, false)
 
         /*  val binding = fragmentAccountBinding.bind(view)
-
           fragmentAccountBinding = binding*/
 
         try {
@@ -101,16 +96,19 @@ class Account : Fragment() {
                 DeleteAlerts(view)
 
             }
-            getVehiclesList(0)
 
 
         } catch (Ex: Exception) {
 
         }
 
-
         return view
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getVehiclesList(0)
     }
 
     fun DeleteAlerts(view: View) {
@@ -191,6 +189,7 @@ class Account : Fragment() {
                                             context,
                                             VehicleActivity::class.java
                                         )
+                                        intent.putExtra("from", "menu")
                                         intent.flags =
                                             Intent.FLAG_ACTIVITY_NEW_TASK/* or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
                                         startActivity(intent)
@@ -203,6 +202,7 @@ class Account : Fragment() {
                                         for (x in 0..response.body()!!.vehicles.size) {
                                             if (response.body()!!.vehicles.get(x).prime == 1) {
                                                 vehicleText!!.visibility = View.GONE
+                                                //   vehicleText!!.text=response.body()!!.vehicles.get(x).serviceDetail.name
                                             }
                                         }
                                     }

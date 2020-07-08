@@ -78,7 +78,7 @@ class AllVehicleActivity : AppCompatActivity() {
                                         this@AllVehicleActivity,
                                         VehicleActivity::class.java
                                     )
-
+                                    intent.putExtra("from", "listEmpty")
                                     intent.flags =
                                         Intent.FLAG_ACTIVITY_NEW_TASK /*or Intent.FLAG_ACTIVITY_CLEAR_TASK*/
                                     // intent.putExtra("from", "add")
@@ -209,7 +209,7 @@ class AllVehicleActivity : AppCompatActivity() {
                                 )
 
                                 intent.flags =
-                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    Intent.FLAG_ACTIVITY_NEW_TASK //or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 intent.putExtra("from", "update")
                                 intent.putExtra("vehicleId", "" + dataList.get(pos).id)
                                 intent.putExtra(
