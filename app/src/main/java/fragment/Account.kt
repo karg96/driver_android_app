@@ -37,8 +37,6 @@ class Account : Fragment() {
     private var deleteAccount: TextView? = null
     private var vehicleText: TextView? = null
 
-//    private var fragmentAccountBinding: FragmentAccountBinding? = null
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -139,7 +137,6 @@ class Account : Fragment() {
             startActivity(intent)
         }
 
-
         // Display a negative button on alert dialog
         builder.setNegativeButton("No") { dialog, which ->
 
@@ -161,6 +158,7 @@ class Account : Fragment() {
             val dialog = ProgressDialog(context)
             dialog.setMessage("Please wait....")
             dialog.show()
+            vehicleText!!.visibility = View.VISIBLE
 
             apiInterface!!.getVehicle("")
                 .enqueue(object : Callback<GetVehicleModal> {

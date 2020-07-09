@@ -152,7 +152,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 )
                                             ) {
                                                 Message =
-                                                    "Your Driving License document is ${response.body()!!.driverDocuments.get(
+                                                    Message + "\n\nYour Driving License document is ${response.body()!!.driverDocuments.get(
                                                         x
                                                     ).status}"
                                                 IsReject += 1
@@ -166,7 +166,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 )
                                             ) {
                                                 Message =
-                                                    "Your Driving License document is in ${response.body()!!.driverDocuments.get(
+                                                    Message + "\n\nYour Driving License document is in ${response.body()!!.driverDocuments.get(
                                                         x
                                                     ).status}"
                                             }
@@ -195,7 +195,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     )
                                                 ) {
                                                     Message =
-                                                        "Your Passport document is ${response.body()!!.driverDocuments.get(
+                                                        Message + "\n\nYour Passport document is ${response.body()!!.driverDocuments.get(
                                                             x
                                                         ).status}"
                                                 }
@@ -243,7 +243,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 )
                                             ) {
                                                 Message =
-                                                    "Your Passport document is ${response.body()!!.driverDocuments.get(
+                                                    Message + "\n\nYour Passport document is ${response.body()!!.driverDocuments.get(
                                                         x
                                                     ).status}"
 
@@ -258,7 +258,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 )
                                             ) {
                                                 Message =
-                                                    "Your Passport document is in ${response.body()!!.driverDocuments.get(
+                                                    Message + "\n\nYour Passport document is in ${response.body()!!.driverDocuments.get(
                                                         x
                                                     ).status}"
                                             }
