@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import android.widget.Switch
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -27,12 +28,14 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import cos.tuk_tuk_driver.R
+import cos.tuk_tuk_driver.activity.HomeActivity
 import cos.tuk_tuk_driver.model.GetpaymentModaal
 import cos.tuk_tuk_driver.utils.Comman
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -51,6 +54,7 @@ class Home : Fragment(), OnMapReadyCallback {
     var initial_longitude = 0.0
     var initial_marker = "Seed nay"
     lateinit var online: Switch
+    lateinit var  bottomSheetDialog:BottomSheetDialog
 
     val apiInterface = Comman.getApiToken()
 
@@ -85,6 +89,22 @@ class Home : Fragment(), OnMapReadyCallback {
 
                 }
             }
+        })
+
+
+
+        driverStatus.setOnClickListener(View.OnClickListener {
+
+            Log.e("DRIVER STATUS", "CLicked")
+            bottomSheetDialog=BottomSheetDialog(activity!!,R.style.BottomSheetDialogTheme)
+            val bottomSheetView=LayoutInflater.from(context!!.applicationContext).inflate(R.layout.bottom_sheet_my_day,null)
+            bottomSheetView.findViewById<TextView>(R.id.textView6).setOnClickListener(View.OnClickListener {
+                bottomSheetDialog.dismiss()
+            })
+
+            bottomSheetDialog.setContentView(bottomSheetView)
+            bottomSheetDialog.show()
+
         })
 
         currentLocation()
