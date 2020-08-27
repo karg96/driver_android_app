@@ -153,7 +153,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 ) {
 
                                                     binding.driverCheck.setImageResource(R.drawable.timer)
-                                                    binding.driverCheck.setBackgroundResource(R.drawable.edt_round_oranges)
+//                                                    binding.driverCheck.setBackgroundResource(R.drawable.edt_round_oranges)
                                                 }
 
                                                 if (response.body()!!.driverDocuments.get(x).status.equals(
@@ -161,7 +161,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                         ignoreCase = true
                                                     )
                                                 ) {
-                                                    binding.driverCheck.setImageResource(R.drawable.ic_check_green)
+                                                    binding.driverCheck.setImageResource(R.drawable.done)
                                                 }
 
 
@@ -270,7 +270,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                 ) {
 
                                                     binding.identyCheck.setImageResource(R.drawable.timer)
-                                                    binding.identyCheck.setBackgroundResource(R.drawable.edt_round_oranges)
+//                                                    binding.identyCheck.setBackgroundResource(R.drawable.edt_round_oranges)
                                                 }
 
                                                 if (response.body()!!.driverDocuments.get(x).status.equals(
@@ -278,7 +278,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                         ignoreCase = true
                                                     )
                                                 ) {
-                                                    binding.identyCheck.setImageResource(R.drawable.ic_check_green)
+                                                    binding.identyCheck.setImageResource(R.drawable.done)
                                                 }
 
 
