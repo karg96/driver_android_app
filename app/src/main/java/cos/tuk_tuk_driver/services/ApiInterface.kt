@@ -1,6 +1,6 @@
 package cos.tuk_tuk_driver.services
 
-import cos.tuk_tuk_driver.models.*
+import cos.tuk_tuk_driver.model.*
 import cos.tuk_tuk_driver.utils.URLHelper
 import cos.tuk_tuk_driver.utils.URLHelper.GetUploadDocs
 import cos.tuk_tuk_driver.utils.URLHelper.Logout

@@ -52,6 +52,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/fullView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:paddingTop="20sp"
@@ -79,18 +80,38 @@
                     </LinearLayout>
 
 
-                    <ImageView
-                        android:id="@+id/imagetitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                    <!--                    <ImageView-->
+                    <!--                        android:id="@+id/imagetitle"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="50dp"-->
+                    <!--                        android:layout_centerHorizontal="true"-->
+                    <!--                        android:layout_gravity="center_horizontal"-->
+                    <!--                        android:src="@drawable/pass_above" />-->
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/pass_above" />
+
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_first"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_alignParentLeft="true"
+                            android:background="#0082ff" />
+
+                        <RelativeLayout
+                            android:id="@+id/rl_second"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_alignParentRight="true"
+                            android:background="#005fe4" />
+                    </RelativeLayout>
 
                 </RelativeLayout>
-
-
-
 
                 <EditText
                     android:id="@+id/expiryDate"

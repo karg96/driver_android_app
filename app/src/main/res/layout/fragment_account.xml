@@ -55,6 +55,7 @@
                     android:layout_below="@+id/vehicleTitle"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="0dp"
+                    android:visibility="gone"
                     android:layout_toRightOf="@+id/image"
                     android:fontFamily="@font/nunitosans_regular"
                     android:gravity="center_vertical"

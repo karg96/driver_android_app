@@ -111,4 +111,10 @@ dependencies {
 
     //****************** image-cropper Api **************************/
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+
+    //****************** image-circular Api **************************/
+    implementation "de.hdodenhof:circleimageview:3.0.0"
+
+
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
 }
