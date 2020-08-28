@@ -367,7 +367,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                             ) {
 
                                                 binding.photoCheck.setImageResource(R.drawable.timer)
-                                                binding.photoCheck.setBackgroundResource(R.drawable.edt_round_oranges)
+//                                                binding.photoCheck.setBackgroundResource(R.drawable.edt_round_oranges)
                                             }
 
                                             if (response.body()!!.driverDocuments.get(x).status.equals(
@@ -375,7 +375,7 @@ class AddDocumentActivity : AppCompatActivity() {
                                                     ignoreCase = true
                                                 )
                                             ) {
-                                                binding.photoCheck.setImageResource(R.drawable.ic_check_green)
+                                                binding.photoCheck.setImageResource(R.drawable.done)
                                             }
 
 

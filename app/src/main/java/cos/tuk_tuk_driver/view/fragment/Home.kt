@@ -2,21 +2,23 @@ package fragment
 
 import android.Manifest
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
-import android.widget.Switch
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.android.volley.VolleyLog
@@ -38,6 +40,7 @@ import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.activity.HomeActivity
 import cos.tuk_tuk_driver.model.GetpaymentModaal
 import cos.tuk_tuk_driver.utils.Comman
+import cos.tuk_tuk_driver.utils.ProgressBarAnimation
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -54,9 +57,20 @@ class Home : Fragment(), OnMapReadyCallback {
     var initial_longitude = 0.0
     var initial_marker = "Seed nay"
     lateinit var online: Switch
-    lateinit var  bottomSheetDialog:BottomSheetDialog
+    lateinit var driverStatus: TextView
+    lateinit var bottomSheetDialog: BottomSheetDialog
+    lateinit var expandOnlineImage: ImageView
+    lateinit var progressBar: ProgressBar
+    private var mHandler: Handler? = null
+    private var i = 0
+    private var mRunnable: Runnable? = null
 
     val apiInterface = Comman.getApiToken()
+
+    companion object {
+        const val Online = "You're online"
+        const val Offline = "You're offline"
+    }
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -73,43 +87,117 @@ class Home : Fragment(), OnMapReadyCallback {
     ): View? {
         // Inflate the layout for this fragment
 
-        var view = inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         online = view.findViewById(R.id.online)
-        val driverStatus = view.findViewById<TextView>(R.id.Destination)
+        driverStatus = view.findViewById(R.id.Destination)
+        expandOnlineImage = view.findViewById(R.id.online_expand_image)
+        progressBar = view.findViewById(R.id.finding_trips_progressBar)
 
         online.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
             override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
-                if (online.isChecked) {
-                    makeAvailable("active")
-                    driverStatus.text = "You're online"
+                if (isChecked) {
+                    setFindingTripsView()
                 } else {
-                    makeAvailable("offline")
-                    driverStatus.text = "You're offline"
-
+                    setOfflineView()
                 }
             }
         })
 
-
-
-        driverStatus.setOnClickListener(View.OnClickListener {
+        expandOnlineImage.setOnClickListener{
 
             Log.e("DRIVER STATUS", "CLicked")
-            bottomSheetDialog=BottomSheetDialog(activity!!,R.style.BottomSheetDialogTheme)
-            val bottomSheetView=LayoutInflater.from(context!!.applicationContext).inflate(R.layout.bottom_sheet_my_day,null)
-            bottomSheetView.findViewById<TextView>(R.id.textView6).setOnClickListener(View.OnClickListener {
+            bottomSheetDialog = BottomSheetDialog(activity!!, R.style.BottomSheetDialogTheme)
+            val bottomSheetView = LayoutInflater
+                .from(context!!.applicationContext)
+                .inflate(R.layout.bottom_sheet_my_day, null)
+
+            bottomSheetView.findViewById<TextView>(R.id.go_offline_tv).setOnClickListener {
                 bottomSheetDialog.dismiss()
-            })
+                setOfflineView()
+            }
+
+            bottomSheetView.findViewById<ImageView>(R.id.close_expand_online).setOnClickListener {
+                bottomSheetDialog.dismiss()
+                setOnlineView()
+            }
+
+            bottomSheetView.findViewById<ConstraintLayout>(R.id.view).setOnClickListener {
+
+            }
+
+            bottomSheetView.findViewById<ConstraintLayout>(R.id.add_destination_cell).setOnClickListener {
+
+            }
+
+            bottomSheetView.findViewById<ConstraintLayout>(R.id.driving_preferences_cell).setOnClickListener {
+
+            }
 
             bottomSheetDialog.setContentView(bottomSheetView)
             bottomSheetDialog.show()
 
-        })
+        }
+
+
 
         currentLocation()
 
         return view
+    }
+
+    private fun setFindingTripsView() {
+        view!!.findViewById<CardView>(R.id.finding_trip).visibility = View.VISIBLE
+        try {
+            i=0
+            mHandler = Handler(Looper.getMainLooper())
+            runTimer(progressBar)
+        } catch (Ex: Exception) {
+            Log.e("Handler Error","Error lopping "+Ex.printStackTrace())
+        }
+    }
+
+    private fun runTimer(progressBar: ProgressBar) {
+        mRunnable = Runnable {
+            try {
+                if (i < 100) {
+
+                    val anim = ProgressBarAnimation(
+                        progressBar,
+                        progressBar.progress.toFloat(),
+                        i.toFloat()
+                    )
+
+                    anim.duration = 400
+                    progressBar.startAnimation(anim)
+                    i += 33
+
+                    //recursion :: calling same method util condition false
+                    runTimer(progressBar)
+                } else {
+                    setOnlineView()
+                }
+            } catch (Ex: Exception){
+                Log.e("Runnable Exception","Progress runnable error"+Ex.printStackTrace())
+            }
+        }
+        mHandler!!.postDelayed(mRunnable, 2000)
+    }
+
+    private fun setOfflineView() {
+      //  makeAvailable("offline")
+        driverStatus.text = Offline
+        expandOnlineImage.visibility = View.GONE
+        online.visibility = View.VISIBLE
+        online.isChecked = false
+    }
+
+    private fun setOnlineView() {
+        view!!.findViewById<CardView>(R.id.finding_trip).visibility = View.GONE
+     //   makeAvailable("active")
+        driverStatus.text = Online
+        expandOnlineImage.visibility = View.VISIBLE
+        online.visibility = View.GONE
     }
 
 
