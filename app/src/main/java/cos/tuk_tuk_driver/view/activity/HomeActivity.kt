@@ -95,6 +95,7 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
         home!!.setOnClickListener(this)
         account!!.setOnClickListener(this)
         notification!!.setOnClickListener(this)
+        binding.cancelSuggestion.setOnClickListener(this)
         DriverName!!.text = Comman.singleCapsName(driveName)
         driverRating!!.text = Comman.singleCapsName(driveRating)
 
@@ -142,6 +143,12 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
 
             }
 
+            R.id.cancel_suggestion -> {
+                binding.suggestionView.visibility = View.GONE
+                val fragment = supportFragmentManager.findFragmentByTag("home.getTag()") as Home
+                fragment.unhideBottomView()
+            }
+
         }
     }
 
@@ -168,6 +175,10 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
             Toast.makeText(this, "Press One more time to exit", Toast.LENGTH_SHORT).show()
         }
 
+    }
+
+    fun displaySuggestionView() {
+        binding.suggestionView.visibility = View.VISIBLE
     }
 
 
