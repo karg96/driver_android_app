@@ -182,7 +182,7 @@ class Home : Fragment(), OnMapReadyCallback {
                 Log.e("Runnable Exception","Progress runnable error"+Ex.printStackTrace())
             }
         }
-        mHandler!!.postDelayed(mRunnable!!, 2000)
+        mHandler!!.postDelayed(mRunnable!!, 500)
     }
 
     private fun setOfflineView() {
