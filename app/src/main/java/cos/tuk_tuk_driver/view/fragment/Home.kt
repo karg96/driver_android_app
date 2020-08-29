@@ -110,7 +110,7 @@ class Home : Fragment(), OnMapReadyCallback {
             bottomSheetDialog = BottomSheetDialog(activity!!, R.style.BottomSheetDialogTheme)
             val bottomSheetView = LayoutInflater
                 .from(context!!.applicationContext)
-                .inflate(R.layout.bottom_sheet_my_day, null)
+                .inflate(R.layout.bottom_sheet_my_day,null)
 
             bottomSheetView.findViewById<TextView>(R.id.go_offline_tv).setOnClickListener {
                 bottomSheetDialog.dismiss()
@@ -181,7 +181,7 @@ class Home : Fragment(), OnMapReadyCallback {
                 Log.e("Runnable Exception","Progress runnable error"+Ex.printStackTrace())
             }
         }
-        mHandler!!.postDelayed(mRunnable, 2000)
+        mHandler!!.postDelayed(mRunnable, 800)
     }
 
     private fun setOfflineView() {
