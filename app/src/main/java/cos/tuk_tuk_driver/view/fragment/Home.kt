@@ -2,7 +2,6 @@ package fragment
 
 import android.Manifest
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -55,7 +54,6 @@ class Home : Fragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     var initial_latitude = 0.0
     var initial_longitude = 0.0
-    var initial_marker = "Seed nay"
     lateinit var online: Switch
     lateinit var driverStatus: TextView
     lateinit var bottomSheetDialog: BottomSheetDialog
@@ -64,6 +62,7 @@ class Home : Fragment(), OnMapReadyCallback {
     private var mHandler: Handler? = null
     private var i = 0
     private var mRunnable: Runnable? = null
+    lateinit var homeActivity: HomeActivity
 
     val apiInterface = Comman.getApiToken()
 
@@ -89,20 +88,20 @@ class Home : Fragment(), OnMapReadyCallback {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        homeActivity = activity as HomeActivity
+
         online = view.findViewById(R.id.online)
         driverStatus = view.findViewById(R.id.Destination)
         expandOnlineImage = view.findViewById(R.id.online_expand_image)
         progressBar = view.findViewById(R.id.finding_trips_progressBar)
 
-        online.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
-            override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
-                if (isChecked) {
-                    setFindingTripsView()
-                } else {
-                    setOfflineView()
-                }
+        online.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                setFindingTripsView()
+            } else {
+                setOfflineView()
             }
-        })
+        }
 
         expandOnlineImage.setOnClickListener{
 
@@ -110,7 +109,7 @@ class Home : Fragment(), OnMapReadyCallback {
             bottomSheetDialog = BottomSheetDialog(activity!!, R.style.BottomSheetDialogTheme)
             val bottomSheetView = LayoutInflater
                 .from(context!!.applicationContext)
-                .inflate(R.layout.bottom_sheet_my_day,null)
+                .inflate(R.layout.bottom_sheet_my_day, null)
 
             bottomSheetView.findViewById<TextView>(R.id.go_offline_tv).setOnClickListener {
                 bottomSheetDialog.dismiss()
@@ -123,7 +122,9 @@ class Home : Fragment(), OnMapReadyCallback {
             }
 
             bottomSheetView.findViewById<ConstraintLayout>(R.id.view).setOnClickListener {
-
+                bottomSheetDialog.dismiss()
+                view!!.findViewById<CardView>(R.id.cardview).visibility = View.GONE
+                homeActivity.displaySuggestionView()
             }
 
             bottomSheetView.findViewById<ConstraintLayout>(R.id.add_destination_cell).setOnClickListener {
@@ -181,7 +182,7 @@ class Home : Fragment(), OnMapReadyCallback {
                 Log.e("Runnable Exception","Progress runnable error"+Ex.printStackTrace())
             }
         }
-        mHandler!!.postDelayed(mRunnable, 800)
+        mHandler!!.postDelayed(mRunnable!!, 2000)
     }
 
     private fun setOfflineView() {
@@ -471,10 +472,14 @@ class Home : Fragment(), OnMapReadyCallback {
 
     // navigating user to app settings
     private fun openSettings() {
-        var intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-        var uri = Uri.fromParts("package", context!!.packageName, null)
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri = Uri.fromParts("package", context!!.packageName, null)
         intent.data = uri
         startActivityForResult(intent, 101)
+    }
+
+    fun unhideBottomView() {
+        view!!.findViewById<CardView>(R.id.cardview).visibility = View.VISIBLE
     }
 
 
