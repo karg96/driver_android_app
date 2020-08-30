@@ -35,6 +35,7 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.mikhaellopez.circularprogressbar.CircularProgressBar
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.activity.HomeActivity
 import cos.tuk_tuk_driver.model.GetpaymentModaal
