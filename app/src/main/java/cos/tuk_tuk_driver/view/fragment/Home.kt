@@ -231,7 +231,7 @@ class Home : Fragment(), OnMapReadyCallback {
 
     private fun setOnlineView() {
         view!!.findViewById<CardView>(R.id.finding_trip).visibility = View.GONE
-        makeAvailable("active")
+        makeAvailable("online")
         driverStatus.text = Online
         expandOnlineImage.visibility = View.VISIBLE
         online.visibility = View.GONE
