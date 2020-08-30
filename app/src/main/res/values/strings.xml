@@ -108,5 +108,12 @@
     <string name="dropoff_areas">Dropoff Areas</string>
     <string name="rider_rating">Rider Rating</string>
     <string name="accept_cash">Accept Cash</string>
+    <string name="reset">Reset</string>
+    <string name="rating">4.0</string>
+    <string name="basic">Basic</string>
+    <string name="time">4 mins</string>
+    <string name="distance">0.5 km</string>
+    <string name="tap_to_accept">Tap to accept</string>
+    <string name="reject">Reject</string>
 
 </resources>

@@ -115,6 +115,8 @@ dependencies {
     //****************** image-circular Api **************************/
     implementation "de.hdodenhof:circleimageview:3.0.0"
 
+    //****************** Circular Progress Bar Api **************************/
+    implementation 'com.mikhaellopez:circularprogressbar:1.0.0'
 
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
 

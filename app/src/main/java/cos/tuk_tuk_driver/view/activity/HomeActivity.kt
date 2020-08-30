@@ -145,6 +145,7 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
 
             R.id.cancel_suggestion -> {
                 binding.suggestionView.visibility = View.GONE
+                drawerLayout!!.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
                 val fragment = supportFragmentManager.findFragmentByTag("home.getTag()") as Home
                 fragment.unhideBottomView()
             }
@@ -179,6 +180,7 @@ class HomeActivity : AppCompatActivity(), FragmentDrawer.FragmentDrawerListener,
 
     fun displaySuggestionView() {
         binding.suggestionView.visibility = View.VISIBLE
+        drawerLayout!!.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
     }
 
 
