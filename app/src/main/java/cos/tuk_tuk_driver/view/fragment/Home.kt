@@ -36,6 +36,7 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.mikhaellopez.circularprogressbar.CircularProgressBar
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.activity.HomeActivity
 import cos.tuk_tuk_driver.model.GetpaymentModaal
@@ -130,7 +131,7 @@ class Home : Fragment(), OnMapReadyCallback {
             }
 
             bottomSheetView.findViewById<ConstraintLayout>(R.id.add_destination_cell).setOnClickListener {
-
+                setTripRequestView(4.0f,"4 mins","0.5 km")
             }
 
             bottomSheetView.findViewById<ConstraintLayout>(R.id.driving_preferences_cell).setOnClickListener {
@@ -148,6 +149,87 @@ class Home : Fragment(), OnMapReadyCallback {
         currentLocation()
 
         return view
+    }
+
+    private fun setTripRequestView(rating: Float,time: String,distance: String) {
+        bottomSheetDialog?.dismiss()
+        view!!.findViewById<CardView>(R.id.cardview).visibility = View.GONE
+//        if(resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+//            assert(view != null)
+//            val parent = view?.parent as View
+//            val layoutParams = parent.layoutParams as LinearLayout.LayoutParams
+//            layoutParams.setMargins(
+//                resources.getDimensionPixelSize(R.dimen.margin), // LEFT 14dp
+//                0,
+//                resources.getDimensionPixelSize(R.dimen.margin), // RIGHT 14dp
+//                resources.getDimensionPixelSize(R.dimen.margin) // BOTTOM 14dp
+//            )
+//            parent.layoutParams = layoutParams
+//        }
+
+        bottomSheetDialog = BottomSheetDialog(activity!!, R.style.BottomSheetDialogTheme)
+        val tripRequestView = LayoutInflater
+            .from(context!!.applicationContext)
+            .inflate(R.layout.view_trip_request, null)
+
+        tripRequestView.findViewById<TextView>(R.id.trip_request_rating_tv).text = rating.toString()
+
+        tripRequestView.findViewById<TextView>(R.id.trip_request_time_tv).text = time
+
+        tripRequestView.findViewById<TextView>(R.id.trip_request_distance_tv).text = distance
+
+        val progressBar = tripRequestView.findViewById<CircularProgressBar>(R.id.circularProgressBar)
+        progressBar.progress = 0f
+
+        bottomSheetDialog.setContentView(tripRequestView)
+        bottomSheetDialog.show()
+
+        try {
+            i = 0
+            mHandler = Handler(Looper.getMainLooper())
+            startTripRequestTimer(progressBar!!)
+
+        } catch (Ex: Exception){
+            Log.e("Handler Error","Error lopping "+Ex.printStackTrace())
+        }
+
+    }
+
+    private fun startTripRequestTimer(progressBar: CircularProgressBar) {
+        mRunnable = Runnable {
+            try {
+                if (i < 100) {
+
+                    val anim = ProgressBarAnimation(
+                        progressBar,
+                        progressBar.progress,
+                        i.toFloat()
+                    )
+
+                    anim.duration = 3000
+                    progressBar.startAnimation(anim)
+                    i += 100/30
+                    if(i>100)
+                        i = 100
+                    //recursion :: calling same method util condition false
+                    startTripRequestTimer(progressBar)
+                } else{
+                    val anim = ProgressBarAnimation(
+                        progressBar,
+                        progressBar.progress,
+                        i.toFloat()
+                    )
+                    anim.duration = 3000
+                    progressBar.startAnimation(anim)
+
+                    bottomSheetDialog.dismiss()
+                    setOnlineView()
+                }
+            } catch (Ex: Exception){
+                Log.e("Runnable Exception","Progress runnable error"+Ex.printStackTrace())
+            }
+        }
+        mHandler!!.postDelayed(mRunnable!!, 0)
     }
 
     private fun setDrivingPreferencesView() {
@@ -233,6 +315,7 @@ class Home : Fragment(), OnMapReadyCallback {
 
     private fun setOnlineView() {
         view!!.findViewById<CardView>(R.id.finding_trip).visibility = View.GONE
+        view!!.findViewById<CardView>(R.id.cardview).visibility = View.VISIBLE
         makeAvailable("online")
         driverStatus.text = Online
         expandOnlineImage.visibility = View.VISIBLE

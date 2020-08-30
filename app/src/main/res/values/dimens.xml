@@ -10,4 +10,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="image_shadow_padding">2dp</dimen>
     <dimen name="image_shadow_radius">10dp</dimen>
+    <dimen name="margin">14dp</dimen>
 </resources>
