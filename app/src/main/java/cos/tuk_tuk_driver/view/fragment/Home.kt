@@ -132,7 +132,8 @@ class Home : Fragment(), OnMapReadyCallback {
             }
 
             bottomSheetView.findViewById<ConstraintLayout>(R.id.driving_preferences_cell).setOnClickListener {
-
+                bottomSheetDialog.dismiss()
+                setDrivingPreferencesView()
             }
 
             bottomSheetDialog.setContentView(bottomSheetView)
@@ -145,6 +146,41 @@ class Home : Fragment(), OnMapReadyCallback {
         currentLocation()
 
         return view
+    }
+
+    private fun setDrivingPreferencesView() {
+        bottomSheetDialog = BottomSheetDialog(activity!!, R.style.BottomSheetDialogTheme)
+        val drivingPreferencesView = LayoutInflater
+            .from(context!!.applicationContext)
+            .inflate(R.layout.view_driving_preferences, null)
+
+        drivingPreferencesView.findViewById<ImageView>(R.id.cancel_driving_preferences).setOnClickListener {
+            bottomSheetDialog.dismiss()
+            setOnlineView()
+        }
+
+        drivingPreferencesView.findViewById<ConstraintLayout>(R.id.drop_off_cell).setOnClickListener {
+
+        }
+
+        drivingPreferencesView.findViewById<ConstraintLayout>(R.id.rider_rating_cell).setOnClickListener {
+
+        }
+
+        drivingPreferencesView.findViewById<Switch>(R.id.accept_cash_switch).setOnClickListener {
+
+        }
+
+        drivingPreferencesView.findViewById<Button>(R.id.save_button).setOnClickListener {
+
+        }
+
+        drivingPreferencesView.findViewById<Button>(R.id.reset_button).setOnClickListener {
+
+        }
+
+        bottomSheetDialog.setContentView(drivingPreferencesView)
+        bottomSheetDialog.show()
     }
 
     private fun setFindingTripsView() {
