@@ -98,7 +98,7 @@ class Home : Fragment(), OnMapReadyCallback {
 
         online.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                setFindingTripsView()
+                setOnlineView()
             } else {
                 setOfflineView()
             }
@@ -283,7 +283,7 @@ class Home : Fragment(), OnMapReadyCallback {
     }
 
     private fun setOfflineView() {
-      //  makeAvailable("offline")
+        makeAvailable("offline")
         driverStatus.text = Offline
         expandOnlineImage.visibility = View.GONE
         online.visibility = View.VISIBLE
@@ -293,7 +293,7 @@ class Home : Fragment(), OnMapReadyCallback {
     private fun setOnlineView() {
         view!!.findViewById<CardView>(R.id.finding_trip).visibility = View.GONE
         view!!.findViewById<CardView>(R.id.cardview).visibility = View.VISIBLE
-     //   makeAvailable("active")
+        makeAvailable("active")
         driverStatus.text = Online
         expandOnlineImage.visibility = View.VISIBLE
         online.visibility = View.GONE
@@ -325,7 +325,7 @@ class Home : Fragment(), OnMapReadyCallback {
                             dialog.dismiss()
 
                             if (response.body()!!.status) {
-                               // Comman.makeToast(context, response.body()!!.message)
+                               Comman.makeToast(context, response.body()!!.message)
 
                             } else {
 
