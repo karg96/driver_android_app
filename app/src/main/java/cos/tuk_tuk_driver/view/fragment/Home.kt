@@ -4,8 +4,6 @@ import android.Manifest
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.Configuration
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -20,7 +18,6 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.android.volley.VolleyLog
@@ -38,7 +35,6 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import com.mikhaellopez.circularprogressbar.CircularProgressBar
 import cos.tuk_tuk_driver.R
 import cos.tuk_tuk_driver.activity.HomeActivity
 import cos.tuk_tuk_driver.model.GetpaymentModaal
@@ -297,7 +293,6 @@ class Home : Fragment(), OnMapReadyCallback {
                     //recursion :: calling same method util condition false
                     runTimer(progressBar)
                 } else {
-
                     setOnlineView()
                 }
             } catch (Ex: Exception){
