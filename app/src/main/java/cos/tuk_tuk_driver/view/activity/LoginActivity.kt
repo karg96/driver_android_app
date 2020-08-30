@@ -50,6 +50,7 @@ class LoginActivity : AppCompatActivity() {
 
                     // Get new Instance ID token
                     deviceToken = task.result?.token.toString()
+                    Log.e("device token",deviceToken)
 
                 })
 
@@ -133,8 +134,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun validate() {
 
-        var mobileNumber: String = binding.edtPhoneNumber.text.toString()
-        var password: String = binding.edtPasswordNumber.text.toString()
+        val mobileNumber: String = binding.edtPhoneNumber.text.toString()
+        val password: String = binding.edtPasswordNumber.text.toString()
 
         if (mobileNumber.isEmpty()) {
 
