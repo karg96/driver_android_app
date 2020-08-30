@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
 
 
             mobileNumber = intent.getStringExtra("mobileNumber")
-            FirebaseApp.initializeApp(this)
+//            FirebaseApp.initializeApp(this)
             FirebaseInstanceId.getInstance().instanceId
                 .addOnCompleteListener(OnCompleteListener { task ->
                     if (!task.isSuccessful) {
@@ -50,6 +50,7 @@ class LoginActivity : AppCompatActivity() {
 
                     // Get new Instance ID token
                     deviceToken = task.result?.token.toString()
+                    Log.e("device token",deviceToken)
 
                 })
 

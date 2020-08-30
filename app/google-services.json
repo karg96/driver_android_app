@@ -1,35 +1,94 @@
 {
   "project_info": {
-    "project_number": "1080717279112",
-    "firebase_url": "https://tuktukdriver-c9e86.firebaseio.com",
-    "project_id": "tuktukdriver-c9e86",
-    "storage_bucket": "tuktukdriver-c9e86.appspot.com"
+    "project_number": "237744172142",
+    "firebase_url": "https://enjaz-taxi-1563135132593.firebaseio.com",
+    "project_id": "enjaz-taxi-1563135132593",
+    "storage_bucket": "enjaz-taxi-1563135132593.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1080717279112:android:04185c1b0c4e005e7c043d",
+        "mobilesdk_app_id": "1:237744172142:android:1fdff58d766c6a1e63ca7f",
         "android_client_info": {
-          "package_name": "cos.tuk_tuk_driver"
+          "package_name": "com.tuktuk"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1080717279112-gke7rbf02vjb830hti68hdoh2ee70aef.apps.googleusercontent.com",
+          "client_id": "237744172142-thqon1t5ffvvurucl6u9b59ebfv8mgvf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tuktuk",
+            "certificate_hash": "1c542d6114831b1d77cc48ec0fe6898c577c7170"
+          }
+        },
+        {
+          "client_id": "237744172142-28jma9dg6uv04ra29vfffogu6ts9pd7i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC65016cMjWOSh7VuhsGd4OToqYos1kiUs"
+          "current_key": "AIzaSyDWzHkd6xOdWKdQO4Xx_Vt3YFyZ38_cbKk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1080717279112-gke7rbf02vjb830hti68hdoh2ee70aef.apps.googleusercontent.com",
+              "client_id": "237744172142-28jma9dg6uv04ra29vfffogu6ts9pd7i.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "237744172142-t9dfb8dr4pq8254lpc5gn3butvb1icq1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.visionvivante.tuktukrider"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237744172142:android:a59c3018e991fd7f63ca7f",
+        "android_client_info": {
+          "package_name": "cos.tuk_tuk_driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "237744172142-325e13g2k04ohdgh764smjsgbs82ldnu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cos.tuk_tuk_driver",
+            "certificate_hash": "1c542d6114831b1d77cc48ec0fe6898c577c7170"
+          }
+        },
+        {
+          "client_id": "237744172142-28jma9dg6uv04ra29vfffogu6ts9pd7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWzHkd6xOdWKdQO4Xx_Vt3YFyZ38_cbKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "237744172142-28jma9dg6uv04ra29vfffogu6ts9pd7i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "237744172142-t9dfb8dr4pq8254lpc5gn3butvb1icq1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.visionvivante.tuktukrider"
+              }
             }
           ]
         }

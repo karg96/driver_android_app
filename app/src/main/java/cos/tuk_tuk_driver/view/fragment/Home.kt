@@ -30,6 +30,7 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.iid.FirebaseInstanceId
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -90,6 +91,7 @@ class Home : Fragment(), OnMapReadyCallback {
 
         homeActivity = activity as HomeActivity
 
+        Log.e("token",FirebaseInstanceId.getInstance().getToken())
         online = view.findViewById(R.id.online)
         driverStatus = view.findViewById(R.id.Destination)
         expandOnlineImage = view.findViewById(R.id.online_expand_image)
