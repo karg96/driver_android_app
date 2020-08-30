@@ -167,7 +167,7 @@ interface ApiInterface {
     @POST(URLHelper.Available)
     @FormUrlEncoded
     fun available(
-        @Field("service_status") service_status: String
+        @Field("status") service_status: String
     ): Call<GetpaymentModaal>
 
     @GET(PaymentsList)

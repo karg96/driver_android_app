@@ -24,7 +24,7 @@ object URLHelper {
     const val PaymentsList = "api/provider/payment-methods/list"
     const val ChangePayments = "api/provider/change/payment-methods"
     const val ReportIssue = "api/provider/report-issue"
-    const val Available = "api/provider/profile/available"
+    const val Available = "api/provider/profile/current/available"
 
 
 }
