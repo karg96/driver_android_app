@@ -4,6 +4,8 @@ import android.Manifest
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Configuration
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -18,6 +20,7 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.android.volley.VolleyLog
@@ -152,6 +155,18 @@ class Home : Fragment(), OnMapReadyCallback {
     private fun setTripRequestView(rating: Float,time: String,distance: String) {
         bottomSheetDialog?.dismiss()
         view!!.findViewById<CardView>(R.id.cardview).visibility = View.GONE
+//        if(resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+//            assert(view != null)
+//            val parent = view?.parent as View
+//            val layoutParams = parent.layoutParams as LinearLayout.LayoutParams
+//            layoutParams.setMargins(
+//                resources.getDimensionPixelSize(R.dimen.margin), // LEFT 14dp
+//                0,
+//                resources.getDimensionPixelSize(R.dimen.margin), // RIGHT 14dp
+//                resources.getDimensionPixelSize(R.dimen.margin) // BOTTOM 14dp
+//            )
+//            parent.layoutParams = layoutParams
+//        }
 
         bottomSheetDialog = BottomSheetDialog(activity!!, R.style.BottomSheetDialogTheme)
         val tripRequestView = LayoutInflater
@@ -165,6 +180,7 @@ class Home : Fragment(), OnMapReadyCallback {
         tripRequestView.findViewById<TextView>(R.id.trip_request_distance_tv).text = distance
 
         val progressBar = tripRequestView.findViewById<CircularProgressBar>(R.id.circularProgressBar)
+        progressBar.progress = 0f
 
         bottomSheetDialog.setContentView(tripRequestView)
         bottomSheetDialog.show()
@@ -191,13 +207,22 @@ class Home : Fragment(), OnMapReadyCallback {
                         i.toFloat()
                     )
 
-                    anim.duration = 30000
+                    anim.duration = 3000
                     progressBar.startAnimation(anim)
                     i += 100/30
-
+                    if(i>100)
+                        i = 100
                     //recursion :: calling same method util condition false
                     startTripRequestTimer(progressBar)
-                } else {
+                } else{
+                    val anim = ProgressBarAnimation(
+                        progressBar,
+                        progressBar.progress,
+                        i.toFloat()
+                    )
+                    anim.duration = 3000
+                    progressBar.startAnimation(anim)
+
                     bottomSheetDialog.dismiss()
                     setOnlineView()
                 }
@@ -293,7 +318,7 @@ class Home : Fragment(), OnMapReadyCallback {
     private fun setOnlineView() {
         view!!.findViewById<CardView>(R.id.finding_trip).visibility = View.GONE
         view!!.findViewById<CardView>(R.id.cardview).visibility = View.VISIBLE
-        makeAvailable("active")
+        makeAvailable("online")
         driverStatus.text = Online
         expandOnlineImage.visibility = View.VISIBLE
         online.visibility = View.GONE
