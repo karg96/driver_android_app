@@ -178,7 +178,9 @@ class Home : Fragment(), OnMapReadyCallback {
                 while (true){
                     Thread.sleep(30000)
                     bottomSheetDialog.dismiss()
-                    setOnlineView()
+                    homeActivity.runOnUiThread {
+                        setOnlineView()
+                    }
                     break
                 }
             }catch (e:InterruptedException){
