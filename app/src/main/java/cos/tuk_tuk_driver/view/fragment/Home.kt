@@ -79,6 +79,7 @@ class Home : Fragment(), OnMapReadyCallback {
         google_map.onCreate(savedInstanceState)
         google_map.onResume()
         google_map.getMapAsync(this)
+
     }
 
 
@@ -92,7 +93,9 @@ class Home : Fragment(), OnMapReadyCallback {
 
         homeActivity = activity as HomeActivity
 
+
         Log.e("token",FirebaseInstanceId.getInstance().getToken())
+
         online = view.findViewById(R.id.online)
         driverStatus = view.findViewById(R.id.Destination)
         expandOnlineImage = view.findViewById(R.id.online_expand_image)
